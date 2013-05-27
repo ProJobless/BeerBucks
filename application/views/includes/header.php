@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<title>CHANGE YOUR TITLE</title>
+	<title>Beer-Bucks</title>
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="author" content="Kolby Sisk">
