@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 
 		//Tells template to load the discover view.
 		$data['view'] = 'login';
-
+				
 		//Load template
 		$this->load->view('includes/template', $data);
 

@@ -976,6 +976,7 @@ footer section:nth-of-type(2) li:last-child {
   border-bottom: solid 1px #dddddd; }
 
 #tabs li.selected {
+  height: 98%;
   border-bottom: solid 2px #fafdff;
   background-color: #fafdff;
   color: #071226;
@@ -1101,6 +1102,8 @@ footer section:nth-of-type(2) li:last-child {
   clear: both;
   padding: 0px 13px;
   text-align: center;
+  -webkit-box-shadow: 0px 2px 2px 0px #dddddd;
+  box-shadow: 0px 2px 2px 0px #dddddd;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px; }
 
@@ -1286,23 +1289,24 @@ footer section:nth-of-type(2) li:last-child {
 #forms > section {
   height: 400px;
   background-color: #fafdff;
-  margin: 100px auto;
+  margin: 60px auto 100px;
   border: 1px solid #dddddd;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px;
   -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
   box-shadow: 0px 0px 2px 0px #dddddd; }
 
-#forms article {
+#forms article, #forms form {
   width: 319px;
   height: 100%;
   float: left;
   border-right: solid 1px #dddddd; }
 
-#forms article:nth-of-type(3) {
+#forms article:nth-of-type(3), #forms form:nth-of-type(3) {
+  width: 320px;
   border: none; }
 
-#forms article h1 {
+#forms article h1, #forms form h1 {
   width: 100%;
   height: 50px;
   background-color: #edf6f5;
@@ -1312,38 +1316,35 @@ footer section:nth-of-type(2) li:last-child {
   font-size: 1.1em;
   font-weight: 300; }
 
-#forms article div {
+#forms article div, #forms form div {
   width: 95%;
-  height: 300px;
+  height: auto;
   background-color: #edf6f5;
   margin: 20px auto;
-  text-align: center; }
+  padding: 0 0 20px 0;
+  text-align: center;
+  overflow: hidden; }
 
-#forms article img {
+#forms article img, #forms form img {
   width: 270px;
   margin: 30px 0 0 0; }
 
-#forms article p {
+#forms article p, #forms form p {
   text-align: left;
   color: #666666;
   font-weight: normal;
   font-size: .7em;
   margin: 20px 0 0 16px; }
 
-#forms article h2 {
+#forms form h2 {
   color: #666666;
   font-weight: normal;
   font-size: .9em;
   margin: 20px 0 0 14px;
   text-align: left; }
 
-#forms article h2:first-child {
-  padding: 20px 0 0 0px; }
-
-#forms article input {
-  margin-top: 5px; }
-
-#forms article input {
+#forms form input {
+  margin-top: 5px;
   width: 270px;
   height: 30px;
   -webkit-border-radius: 5px 5px 5px 5px;
@@ -1351,7 +1352,7 @@ footer section:nth-of-type(2) li:last-child {
   border: solid 2px #dddddd;
   background-color: #fafdff; }
 
-#forms article:not(:nth-of-type(1)) a:nth-of-type(1) {
+#forms form button {
   background: #f2137b;
   /* Old browsers */
   background: -moz-linear-gradient(top, #f2137b 0%, #db116f 100%);
@@ -1372,7 +1373,7 @@ footer section:nth-of-type(2) li:last-child {
   padding: 8px 10px;
   font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
   font-size: .7em;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 1px;
   color: #edf6f5;
   float: left;
@@ -1381,7 +1382,7 @@ footer section:nth-of-type(2) li:last-child {
   box-shadow: inset 0px 1px 0px 0px #eb599d;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
-  #forms article:not(:nth-of-type(1)) a:nth-of-type(1):hover {
+  #forms form button:hover {
     -webkit-box-shadow: inset 0px 1px 0px 0px #071226;
     box-shadow: inset 0px 1px 0px 0px #071226;
     background: #c40f64;
@@ -1401,13 +1402,16 @@ footer section:nth-of-type(2) li:last-child {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
 
-#forms article:nth-of-type(2) a:nth-of-type(2) {
+#forms form a {
   float: right;
   font-size: .7em;
   font-weight: bold;
   line-height: 50px;
   margin: 0px 16px;
   color: #666666; }
-  #forms article:nth-of-type(2) a:nth-of-type(2):hover {
+  #forms form a:hover {
     color: #919191;
     text-decoration: underline; }
+
+#forms form p {
+  color: #f2137b; }

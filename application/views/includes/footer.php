@@ -1,5 +1,5 @@
 	<footer>
-		<a href="#">Join the Beer-Bucks Community</a>
+		<a href="<? echo base_url(); ?>index.php/join">Join the Beer-Bucks Community</a>
 		<section class="sizer">
 			<img src="<? echo base_url(); ?>img/logo-blue.png" alt="">
 			

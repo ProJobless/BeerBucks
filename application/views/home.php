@@ -4,7 +4,7 @@
 				<h1>Welcome to the Party!</h1>
 				<p>Beer-Bucks is a social website for people who like to party. At Beer-Bucks you can raise money to fund a party, find and donate to local parties, or make new friends in our community of awesome people.</p>
 			</article>
-			<a href="#">Join The Party</a>
+			<a href="<? echo base_url(); ?>index.php/join">Join The Party</a>
 		</div>
 
 		<div class="divider"></div>

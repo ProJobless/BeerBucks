@@ -1,5 +1,5 @@
 <?php
-
+	
 	// Loads Header
 	$this->load->view("includes/header.php");
 

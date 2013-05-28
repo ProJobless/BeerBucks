@@ -17,34 +17,36 @@
 				</div>
 			</article>
 
-			<article>
+			<?php echo form_open("authentication/login"); ?>
 				<h1>Login with an email</h1>
 				<div>
+					<p><? if(isset($error)) echo $error; ?></p>
 					<h2>Email Adress</h2>
-					<input type="text"></input>
+					<?php echo form_input('email'); ?>
 
 					<h2>Password</h2>
-					<input type="text"></input>
+					<?php echo form_password('password'); ?>
 
-					<a href="#">Login</a>
+					<button type="submit">Login</button>
 					<a href="#">Forgot your password?</a>
 				</div>
-			</article>
+			<?php echo form_close(); ?>
 
-			<article>
+			<?php echo form_open("authentication/signup"); ?>
 				<h1>Create an account</h1>
 				<div>
-					<h2>Name</h2>
-					<input type="text" />
+					<p><? if(isset($joinError)) echo $joinError; ?></p>
+					<h2>Username</h2>
+					<?php echo form_input('username'); ?>
 
 					<h2>Email</h2>
-					<input type="text" />
+					<?php echo form_input('email'); ?>
 
 					<h2>Password</h2>
-					<input type="password" />
+					<?php echo form_password('password'); ?>
 
-					<a href="#">Sign Up</a>
+					<button type="submit">Sign Up</button>
 				</div>
-			</article>
+			<?php echo form_close(); ?>
 		</section>
 	</section>
