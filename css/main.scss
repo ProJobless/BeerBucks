@@ -1,2 +1,1104 @@
-/* main.css | Kolby Sisk | www.kolbysisk.com */
+/* mains.scss | Kolby Sisk | www.kolbysisk.com | www.beer-bucks.com */
+
+/* ------------------------------ Colors ------------------------------ */
+$main-pink: #f2137b;
+$light-purple: #8c0f6b;
+$medium-purple: #271640;
+$dark-purple: #071226;
+$main-blue: #05a696;
+$main-white: #edf6f5;
+$light-gray: #dddddd;
+$dark-gray: #666666;
+$light-white: #fafdff;
+$main-yellow: #f5b74b;
+$blue-highlight: #1acbbb;
+$blue-shadow: #237e76;
+$purple-highlight: #eb599d;
+$purple-shadow: #8c0f6b;
+$blue-hover: #06bfad;
+$pink-hover: #ff0077;
+
+/* ------------------------------ Mixins ------------------------------ */
+@mixin corners($topLeft : 5px, $topRight : 5px, $bottomRight : 5px, $bottomLeft : 5px){
+    -webkit-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+}
+@mixin transition($speed : .3s){
+    transition: width $speed;
+    -webkit-transition: $speed; /* Safari */
+}
+@mixin gradient($top : #f2137b, $bottom : #db116f){
+    background: $top; /* Old browsers */
+	background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,#db116f)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 ); /* IE6-9 */
+}
+@mixin highlight($color: #eb599d){
+	-webkit-box-shadow: inset 0px 1px 0px 0px $color;
+    box-shadow: inset 0px 1px 0px 0px $color;
+}
+@mixin textshadow($hor : 0px, $ver : 1px, $blur: 2px, $shadow : $dark-purple){
+	text-shadow: $hor $ver $blur $shadow;
+    filter: dropshadow(color=$shadow, offx=$hor, offy=$ver);
+}
+@mixin bluebutton(){
+	display: block;
+	width: 475px;
+	height: 70px;
+	background: $main-blue;
+	text-align: center;
+	line-height: 70px;
+	color: $main-white;
+	font-family: 'ChunkFiveRegular';
+	font-size: 1.6em;
+	border: solid 1px $blue-shadow();
+	@include corners();
+	@include gradient(#05a696, #049587);
+	@include highlight($blue-highlight);
+	&:hover{
+		@include gradient($blue-hover, $blue-hover);
+	}
+}
+@mixin outerglow($hor : 0px, $ver : 0px, $blur : 2px, $spread : 0px, $color : $light-gray){
+	-webkit-box-shadow: $hor $ver $blur $spread $color;     
+    box-shadow: $hor $ver $blur $spread $color;
+}
+@mixin unglow(){
+	-webkit-box-shadow: none;     
+    box-shadow: none;
+}
+@mixin bar($percent : 20%){
+	background: #05a696; /* Old browsers */
+	background: -moz-linear-gradient(left,  #05a696 0%, #05a696 $percent, #dddddd $percent, #dddddd 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#05a696), color-stop($percent,#05a696), color-stop($percent,#dddddd), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #05a696 0%,#05a696 50%,#dddddd 50%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #05a696 0%,#05a696 $percent,#dddddd $percent,#dddddd 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #05a696 0%,#05a696 $percent,#dddddd $percent,#dddddd 100%); /* IE10+ */
+	background: linear-gradient(to right,  #05a696 0%,#05a696 $percent,#dddddd $percent,#dddddd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05a696', endColorstr='#dddddd',GradientType=1 ); /* IE6-9 */
+}
+@mixin input(){
+	border: solid 1px $light-gray;
+
+}
+
+/* ------------------------------ Fonts ------------------------------ */
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('fonts/chunkFive/Chunkfive-webfont.eot');
+    src: url('fonts/chunkFive/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/chunkFive/Chunkfive-webfont.woff') format('woff'),
+         url('fonts/chunkFive/Chunkfive-webfont.ttf') format('truetype'),
+         url('fonts/chunkFive/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face{ 
+    font-family: 'CodePro';
+    src: url('fonts/codepro/webfont.eot');
+    src: url('fonts/codepro/webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/codepro/webfont.woff') format('woff'),
+         url('fonts/codepro/webfont.ttf') format('truetype'),
+         url('fonts/codepro/webfont.svg#webfont') format('svg');
+}
+@font-face {
+    font-family: 'CodeProLight';
+    src: url('fonts/codeproLight/webfont2.eot');
+    src: url('fonts/codeproLight/webfont2.eot?#iefix') format('embedded-opentype'),
+         url('fonts/codeproLight/webfont2.woff') format('woff'),
+         url('fonts/codeproLight/webfont2.ttf') format('truetype'),
+         url('fonts/codeproLight/webfont2.svg#CodeProLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LeckerliOne';
+    src: url('fonts/leckerli/LeckerliOne-Regular-webfont.eot');
+    src: url('fonts/leckerli/LeckerliOne-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/leckerli/LeckerliOne-Regular-webfont.woff') format('woff'),
+         url('fonts/leckerli/LeckerliOne-Regular-webfont.ttf') format('truetype'),
+         url('fonts/leckerli/LeckerliOne-Regular-webfont.svg#LeckerliOneRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ------------------------------ Global Styles ------------------------------ */
+html{
+	width: auto;
+	-webkit-font-smoothing: antialiased;
+	font-smooth: always;
+	transform: rotate(-0.0000000001deg);
+}
+body{
+	width: 100%;
+	background-color: $main-white;
+	overflow-x: hidden;
+}
+.sizer{
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+p, h1, h2, h3, h4, h5, h6{
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ------------------------------ Header Styles ------------------------------ */
+header{
+	height: 70px;
+	width: 100%;
+	background-color: $main-white;
+	border-bottom: solid 1px $medium-purple;
+}
+#logo{
+	width: 165px;
+	height: 100%;
+	background: url("../img/logo-purple.png") no-repeat 0px 7px;
+	padding-right: 40px;
+	border-right: solid 1px $light-gray;
+	float: left;
+	text-indent: -9999px;
+}
+nav{
+	height: 100%;
+	width: auto;
+	float: left;
+	background-color: $main-pink;
+}
+header nav a{
+	display: block;
+	height: 50px;
+	background-color: $main-white;
+	padding: 0 20px;
+	border-right: solid 1px $light-gray;
+	float: left;
+	padding-top: 20px;
+	@include transition(.09s);
+	&:hover{ 
+		height: 50px;
+		margin-top: 5px;
+		vertical-align: bottom;
+		padding-top: 15px;
+		@include transition(.12s);
+	}
+}
+header nav .active{
+		height: 50px;
+		margin-top: 5px;
+		vertical-align: bottom;
+		padding-top: 15px;
+		@include transition(.12s);	
+}
+header nav h1{
+	font-family: 'ChunkFiveRegular';
+	font-size: 1.5em;
+	color: $main-pink;
+	font-weight: normal;
+}
+header nav h2{
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .8em;
+	font-weight: 100;
+	color: $dark-gray;
+}
+header #tools{
+	float: right;
+}
+header #tools a{
+	@include gradient();
+	border: solid 1px $purple-shadow;
+	padding: 8px;
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 800;
+	letter-spacing: 1px;
+	color: $main-white;
+	float: left;
+	margin-top: 20px;
+	@include highlight();
+	@include corners(0px, 5px, 5px, 0px);
+	&:hover{
+		@include highlight($dark-purple);
+		@include gradient(#c40f64, #b30e5b);
+	}
+}
+header #tools a:first-child{
+	@include corners(5px, 0px, 0px, 5px);
+	border-right: solid 0px $purple-shadow;
+}
+
+/* ------------------------------ Start Home Page ------------------------------ */
+/* ------------------------------ Home Page - CTA ------------------------------ */
+#cta{
+	height: 437px;
+	width: 100%;
+	background: url("../img/home-cta1.jpg") $medium-purple no-repeat 50%;
+	border-bottom: solid 5px $medium-purple;
+	position: relative;
+}
+#cta article{
+	width: 475px;
+	height: 190px;
+	background-color: rgba(39, 22, 64, .7);
+	float: right;
+	margin-top: 80px;
+	@include corners(5px);
+	padding-right: 100px;
+	margin-right: -100px;
+}
+#cta h1{
+	font-family: 'LeckerliOne';
+	font-size: 2.8em;
+	color: $main-yellow;
+	margin-top: 10px;
+	margin-left: 10px;
+	@include textshadow();
+}
+#cta p{
+	font-family: 'ChunkFiveRegular';
+	color: $main-white;
+	margin: 10px;
+	font-size: 1.1em;
+	font-weight: normal;
+	letter-spacing: 1px;
+	line-height: 1.1em;
+	@include textshadow();
+}
+#cta a{
+	@include bluebutton();
+	margin-top: 20px;
+	clear: both;
+	float: right;
+}
+#cta .divider{
+	height: 74px;
+	width: 69px;
+	position: absolute;
+	left: 50%;
+	margin-top: -35px;
+	margin-left: -34.5px;
+	background-image: url("../img/icon-divider1.png");
+	z-index: 1;
+}
+
+/* ------------------------------ Home Page - Parties Near ------------------------------ */
+#partiesNear{
+	width: 100%;
+	height: 545px;
+	background: url("../img/bg-pattern1.jpg");
+	position: relative;
+	border-bottom: solid 5px $light-purple;
+}
+#partiesNear h1{
+	margin-top: 30px;
+	font-family: 'CodePro';
+	font-size: 1.5em;
+	background: url("../img/icon-location.png") no-repeat;
+	text-indent: 18px;
+	line-height: 34px;
+	margin-bottom: 25px;
+}
+#partiesNear article{
+	width: 220px;
+	height: 390px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	float: left;
+	margin-right: 24px;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#partiesNear article:nth-of-type(4){
+	margin-right: 0px;
+}
+#partiesNear article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px;
+	background-color: $light-white;
+	border-bottom: 1px solid $light-gray;
+	position: relative;
+	height: 125px;
+	text-overflow:ellipsis;
+}
+#partiesNear article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+}
+#partiesNear article h3{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#partiesNear article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 5px;	
+	height: 80px;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#partiesNear article i{
+	color: $main-blue;
+}
+#partiesNear article h3:nth-of-type(2){
+	position: absolute;
+	bottom: 2px;
+	background: url("../img/icon-location-small.png") no-repeat;
+	text-indent: 10px;
+	color: $main-blue;
+}
+#partiesNear article div{
+	width: 205px;
+	height: 15px;
+	background-color: $light-gray;
+	margin: 0 auto;
+	margin-top: 5px;
+	font-family: "Comic Sans MS";
+	font-size: .6em;
+	color: rgba(237, 246, 245, 0);
+	font-weight: 900;
+	padding-left: 5px;
+	line-height: 15px;
+	@include corners();
+	@include highlight(#ababab);
+	@include bar(80%);
+	@include transition(.1s);
+	&:hover{
+		color: rgba(237, 246, 245, 1);
+		@include textshadow(0px, 0px, 2px, $dark-gray);
+		@include transition(.1s);
+	}
+}
+#partiesNear article div p:first-letter{
+	color: $main-white;
+	@include textshadow(0px, 0px, 2px, $dark-gray);
+}
+#partiesNear article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#partiesNear article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#partiesNear article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 0px 3px;
+}
+#partiesNear .divider{
+	height: 74px;
+	width: 69px;
+	position: absolute;
+	left: 50%;
+	bottom: -39px;
+	margin-left: -34.5px;
+	background-image: url("../img/icon-divider1.png");
+	z-index: 1;
+}
+
+/* ------------------------------ Home Page - Parties Upcoming ------------------------------ */
+#partiesUpcoming{
+	width: 100%;
+	height: 515px;
+	background: url("../img/home-btf.jpg") no-repeat #040404 50%;
+	position: relative;
+	border-bottom: solid 5px $main-pink;
+	padding-top: 30px;
+}
+#partiesUpcoming h1{
+	font-family: 'CodePro';
+	color: $main-white;
+	font-size: 1.5em;
+	background: url("../img/icon-upcoming.png") no-repeat;
+	text-indent: 29px;
+	line-height: 34px;
+	margin-bottom: 25px;
+}
+#partiesUpcoming article{
+	width: 220px;
+	height: 390px;
+	background-color: $main-white;
+	border: 1px solid $light-purple;
+	float: left;
+	margin-right: 24px;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow(0px, 0px, 5px, 0px, $medium-purple);
+}
+#partiesUpcoming article:nth-of-type(4){
+	margin-right: 0px;
+}
+#partiesUpcoming article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px;
+	background-color: $light-white;
+	border-bottom: 1px solid $light-gray;
+	position: relative;
+	height: 125px;
+	text-overflow:ellipsis;
+}
+#partiesUpcoming article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+}
+#partiesUpcoming article h3{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#partiesUpcoming article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 5px;	
+	height: 80px;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#partiesUpcoming article i{
+	color: $main-blue;
+}
+#partiesUpcoming article h3:nth-of-type(2){
+	position: absolute;
+	bottom: 2px;
+	background: url("../img/icon-location-small.png") no-repeat;
+	text-indent: 10px;
+	color: $main-blue;
+}
+#partiesUpcoming article div{
+	width: 205px;
+	height: 15px;
+	background-color: $light-gray;
+	margin: 0 auto;
+	margin-top: 5px;
+	font-family: "Comic Sans MS";
+	font-size: .6em;
+	color: rgba(237, 246, 245, 0);
+	font-weight: 900;
+	padding-left: 5px;
+	line-height: 15px;
+	@include corners();
+	@include highlight(#ababab);
+	@include bar(80%);
+	@include transition(.1s);
+	&:hover{
+		color: rgba(237, 246, 245, 1);
+		@include textshadow(0px, 0px, 2px, $dark-gray);
+		@include transition(.1s);
+	}
+}
+#partiesUpcoming article div p:first-letter{
+	color: $main-white;
+	@include textshadow(0px, 0px, 2px, $dark-gray);
+}
+#partiesUpcoming article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#partiesUpcoming article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#partiesUpcoming article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 0px 3px;
+}
+#partiesUpcoming .divider{
+	height: 74px;
+	width: 69px;
+	position: absolute;
+	left: 50%;
+	bottom: -39px;
+	margin-left: -34.5px;
+	background-image: url("../img/icon-divider1.png");
+	z-index: 1;
+}
+
+/* ------------------------------ Home Page - Community - Tumblr ------------------------------ */
+#community{
+	width: 100%;
+	height: auto;
+	background: url("../img/bg-pattern1.jpg");
+	position: relative;
+	padding-top: 30px;
+	overflow: auto;
+	padding-bottom: 50px;
+}
+#community h1{
+	font-family: 'CodePro';
+	color: $dark-purple;
+	font-size: 1.5em;
+	background: url("../img/icon-community.png") no-repeat;
+	text-indent: 29px;
+	line-height: 34px;
+	margin-bottom: 25px;
+}
+#community #tumblr{
+	width: 713px;
+	height: 500px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	float: left;
+	position: relative;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#community h2{
+	color: $dark-purple;
+	font-size: 1.3em;
+	font-weight: lighter;
+	float: left;
+	line-height: 50px;
+	margin: 0 5px 0 10px;
+}
+#community article a{
+	font-size: .7em;
+	font-weight: bold;
+	line-height: 50px;
+	margin: 4px;
+	color: $main-blue;
+	float: left;
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
+#community #tumblr a:nth-of-type(3){
+	float: right;
+	margin-right: 10px;
+	color: $main-pink;
+	&:hover{
+		color: $pink-hover;
+		text-decoration: underline;
+	}
+}
+#community #tumblr span{
+	font-size: .7em;
+	font-weight: bold;
+	margin-top: 4px;
+	line-height: 50px;
+	float: left;
+	color: $dark-purple;
+}
+#community #tumblr img{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	border-top: solid 1px $light-gray;
+	@include corners(0px, 0px, 5px, 5px);
+}
+
+/* ------------------------------ Home Page - Community - Tweets ------------------------------ */
+#tweets{
+	width: 220px;
+	height: auto;
+	float: right;
+	border: 1px solid $light-gray;
+	background-color: $main-white;
+	margin-bottom: 50px;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#tweets ul{
+	width: 220px;
+	margin: 0 auto;
+	height: auto;
+	background-color: $light-white;
+	border-top: solid 1px $light-gray;
+	@include corners(0px, 0px, 5px, 5px);
+}
+#tweets li{
+	width: 200px;
+	height: auto;
+	margin: 0 auto;
+	padding: 15px 0px;
+	border-bottom: solid 1px $light-gray;
+}
+#tweets li:last-child{
+	border-bottom: none;
+}
+#tweets img{
+	width: 40px;
+	height: 40px;
+	background-color: $dark-purple;
+	float: left;
+	margin-right: 5px;
+}
+#tweets p{
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .8em;
+	font-weight: 100;
+	color: $dark-purple;
+}
+#tweets h3{
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 100;
+	line-height: 50px;
+	margin-top: 4px;
+	color: $dark-purple;
+}
+
+/* ------------------------------ Home Page - Community - Top Images ------------------------------ */
+#topImages{
+	width: 713px;
+	height: 210px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	float: left;
+	margin-top: 30px;
+	position: relative;
+	overflow: hidden;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#topImages #leftArrow{
+	height: 160px;
+	width: 37px;
+	position: absolute;
+	top: 50px;
+	background: $light-white;
+	cursor: pointer;
+	z-index: 1;
+	border-top: solid 1px $light-gray;
+	@include corners(0px, 0px, 0px, 5px);
+	&:hover{
+		border-right: solid 1px $light-gray;
+		background: url("../img/icon-leftArrow.png") no-repeat 50% 50% $light-white;
+	}
+}
+#topImages ul{
+	width: 640px;
+	height: 160px;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: -320px;
+	background-color: $light-white;
+	border-top: solid 1px $light-gray;
+}
+#topImages li{
+	float: left;
+	width: 150px;
+	height: 145px;
+	background-color: $main-white;
+	margin: 6px 6px 0px 0px;
+	border: 1px solid $light-gray;
+	@include outerglow();
+}
+#topImages img{
+	width: 150px;
+	height: 113px;
+	border-bottom: solid 1px $light-gray;
+}
+#topImages li:first-child{
+	margin-left: 7px;
+}
+#topImages li:last-child{
+	margin-right: 0px;
+}
+article#topImages>a{
+	color: $main-pink;
+	float: right;
+	margin: 0px 10px;
+	&:hover{
+		color: $pink-hover;
+	}
+}
+#topImages #rightArrow{
+	height: 160px;
+	width: 37px;
+	position: absolute;
+	top: 50px;
+	right: 0px;
+	background-color: $light-white;
+	cursor: pointer;
+	z-index: 1;
+	border-top: solid 1px $light-gray;
+	&:hover{
+		border-left: solid 1px $light-gray;
+		background: url("../img/icon-rightArrow.png") no-repeat 50% 50% $light-white;
+	}
+}
+#topImages ul li a{
+	line-height: 30px;
+	float: left;
+}
+#topImages h3{
+	line-height: 30px;
+	float: right;
+	font-size: .7em;
+	font-weight: bold;
+	margin: 4px;
+	color: $dark-purple;
+}
+
+/* ------------------------------ Home Page - Footer ------------------------------ */
+footer{
+	height: 370px;
+	width: 100%;
+	background-color: $dark-purple;
+	z-index: 0;
+	position: relative;
+	border-top: solid 5px $main-blue;
+}
+footer>a{
+	@include bluebutton();
+	position: absolute;
+	top: -35px;
+	left: 50%;
+	margin-left: -237.5px;
+	z-index: 999;
+}
+footer .sizer>img{
+	width: 173px;
+	height: 215px;
+	float: left;
+	margin: 60px 40px 40px 0px;
+}
+footer h1{
+	margin-top: 90px;
+	width: 218px;
+	border-bottom: solid 1px $main-blue;
+	float: left;
+	margin-left: 30px;
+	font-family: 'ChunkFiveRegular';
+	font-size: 1.6em;
+	color: $main-pink;
+}
+footer section:nth-of-type(1) ul{
+	width: 218px;
+	float: left;
+	margin: 10px 0px 0px 30px;
+	color: $main-white;
+}
+footer section:nth-of-type(1) li{
+	font-size: .9em;
+	margin-top: 5px;
+	padding: 5px 0px;
+}
+footer section:nth-of-type(1) ul:last-child li{
+	text-indent: 25px;
+}
+footer section:nth-of-type(1) ul:last-child li:first-child{
+	background: url("../img/icon-home.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:nth-child(2){
+	background: url("../img/icon-facebook.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:nth-child(3){
+	background: url("../img/icon-twitter.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:last-child{
+	background: url("../img/icon-tumblr.png") no-repeat;
+}
+footer section:nth-of-type(2){
+	height:45px;
+	width: 100%;
+	background-color: #050c1a;
+	position: absolute;
+	bottom: 0px;
+}
+footer section:nth-of-type(2) ul{
+	text-align: center;
+	width: 300px;
+}
+footer section:nth-of-type(2) li{
+	float: left;
+	font-size: .7em;
+	color: $dark-gray;
+	margin-right: 20px;
+	font-weight: bold;
+	line-height: 45px;
+}
+footer section:nth-of-type(2) li:last-child{
+	margin-right: 0px;
+}
+
+/* ------------------------------ Start Discover Page ------------------------------ */
+/* ------------------------------ Discover Page - CTA ------------------------------ */
+#cta.discover{
+	height: 174px;
+	width: 100%;
+	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
+	border-bottom: solid 5px $medium-purple;
+	position: relative;
+}
+#cta.discover h1{
+	display: block;
+	width: 550px;
+	padding: 50px 0px 10px 0px;
+	background-color: rgba(39, 22, 64, .7);
+	margin: 0 auto;
+	text-align: center;
+	@include corners(5px);
+}
+
+/* ------------------------------ Discover Page - Tabs ------------------------------ */
+#tabs{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background: url("../img/bg-pattern1.jpg");
+	padding-bottom: 200px;
+}
+#tabs ul{
+	height: 50px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	margin-top: 60px;
+	@include corners(5px, 5px, 0px, 0px);
+	@include outerglow();
+}
+#tabs li{
+	height: 100%;
+	line-height: 50px;
+	float: left;
+	padding: 0px 15px;
+	color: $main-pink;
+	font-size: 1.1em;
+	font-weight: 300;
+	border-right: solid 1px $light-gray;
+	border-bottom: solid 1px $light-gray;
+}
+#tabs li.selected{
+	border-bottom: solid 2px $light-white;
+	background-color: $light-white;
+	@include unglow;
+}
+#tabs li:first-child{
+	@include corners(5px, 0px, 0px, 0px);
+}
+#tabs li:nth-child(5){
+	border: none;
+}
+#tabs li:nth-child(5) input{
+	height: 30px;
+	width: 300px;
+	@include input();
+	@include corners();
+}
+#tabs li:nth-child(5) button{
+	@include gradient();
+	border: solid 1px $purple-shadow;
+	padding: 8px;
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 300;
+	letter-spacing: 1px;
+	color: $main-white;
+	margin: 0px 0px 0px 5px;
+	@include highlight();
+	@include corners();
+	&:hover{
+		@include highlight($dark-purple);
+		@include gradient(#c40f64, #b30e5b);
+	}
+}
+#tabs li:last-child{
+	float: right;
+	border: none;
+}
+#tabs li:last-child a{
+	font-size: .7em;
+	font-weight: bold;
+	color: $main-pink;
+	&:hover{
+		color: $pink-hover;
+		text-decoration: underline;
+	}
+}
+::-webkit-input-placeholder{
+   color: $dark-gray;
+   font-size: .8em;
+   font-weight: 100;
+   padding-top: 3px;
+   padding-left: 2px;
+   font-style: italic;
+}
+:-moz-placeholder{ 
+   color: $dark-gray;
+   font-size: .8em;
+   font-weight: 100;
+   padding-top: 3px;
+   padding-left: 2px;
+   font-style: italic;
+}
+::-moz-placeholder{ 
+   color: $dark-gray;
+   font-size: .8em;
+   font-weight: 100;
+   padding-top: 3px;
+   padding-left: 2px;
+   font-style: italic;
+}
+:-ms-input-placeholder{  
+   color: $dark-gray;
+   font-size: .8em;
+   font-weight: 100;
+   padding-top: 3px;
+   padding-left: 2px;
+   font-style: italic;
+}
+#tabContent{
+	height: auto;
+	overflow: hidden;
+	width: 934px;
+	background-color: $light-white;
+	border: 1px solid $light-gray;
+	border-top: 0px;
+	clear: both;
+	padding: 0px 13px;
+	text-align: center;
+	@include corners(0px, 0px, 5px, 5px);
+}
+#tabContent article{
+	width: 220px;
+	height: 390px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	float: left;
+	margin: 20px 15px 0px 0px;
+	text-align: left;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#tabContent article:nth-of-type(4n+4){
+	margin-right: 0px;
+}
+#tabContent article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px;
+	background-color: $light-white;
+	border-bottom: 1px solid $light-gray;
+	position: relative;
+	height: 125px;
+	text-overflow:ellipsis;
+}
+#tabContent article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+}
+#tabContent article h3{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#tabContent article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 5px;	
+	height: 80px;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#tabContent article i{
+	color: $main-blue;
+}
+#tabContent article h3:nth-of-type(2){
+	position: absolute;
+	bottom: 2px;
+	background: url("../img/icon-location-small.png") no-repeat;
+	text-indent: 10px;
+	color: $main-blue;
+}
+#tabContent article div{
+	width: 205px;
+	height: 15px;
+	background-color: $light-gray;
+	margin: 0 auto;
+	margin-top: 5px;
+	font-family: "Comic Sans MS";
+	font-size: .6em;
+	color: rgba(237, 246, 245, 0);
+	font-weight: 900;
+	padding-left: 5px;
+	line-height: 15px;
+	@include corners();
+	@include highlight(#ababab);
+	@include bar(80%);
+	@include transition(.1s);
+	&:hover{
+		color: rgba(237, 246, 245, 1);
+		@include textshadow(0px, 0px, 2px, $dark-gray);
+		@include transition(.1s);
+	}
+}
+#tabContent article div p:first-letter{
+	color: $main-white;
+	@include textshadow(0px, 0px, 2px, $dark-gray);
+}
+#tabContent article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#tabContent article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#tabContent article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 0px 3px;
+}
+#tabContent button{
+	@include gradient();
+	border: solid 1px $purple-shadow;
+	padding: 8px;
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 300;
+	letter-spacing: 1px;
+	color: $main-white;
+	margin: 20px auto;
+	@include highlight();
+	@include corners();
+	&:hover{
+		@include highlight($dark-purple);
+		@include gradient(#c40f64, #b30e5b);
+	}
+}
+
+
+
+
+
+
+
+
+
+
 

@@ -1,85 +1,22 @@
-	<section id="cta">
+	<section id="cta" class="discover">
 		<div class="sizer">
-			<article>
-				<h1>Welcome to the Party!</h1>
-				<p>Beer-Bucks is a social website for people who like to party. At Beer-Bucks you can raise money to fund a party, find and donate to local parties, or make new friends in our community of awesome people.</p>
-			</article>
-			<a href="#">Join The Party</a>
-		</div>
-
-		<div class="divider"></div>
-	</section>
-	
-	<section id="partiesNear">
-		<div class="sizer">
-			<h1>Parties in Orlando, FL</h1>
-			<article>
-				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
-
-			<article>
-				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
-
-			<article>
-				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
-
-			<article>
-				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
+			<h1>Discover the best parties</h1>
 		</div>
 
 		<div class="divider"></div>
 	</section>
 
-	<section id="partiesUpcoming">
-		<div class="sizer">
-			<h1>Upcoming Parties</h1>
+	<section id="tabs">
+		<ul class="sizer">
+			<li class="selected">Featured</li>
+			<li>Near You</li>
+			<li>Upcoming</li>
+			<li>Completed</li>
+			<li><input type="text" placeholder="Search for a party by name, location, or host"></input><button>Search</button></li>
+			<li><a href="#">Learn More</a></li>
+		</ul>
+
+		<section id="tabContent" class="sizer">
 			<article>
 				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
 				<hgroup>
@@ -135,99 +72,131 @@
 				</hgroup>
 				<div><p>$ 100/100</p></div>
 				<hgroup>
-					<h5>20302</h5> <h6>Attending</h6>
-					<h5>365</h5> <h6>Days Till Party</h6>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
 				</hgroup>
 			</article>
-		</div>
 
-		<div class="divider"></div>
-	</section>
-	
-	<section id="community">
-		<div class="sizer">
-			<h1>Beer-Bucks Community</h1>
-			<article id="tumblr">
-				<h2>Tumblr Winners</h2> 
-				<a href="">BigWillie</a> <span>&</span> <a href="">JazyJeff</a>
-				<a href="#">See All</a>
-				<img src="<? echo base_url(); ?>img/stock-tumblr-large.jpg" alt="">
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
 			</article>
 
-			<article id="tweets">
-				<h2>Tweets</h2>
-				<h3>@Beer-Bucks</h3>
-				<ul>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-				</ul>
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
 			</article>
 
-			<article id="topImages">
-				<h2>Top Images</h2>
-				<a href="#">See All</a>
-				<div id="leftArrow"></div>
-				<ul>
-					<li>
-						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
-						<a href="#">BigWillie</a>
-						<h3>33</h3>
-					</li>
-					<li>
-						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
-						<a href="#">BigWillie</a>
-						<h3>33</h3>
-					</li>
-					<li>
-						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
-						<a href="#">BigWillie</a>
-						<h3>33</h3>
-					</li>
-					<li>
-						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
-						<a href="#">BigWillie</a>
-						<h3>33</h3>
-					</li>
-				</ul>
-				<div id="rightArrow"></div>
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
 			</article>
-		</div>
+
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
+			</article>
+
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
+			</article>
+
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
+			</article>
+
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
+			</article>
+
+			<article>
+				<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+				<hgroup>
+					<h2>Michael's 22nd birthday party</h2>
+					<h3>Hosted by <i>JazyJeff</i></h3>
+					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+					<h3>Orlando, FL</h3>
+				</hgroup>
+				<div><p>$ 100/100</p></div>
+				<hgroup>
+					<h5>23</h5> <h6>Attending</h6>
+					<h5>10</h5> <h6>Days Till Party</h6>
+				</hgroup>
+			</article>
+
+			<button>See More</button>
+		</section>
 	</section>
