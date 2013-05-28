@@ -9,11 +9,11 @@
 	<section id="forms">
 		<section class="sizer">
 			<article>
-				<h1>Login Via Social</h1>
+				<h1>Login or sign up via social</h1>
 				<div>
-					<a href="#"></a>
-					<a href="#"></a>
-					<p>We <em>promise</em> we’ll never post anything without your permission.</p>
+					<a href="#"><img src="<? echo base_url(); ?>img/facebook.jpg" alt=""></a>
+					<a href="#"><img src="<? echo base_url(); ?>img/twitter.jpg" alt=""></a>
+					<p>We <strong>promise</strong> we’ll never post anything without your permission.</p>
 				</div>
 			</article>
 
@@ -35,13 +35,13 @@
 				<h1>Create an account</h1>
 				<div>
 					<h2>Name</h2>
-					<input type="text"></input>
+					<input type="text" />
 
 					<h2>Email</h2>
-					<input type="text"></input>
+					<input type="text" />
 
 					<h2>Password</h2>
-					<input type="password"></input>
+					<input type="password" />
 
 					<a href="#">Sign Up</a>
 				</div>
