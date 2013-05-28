@@ -56,7 +56,7 @@ header {
   background-color: #edf6f5;
   border-bottom: solid 1px #271640; }
 
-#logo {
+header #logo {
   width: 165px;
   height: 100%;
   background: url("../img/logo-purple.png") no-repeat 0px 7px;
@@ -65,7 +65,7 @@ header {
   float: left;
   text-indent: -9999px; }
 
-nav {
+header nav {
   height: 100%;
   width: auto;
   float: left;
@@ -1078,6 +1078,7 @@ footer section:nth-of-type(2) li:last-child {
   padding-left: 2px;
   font-style: italic; }
 
+/* ------------------------------ Discover Page - Tab Content ------------------------------ */
 #tabContent {
   height: auto;
   overflow: hidden;
@@ -1261,3 +1262,11 @@ footer section:nth-of-type(2) li:last-child {
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
+
+/* ------------------------------ Start Login Page ------------------------------ */
+/* ------------------------------ Login Page - Form ------------------------------ */
+#forms {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: url("../img/bg-pattern1.jpg"); }
