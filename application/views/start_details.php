@@ -11,7 +11,6 @@
 			<li>Guidelines<div></div></li>
 			<li>Basic Information<div></div></li>
 			<li class="selected">Party Details<div></div></li>
-			<? if(!$this->session->userdata('username')) echo '<li>Account<div></div></li>' ?>
 			<li>Review<div></div></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>
@@ -21,13 +20,24 @@
  			<?php echo form_open("start/review"); ?>
 				<section id="details">
 
-					<p><? if(isset($error)) echo $error; ?></p>
-
 					<h1>Party Location</h1> <hr>
 
+					<?php echo form_error('location'); ?>
+					<?php echo form_error('address'); ?>
+
 					<div>
-						<input type="text" name="location" placeholder="Orlando, FL" />
-						<input type="text" name="address" placeholder="address" />
+						<input type="text" name="location" placeholder="Orlando, FL" value="<? if(!set_value('location')){
+								if($this->session->userdata('location')) echo $this->session->userdata('location');
+							}else{
+								echo set_value('location');
+							} ?>"/>
+
+						<input type="text" name="address" placeholder="address" value="<? if(!set_value('address')){
+								if($this->session->userdata('address')) echo $this->session->userdata('address');
+							}else{
+								echo set_value('address');
+							} ?>"/>
+
 						<p>
 							Exact party locations will be <strong>hidden</strong> to everyone who hasn’t donated to the party. Users who have not donated will only see the <strong>city and state</strong> of the party location.
  						</p>
@@ -35,22 +45,39 @@
 
 					<h1>Party Time</h1> <hr>
 
+					<?php echo form_error('start'); ?>
+					<?php echo form_error('end'); ?>
+
 					<div>
-						<input type="text" name="start" placeholder="Party Start Time" />
-						<input type="text" name="end" placeholder="Party End Time" />
+						<input type="text" name="start" placeholder="Party Start Time" value="<? if(!set_value('start')){
+								if($this->session->userdata('start')) echo $this->session->userdata('start');
+							}else{
+								echo set_value('start');
+							} ?>"/>
+						<input type="text" name="end" placeholder="Party End Time" value="<? if(!set_value('end')){
+								if($this->session->userdata('end')) echo $this->session->userdata('end');
+							}else{
+								echo set_value('end');
+							} ?>"/>
 					</div>
 
 					<h1>Funding Goal</h1> <hr>
 
+					<?php echo form_error('goal'); ?>
+
 					<div>
-						<input type="text" name="goal" placeholder="$0.00" />
+						<input type="text" name="goal" placeholder="$0.00" value="<? if(!set_value('goal')){
+								if($this->session->userdata('goal')) echo $this->session->userdata('goal');
+							}else{
+								echo set_value('goal');
+							} ?>"/>
 						<p>
 							How much money are you looking to raise for your party? You can raise more than your goal, and we hope your extra funding will go towards your party. Remember that party attenders will have a chance to <strong>rate your party</strong>, and may leave you <strong>bad rep</strong>.
 						</p>
 					</div>
 				</section>
 
-				<div><button type="submit">Next Step</button></div>
+				<div><button type="submit" name="back" value="back">Go Back</button><button type="submit">Next Step</button></div>
 
 			<?php echo form_close(); ?>	
 
@@ -72,7 +99,6 @@
 						<h5>10</h5> <h6>Days Till Party</h6>
 					</hgroup>
 				</article>
-				
 			</aside>
 		</section>
 	</section>

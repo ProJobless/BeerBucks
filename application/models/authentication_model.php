@@ -12,9 +12,9 @@ class Authentication_model extends CI_Model {
         $this->db->select($value);
         $this->db->where($value, $variable);
 
-        $query = $this->db->get('users');
+        $q = $this->db->get('users');
 
-        if ($query->num_rows() > 0) {
+        if ($q->num_rows() > 0) {
             return true;
         } else {
             return false;
@@ -28,28 +28,29 @@ class Authentication_model extends CI_Model {
     	$dateOfReg = date('Y/m/d h:i:s', time());
 		$userID = uniqid();
 
-		$exi = $this->checkIfExists('username', $username);
-        $exi2 = $this->checkIfExists('email', $email);
+		$exists = $this->checkIfExists('username', $username);
+        $exists2 = $this->checkIfExists('email', $email);
 
-		if(!$exi && !$exi2){
+		if(!$exists && !$exists2){
 			$data = array(
-				"user_id" => $userID,
-				"email" => $email,
-				"username" => $username,
-				"pword" => $password,
-				"date_of_reg" => $dateOfReg
+				'user_id' => $userID,
+				'email' => $email,
+				'username' => $username,
+				'pword' => $password,
+				'date_of_reg' => $dateOfReg,
+                'user_ip' => $this->input->ip_address()
 			);
 
-	    	$q = $this->db->insert("users", $data);
+	    	$q = $this->db->insert('users', $data);
 
-            $sdata = array(
-                "userID" => $userID,
-                "email" => $email,
-                "username" => $username,
-                "isLoggedIn" => 1
+            $sData = array(
+                'userID' => $userID,
+                'email' => $email,
+                'username' => $username,
+                'isLoggedIn' => 1
             );
 
-    		$this->session->set_userdata($sdata);
+    		$this->session->set_userdata($sData);
 
 	    	return true;
 		}else{
@@ -64,20 +65,20 @@ class Authentication_model extends CI_Model {
     	$this->db->where('email', $email);
     	$this->db->where('pword', $password);
 
-    	$query = $this->db->get('users');
+    	$q = $this->db->get('users');
 
-    	if($query->num_rows == 1){
+    	if($q->num_rows == 1){
 
-    		$row = $query->row();
+    		$row = $q->row();
 
-    		$sessData = array(
+    		$sData = array(
     			'userID' => $row->user_id,
     			'email' => $row->email,
     			'username' => $row->username,
     			'isLoggedIn' => 1
     		);
 
-    		$this->session->set_userdata($sessData);
+    		$this->session->set_userdata($sData);
 
     		return true;
     	}else{

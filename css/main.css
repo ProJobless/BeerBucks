@@ -39,7 +39,7 @@ body {
   width: 100%;
   background-color: #edf6f5;
   overflow-x: hidden;
-  letter-spacing: .9px; }
+  letter-spacing: .03em; }
 
 .sizer {
   width: 960px;
@@ -52,7 +52,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 p {
   line-height: 130%;
-  letter-spacing: .1em !important; }
+  letter-spacing: .1em; }
 
 strong {
   font-weight: bold; }
@@ -63,6 +63,16 @@ input {
   font-weight: 300;
   text-indent: 5px;
   color: #071226; }
+
+input, input[type=text], textarea {
+  transition: width 0.3s;
+  -webkit-transition: 0.3s;
+  /* Safari */
+  outline: none; }
+
+input:focus, input[type=password]:focus, textarea:focus {
+  box-shadow: 0 0 3px #f2137b;
+  border: none; }
 
 /* ------------------------------ Header Styles ------------------------------ */
 header {
@@ -212,6 +222,7 @@ header #tools a:first-child {
   font-family: 'LeckerliOne';
   font-size: 2.8em;
   color: #f5b74b;
+  letter-spacing: normal;
   margin-top: 10px;
   margin-left: 10px;
   text-shadow: 0px 1px 2px #071226;
@@ -704,6 +715,7 @@ header #tools a:first-child {
   font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
   font-size: .8em;
   font-weight: 100;
+  letter-spacing: normal;
   color: #071226; }
 
 #tweets h3 {
@@ -926,7 +938,7 @@ footer section:nth-of-type(2) ul {
 
 footer section:nth-of-type(2) li {
   float: left;
-  font-size: .7em;
+  font-size: .6em;
   color: #666666;
   margin-right: 20px;
   font-weight: bold;
@@ -1004,7 +1016,7 @@ footer section:nth-of-type(2) li:last-child {
 #tabs li:nth-child(5) input {
   height: 30px;
   width: 300px;
-  border: solid 1px #dddddd;
+  border: solid 2px #dddddd;
   background-color: #fafdff;
   padding: 0px;
   letter-spacing: .09em !important;
@@ -1620,7 +1632,9 @@ footer section:nth-of-type(2) li:last-child {
 
 #tabContent.start section > p {
   color: #f2137b;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: right; }
 
 #tabContent.start form > div {
   padding: 0 0 0 20px;
@@ -1658,7 +1672,9 @@ footer section:nth-of-type(2) li:last-child {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   float: left;
-  margin: 10px 0 0 20px; }
+  margin: 10px 0 0 20px;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px; }
   #tabContent.start button:hover {
     -webkit-box-shadow: inset 0px 1px 0px 0px #071226;
     box-shadow: inset 0px 1px 0px 0px #071226;
@@ -1678,6 +1694,15 @@ footer section:nth-of-type(2) li:last-child {
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
+
+#tabContent.start button:nth-of-type(2) {
+  margin: 10px 0 0 -1px;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0; }
+
+#tabContent.start #guidelines + div button {
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
 
 #tabContent.start > aside {
   float: right;

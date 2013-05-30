@@ -8,37 +8,22 @@
 
 	<section id="tabs" class="wizard">
 		<ul class="sizer">
-			<li class="selected">Guidelines<div></div></li>
+			<li>Guidelines<div></div></li>
 			<li>Basic Information<div></div></li>
 			<li>Party Details<div></div></li>
-			<li>Review<div></div></li>
+			<li class="selected">Review<div></div></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>
 
 		<section id="tabContent" class="sizer start">
 
- 			<?php echo form_open("start/basic"); ?>
-				<section id="guidelines">
+ 			<?php echo form_open("start/finish"); ?>
+				<section id="details">
 
-					<p><? if(isset($error)) echo $error; ?></p>
-
-					<h1>Beer-Bucks Guidelines</h1> <hr>
-					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
-					</div>
-
-					<h1>Beer-Bucks Guidelines</h1> <hr>
-					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
-					</div>
-
-					<h1>Beer-Bucks Guidelines</h1> <hr>
-					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
-						<?php echo form_checkbox('terms_of_use'); ?>
-					</div>
+					
 				</section>
-				<div><button type="submit">Next Step</button></div>
+
+				<div><button type="submit" name="back" value="back">Go Back</button><button type="submit">Start Party</button></div>
 
 			<?php echo form_close(); ?>	
 
@@ -77,4 +62,10 @@
 	<script src="<? echo base_url(); ?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initWizardOfOz;</script>
+	<script>initDatePicker();</script>
+	<script>initDollarSign();</script>
+
+
+
+
+

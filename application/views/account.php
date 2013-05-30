@@ -9,27 +9,23 @@
 	<section id="tabs" class="wizard">
 		<ul class="sizer">
 			<li>Guidelines<div></div></li>
-			<li class="selected">Basic Information<div></div></li>
+			<li>Basic Information<div></div></li>
 			<li>Party Details<div></div></li>
+			<? if(!$this->session->userdata('username')) echo '<li class="selected">Account<div></div></li>' ?>
 			<li>Review<div></div></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>
 
 		<section id="tabContent" class="sizer start">
 
- 			<?php echo form_open("start/details"); ?>
-				<section id="basic">
-
-					<h1>Party Title</h1> <hr>
+ 			<?php echo form_open("start/account"); ?>
+				<section id="details">
+					<h1>Username</h1> <hr>
 
 					<?php echo form_error('title'); ?>
 
 					<div>
-						<input type="text" name="title" placeholder="title" value="<? if(!set_value('title')){
-								if($this->session->userdata('title')) echo $this->session->userdata('title');
-							}else{
-								echo set_value('title');
-							} ?>"/>
+						<input type="text" name="title" placeholder="title" value=""/>
 						<p>
 							Choose a catchy title for your party. This is the first thing other users will see.
 							You should try to make your title <strong>catchy and descriptive.</strong>
@@ -57,6 +53,7 @@
 							This is a perfect time to show a picture from a previous party you’ve thrown. Alternatively you could use a picture of yourself and show off your beautiful smile.
 						</p>
 					</div>
+					
 				</section>
 
 				<div><button type="submit" name="back" value="back">Go Back</button><button type="submit">Next Step</button></div>
@@ -81,6 +78,12 @@
 						<h5>10</h5> <h6>Days Till Party</h6>
 					</hgroup>
 				</article>
+				
 			</aside>
 		</section>
 	</section>
+
+
+
+
+

@@ -81,7 +81,7 @@ $pink-hover: #ff0077;
 	background: linear-gradient(to right,  #05a696 0%,#05a696 $percent,#dddddd $percent,#dddddd 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05a696', endColorstr='#dddddd',GradientType=1 ); /* IE6-9 */
 }
-@mixin input($size : 1px){
+@mixin input($size : 2px){
 	border: solid $size $light-gray;
 	background-color: $light-white;
 	padding: 0px;
@@ -157,7 +157,7 @@ body{
 	width: 100%;
 	background-color: $main-white;
 	overflow-x: hidden;
-	letter-spacing: .9px;
+	letter-spacing: .03em;
 }
 .sizer{
 	width: 960px;
@@ -170,7 +170,7 @@ p, h1, h2, h3, h4, h5, h6{
 }
 p{
 	line-height: 130%;
-	letter-spacing: .1em !important;
+	letter-spacing: .1em;
 }
 strong{
 	font-weight: bold;
@@ -181,6 +181,14 @@ input{
 	font-weight: 300;
 	text-indent: 5px;
 	color: $dark-purple;
+}
+input, input[type=text], textarea {
+	@include transition(.3s);
+	outline: none;
+}
+input:focus, input[type=password]:focus, textarea:focus {
+  	box-shadow: 0 0 3px rgba(242, 19, 123, 1);
+  	border: none;
 }
 /* ------------------------------ Header Styles ------------------------------ */
 header{
@@ -278,6 +286,7 @@ header #tools a:first-child{
 	font-family: 'LeckerliOne';
 	font-size: 2.8em;
 	color: $main-yellow;
+	letter-spacing: normal;
 	margin-top: 10px;
 	margin-left: 10px;
 	@include textshadow();
@@ -674,6 +683,7 @@ header #tools a:first-child{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .8em;
 	font-weight: 100;
+	letter-spacing: normal;
 	color: $dark-purple;
 }
 #tweets h3{
@@ -851,7 +861,7 @@ footer section:nth-of-type(2) ul{
 }
 footer section:nth-of-type(2) li{
 	float: left;
-	font-size: .7em;
+	font-size: .6em;
 	color: $dark-gray;
 	margin-right: 20px;
 	font-weight: bold;
@@ -1351,6 +1361,8 @@ footer section:nth-of-type(2) li:last-child{
 #tabContent.start section>p{
 	color: $main-pink;
 	margin-bottom: 20px;
+	width: 100%;
+	text-align: right;
 }
 #tabContent.start form>div{
 	padding: 0 0 0 20px;
@@ -1363,6 +1375,14 @@ footer section:nth-of-type(2) li:last-child{
 	@include pinkbutton();
 	float: left;
 	margin: 10px 0 0 20px;
+	@include corners( 5px, 0, 0, 5px);
+}
+#tabContent.start button:nth-of-type(2){
+	margin: 10px 0 0 -1px;
+	@include corners( 0, 5px, 5px, 0);
+}
+#tabContent.start #guidelines + div button{
+	@include corners();
 }
 #tabContent.start>aside{
 	float: right;
