@@ -36,7 +36,7 @@ class Authentication_model extends CI_Model {
 				"user_id" => $userID,
 				"email" => $email,
 				"username" => $username,
-				"pword" => md5($password),
+				"pword" => $password,
 				"date_of_reg" => $dateOfReg
 			);
 
@@ -62,7 +62,7 @@ class Authentication_model extends CI_Model {
     	$password = $this->security->xss_clean($this->input->post('password'));
 
     	$this->db->where('email', $email);
-    	$this->db->where('pword', md5($password));
+    	$this->db->where('pword', $password);
 
     	$query = $this->db->get('users');
 

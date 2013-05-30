@@ -26,17 +26,17 @@ class Authentication extends CI_Controller {
 			array(
 				'field' => 'username',
 				'label' => 'Username',
-				'rules' => 'required|min_length[5]|max_length[20]'
+				'rules' => 'trim|required|min_length[5]|max_length[20]|xss_clean'
 			), 
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required'
+				'rules' => 'trim|required|valid_email'
 			), 
 			array(
 				'field' => 'password',
 				'label' => 'Password',
-				'rules' => 'required|min_length[5]|max_length[20]'
+				'rules' => 'trim|required|md5'
 			)
 		);
 
@@ -74,12 +74,12 @@ class Authentication extends CI_Controller {
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required'
+				'rules' => 'trim|required|valid_email'
 			), 
 			array(
 				'field' => 'password',
 				'label' => 'Password',
-				'rules' => 'required'
+				'rules' => 'trim|required|md5'
 			)
 		);
 

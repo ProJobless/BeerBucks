@@ -8,8 +8,8 @@
 
 	<section id="tabs" class="wizard">
 		<ul class="sizer">
-			<li class="selected">Guidelines<div></div></li>
-			<li>Basic Information<div></div></li>
+			<li>Guidelines<div></div></li>
+			<li class="selected">Basic Information<div></div></li>
 			<li>Party Details<div></div></li>
 			<? if(!$this->session->userdata('username')) echo '<li>Account<div></div></li>' ?>
 			<li>Review<div></div></li>
@@ -18,27 +18,42 @@
 
 		<section id="tabContent" class="sizer start">
 
- 			<?php echo form_open("start/basic"); ?>
-				<section id="guidelines">
+ 			<?php echo form_open("start/details"); ?>
+				<section id="basic">
 
 					<p><? if(isset($error)) echo $error; ?></p>
 
-					<h1>Beer-Bucks Guidelines</h1> <hr>
+					<h1>Party Title</h1> <hr>
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
+						<?php echo form_input('title'); ?>
+						<p>
+							Choose a catchy title for your party. This is the first thing other users will see.
+							You should try to make your title <strong>catchy and descriptive.</strong>
+						</p>
+						<p>Ex: Bobbies 21st birthday bash</p>
 					</div>
 
-					<h1>Beer-Bucks Guidelines</h1> <hr>
+					<h1>Party Description</h1> <hr>
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
+						<?php echo form_textarea('description'); ?>
+						<p>
+							Sum up your party in 145 characters. Try to describe what you plan kind of party
+							it is, if there is a theme, what you plan on doing, and what you will spend the 
+							money on. (drinks, food, games, ect.)
+						</p>
 					</div>
 
-					<h1>Beer-Bucks Guidelines</h1> <hr>
+					<h1>Party Image</h1> <hr>
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
-						<?php echo form_checkbox('terms_of_use'); ?>
+						<p>
+							This is a perfect time to show a picture from a previous party you’ve thrown. Alternatively you could use a picture of yourself and show off your beautiful smile.
+						</p>
 					</div>
 				</section>
+
 				<div><button type="submit">Next Step</button></div>
 
 			<?php echo form_close(); ?>	
@@ -61,7 +76,7 @@
 						<h5>10</h5> <h6>Days Till Party</h6>
 					</hgroup>
 				</article>
-				
+	
 			</aside>
 		</section>
 	</section>

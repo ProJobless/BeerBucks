@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="<? echo base_url(); ?>css/normalize.css" media="screen" /> 
+	<link rel="stylesheet" type="text/css" href="<? echo base_url(); ?>css//ui/jquery-ui-1.10.3.custom.css" media="screen" /> 
 	<link rel="stylesheet" type="text/css" href="<? echo base_url(); ?>css/main.css" media="screen" /> 
 
 	<?php echo link_tag("favicon.ico", "shortcut icon", "image/ico");?>

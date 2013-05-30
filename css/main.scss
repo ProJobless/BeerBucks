@@ -84,6 +84,25 @@ $pink-hover: #ff0077;
 @mixin input($size : 1px){
 	border: solid $size $light-gray;
 	background-color: $light-white;
+	padding: 0px;
+	letter-spacing: .09em !important;
+	@include corners();
+}
+@mixin pinkbutton(){
+	border: solid 1px $purple-shadow;
+	padding: 8px;
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 500;
+	letter-spacing: .1em !important;
+	color: $main-white;
+	@include gradient();
+	@include highlight();
+	@include corners(5px, 5px, 5px, 5px);
+	&:hover{
+		@include highlight($dark-purple);
+		@include gradient(#c40f64, #b30e5b);
+	}
 }
 
 /* ------------------------------ Fonts ------------------------------ */
@@ -138,6 +157,7 @@ body{
 	width: 100%;
 	background-color: $main-white;
 	overflow-x: hidden;
+	letter-spacing: .9px;
 }
 .sizer{
 	width: 960px;
@@ -148,12 +168,16 @@ body{
 p, h1, h2, h3, h4, h5, h6{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 }
+p{
+	line-height: 130%;
+	letter-spacing: .1em !important;
+}
 strong{
 	font-weight: bold;
 }
 input{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
-	font-size: 1em;
+	font-size: 1.1em;
 	font-weight: 300;
 	text-indent: 5px;
 	color: $dark-purple;
@@ -220,22 +244,11 @@ header #tools{
 	float: right;
 }
 header #tools a{
-	@include gradient();
-	border: solid 1px $purple-shadow;
-	padding: 8px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
-	font-size: .7em;
-	font-weight: 800;
-	letter-spacing: 1px;
-	color: $main-white;
+	@include pinkbutton();
+	-webkit-font-smoothing: subpixel-antialiased;
 	float: left;
 	margin-top: 20px;
-	@include highlight();
 	@include corners(0px, 5px, 5px, 0px);
-	&:hover{
-		@include highlight($dark-purple);
-		@include gradient(#c40f64, #b30e5b);
-	}
 }
 header #tools a:first-child{
 	@include corners(5px, 0px, 0px, 5px);
@@ -891,8 +904,12 @@ footer section:nth-of-type(2) li:last-child{
 	color: $main-pink;
 	font-size: 1.1em;
 	font-weight: 300;
+	cursor: pointer;
 	border-right: solid 1px $light-gray;
 	border-bottom: solid 1px $light-gray;
+	&:hover:not(:nth-child(n+5)){
+		background-color: $light-white;
+	}
 }
 #tabs li.selected{
 	height: 98%;
@@ -911,20 +928,10 @@ footer section:nth-of-type(2) li:last-child{
 	height: 30px;
 	width: 300px;
 	@include input();
-	@include corners();
 }
 #tabs li:nth-child(5) button{
-	@include gradient();
-	border: solid 1px $purple-shadow;
-	padding: 8px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
-	font-size: .7em;
-	font-weight: 300;
-	letter-spacing: 1px;
-	color: $main-white;
+	@include pinkbutton();
 	margin: 0px 0px 0px 5px;
-	@include highlight();
-	@include corners();
 	&:hover{
 		@include highlight($dark-purple);
 		@include gradient(#c40f64, #b30e5b);
@@ -945,34 +952,38 @@ footer section:nth-of-type(2) li:last-child{
 }
 ::-webkit-input-placeholder{
    color: $dark-gray;
-   font-size: .8em;
+   font-size: .7em;
    font-weight: 100;
    padding-top: 3px;
    padding-left: 2px;
+   letter-spacing: normal;
    font-style: italic;
 }
 :-moz-placeholder{ 
    color: $dark-gray;
-   font-size: .8em;
+   font-size: .7em;
    font-weight: 100;
    padding-top: 3px;
    padding-left: 2px;
+   letter-spacing: normal;
    font-style: italic;
 }
 ::-moz-placeholder{ 
    color: $dark-gray;
-   font-size: .8em;
+   font-size: .7em;
    font-weight: 100;
    padding-top: 3px;
    padding-left: 2px;
+   letter-spacing: normal;
    font-style: italic;
 }
 :-ms-input-placeholder{  
    color: $dark-gray;
-   font-size: .8em;
+   font-size: .7em;
    font-weight: 100;
    padding-top: 3px;
    padding-left: 2px;
+   letter-spacing: normal;
    font-style: italic;
 }
 
@@ -1089,21 +1100,8 @@ footer section:nth-of-type(2) li:last-child{
 	margin: 8px 0px 0px 3px;
 }
 #tabContent button{
-	@include gradient();
-	border: solid 1px $purple-shadow;
-	padding: 8px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
-	font-size: .7em;
-	font-weight: 300;
-	letter-spacing: 1px;
-	color: $main-white;
+	@include pinkbutton();
 	margin: 20px auto;
-	@include highlight();
-	@include corners();
-	&:hover{
-		@include highlight($dark-purple);
-		@include gradient(#c40f64, #b30e5b);
-	}
 }
 
 /* ------------------------------ Start Login Page ------------------------------ */
@@ -1166,33 +1164,19 @@ footer section:nth-of-type(2) li:last-child{
 	color: $dark-gray;
 	font-weight: normal;
 	font-size: .9em;
-	margin: 20px 0 0 14px;
+	margin: 20px 0 0 16px;
 	text-align: left;
 }
 #forms form input{
 	margin-top: 5px;
 	width: 270px;
-	height: 30px;
-	@include corners();
+	height: 35px;
 	@include input(2px);
 }
 #forms form button{
-	@include gradient();
-	border: solid 1px $purple-shadow;
-	padding: 8px 10px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
-	font-size: .7em;
-	font-weight: 300;
-	letter-spacing: 1px;
-	color: $main-white;
+	@include pinkbutton();
 	float: left;
-	margin: 20px 0 0 14px;
-	@include highlight();
-	@include corners();
-	&:hover{
-		@include highlight($dark-purple);
-		@include gradient(#c40f64, #b30e5b);
-	}
+	margin: 20px 0 0 16px;
 }
 #forms form a{
 	float: right;
@@ -1210,21 +1194,198 @@ footer section:nth-of-type(2) li:last-child{
 	color: $main-pink;
 }
 
+/* ------------------------------ Start Start Page ------------------------------ */
+/* ------------------------------ Start Page - Wizard ------------------------------ */
+#tabs.wizard{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background: url("../img/bg-pattern1.jpg");
+	padding-bottom: 200px;
+}
+#tabs.wizard ul{
+	height: 50px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	margin-top: 60px;
+	@include corners(5px, 5px, 0px, 0px);
+	@include outerglow();
+}
+#tabs.wizard li{
+	height: 100%;
+	line-height: 50px;
+	float: left;
+	padding: 0px 30px 0px 5px;
+	border-right: 0px;
+	color: $dark-purple;
+	font-size: 1.1em;
+	font-weight: 300;
+	position: relative;
+	margin-right: 36px;
+	&:hover:not(:nth-child(n+5)){
+		background-color: $main-white;
+	}
+}
+#tabs.wizard li:first-child.selected{
+	margin-left: 0px;
+	text-indent: 0px;
+}
+#tabs.wizard li.selected{
+	height: 100%;
+	border-bottom: solid 0px $light-gray;
+	background-color: $main-pink;
+	color: $main-white;
+	margin-left: -36px;
+	font-weight: normal;
+	@include unglow;
+	text-indent: 36px;
+	&:hover:not(:nth-child(n+5)){
+		background-color: $main-pink;
+	}
+}
+#tabs.wizard li:first-child{
+	padding-left: 20px;
+	@include corners(5px, 0px, 0px, 0px);
+}
+#tabs.wizard li:last-child{
+	float: right;
+	border: none;
+	padding: 0 15px 0 0;
+	margin: 0;
+}
+#tabs.wizard li:last-child a{
+	font-size: .7em;
+	font-weight: bold;
+	color: $main-pink;
+	&:hover{
+		color: $pink-hover;
+		text-decoration: underline;
+	}
+}
+#tabs.wizard li>div{
+	width: 35px;
+	height: 35px;
+	background-color: $main-white;
+	position: absolute;
+	right: -18px;
+	top: 7px;
+	border-top: solid 1px $light-gray;
+	border-right: solid 1px $light-gray;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg); 
+	z-index: 2;
+}
+#tabs.wizard li.selected>div{
+	background-color: $main-pink;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ------------------------------ Start Page - Page 2: Basic ------------------------------ */
+#tabContent.start{
+	height: auto;
+	overflow: hidden;
+}
+#tabContent.start form{
+	width: 700px;
+	height: auto;
+	position: relative;
+	float: left;
+	border-right: solid 1px $light-gray;
+}
+#tabContent.start h1{
+	float: left;
+	font-size: 1.4em;
+	text-align: left;
+	float: left;
+	margin-right: 20px;
+}
+#tabContent.start hr:nth-of-type(1){
+	margin-top: 12px;
+}
+#tabContent.start #guidelines hr:nth-of-type(1){
+	margin-top: 32px;
+}
+#tabContent.start hr{
+	margin-top: 52px;
+}
+#tabContent.start section{
+	width: 475px;
+	margin-top: 30px;
+	overflow: auto;
+}
+#tabContent.start form div{
+	width: 100%-20px; 
+	height: auto;
+	padding: 20px;
+	background-color: $main-white;	
+	margin: 40px 0;
+	overflow: hidden;
+}
+#tabContent.start form input:not([type='checkbox']){
+	width: 100%;
+	height: 35px;
+	@include input(2px);
+}
+#tabContent.start form input[type='checkbox']{
+	margin-top: 10px;
+	float: left;
+}
+#tabContent.start form article p, #tabContent.start form p{
+	text-align: left;
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin: 20px 0 0 0;
+}
+#tabContent.start form textarea{
+	width: 94%;
+	height: 95px;
+	resize: none; 
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 300;
+	color: $dark-purple;
+	@include input(2px);
+	padding: 2%;
+}
+#tabContent.start section>p{
+	color: $main-pink;
+	margin-bottom: 20px;
+}
+#tabContent.start form>div{
+	padding: 0 0 0 20px;
+	height: 50px;
+	width: 100%;
+	margin: 0 0 0 -20px;
+	border-top: solid 1px $light-gray;
+}
+#tabContent.start button{
+	@include pinkbutton();
+	float: left;
+	margin: 10px 0 0 20px;
+}
+#tabContent.start>aside{
+	float: right;
+	width: 220px;
+	margin-right: 0px;
+	margin-top: 10px;
+}
+#tabContent.start aside>h2{
+	clear: both;
+	padding-top: 5px;
+	line-height: 120%;
+	text-align: left;
+	font-size: .8em;
+	font-weight: 300;
+	color: $dark-gray;
+}
+#tabContent.start #details div:nth-of-type(1) input:nth-of-type(2){
+	margin-top: 15px;
+}
+#tabContent.start #details div:nth-of-type(2) input{
+	width: 45%;
+	float: left;
+}
+#tabContent.start #details div:nth-of-type(2) input:nth-of-type(2){
+	float: right;
+}
