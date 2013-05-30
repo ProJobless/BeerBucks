@@ -32,17 +32,17 @@
 				<h2>A quick example of how others will see your party.</h2>
 
 				<article>
-					<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
+					<img src="<? if($this->session->userdata('img_name')) echo base_url() . 'uploads/party/' . $this->session->userdata('img_name'); ?>" alt="" width="220" height="210"/>
 					<hgroup>
-						<h2>Michael's 22nd birthday party</h2>
-						<h3>Hosted by <i>JazyJeff</i></h3>
-						<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
+						<h2> <? if(!set_value('title')){if($this->session->userdata('title')) echo $this->session->userdata('title');}else if(set_value('title')){echo set_value('title');}?> </h2>
+						<h3>Hosted by <i> <? echo $this->session->userdata('username'); ?> </i></h3>
+						<h4><? if(!set_value('description')){if($this->session->userdata('description')) echo $this->session->userdata('description');}else if(set_value('description')){echo set_value('description');}?></h4>
 						<h3>Orlando, FL</h3>
 					</hgroup>
-					<div><p>$ 100/100</p></div>
+					<div><p>$ 0/<? if(!set_value('goal')){if($this->session->userdata('goal')) echo ltrim($this->session->userdata('goal') , '$');}else if(set_value('goal')){echo ltrim(set_value('goal') , '$');}?></p></div>
 					<hgroup>
-						<h5>23</h5> <h6>Attending</h6>
-						<h5>10</h5> <h6>Days Till Party</h6>
+						<h5>0</h5> <h6>Attending</h6>
+						<h5>0</h5> <h6>Days Till Party</h6>
 					</hgroup>
 				</article>
 			</aside>

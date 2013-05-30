@@ -190,6 +190,7 @@ input:focus, input[type=password]:focus, textarea:focus {
   	box-shadow: 0 0 3px rgba(242, 19, 123, 1);
   	border: none;
 }
+
 /* ------------------------------ Header Styles ------------------------------ */
 header{
 	height: 70px;
@@ -1229,6 +1230,7 @@ footer section:nth-of-type(2) li:last-child{
 	border-right: 0px;
 	color: $dark-purple;
 	font-size: 1.1em;
+	cursor: default;
 	font-weight: 300;
 	position: relative;
 	margin-right: 36px;
@@ -1330,6 +1332,7 @@ footer section:nth-of-type(2) li:last-child{
 	background-color: $main-white;	
 	margin: 40px 0;
 	overflow: hidden;
+	position: relative;
 }
 #tabContent.start form input:not([type='checkbox']){
 	width: 100%;
@@ -1346,6 +1349,7 @@ footer section:nth-of-type(2) li:last-child{
 	font-weight: normal;
 	font-size: .7em;
 	margin: 20px 0 0 0;
+	clear: both;
 }
 #tabContent.start form textarea{
 	width: 94%;
@@ -1409,3 +1413,48 @@ footer section:nth-of-type(2) li:last-child{
 #tabContent.start #details div:nth-of-type(2) input:nth-of-type(2){
 	float: right;
 }
+#tabContent.start label.filebutton{
+    overflow:hidden;
+    @include pinkbutton();
+    padding: 8px;
+	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-size: .7em;
+	font-weight: 700;
+    width: 149px;
+    padding: 0px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    cursor: pointer;
+    margin-top: -200px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 150px;
+}
+#tabContent.start #uploadSubmit{
+    float: left;
+    overflow: hidden;
+    @include pinkbutton();
+}
+#tabContent.start label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    top: -2px;
+    left: -800px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    margin: 0;
+    padding:0;
+}
+#tabContent.start .upload{
+	padding-top: 30px;
+}
+#tabContent.start form:nth-of-type(2){
+	position: absolute;
+	bottom: 0px;
+}
+

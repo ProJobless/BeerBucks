@@ -44,7 +44,7 @@
 				</a>
 			</nav>
 			<div id="tools">
-				<? if($this->session->userdata('username')) echo '<a href="' . base_url() . 'index.php/logout">' . $this->session->userdata('username') . '</a>';
+				<? if($this->session->userdata('userID')) echo '<a href="' . base_url() . 'index.php/logout">' . $this->session->userdata('username') . '</a>';
 				else echo'<a href="' . base_url() . 'index.php/join">Join</a><a href="' . base_url() . 'index.php/login">Login</a>'; ?>
 			</div>
 		</div>

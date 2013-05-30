@@ -8,7 +8,7 @@ class Party_model extends CI_Model {
         $this->load->helper('object_to_array.php');
     }
 
-	function checkIfExists($value, $variable) {
+	public function checkIfExists($value, $variable) {
         $this->db->select($value);
         $this->db->where($value, $variable);
 
@@ -30,22 +30,26 @@ class Party_model extends CI_Model {
         $address = $this->session->userdata('address');
         $start = $this->session->userdata('start');
         $end = $this->session->userdata('end');
-        $goal = $this->session->userdata('goal');
+        $goal = ltrim($this->session->userdata('goal') , '$');
+        $party_img = $this->session->userdata('img_name');
 
         $data = array(
             'party_id' => $party_id,
             'user_id' => $user_id,
+            'tos' => 1,
             'title' => $title,
             'description' => $description,
             'location' => $location,
             'address' => $address,
             'start' => $start,
             'end' => $end,
-            'goal' => $goal
+            'goal' => $goal,
+            'party_img' => $party_img
         );
 
         $q = $this->db->insert('partys', $data);
 
         return true;
     }
+
 }

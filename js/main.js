@@ -1,10 +1,18 @@
 /* Author: Kolby Sisk */
 
+var initUpload = function(){
+	$('.filebutton').change(function(e){
+		$('.filebutton').eq(0).css('display', 'none');
+		$('.filebutton').eq(1).css('display', 'block');
+	});
+};
+
 var initDatePicker = function(){
 	var datePickerInput = $('#details div:nth-of-type(2) input');
 
 	datePickerInput.datetimepicker({
-		timeFormat: "hh:mm tt z",
+		dateFormat: 'yy-mm-dd',
+		timeFormat: "hh:mm:00 tt z",
 		timezoneList: [
 			{ value: -300, label: 'Eastern'},
 			{ value: -360, label: 'Central' },

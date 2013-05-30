@@ -11,11 +11,17 @@ class Start extends CI_Controller {
 
 	public function index (){	
 
-		//Tells template to load the discover view.
-		$data['view'] = 'start';
+		if($this->session->userdata('userID')) {
 
-		//Load template
-		$this->load->view('includes/template', $data);
+			$data['view'] = 'start';
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['view'] = 'join';
+			$this->load->view('includes/template', $data);
+
+		}
 
 	}
 
@@ -37,55 +43,6 @@ class Start extends CI_Controller {
 
 			$data['view'] = 'start_basic';
 			$this->load->view('includes/template', $data);
-
-		}
-
-	}
-
-	public function details (){
-
-		$sData = array(
-            'title' => $this->input->post('title'),
-            'description' => $this->input->post('description')
-        );
-
-		$this->session->set_userdata($sData);
-
-		if($this->input->post('back')){
-
-			$data['view'] = 'start';
-			$this->load->view('includes/template', $data);
-
-		}else{
-			$this->load->library('form_validation');
-
-			$config = array(
-				array(
-					'field' => 'title',
-					'label' => 'Title',
-					'rules' => 'trim|required|min_length[5]|max_length[50]'
-				), 
-				array(
-					'field' => 'description',
-					'label' => 'Description',
-					'rules' => 'trim|required|min_length[5]|max_length[145]'
-				)
-			);
-
-			$this->form_validation->set_rules($config);
-
-			if($this->form_validation->run() == false){
-
-				$data['view'] = 'start_basic';
-				$data['error'] = 'Please fill out all the information.';
-				$this->load->view('includes/template', $data);
-
-			}else{
-
-				$data['view'] = 'start_details';
-				$this->load->view('includes/template', $data);
-
-			}
 
 		}
 
@@ -168,7 +125,6 @@ class Start extends CI_Controller {
 
 		}else{
 
-
 			$result = $this->party_model->newParty();
 
             if(!$result){
@@ -186,7 +142,8 @@ class Start extends CI_Controller {
 					'address' => '',
 		            'start' => '',
 		            'end' => '',
-		            'goal' => ''
+		            'goal' => '',
+		            'img_name' => ''
 		        );
 
 				$this->session->set_userdata($sData2);
