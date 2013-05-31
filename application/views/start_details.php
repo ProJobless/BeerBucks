@@ -17,6 +17,8 @@
 
 		<section id="tabContent" class="sizer start">
 
+			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
+
  			<?php echo form_open("start/review"); ?>
 				<section id="details">
 

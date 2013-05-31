@@ -1575,9 +1575,6 @@ footer section:nth-of-type(2) li:last-child {
 #tabContent.start hr:nth-of-type(1) {
   margin-top: 12px; }
 
-#tabContent.start #guidelines hr:nth-of-type(1) {
-  margin-top: 32px; }
-
 #tabContent.start hr {
   margin-top: 52px; }
 
@@ -1860,8 +1857,27 @@ footer section:nth-of-type(2) li:last-child {
   padding: 0; }
 
 #tabContent.start .upload {
-  padding-top: 30px; }
+  padding-top: 40px; }
 
 #tabContent.start form:nth-of-type(2) {
   position: absolute;
   bottom: 0px; }
+
+#tabContent.start .success {
+  width: 990px;
+  height: 40px;
+  margin: 10px 0 10px -30px;
+  background-color: #05a696;
+  text-align: center;
+  color: #edf6f5;
+  line-height: 40px; }
+
+#tabContent.start .error {
+  width: 990px;
+  height: 40px;
+  margin: 10px 0 10px -30px;
+  background-color: #edf6f5;
+  border: solid 1px #f2137b;
+  text-align: center;
+  color: #f2137b;
+  line-height: 40px; }

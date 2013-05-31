@@ -6,6 +6,7 @@
 		<div class="divider"></div>
 	</section>
 
+
 	<section id="tabs" class="wizard">
 		<ul class="sizer">
 			<li>Guidelines<div></div></li>
@@ -17,6 +18,10 @@
 
 		<section id="tabContent" class="sizer start">
 
+			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
+			
+			<? if(isset($upload_data)) echo '<p class="success">Your image was successfully uploaded.</p>'; ?>
+ 			
  			<?php echo form_open_multipart('upload/do_upload');?>
 				<section id="basic">
 

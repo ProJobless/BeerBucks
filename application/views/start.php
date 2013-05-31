@@ -17,10 +17,11 @@
 
 		<section id="tabContent" class="sizer start">
 
+			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
+
+
  			<?php echo form_open("start/basic"); ?>
 				<section id="guidelines">
-
-					<p><? if(isset($error)) echo $error; ?></p>
 
 					<h1>Beer-Bucks Guidelines</h1> <hr>
 					<div>
