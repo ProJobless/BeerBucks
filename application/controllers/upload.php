@@ -27,7 +27,7 @@ class Upload extends CI_Controller {
 			$data['view'] = 'start';
 			$this->load->view('includes/template', $data);
 
-		}else if($this->input->post('upload')){
+		}else if($_FILES['userfile']['name']){
 			$imageID = uniqid();
 
 			$config['upload_path'] = './uploads/party';

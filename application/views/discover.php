@@ -197,6 +197,6 @@
 				</hgroup>
 			</article>
 
-			<button>See More</button>
+			<div><button>See More</button></div>
 		</section>
 	</section>

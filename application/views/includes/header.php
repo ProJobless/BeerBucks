@@ -44,8 +44,15 @@
 				</a>
 			</nav>
 			<div id="tools">
-				<? if($this->session->userdata('userID')) echo '<a href="' . base_url() . 'index.php/logout">' . $this->session->userdata('username') . '</a>';
-				else echo'<a href="' . base_url() . 'index.php/join">Join</a><a href="' . base_url() . 'index.php/login">Login</a>'; ?>
+				<? 
+				if($this->session->userdata('profile_pic')){
+					echo '<img src="' . base_url() . 'uploads/party/' . $this->session->userdata('profile_pic') . 'width="30" height="30"/>';
+				}
+				if($this->session->userdata('userID')){
+					echo '<div id="toolBox"><p>' . $this->session->userdata('username') . '</p><img src="' . base_url() . 'uploads/profile/' . $this->session->userdata('profileImage') . '" width="30" height="30" /><ul><div></div><li><a href="' . base_url() . 'index.php/profile">Profile</a></li><li>Settings</li><li><a href="' . base_url() . 'index.php/logout">Logout</a></li></ul></div>';
+				}else{
+					echo '<a class="button" href="' . base_url() . 'index.php/login">Login</a><a class="button" href="' . base_url() . 'index.php/join">Join</a>'; 
+				} ?>
 			</div>
 		</div>
 	</header>

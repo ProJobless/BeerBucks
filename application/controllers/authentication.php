@@ -61,7 +61,7 @@ class Authentication extends CI_Controller {
 				$this->load->view('includes/template', $data);
 
 			}else{
-				redirect('home');
+				redirect('profile');
 			}
 		}
 	}
@@ -104,7 +104,7 @@ class Authentication extends CI_Controller {
 				$this->load->view('includes/template', $data);
 
 			}else{
-				redirect('home');
+				redirect('profile');
 			}
 		}
 	}

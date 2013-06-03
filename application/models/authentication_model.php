@@ -75,6 +75,10 @@ class Authentication_model extends CI_Model {
     			'userID' => $row->user_id,
     			'email' => $row->email,
     			'username' => $row->username,
+                'dateOfReg' => $row->date_of_reg,
+                'profileImage' => $row->profile_img,
+                'facebookID' => $row->facebook_id,
+                'bio' => $row->bio,
     			'isLoggedIn' => 1
     		);
 

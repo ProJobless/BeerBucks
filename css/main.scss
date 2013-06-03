@@ -24,8 +24,8 @@ $pink-hover: #ff0077;
     border-radius: $topLeft $topRight $bottomRight $bottomLeft;
 }
 @mixin transition($speed : .3s){
-    transition: width $speed;
-    -webkit-transition: $speed; /* Safari */
+    transition: $speed;
+    -webkit-transition: $speed; 
 }
 @mixin gradient($top : #f2137b, $bottom : #db116f){
     background: $top; /* Old browsers */
@@ -40,6 +40,10 @@ $pink-hover: #ff0077;
 @mixin highlight($color: #eb599d){
 	-webkit-box-shadow: inset 0px 1px 0px 0px $color;
     box-shadow: inset 0px 1px 0px 0px $color;
+}
+@mixin shadow($color: $dark-purple){
+	-webkit-box-shadow: 0px 2px 0px 0px $color;
+    box-shadow: 0px 2px 0px 0px $color;
 }
 @mixin textshadow($hor : 0px, $ver : 1px, $blur: 2px, $shadow : $dark-purple){
 	text-shadow: $hor $ver $blur $shadow;
@@ -91,7 +95,6 @@ $pink-hover: #ff0077;
 @mixin pinkbutton(){
 	border: solid 1px $purple-shadow;
 	padding: 8px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .7em;
 	font-weight: 500;
 	letter-spacing: .1em !important;
@@ -108,10 +111,10 @@ $pink-hover: #ff0077;
 /* ------------------------------ Fonts ------------------------------ */
 @font-face {
     font-family: 'ChunkFiveRegular';
-    src: url('fonts/chunkFive/Chunkfive-webfont.eot');
     src: url('fonts/chunkFive/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/chunkFive/Chunkfive-webfont.woff') format('woff'),
-         url('fonts/chunkFive/Chunkfive-webfont.ttf') format('truetype'),
+         url('fonts/chunkFive/Chunkfive-webfont.eot');
+    src: url('fonts/chunkFive/Chunkfive-webfont.ttf') format('truetype'),
          url('fonts/chunkFive/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -155,7 +158,7 @@ html{
 }
 body{
 	width: 100%;
-	background-color: $main-white;
+	background: url("../img/bg-pattern1.jpg");
 	overflow-x: hidden;
 	letter-spacing: .03em;
 }
@@ -165,7 +168,7 @@ body{
 	margin: 0 auto;
 	position: relative;
 }
-p, h1, h2, h3, h4, h5, h6{
+*{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 }
 p{
@@ -176,7 +179,6 @@ strong{
 	font-weight: bold;
 }
 input{
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: 1.1em;
 	font-weight: 300;
 	text-indent: 5px;
@@ -244,24 +246,131 @@ header nav h1{
 	font-weight: normal;
 }
 header nav h2{
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .8em;
 	font-weight: 100;
 	color: $dark-gray;
 }
 header #tools{
 	float: right;
+	position: relative;
+	width: 320px;
+	height: 70px;
 }
-header #tools a{
+header #tools .button{
 	@include pinkbutton();
 	-webkit-font-smoothing: subpixel-antialiased;
-	float: left;
+	float: right;
 	margin-top: 20px;
-	@include corners(0px, 5px, 5px, 0px);
+	@include corners(5px, 0px, 0px, 5px);
 }
 header #tools a:first-child{
-	@include corners(5px, 0px, 0px, 5px);
-	border-right: solid 0px $purple-shadow;
+	@include corners(0px, 5px, 5px, 0px);
+	border-left: solid 0px $purple-shadow;
+}
+header #tools img{
+	float: left;
+	width: 30px;
+	height: 30px;
+	background-color: $dark-purple;
+	margin-top: 20px;
+	float: right;
+	margin-right: 10px;
+}
+header #tools p{
+	background: url("../img/icon-downArrow.png") no-repeat right center;
+	color: $dark-purple;
+    font-size: .8em;
+    font-weight: bold;
+    padding-right: 15px;
+    float: right;
+    line-height: 70px;
+    cursor: default;
+    &:hover{
+    	background: url("../img/icon-downArrow.png") no-repeat right center;
+    	-webkit-box-shadow: none;
+    	box-shadow: none;
+    }
+}
+header #tools #toolBox{
+	height: 0px;
+	width: 200px;
+	position: absolute;
+	right: 0px;
+	z-index: 2;
+	@include corners();
+	@include transition(.1s);
+	color: $main-white;
+	&:hover{
+		height: 180px;
+		@include transition(.1s);
+		color: $dark-purple;
+	}
+}
+header #tools #toolBox div{
+	width: 25px;
+	height: 25px;
+	background-color: $light-white;
+	border-top: solid 1px $light-gray;
+	border-left: solid 1px $light-gray;
+	border-bottom: solid 1px $light-white;
+	border-right: solid 1px $light-white;
+	position: absolute;
+	right: 30px;
+	top: -13.6px;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg); 
+	@include corners(5px, 0, 0, 0);
+	@include outerglow(0px, 0px, 2px, 0, $light-white);
+}
+header #tools #toolBox ul{
+	width: 100%;
+	height: 110px;
+	position: absolute;
+	bottom: 5px;
+	border: solid 1px $light-gray;
+	background-color: $light-white;
+	@include corners(5px, 5px, 0, 0);
+	@include outerglow(0, 1px, 3px, 0, $dark-purple);
+}
+header #tools #toolBox li{
+	width: 100%;
+	height: 25px;
+	text-indent: 15px;
+	line-height: 25px;
+	font-size: 1em;
+	margin-top: 10px;
+	color: $main-blue;
+	&:hover{
+		color: $blue-hover;
+	}
+}
+header #tools #toolBox li:last-child{
+	background-color: $main-white;
+	position: absolute;
+	bottom: 0px;
+	border-top: solid 1px $light-gray;
+	&:hover{
+		border-bottom: none;
+	}
+}
+header #tools #toolBox li:last-child{
+	width: 190px;
+	text-align: right;
+	padding-right: 10px;
+	font-size: .7em;
+	font-weight: bold;
+	color: $main-pink;
+	&:hover{
+		color: $pink-hover;
+		text-decoration: underline;
+	}
+}
+header #tools #toolBox a{
+	display: block;
+	width: 100%;
+	height: 30px;
+	color: inherit;
 }
 
 /* ------------------------------ Start Home Page ------------------------------ */
@@ -321,11 +430,8 @@ header #tools a:first-child{
 
 /* ------------------------------ Home Page - Parties Near ------------------------------ */
 #partiesNear{
-	width: 100%;
 	height: 545px;
-	background: url("../img/bg-pattern1.jpg");
 	position: relative;
-	border-bottom: solid 5px $light-purple;
 }
 #partiesNear h1{
 	margin-top: 30px;
@@ -396,12 +502,10 @@ header #tools a:first-child{
 	background-color: $light-gray;
 	margin: 0 auto;
 	margin-top: 5px;
-	font-family: "Comic Sans MS";
 	font-size: .6em;
 	color: rgba(237, 246, 245, 0);
 	font-weight: 900;
 	padding-left: 5px;
-	line-height: 15px;
 	@include corners();
 	@include highlight(#ababab);
 	@include bar(80%);
@@ -411,6 +515,10 @@ header #tools a:first-child{
 		@include textshadow(0px, 0px, 2px, $dark-gray);
 		@include transition(.1s);
 	}
+}
+#partiesNear article div p{
+	line-height: 15px;
+	font-family: "Comic Sans MS";
 }
 #partiesNear article div p:first-letter{
 	color: $main-white;
@@ -452,6 +560,7 @@ header #tools a:first-child{
 	position: relative;
 	border-bottom: solid 5px $main-pink;
 	padding-top: 30px;
+	border-top: solid 5px $light-purple;
 }
 #partiesUpcoming h1{
 	font-family: 'CodePro';
@@ -522,7 +631,6 @@ header #tools a:first-child{
 	background-color: $light-gray;
 	margin: 0 auto;
 	margin-top: 5px;
-	font-family: "Comic Sans MS";
 	font-size: .6em;
 	color: rgba(237, 246, 245, 0);
 	font-weight: 900;
@@ -537,6 +645,10 @@ header #tools a:first-child{
 		@include textshadow(0px, 0px, 2px, $dark-gray);
 		@include transition(.1s);
 	}
+}
+#partiesUpcoming article div p{
+	line-height: 15px;
+	font-family: "Comic Sans MS";
 }
 #partiesUpcoming article div p:first-letter{
 	color: $main-white;
@@ -572,9 +684,7 @@ header #tools a:first-child{
 
 /* ------------------------------ Home Page - Community - Tumblr ------------------------------ */
 #community{
-	width: 100%;
 	height: auto;
-	background: url("../img/bg-pattern1.jpg");
 	position: relative;
 	padding-top: 30px;
 	overflow: auto;
@@ -681,14 +791,12 @@ header #tools a:first-child{
 	margin-right: 5px;
 }
 #tweets p{
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .8em;
 	font-weight: 100;
 	letter-spacing: normal;
 	color: $dark-purple;
 }
 #tweets h3{
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .7em;
 	font-weight: 100;
 	line-height: 50px;
@@ -794,6 +902,7 @@ article#topImages>a{
 footer{
 	height: 370px;
 	width: 100%;
+	clear: both;
 	background-color: $dark-purple;
 	z-index: 0;
 	position: relative;
@@ -896,10 +1005,9 @@ footer section:nth-of-type(2) li:last-child{
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	background: url("../img/bg-pattern1.jpg");
 	padding-bottom: 200px;
 }
-#tabs ul{
+#tabs>ul{
 	height: 50px;
 	background-color: $main-white;
 	border: 1px solid $light-gray;
@@ -907,7 +1015,7 @@ footer section:nth-of-type(2) li:last-child{
 	@include corners(5px, 5px, 0px, 0px);
 	@include outerglow();
 }
-#tabs li{
+#tabs>ul li{
 	height: 100%;
 	line-height: 50px;
 	float: left;
@@ -922,25 +1030,25 @@ footer section:nth-of-type(2) li:last-child{
 		background-color: $light-white;
 	}
 }
-#tabs li.selected{
+#tabs>ul li.selected{
 	height: 98%;
 	border-bottom: solid 2px $light-white;
 	background-color: $light-white;
 	color: $dark-purple;
 	@include unglow;
 }
-#tabs li:first-child{
+#tabs>ul li:first-child{
 	@include corners(5px, 0px, 0px, 0px);
 }
-#tabs li:nth-child(5){
+#tabs>ul li:nth-last-child(2){
 	border: none;
 }
-#tabs li:nth-child(5) input{
+#tabs>ul li input{
 	height: 30px;
 	width: 300px;
 	@include input();
 }
-#tabs li:nth-child(5) button{
+#tabs>ul li button{
 	@include pinkbutton();
 	margin: 0px 0px 0px 5px;
 	&:hover{
@@ -948,11 +1056,11 @@ footer section:nth-of-type(2) li:last-child{
 		@include gradient(#c40f64, #b30e5b);
 	}
 }
-#tabs li:last-child{
+#tabs>ul li:last-child{
 	float: right;
 	border: none;
 }
-#tabs li:last-child a{
+#tabs>ul li:last-child a{
 	font-size: .7em;
 	font-weight: bold;
 	color: $main-pink;
@@ -1073,7 +1181,6 @@ footer section:nth-of-type(2) li:last-child{
 	background-color: $light-gray;
 	margin: 0 auto;
 	margin-top: 5px;
-	font-family: "Comic Sans MS";
 	font-size: .6em;
 	color: rgba(237, 246, 245, 0);
 	font-weight: 900;
@@ -1088,6 +1195,10 @@ footer section:nth-of-type(2) li:last-child{
 		@include textshadow(0px, 0px, 2px, $dark-gray);
 		@include transition(.1s);
 	}
+}
+#tabContent article div p{
+	line-height: 15px;
+	font-family: "Comic Sans MS";
 }
 #tabContent article div p:first-letter{
 	color: $main-white;
@@ -1110,6 +1221,11 @@ footer section:nth-of-type(2) li:last-child{
 	font-size: .7em;
 	margin: 8px 0px 0px 3px;
 }
+#tabContent div{
+	clear: both;
+	height: auto;
+	width: 100%;
+}
 #tabContent button{
 	@include pinkbutton();
 	margin: 20px auto;
@@ -1121,7 +1237,6 @@ footer section:nth-of-type(2) li:last-child{
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	background: url("../img/bg-pattern1.jpg");
 }
 #forms>section{
 	height: 400px;
@@ -1320,10 +1435,10 @@ footer section:nth-of-type(2) li:last-child{
 #tabContent.start section{
 	width: 475px;
 	margin-top: 30px;
-	overflow: auto;
+	overflow: hidden;
 }
 #tabContent.start form div{
-	width: 100%-20px; 
+	width: 435px; 
 	height: auto;
 	padding: 20px;
 	background-color: $main-white;	
@@ -1352,7 +1467,6 @@ footer section:nth-of-type(2) li:last-child{
 	width: 94%;
 	height: 95px;
 	resize: none; 
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: 1em;
 	font-weight: 300;
 	color: $dark-purple;
@@ -1414,7 +1528,6 @@ footer section:nth-of-type(2) li:last-child{
     overflow:hidden;
     @include pinkbutton();
     padding: 8px;
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 	font-size: .7em;
 	font-weight: 700;
     width: 149px;
@@ -1473,3 +1586,205 @@ footer section:nth-of-type(2) li:last-child{
 	color: $main-pink;
 	line-height: 40px;
 }
+
+/* ------------------------------ Start Profile Page ------------------------------ */
+/* ------------------------------ Profile Page - CTA ------------------------------ */
+#cta.profile{
+	height: 174px;
+	width: 100%;
+	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
+	border-bottom: solid 5px $medium-purple;
+	position: relative;
+}
+#cta.profile h1{
+	display: block;
+	width: 650px;
+	padding: 50px 0px 10px 0px;
+	background-color: rgba(39, 22, 64, .7);
+	margin: 0 auto;
+	text-align: center;
+	@include corners(5px);
+}
+
+/* ------------------------------ Profile Page - Side ------------------------------ */
+#profile{
+	height: auto;
+	overlfow: hidden;
+}
+#profile aside{
+	width: 220px;
+	height: auto;
+	float: left;
+	margin-top: 40px;
+}
+#profile article{
+	width: 220px;
+	height: 390px;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	margin: 20px 15px 0px 0px;
+	text-align: left;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#profile article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px 5px 0 5px;
+	background-color: $light-white;
+	position: relative;
+	height: auto;
+	text-overflow:ellipsis;
+}
+#profile article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+#profile article h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#profile article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	height: auto;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#profile article i{
+	color: $main-blue;
+}
+#profile article h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;
+}
+#profile article ul{
+	float: left;
+	width: 210px;
+	background-color: $light-white;
+	padding: 0 5px 5px 5px;
+	border-bottom: solid 1px $light-gray;
+}
+#profile article li{
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin-top: 10px;	
+	text-indent: 20px;
+	height: 15px;
+	line-height: 15px;
+}
+#profile article li span{
+	font-weight: bold;
+	float: right;
+	font-size: 1.2em;
+}
+#profile article li:nth-child(1){
+	background: url("../img/icon-thumb.png") no-repeat;
+}
+#profile article li:nth-child(2){
+	background: url("../img/icon-eye.png") no-repeat 0 3px;
+}
+#profile article li:nth-child(3){
+	background: url("../img/icon-clouds.png") no-repeat;
+}
+#profile article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#profile article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#profile article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 0px 3px;
+}
+#profile aside article:nth-of-type(2){
+	height: 200px;
+	background-color: $light-white;
+}
+#profile aside article:nth-of-type(2) h1{
+	height: 50px;
+	width: 100%;
+	background-color: $main-white;
+	color: $dark-purple;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 50px;
+	text-indent: 10px;
+	border-bottom: solid 1px $light-gray;
+}
+
+/* ------------------------------ Profile Page - Tabs ------------------------------ */
+#profile #tabs{
+	width: 720px;
+	float: right;
+}
+#profile #tabs>ul input{
+	width: 250px;
+}
+#profile #tabs>ul li:last-child{
+	float: left;
+}
+#profile #tabs>ul li:nth-last-child(2){
+	border-right: solid 1px $light-gray;
+}
+#profile #tabs>ul li:nth-of-type(3){
+	height: 102%;
+}
+#profile #tabs>ul li:last-child{
+	&:hover{
+		background-color: $main-white;
+	}
+}
+
+/* ------------------------------ Profile Page - TabContent: Friends ------------------------------ */
+#profile #tabContent{
+	height: auto;
+	width: 692px;
+}
+#profile #tabContent.friends article{
+	float: none;
+	height: 232px;
+	width: 220px;
+	overflow: hidden;
+	cursor: default;
+	display: block;
+	@include transition(.5s);
+	&:hover{
+		height: 392px;
+		@include transition(.5s);
+	}
+}
+#profile #tabContent.friends article hgroup:nth-of-type(1){
+	border: none;
+}
+#profile #tabContent.friends section{
+	width: 220px;
+	height: auto;
+	float: left;
+	clear: none;
+}
+#profile #tabContent.friends section:nth-of-type(2){
+	margin: 0 15px;
+}
+
+
+
+
