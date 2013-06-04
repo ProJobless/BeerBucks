@@ -10,7 +10,12 @@
 |
 */
 
-
+$hook['post_controller'] = array(
+    'class'    => 'hook_handler',
+    'function' => 'post_controller_constructor',
+    'filename' => 'hook_handler.php',
+    'filepath' => 'hooks'
+); 
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

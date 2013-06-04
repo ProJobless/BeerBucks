@@ -17,7 +17,7 @@
 
 		<section id="tabContent" class="sizer start">
 
- 			<?php echo form_open("start/finish"); ?>
+ 			<?php echo form_open("/start/finish"); ?>
 				<section id="details">
 
 					

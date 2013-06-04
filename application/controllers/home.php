@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 
 	}
 
-	public function index (){	
+	public function index (){
 
 		//Tells template to load the home view.
 		$data['view'] = 'home';

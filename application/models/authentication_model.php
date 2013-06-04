@@ -46,8 +46,7 @@ class Authentication_model extends CI_Model {
             $sData = array(
                 'userID' => $userID,
                 'email' => $email,
-                'username' => $username,
-                'isLoggedIn' => 1
+                'username' => $username
             );
 
     		$this->session->set_userdata($sData);
@@ -76,10 +75,9 @@ class Authentication_model extends CI_Model {
     			'email' => $row->email,
     			'username' => $row->username,
                 'dateOfReg' => $row->date_of_reg,
-                'profileImage' => $row->profile_img,
-                'facebookID' => $row->facebook_id,
-                'bio' => $row->bio,
-    			'isLoggedIn' => 1
+                'profileImage' =>$row->profile_img,
+                'facebookID' =>$row->facebook_id,
+                'bio' =>$row->bio
     		);
 
     		$this->session->set_userdata($sData);

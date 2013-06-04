@@ -136,14 +136,14 @@ class Start extends CI_Controller {
             }else{
 
 	            $sData2 = array(
-	            	'title' => '',
-	            	'description' => '',
-		            'location' => '',
-					'address' => '',
-		            'start' => '',
-		            'end' => '',
-		            'goal' => '',
-		            'img_name' => ''
+	            	'title' => null,
+	            	'description' => null,
+		            'location' => null,
+					'address' => null,
+		            'start' => null,
+		            'end' => null,
+		            'goal' => null,
+		            'img_name' => null
 		        );
 
 				$this->session->set_userdata($sData2);

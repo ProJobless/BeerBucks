@@ -331,7 +331,7 @@ header #tools #toolBox ul{
 	border: solid 1px $light-gray;
 	background-color: $light-white;
 	@include corners(5px, 5px, 0, 0);
-	@include outerglow(0, 1px, 3px, 0, $dark-purple);
+	@include outerglow(0, 2px, 3px, 0, $dark-purple);
 }
 header #tools #toolBox li{
 	width: 100%;
@@ -524,6 +524,11 @@ header #tools #toolBox a{
 	color: $main-white;
 	@include textshadow(0px, 0px, 2px, $dark-gray);
 }
+#partiesNear article img{
+	width: 220px;
+	height: 210px;
+	display: block;
+}
 #partiesNear article h5{
 	float: left;
 	margin: 5px 0px 0px 5px;
@@ -653,6 +658,11 @@ header #tools #toolBox a{
 #partiesUpcoming article div p:first-letter{
 	color: $main-white;
 	@include textshadow(0px, 0px, 2px, $dark-gray);
+}
+#partiesUpcoming article img{
+	width: 220px;
+	height: 210px;
+	display: block;
 }
 #partiesUpcoming article h5{
 	float: left;
@@ -1135,7 +1145,7 @@ footer section:nth-of-type(2) li:last-child{
 	margin-right: 0px;
 }
 #tabContent article hgroup:nth-of-type(1){
-	margin-top: -2px;
+	//margin-top: -2px;
 	padding: 5px;
 	background-color: $light-white;
 	border-bottom: 1px solid $light-gray;
@@ -1203,6 +1213,11 @@ footer section:nth-of-type(2) li:last-child{
 #tabContent article div p:first-letter{
 	color: $main-white;
 	@include textshadow(0px, 0px, 2px, $dark-gray);
+}
+#tabContent article img{
+	width: 220px;
+	height: 210px;
+	display: block;
 }
 #tabContent article h5{
 	float: left;
@@ -1586,7 +1601,19 @@ footer section:nth-of-type(2) li:last-child{
 	color: $main-pink;
 	line-height: 40px;
 }
-
+#tabContent.start article{
+	height: auto;
+	overflow: hidden;
+}
+#tabContent.start article hgroup:nth-of-type(1){
+	height: auto;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+#tabContent.start article h4{
+	height: auto;
+	overflow: hidden;
+}
 /* ------------------------------ Start Profile Page ------------------------------ */
 /* ------------------------------ Profile Page - CTA ------------------------------ */
 #cta.profile{
@@ -1619,7 +1646,8 @@ footer section:nth-of-type(2) li:last-child{
 }
 #profile article{
 	width: 220px;
-	height: 390px;
+	height: auto;
+	overflow: hidden;
 	background-color: $main-white;
 	border: 1px solid $light-gray;
 	margin: 20px 15px 0px 0px;
@@ -1634,6 +1662,7 @@ footer section:nth-of-type(2) li:last-child{
 	position: relative;
 	height: auto;
 	text-overflow:ellipsis;
+	overflow: hidden;
 }
 #profile article h2{
 	color: $light-purple;
@@ -1713,7 +1742,7 @@ footer section:nth-of-type(2) li:last-child{
 	color: $dark-gray;
 	font-weight: bold;
 	font-size: .7em;
-	margin: 8px 0px 0px 3px;
+	margin: 8px 0px 5px 3px;
 }
 #profile aside article:nth-of-type(2){
 	height: 200px;
@@ -1768,12 +1797,15 @@ footer section:nth-of-type(2) li:last-child{
 	display: block;
 	@include transition(.5s);
 	&:hover{
-		height: 392px;
+		height: 378px;
 		@include transition(.5s);
 	}
 }
 #profile #tabContent.friends article hgroup:nth-of-type(1){
 	border: none;
+}
+#profile #tabContent.friends article h4{
+	max-height: 40px;
 }
 #profile #tabContent.friends section{
 	width: 220px;
@@ -1784,7 +1816,6 @@ footer section:nth-of-type(2) li:last-child{
 #profile #tabContent.friends section:nth-of-type(2){
 	margin: 0 15px;
 }
-
 
 
 

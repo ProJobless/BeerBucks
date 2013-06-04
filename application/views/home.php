@@ -1,3 +1,5 @@
+	<? $visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"])); ?>
+
 	<section id="cta">
 		<div class="sizer">
 			<article>
@@ -9,9 +11,9 @@
 
 		<div class="divider"></div>
 	</section>
-	
+
 	<section id="partiesNear" class="sizer">
-		<h1>Parties in Orlando, FL</h1>
+		<h1>Parties near <? echo $visitorGeolocation['cityName'] ?></h1>
 		<article>
 			<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
 			<hgroup>

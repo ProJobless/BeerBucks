@@ -10,11 +10,16 @@
 	
 		<aside>
 			<article>
-				<img src="<? if($this->session->userdata('img_name')) echo base_url() . 'uploads/party/' . $this->session->userdata('img_name'); ?>" alt="" width="220" height="210"/>
+				<? if($this->session->userdata('profileImage')){ 
+					echo '<img src="' . base_url() . 'uploads/profile/' . $this->session->userdata('profileImage') . '" width="220" height="210" />';
+				}else{
+					echo '<img src="" width="220" height="210" />';
+				}?>
+				
 				<hgroup>
-					<h2><i>JazzyJeff</i></h2>
+					<h2><i><? echo $this->session->userdata('username') ?></i></h2>
 					<h3>Orlando, FL</h3>
-					<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					<h4><? echo $this->session->userdata('bio') ?></h4>
 				</hgroup>
 				<ul>
 					<li>FeedBack <span>0</span></li>

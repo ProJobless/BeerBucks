@@ -10,22 +10,25 @@ class Logout extends CI_Controller {
 
 	public function index (){	
 
-		//Tells template to load the discover view.
-		$data['view'] = 'login';
-
-		//Load template
-		$this->load->view('includes/template', $data);
-
-		$sessLogout = array('isLoggedIn' => 0);
-
-		$sessData = array(
-    			'userID' => null,
-    			'email' => null,
-    			'username' => null,
-    			'isLoggedIn' => 0
+		$sData = array(
+			'userID' => null,
+			'email' => null,
+			'username' => null,
+            'dateOfReg' => null,
+            'profileImage' => null,
+            'facebookID' => null,
+            'bio' => null,
+            'title' => null,
+        	'description' => null,
+            'location' => null,
+			'address' => null,
+            'start' => null,
+            'end' => null,
+            'goal' => null,
+            'img_name' => null
     	);
 
-    	$this->session->unset_userdata($sessData);
+    	$this->session->unset_userdata($sData);
 
 		redirect('home');
 

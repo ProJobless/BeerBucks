@@ -20,7 +20,7 @@
 			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
 
 
- 			<?php echo form_open("start/basic"); ?>
+ 			<?php echo form_open("/start/basic"); ?>
 				<section id="guidelines">
 
 					<h1>Beer-Bucks Guidelines</h1> <hr>

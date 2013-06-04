@@ -22,7 +22,7 @@
 			
 			<? if(isset($upload_data)) echo '<p class="success">Your image was successfully uploaded.</p>'; ?>
  			
- 			<?php echo form_open_multipart('upload/do_upload');?>
+ 			<?php echo form_open_multipart('/upload/do_upload');?>
 				<section id="basic">
 
 					<h1>Party Title</h1> <hr>

@@ -19,7 +19,7 @@
 
 			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
 
- 			<?php echo form_open("start/review"); ?>
+ 			<?php echo form_open("/start/review"); ?>
 				<section id="details">
 
 					<h1>Party Location</h1> <hr>

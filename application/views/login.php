@@ -17,7 +17,7 @@
 				</div>
 			</article>
 
-			<?php echo form_open("authentication/login"); ?>
+			<?php echo form_open("/authentication/login"); ?>
 				<h1>Login with an email</h1>
 				<div>
 					<p><? if(isset($error)) echo $error; ?></p>
@@ -32,7 +32,7 @@
 				</div>
 			<?php echo form_close(); ?>
 
-			<?php echo form_open("authentication/signup"); ?>
+			<?php echo form_open("/authentication/signup"); ?>
 				<h1>Create an account</h1>
 				<div>
 					<p><? if(isset($joinError)) echo $joinError; ?></p>
