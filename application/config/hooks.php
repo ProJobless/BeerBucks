@@ -12,7 +12,7 @@
 
 $hook['post_controller'] = array(
     'class'    => 'hook_handler',
-    'function' => 'post_controller_constructor',
+    'function' => 'pre_controller',
     'filename' => 'hook_handler.php',
     'filepath' => 'hooks'
 ); 

@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Hook_handler extends CI_Controller{
-    function post_controller_constructor() {
+    function pre_controller() {
         $this->CI = & get_instance();
 
 	    $this->load->helper('cookie');
@@ -16,6 +16,6 @@ class Hook_handler extends CI_Controller{
 				$data = base64_encode(serialize($visitorGeolocation));
 				setcookie("geolocation", $data, time()+3600*24*7); 
 			}
-		}		 
+		}		
     }
 }

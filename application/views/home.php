@@ -1,4 +1,6 @@
-	<? $visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"])); ?>
+	<? 
+	$this->load->helper('cookie');
+	if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"])); ?>
 
 	<section id="cta">
 		<div class="sizer">
@@ -13,7 +15,7 @@
 	</section>
 
 	<section id="partiesNear" class="sizer">
-		<h1>Parties near <? echo $visitorGeolocation['cityName'] ?></h1>
+		<h1>Parties near <? if(isset($visitorGeolocation)) echo $visitorGeolocation['cityName'] ?></h1>
 		<article>
 			<img src="<? echo base_url(); ?>img/stock-party-small.jpg" alt="" />
 			<hgroup>
