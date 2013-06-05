@@ -1,6 +1,22 @@
-	<? 
+	<? //Gets users ip and uses ipinfodb api to return location, stores info into a cookie.
+
 	$this->load->helper('cookie');
-	if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"])); ?>
+
+    include('application/libraries/ip2locationlite.class.php');
+
+	if(!get_cookie("geolocation")){
+		$ipLite = new ip2location_lite;
+		$visitorGeolocation = $ipLite->getCity($_SERVER['REMOTE_ADDR']);
+
+		if ($visitorGeolocation['statusCode'] == 'OK') {
+			$data = base64_encode(serialize($visitorGeolocation));
+			setcookie("geolocation", $data, time()+3600*24*7); 
+		}
+	}
+
+	if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
+	
+	?>
 
 	<section id="cta">
 		<div class="sizer">
