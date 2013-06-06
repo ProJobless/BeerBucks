@@ -1,5 +1,19 @@
 	<footer>
-		<a href="<? echo base_url(); ?>index.php/join">Join the Beer-Bucks Community</a>
+
+
+		<? 
+		if(!$this->session->userdata('userID')){ 
+			echo '<a href="' . base_url() . 'index.php/join">Join the Beer-Bucks Community</a>';
+		}else{
+			echo '<a href="' . base_url() . 'index.php/start">Start a new party</a>';
+		}
+
+
+
+		?>
+		
+
+
 		<section class="sizer">
 			<img src="<? echo base_url(); ?>img/logo-blue.png" alt="">
 			
