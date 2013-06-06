@@ -47,7 +47,7 @@
 				<? 
 				if($this->session->userdata('userID')){
 					if($this->session->userdata('profileImage')){
-						echo '<div id="toolBox"><p>' . $this->session->userdata('username') . '</p><img src="' . base_url() . 'uploads/profile/' . $this->session->userdata('profileImage') . '" width="30" height="30" /><ul><div></div><li><a href="' . base_url() . 'index.php/profile">Profile</a></li><li><a href="' . base_url() . 'index.php/settings">Settings</a></li><li><a href="' . base_url() . 'index.php/logout">Logout</a></li></ul></div>';
+						echo '<div id="toolBox"><p>' . $this->session->userdata('username') . '</p><img src="' . base_url() . 'uploads/profile/' . $this->session->userdata('profileImage') . '" width="30" height="30" /><ul><div></div><li><a href="' . base_url() . 'index.php/profile">Profile</a></li><li><a href="' . base_url() . 'index.php/settings">Settings</a></li><li><a href="' . base_url() . 'index.php/profile">Your Parties</a></li><li><a href="' . base_url() . 'index.php/logout">Logout</a></li></ul></div>';
 					}else{
 						echo '<div id="toolBox"><p>' . $this->session->userdata('username') . '</p><img src="" width="30" height="30" /><ul><div></div><li><a href="' . base_url() . 'index.php/profile">Profile</a></li><li>Settings</li><li><a href="' . base_url() . 'index.php/logout">Logout</a></li></ul></div>';
 					}

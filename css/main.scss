@@ -301,7 +301,7 @@ header #tools #toolBox{
 	@include transition(.1s);
 	color: $main-white;
 	&:hover{
-		height: 180px;
+		height: 210px;
 		@include transition(.1s);
 		color: $dark-purple;
 	}
@@ -325,7 +325,7 @@ header #tools #toolBox div{
 }
 header #tools #toolBox ul{
 	width: 100%;
-	height: 110px;
+	height: auto;
 	position: absolute;
 	bottom: 5px;
 	border: solid 1px $light-gray;
@@ -346,21 +346,14 @@ header #tools #toolBox li{
 	}
 }
 header #tools #toolBox li:last-child{
-	background-color: $main-white;
-	position: absolute;
-	bottom: 0px;
-	border-top: solid 1px $light-gray;
-	&:hover{
-		border-bottom: none;
-	}
-}
-header #tools #toolBox li:last-child{
 	width: 190px;
 	text-align: right;
 	padding-right: 10px;
 	font-size: .7em;
 	font-weight: bold;
+	background-color: $main-white;
 	color: $main-pink;
+	border-top: solid 1px $light-gray;
 	&:hover{
 		color: $pink-hover;
 		text-decoration: underline;
