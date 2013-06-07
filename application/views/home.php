@@ -206,14 +206,6 @@
 					<img src="" alt="">
 					<p>about 8 hours ago "No one looks back on their life and...”</p>
 				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
 			</ul>
 		</article>
 

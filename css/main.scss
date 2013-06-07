@@ -764,7 +764,6 @@ header #tools #toolBox a{
 	float: right;
 	border: 1px solid $light-gray;
 	background-color: $main-white;
-	margin-bottom: 50px;
 	@include corners(0px, 0px, 5px, 5px);
 	@include outerglow();
 }
@@ -906,6 +905,7 @@ footer{
 	height: 370px;
 	width: 100%;
 	clear: both;
+	margin-top: 50px;
 	background-color: $dark-purple;
 	z-index: 0;
 	position: relative;
@@ -1008,7 +1008,7 @@ footer section:nth-of-type(2) li:last-child{
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	padding-bottom: 200px;
+	padding-bottom: 50px;
 }
 #tabs>ul{
 	height: 50px;
@@ -1138,7 +1138,6 @@ footer section:nth-of-type(2) li:last-child{
 	margin-right: 0px;
 }
 #tabContent article hgroup:nth-of-type(1){
-	//margin-top: -2px;
 	padding: 5px;
 	background-color: $light-white;
 	border-bottom: 1px solid $light-gray;
@@ -1334,8 +1333,7 @@ footer section:nth-of-type(2) li:last-child{
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	background: url("../img/bg-pattern1.jpg");
-	padding-bottom: 200px;
+	padding-bottom: 50px;
 }
 #tabs.wizard ul{
 	height: 50px;
@@ -1571,10 +1569,6 @@ footer section:nth-of-type(2) li:last-child{
 #tabContent.start .upload{
 	padding-top: 40px;
 }
-#tabContent.start form:nth-of-type(2){
-	position: absolute;
-	bottom: 0px;
-}
 #tabContent.start .success{
 	width: 990px;
 	height: 40px;
@@ -1607,6 +1601,7 @@ footer section:nth-of-type(2) li:last-child{
 	height: auto;
 	overflow: hidden;
 }
+
 /* ------------------------------ Start Profile Page ------------------------------ */
 /* ------------------------------ Profile Page - CTA ------------------------------ */
 #cta.profile{
@@ -1757,6 +1752,7 @@ footer section:nth-of-type(2) li:last-child{
 #profile #tabs{
 	width: 720px;
 	float: right;
+	margin-bottom: 50px;
 }
 #profile #tabs>ul input{
 	width: 250px;
@@ -1809,6 +1805,286 @@ footer section:nth-of-type(2) li:last-child{
 #profile #tabContent.friends section:nth-of-type(2){
 	margin: 0 15px;
 }
+
+/* ------------------------------ Start Settings Page ------------------------------ */
+/* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
+#settings{
+	clear: both;
+	height: 1200px;
+	background-color: $light-white;
+	margin: 40px auto 0;
+	overflow: hidden;
+	border: 1px solid $light-gray;
+	@include corners();
+	@include outerglow();
+}
+#settings aside{
+	width: 250px;
+	height: 100%;
+	background-color: $main-white;
+	padding-top: 15px;
+	border-right: solid 1px $light-gray;
+	float: left;
+}
+#settings aside article{
+	width: 220px;
+	height: auto;
+	overflow: hidden;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	margin: 0 auto;
+	text-align: left;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#settings aside article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px 5px 0 5px;
+	background-color: $light-white;
+	position: relative;
+	height: auto;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+#settings aside article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+#settings aside article h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#settings aside article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	height: auto;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#settings aside article i{
+	color: $main-blue;
+}
+#settings aside article h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;
+}
+#settings aside article ul{
+	float: left;
+	width: 210px;
+	background-color: $light-white;
+	padding: 0 5px 5px 5px;
+	border-bottom: solid 1px $light-gray;
+}
+#settings aside article li{
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin-top: 10px;	
+	text-indent: 20px;
+	height: 15px;
+	line-height: 15px;
+}
+#settings aside article li span{
+	font-weight: bold;
+	float: right;
+	font-size: 1.2em;
+}
+#settings aside article li:nth-child(1){
+	background: url("../img/icon-thumb.png") no-repeat;
+}
+#settings aside article li:nth-child(2){
+	background: url("../img/icon-eye.png") no-repeat 0 3px;
+}
+#settings aside article li:nth-child(3){
+	background: url("../img/icon-clouds.png") no-repeat;
+}
+#settings aside article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#settings aside article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#settings aside article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 5px 3px;
+}
+
+/* ------------------------------ Settinsg Page - Settings Nav ------------------------------ */
+#settings aside #settingsNav{
+	margin-top: 10px;
+}
+#settings aside #settingsNav li{
+	height: 60px;
+	width: 100%;
+	background-color: $main-white;
+	border-top: 1px solid $light-gray;
+	line-height: 60px;
+	color: $main-pink;
+	font-size: 1.1em;
+	font-weight: 300;
+	cursor: pointer;
+	text-indent: 15px;
+	&:hover{
+		background-color: $light-white;
+	}
+}
+#settings aside #settingsNav li:last-child{
+	border-bottom: solid 1px $light-gray;
+}
+#settings aside #settingsNav li.selected{
+	background-color: $light-white;
+	border-right: solid 2px $light-white;
+	color: $dark-purple;
+}
+
+/* ------------------------------ Settinsg Page - Forms ------------------------------ */
+
+#settingsForms{
+	width: 700px;
+	height: 100%;
+	overflow: hidden;
+}
+#settingsForms form{
+	width: 475px;
+	height: 100%;
+	position: relative;
+	float: left;
+	margin: 40px;
+}
+#settingsForms h1{
+	float: left;
+	font-size: 1.4em;
+	text-align: left;
+	margin-right: 20px;
+}
+#settingsForms hr:nth-of-type(1){
+	margin-top: 12px;
+}
+#settingsForms hr{
+	margin-top: 52px;
+}
+#settingsForms section{
+	width: 475px;
+	margin-top: 30px;
+	overflow: hidden;
+}
+#settingsForms form div{
+	width: 435px; 
+	height: auto;
+	padding: 20px;
+	background-color: $main-white;	
+	margin: 40px 0;
+	overflow: hidden;
+	position: relative;
+}
+#settingsForms form input:not([type='checkbox']){
+	width: 100%;
+	height: 35px;
+	@include input(2px);
+}
+#settingsForms form input[type='checkbox']{
+	margin-top: 10px;
+	float: left;
+}
+#settingsForms form article p, #settingsForms form p{
+	text-align: left;
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin: 20px 0 0 0;
+	clear: both;
+}
+#settingsForms form textarea{
+	width: 94%;
+	height: 95px;
+	resize: none; 
+	font-size: 1em;
+	font-weight: 300;
+	color: $dark-purple;
+	@include input(2px);
+	padding: 2%;
+}
+#settingsForms section>p{
+	color: $main-pink;
+	margin-bottom: 20px;
+	width: 100%;
+	text-align: right;
+}
+#settingsForms form div:nth-of-type(6){
+	padding: 0;
+	height: 50px;
+	width: 100%;
+	border-top: solid 1px $light-gray;
+	position: absolute;
+	bottom: 0px;
+	margin: 0;
+	margin-bottom: 40px;
+}
+#settingsForms button{
+	@include pinkbutton();
+	float: left;
+	margin: 10px 0 0 20px;
+	@include corners();
+}
+#settingsForms label.filebutton{
+    overflow: hidden;
+    @include pinkbutton();
+    padding: 8px;
+	font-size: .7em;
+	font-weight: 700;
+    width: 149px;
+    padding: 0px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    cursor: pointer;
+    margin-top: -150px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 150px;
+    text-align: center;
+}
+#settingsForms #uploadSubmit{
+    float: left;
+    overflow: hidden;
+    @include pinkbutton();
+}
+#settingsForms label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    top: -2px;
+    left: -800px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    margin: 0;
+    padding:0;
+}
+#settingsForms .upload{
+	padding-top: 40px;
+}
+
 
 
 
