@@ -18,6 +18,7 @@ class Logout extends CI_Controller {
             'profileImage' => null,
             'facebookID' => null,
             'bio' => null,
+            'timezone' => null,
             'title' => null,
         	'description' => null,
             'location' => null,

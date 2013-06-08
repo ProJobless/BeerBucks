@@ -44,6 +44,12 @@ class Settings extends CI_Controller {
 
 				$data = array('upload_data' => $this->upload->data());
 
+				$sData = array(
+		            'profileImage' => $data['upload_data']['file_name']
+		        );
+
+				$this->session->set_userdata($sData);
+
 				$result = $this->settings_model->editUser();
 
 				if($result){
