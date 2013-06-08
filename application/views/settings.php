@@ -9,7 +9,7 @@
 				
 				<hgroup>
 					<h2><i><? echo $this->session->userdata('username') ?></i></h2>
-					<h3>Orlando, FL</h3>
+					<h3><? echo $this->session->userdata('location') ?></h3>
 					<h4><? echo $this->session->userdata('bio') ?></h4>
 				</hgroup>
 				<!-- <ul>
@@ -37,9 +37,9 @@
 			
 			<? if(isset($upload_data)) echo '<p class="success">Your image was successfully uploaded.</p>'; ?>
  			
- 			<?php echo form_open_multipart('/upload/do_upload');?>
+ 			<?php echo form_open_multipart('/settings/do_upload');?>
 
-				<h1>Name</h1> <hr>
+				<h1>Username</h1> <hr>
 
 				<?php echo form_error('username'); ?>
 

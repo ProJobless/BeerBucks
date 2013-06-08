@@ -24,14 +24,14 @@
 
 					<h1>Party Location</h1> <hr>
 
-					<?php echo form_error('location'); ?>
+					<?php echo form_error('partyLocation'); ?>
 					<?php echo form_error('address'); ?>
 
 					<div>
-						<input type="text" name="location" placeholder="Orlando, FL" value="<? if(!set_value('location')){
-								if($this->session->userdata('location')) echo $this->session->userdata('location');
+						<input type="text" name="partyLocation" placeholder="Orlando, FL" value="<? if(!set_value('partyLocation')){
+								if($this->session->userdata('partyLocation')) echo $this->session->userdata('partyLocation');
 							}else{
-								echo set_value('location');
+								echo set_value('partyLocation');
 							} ?>"/>
 
 						<input type="text" name="address" placeholder="address" value="<? if(!set_value('address')){

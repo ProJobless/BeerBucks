@@ -330,7 +330,7 @@ header #tools #toolBox ul{
 	border: solid 1px $light-gray;
 	background-color: $light-white;
 	@include corners(5px, 5px, 0, 0);
-	@include outerglow(0, 2px, 3px, 0, $dark-purple);
+	@include outerglow(0, 1px, 2px, 0, $dark-purple);
 }
 header #tools #toolBox li{
 	width: 100%;
@@ -1772,9 +1772,8 @@ footer section:nth-of-type(2) li:last-child{
 }
 
 /* ------------------------------ Profile Page - TabContent: Friends ------------------------------ */
-
 #profile #tabContent{
-	height: 900px;
+	height: auto;
 	width: 692px;
 }
 #profile #tabContent.friends article{
@@ -1814,7 +1813,7 @@ footer section:nth-of-type(2) li:last-child{
 /* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
 #settings{
 	clear: both;
-	height: 1200px;
+	height: auto;
 	background-color: $light-white;
 	margin: 40px auto 0;
 	overflow: hidden;
@@ -1825,6 +1824,7 @@ footer section:nth-of-type(2) li:last-child{
 #settings aside{
 	width: 250px;
 	height: 100%;
+	overflow: hidden;
 	background-color: $main-white;
 	padding-top: 15px;
 	border-right: solid 1px $light-gray;
@@ -1962,7 +1962,7 @@ footer section:nth-of-type(2) li:last-child{
 /* ------------------------------ Settinsg Page - Forms ------------------------------ */
 
 #settingsForms{
-	width: 700px;
+	width: 709px;
 	height: 100%;
 	overflow: hidden;
 }
@@ -2040,7 +2040,7 @@ footer section:nth-of-type(2) li:last-child{
 	position: absolute;
 	bottom: 0px;
 	margin: 0;
-	margin-bottom: 40px;
+	margin-bottom: -40px;
 }
 #settingsForms button{
 	@include pinkbutton();
@@ -2088,7 +2088,25 @@ footer section:nth-of-type(2) li:last-child{
 #settingsForms .upload{
 	padding-top: 40px;
 }
-
+#settingsForms .success{
+	width: 100%;
+	height: 40px;
+	//margin: 10px 0 10px -30px;
+	background-color: $main-blue;
+	text-align: center;
+	color: $main-white;
+	line-height: 40px;
+}
+#settingsForms .error{
+	width: 100%;
+	height: 40px;
+	//margin: 10px 0 10px -30px;
+	background-color: $main-white;
+	border: solid 1px $main-pink;
+	text-align: center;
+	color: $main-pink;
+	line-height: 40px;
+}
 
 
 

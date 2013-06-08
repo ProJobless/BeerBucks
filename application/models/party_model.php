@@ -24,14 +24,14 @@ class Party_model extends CI_Model {
     public function newParty(){
         $party_id = uniqid();
         $user_id = $this->session->userdata('userID');
-        $title = $this->session->userdata('title');
-        $description = $this->session->userdata('description');
-        $location = $this->session->userdata('location');
-        $address = $this->session->userdata('address');
-        $start = $this->session->userdata('start');
-        $end = $this->session->userdata('end');
-        $goal = ltrim($this->session->userdata('goal') , '$');
-        $party_img = $this->session->userdata('img_name');
+        $title = $this->security->xss_clean($this->session->userdata('title'));
+        $description = $this->security->xss_clean($this->session->userdata('description'));
+        $partyLocation = $this->security->xss_clean($this->session->userdata('partyLocation'));
+        $address = $this->security->xss_clean($this->session->userdata('address'));
+        $start = $this->security->xss_clean($this->session->userdata('start'));
+        $end = $this->security->xss_clean($this->session->userdata('end'));
+        $goal = $this->security->xss_clean(ltrim($this->session->userdata('goal') , '$'));
+        $party_img = $this->security->xss_clean($this->session->userdata('img_name'));
 
         $data = array(
             'party_id' => $party_id,
@@ -39,7 +39,7 @@ class Party_model extends CI_Model {
             'tos' => 1,
             'title' => $title,
             'description' => $description,
-            'location' => $location,
+            'location' => $partyLocation,
             'address' => $address,
             'start' => $start,
             'end' => $end,

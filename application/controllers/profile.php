@@ -21,11 +21,4 @@ class Profile extends CI_Controller {
 
 	}
 
-	public function edit (){	
-
-		$data['view'] = 'edit';
-		$this->load->view('includes/template', $data);
-
-	}
-
 }
