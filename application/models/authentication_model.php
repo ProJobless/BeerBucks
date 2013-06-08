@@ -77,6 +77,8 @@ class Authentication_model extends CI_Model {
                 'dateOfReg' => $row->date_of_reg,
                 'profileImage' =>$row->profile_img,
                 'facebookID' =>$row->facebook_id,
+                'location' =>$row->location,
+                'timezone' =>$row->timezone,
                 'bio' =>$row->bio
     		);
 

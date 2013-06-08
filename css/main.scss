@@ -302,7 +302,6 @@ header #tools #toolBox{
 	color: $main-white;
 	&:hover{
 		height: 210px;
-		//@include transition(.1s);
 		color: $dark-purple;
 	}
 }
@@ -1773,38 +1772,43 @@ footer section:nth-of-type(2) li:last-child{
 }
 
 /* ------------------------------ Profile Page - TabContent: Friends ------------------------------ */
+
 #profile #tabContent{
-	height: auto;
+	height: 900px;
 	width: 692px;
 }
 #profile #tabContent.friends article{
-	float: none;
-	height: 232px;
+	height: 25px;
+	padding-top: 207px;
 	width: 220px;
-	overflow: hidden;
 	cursor: default;
-	display: block;
-	@include transition(.5s);
+	overflow: hidden;
+	margin-right: 10px;
+	@include transition();
 	&:hover{
-		height: 378px;
-		@include transition(.5s);
+		height: 167px;
+		padding-top: 65px;
 	}
+}
+#profile #tabContent.friends article:nth-of-type(3n+3){
+	margin-right: 0;
 }
 #profile #tabContent.friends article hgroup:nth-of-type(1){
 	border: none;
+	border-top: solid 1px $light-gray;
+}
+#profile #tabContent.friends article hgroup:nth-of-type(2){
+	height: 25px;
+	width: 220px;
+	float: left;
+	background: $main-white;
+	overflow: hidden;
+	@include corners( 0, 0, 5px, 5px);
 }
 #profile #tabContent.friends article h4{
 	max-height: 40px;
 }
-#profile #tabContent.friends section{
-	width: 220px;
-	height: auto;
-	float: left;
-	clear: none;
-}
-#profile #tabContent.friends section:nth-of-type(2){
-	margin: 0 15px;
-}
+
 
 /* ------------------------------ Start Settings Page ------------------------------ */
 /* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
