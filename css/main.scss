@@ -298,11 +298,11 @@ header #tools #toolBox{
 	right: 0px;
 	z-index: 2;
 	@include corners();
-	@include transition(.1s);
+	//@include transition(.1s);
 	color: $main-white;
 	&:hover{
 		height: 210px;
-		@include transition(.1s);
+		//@include transition(.1s);
 		color: $dark-purple;
 	}
 }

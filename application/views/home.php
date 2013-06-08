@@ -1,4 +1,4 @@
-	<? //Gets users ip and uses ipinfodb api to return location, stores info into a cookie.
+<? //Gets users ip and uses ipinfodb api to return location, stores info into a cookie.
 
 	$this->load->helper('cookie');
 
@@ -12,11 +12,10 @@
 			$data = base64_encode(serialize($visitorGeolocation));
 			setcookie("geolocation", $data, time()+3600*24*7); 
 		}
+	}else{
+		$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
 	}
-
-	if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
-	
-	?>
+?>
 
 	<section id="cta">
 		<div class="sizer">

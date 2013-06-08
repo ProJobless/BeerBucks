@@ -225,13 +225,9 @@ header #tools #toolBox {
   z-index: 2;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  transition: 0.1s;
-  -webkit-transition: 0.1s;
   color: #edf6f5; }
   header #tools #toolBox:hover {
     height: 210px;
-    transition: 0.1s;
-    -webkit-transition: 0.1s;
     color: #071226; }
 
 header #tools #toolBox div {
