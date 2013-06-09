@@ -365,6 +365,90 @@ header #tools #toolBox a{
 	color: inherit;
 }
 
+/* ------------------------------ Footer Styles ------------------------------ */
+footer{
+	height: 370px;
+	width: 100%;
+	clear: both;
+	margin-top: 50px;
+	background-color: $dark-purple;
+	z-index: 0;
+	position: relative;
+	border-top: solid 5px $main-blue;
+}
+footer>a{
+	@include bluebutton();
+	position: absolute;
+	top: -35px;
+	left: 50%;
+	margin-left: -237.5px;
+	z-index: 999;
+}
+footer .sizer>img{
+	width: 173px;
+	height: 215px;
+	float: left;
+	margin: 60px 40px 40px 0px;
+}
+footer h1{
+	margin-top: 90px;
+	width: 218px;
+	border-bottom: solid 1px $main-blue;
+	float: left;
+	margin-left: 30px;
+	font-family: 'ChunkFiveRegular';
+	font-size: 1.6em;
+	color: $main-pink;
+}
+footer section:nth-of-type(1) ul{
+	width: 218px;
+	float: left;
+	margin: 10px 0px 0px 30px;
+	color: $main-white;
+}
+footer section:nth-of-type(1) li{
+	font-size: .9em;
+	margin-top: 5px;
+	padding: 5px 0px;
+}
+footer section:nth-of-type(1) ul:last-child li{
+	text-indent: 25px;
+}
+footer section:nth-of-type(1) ul:last-child li:first-child{
+	background: url("../img/icon-home.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:nth-child(2){
+	background: url("../img/icon-facebook.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:nth-child(3){
+	background: url("../img/icon-twitter.png") no-repeat;
+}
+footer section:nth-of-type(1) ul:last-child li:last-child{
+	background: url("../img/icon-tumblr.png") no-repeat;
+}
+footer section:nth-of-type(2){
+	height:45px;
+	width: 100%;
+	background-color: #050c1a;
+	position: absolute;
+	bottom: 0px;
+}
+footer section:nth-of-type(2) ul{
+	text-align: center;
+	width: 300px;
+}
+footer section:nth-of-type(2) li{
+	float: left;
+	font-size: .6em;
+	color: $dark-gray;
+	margin-right: 20px;
+	font-weight: bold;
+	line-height: 45px;
+}
+footer section:nth-of-type(2) li:last-child{
+	margin-right: 0px;
+}
+
 /* ------------------------------ Start Home Page ------------------------------ */
 /* ------------------------------ Home Page - CTA ------------------------------ */
 #cta{
@@ -430,7 +514,7 @@ header #tools #toolBox a{
 	font-family: 'CodePro';
 	font-size: 1.5em;
 	background: url("../img/icon-location.png") no-repeat;
-	text-indent: 18px;
+	text-indent: 23px;
 	line-height: 34px;
 	margin-bottom: 25px;
 }
@@ -564,7 +648,7 @@ header #tools #toolBox a{
 	color: $main-white;
 	font-size: 1.5em;
 	background: url("../img/icon-upcoming.png") no-repeat;
-	text-indent: 29px;
+	text-indent: 32px;
 	line-height: 34px;
 	margin-bottom: 25px;
 }
@@ -899,90 +983,6 @@ article#topImages>a{
 	color: $dark-purple;
 }
 
-/* ------------------------------ Home Page - Footer ------------------------------ */
-footer{
-	height: 370px;
-	width: 100%;
-	clear: both;
-	margin-top: 50px;
-	background-color: $dark-purple;
-	z-index: 0;
-	position: relative;
-	border-top: solid 5px $main-blue;
-}
-footer>a{
-	@include bluebutton();
-	position: absolute;
-	top: -35px;
-	left: 50%;
-	margin-left: -237.5px;
-	z-index: 999;
-}
-footer .sizer>img{
-	width: 173px;
-	height: 215px;
-	float: left;
-	margin: 60px 40px 40px 0px;
-}
-footer h1{
-	margin-top: 90px;
-	width: 218px;
-	border-bottom: solid 1px $main-blue;
-	float: left;
-	margin-left: 30px;
-	font-family: 'ChunkFiveRegular';
-	font-size: 1.6em;
-	color: $main-pink;
-}
-footer section:nth-of-type(1) ul{
-	width: 218px;
-	float: left;
-	margin: 10px 0px 0px 30px;
-	color: $main-white;
-}
-footer section:nth-of-type(1) li{
-	font-size: .9em;
-	margin-top: 5px;
-	padding: 5px 0px;
-}
-footer section:nth-of-type(1) ul:last-child li{
-	text-indent: 25px;
-}
-footer section:nth-of-type(1) ul:last-child li:first-child{
-	background: url("../img/icon-home.png") no-repeat;
-}
-footer section:nth-of-type(1) ul:last-child li:nth-child(2){
-	background: url("../img/icon-facebook.png") no-repeat;
-}
-footer section:nth-of-type(1) ul:last-child li:nth-child(3){
-	background: url("../img/icon-twitter.png") no-repeat;
-}
-footer section:nth-of-type(1) ul:last-child li:last-child{
-	background: url("../img/icon-tumblr.png") no-repeat;
-}
-footer section:nth-of-type(2){
-	height:45px;
-	width: 100%;
-	background-color: #050c1a;
-	position: absolute;
-	bottom: 0px;
-}
-footer section:nth-of-type(2) ul{
-	text-align: center;
-	width: 300px;
-}
-footer section:nth-of-type(2) li{
-	float: left;
-	font-size: .6em;
-	color: $dark-gray;
-	margin-right: 20px;
-	font-weight: bold;
-	line-height: 45px;
-}
-footer section:nth-of-type(2) li:last-child{
-	margin-right: 0px;
-}
-
 /* ------------------------------ Start Discover Page ------------------------------ */
 /* ------------------------------ Discover Page - CTA ------------------------------ */
 #cta.discover{
@@ -1128,7 +1128,7 @@ footer section:nth-of-type(2) li:last-child{
 	background-color: $main-white;
 	border: 1px solid $light-gray;
 	float: left;
-	margin: 20px 15px 0px 0px;
+	margin: 15px 15px 0px 0px;
 	text-align: left;
 	@include corners(0px, 0px, 5px, 5px);
 	@include outerglow();
@@ -1782,11 +1782,12 @@ footer section:nth-of-type(2) li:last-child{
 	width: 220px;
 	cursor: default;
 	overflow: hidden;
-	margin-right: 10px;
+	margin:  13px 13px 0 0;
 	@include transition();
 	&:hover{
 		height: 167px;
 		padding-top: 65px;
+		background-position: 0 -60px !important;
 	}
 }
 #profile #tabContent.friends article:nth-of-type(3n+3){
@@ -1825,7 +1826,6 @@ footer section:nth-of-type(2) li:last-child{
 #settings aside{
 	width: 250px;
 	height: 100%;
-	overflow: hidden;
 	position: absolute;
 	background-color: $main-white;
 	padding-top: 15px;
@@ -1957,12 +1957,11 @@ footer section:nth-of-type(2) li:last-child{
 }
 #settings aside #settingsNav li.selected{
 	background-color: $light-white;
-	border-right: solid 2px $light-white;
+	border-right: solid 4px $light-white;
 	color: $dark-purple;
 }
 
 /* ------------------------------ Settinsg Page - Forms ------------------------------ */
-
 #settingsForms{
 	width: 709px;
 	height: 100%;
