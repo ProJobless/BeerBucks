@@ -1,6 +1,6 @@
 	<footer>
 
-	<? 
+<? 
 	if($this->uri->segment(1) != 'settings' && $this->uri->segment(1) != 'start'){
 		if(!$this->session->userdata('userID')){ 
 			echo '<a href="' . base_url() . 'index.php/join">Join the Beer-Bucks Community</a>';
@@ -8,8 +8,8 @@
 			echo '<a href="' . base_url() . 'index.php/start">Start a new party</a>';
 		}
 	} 
-	?>
-		
+?>
+
 		<section class="sizer">
 			<img src="<? echo base_url(); ?>img/logo-blue.png" alt="">
 			

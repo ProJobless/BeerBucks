@@ -34,7 +34,7 @@ var initDollarSign = function(){
             (e.keyCode >= 35 && e.keyCode <= 39)){
 			return;
         }else{
-            if (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105 )) e.preventDefault();
+            if (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105 )) return false;
         }
 
         // Appends dollar sign to the front of the number.
@@ -48,3 +48,34 @@ var initDollarSign = function(){
 var initWizardOfOz = function(){
 
 };
+
+var initScroller = function(){
+	var cta            =   $('#cta'),
+		win            =   $(window),
+		ctaHeight      =   cta.height(),
+		scrollAmount   =   0,
+		scrollLeft     =   0
+	;
+
+	win.on('scroll', function(e){
+		scrollAmount   =   $(this).scrollTop();
+		scrollLeft     =   ctaHeight - scrollAmount;
+
+		cta.height(scrollLeft);
+	});
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

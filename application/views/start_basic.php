@@ -112,5 +112,6 @@
 	<script src="<? echo base_url(); ?>js/main.js"></script>
 
 	<!-- Inits -->
+	<script>initScroller();</script>
 	<script>initWizardOfOz();</script>
 	<script>initUpload();</script>
