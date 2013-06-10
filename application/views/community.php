@@ -26,41 +26,35 @@
 			</article>
 
 			<article id="hof">
-				<h2>Tumblr Hall of Fame</h2>
+				<h2>Hall of Fame</h2>
 				<ul>
 					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
+						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
+						<a href="#">BigWillie</a>
+						<h3>33</h3>
 					</li>
 					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
+						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
+						<a href="#">BigWillie</a>
+						<h3>33</h3>
 					</li>
 					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
+						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
+						<a href="#">BigWillie</a>
+						<h3>33</h3>
 					</li>
 					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
+						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
+						<a href="#">BigWillie</a>
+						<h3>33</h3>
 					</li>
 					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
-					</li>
-					<li>
-						<img src="" alt="">
-						<p>about 8 hours ago "No one looks back on their life and...”</p>
+						<img src="<? echo base_url(); ?>img/stock-topImage.jpg" alt="">
+						<a href="#">BigWillie</a>
+						<h3>33</h3>
 					</li>
 				</ul>
+				<button>See More</button>
 			</article>
 
 			<article id="topImages">
