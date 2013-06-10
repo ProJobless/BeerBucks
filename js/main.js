@@ -7,7 +7,7 @@ var initUpload = function(){
 };
 
 var initDatePicker = function(){
-	var datePickerInput = $('#details div:nth-of-type(2) input');
+	var datePickerInput   =   $('#details div:nth-of-type(2) input');
 
 	datePickerInput.datetimepicker({
 		dateFormat: 'yy-mm-dd',
@@ -61,7 +61,7 @@ var initScroller = function(){
 		scrollAmount   =   $(this).scrollTop();
 		scrollLeft     =   ctaHeight - scrollAmount;
 
-		cta.height(scrollLeft);
+		scrollAmount > 0 ? cta.height(scrollLeft) : cta.height(ctaHeight);
 	});
 };
 

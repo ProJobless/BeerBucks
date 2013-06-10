@@ -1616,8 +1616,9 @@ article#topImages>a{
 #cta.profile h1{
 	display: block;
 	width: 650px;
-	padding: 50px 0px 10px 0px;
-	background-color: rgba(39, 22, 64, .7);
+	padding: 10px 0px;
+	line-height: 174px;
+	background-color: rgba(39, 22, 64, 0);
 	margin: 0 auto;
 	text-align: center;
 	@include corners(5px);
@@ -1644,6 +1645,9 @@ article#topImages>a{
 	text-align: left;
 	@include corners(0px, 0px, 5px, 5px);
 	@include outerglow();
+}
+#profile article img{
+	//background-color: $main-blue;
 }
 #profile article hgroup:nth-of-type(1){
 	margin-top: -2px;
@@ -1811,7 +1815,6 @@ article#topImages>a{
 #profile #tabContent.friends article h4{
 	max-height: 40px;
 }
-
 
 /* ------------------------------ Start Settings Page ------------------------------ */
 /* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
@@ -2112,6 +2115,74 @@ article#topImages>a{
 	color: $main-pink;
 	line-height: 40px;
 }
+
+/* ------------------------------ Start Community Page ------------------------------ */
+/* ------------------------------ Community Page - Tab Content ------------------------------ */
+
+#tabs #community{
+	height: auto;
+	overflow: hidden;
+	width: 934px;
+	background-color: $light-white;
+	border: 1px solid $light-gray;
+	border-top: 0px;
+	clear: both;
+	padding: 0px 13px;
+	text-align: center;
+	@include outerglow(0px, 2px, 2px, 0px, $light-gray);
+	@include corners(0px, 0px, 5px, 5px);
+}
+
+#community #hof{
+	width: 185px;
+	height: auto;
+	float: right;
+	border: 1px solid $light-gray;
+	background-color: $main-white;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+
+#community #hof ul{
+	width: 185px;
+	margin: 0 auto;
+	height: auto;
+	background-color: $light-white;
+	border-top: solid 1px $light-gray;
+	@include corners(0px, 0px, 5px, 5px);
+}
+#community #hof li{
+	width: 185px;
+	height: auto;
+	margin: 0 auto;
+	padding: 15px 0px;
+	border-bottom: solid 1px $light-gray;
+}
+#community #hof li:last-child{
+	border-bottom: none;
+}
+#community #hof img{
+	width: 40px;
+	height: 40px;
+	background-color: $dark-purple;
+	float: left;
+	margin-right: 5px;
+}
+#community #hof p{
+	font-size: .8em;
+	font-weight: 100;
+	letter-spacing: normal;
+	color: $dark-purple;
+}
+
+
+
+
+
+
+
+
+
 
 
 
