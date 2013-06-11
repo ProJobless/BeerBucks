@@ -1,13 +1,7 @@
 #Beer-Bucks v0.1.0
 ###A convenient method for allowing multiple people to pitch-in to throw a party.
 
-Beer-Bucks also has community features like the ability to add your friends, submit pictures, and have discussions. 
-
-Adding your friends lets you see which parties they pitch in for, and any parties that they start. 
-
-You can pitch in for any party, and by doing so you will get the location to the party.
-
-Beer-Bucks is a social site for people that love to party.
+Beer-Bucks is a social website for people who like to party. At Beer-Bucks you can raise money to fund a party, find and donate to local parties, or make new friends in our community of awesome people.
 
 ##Installing
 Beer-Bucks is being made using the CodeIgniter framework. To get this application up and running you will have to do the following
