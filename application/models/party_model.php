@@ -47,31 +47,31 @@ class Party_model extends CI_Model {
             'party_img' => $party_img
         );
 
-        $q = $this->db->insert('partys', $data);
+        $q = $this->db->insert('parties', $data);
 
         return true;
     }
 
-    public function getPartys(){
+    public function getParties(){
         $this->db->select('
-            partys.party_id, 
-            partys.user_id, 
-            partys.date_created, 
-            partys.date_edited, 
-            partys.title, 
-            partys.description, 
-            partys.party_img, 
-            partys.location, 
-            partys.address, 
-            partys.start, 
-            partys.end, 
-            partys.goal,
-            partys.attending,
+            parties.party_id, 
+            parties.user_id, 
+            parties.date_created, 
+            parties.date_edited, 
+            parties.title, 
+            parties.description, 
+            parties.party_img, 
+            parties.location, 
+            parties.address, 
+            parties.start, 
+            parties.end, 
+            parties.goal,
+            parties.attending,
             users.username,
         ');
 
-        $this->db->from('partys');
-        $this->db->join('users', 'partys.user_id = users.user_id');
+        $this->db->from('parties');
+        $this->db->join('users', 'parties.user_id = users.user_id');
         //$this->db->limit($limit, $start);
 
         $query = $this->db->get();

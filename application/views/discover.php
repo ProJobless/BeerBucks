@@ -18,7 +18,7 @@
 
 		<section id="tabContent" class="sizer">
 			
-			<?php foreach ($partys as $party): ?>
+			<?php foreach ($parties as $party): ?>
 				<article>
 					<a href="">
 						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />

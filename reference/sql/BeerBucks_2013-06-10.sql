@@ -20,12 +20,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table partys
+# Dump of table parties
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `partys`;
+DROP TABLE IF EXISTS `parties`;
 
-CREATE TABLE `partys` (
+CREATE TABLE `parties` (
   `party_id` varchar(13) NOT NULL DEFAULT '',
   `user_id` varchar(32) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -44,10 +44,10 @@ CREATE TABLE `partys` (
   CONSTRAINT `party_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `partys` WRITE;
-/*!40000 ALTER TABLE `partys` DISABLE KEYS */;
+LOCK TABLES `parties` WRITE;
+/*!40000 ALTER TABLE `parties` DISABLE KEYS */;
 
-INSERT INTO `partys` (`party_id`, `user_id`, `date_created`, `date_edited`, `tos`, `title`, `description`, `party_img`, `location`, `address`, `start`, `end`, `goal`)
+INSERT INTO `parties` (`party_id`, `user_id`, `date_created`, `date_edited`, `tos`, `title`, `description`, `party_img`, `location`, `address`, `start`, `end`, `goal`)
 VALUES
 	('51a7d833ef05d','51a6f29fa6c82','2013-05-30 18:52:35','0000-00-00 00:00:00',1,'fewf eff wef','Sum up your party in 145 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51a7d726bd03e.jpg','fawefwef','awefaewf','2013-05-30 12:00:00','2013-05-30 12:00:00',234),
 	('51a7d8e5d094f','51a6f29fa6c82','2013-05-30 18:55:33','0000-00-00 00:00:00',1,'awefewaf','Sum up your party in 200 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51a7d726bd03e.jpg','awefaewf','awefawef','2013-05-30 12:00:00','2013-05-30 12:00:00',52342),
@@ -73,7 +73,7 @@ VALUES
 	('51b389ea4560a','51a6f29fa6c82','2013-06-08 15:45:46','0000-00-00 00:00:00',1,'fwefwe','dqwdqwd','51b389dab4187.jpg','xxxxx','dewqdqw','2013-06-08 12:00:00','2013-06-08 12:00:00',12312),
 	('51b3a7a4c28e8','51b3a76252ab9','2013-06-08 17:52:36','0000-00-00 00:00:00',1,'yayaa','party','51b3a798ef70e.png','fawfewe','wefawef','2013-06-08 12:00:00','2013-06-08 12:00:00',123);
 
-/*!40000 ALTER TABLE `partys` ENABLE KEYS */;
+/*!40000 ALTER TABLE `parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

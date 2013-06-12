@@ -10,7 +10,7 @@ class Discover extends CI_Controller {
 
 	public function index (){	
 
-		$data['partys'] = $this->party_model->getPartys();
+		$data['parties'] = $this->party_model->getParties();
 		$data['view'] = 'discover';
 		$this->load->view('includes/template', $data);
 

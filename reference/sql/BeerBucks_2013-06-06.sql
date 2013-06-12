@@ -20,12 +20,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table partys
+# Dump of table parties
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `partys`;
+DROP TABLE IF EXISTS `parties`;
 
-CREATE TABLE `partys` (
+CREATE TABLE `parties` (
   `party_id` varchar(13) NOT NULL DEFAULT '',
   `user_id` varchar(32) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -44,10 +44,10 @@ CREATE TABLE `partys` (
   CONSTRAINT `party_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `partys` WRITE;
-/*!40000 ALTER TABLE `partys` DISABLE KEYS */;
+LOCK TABLES `parties` WRITE;
+/*!40000 ALTER TABLE `parties` DISABLE KEYS */;
 
-INSERT INTO `partys` (`party_id`, `user_id`, `date_created`, `date_edited`, `tos`, `title`, `description`, `party_img`, `location`, `address`, `start`, `end`, `goal`)
+INSERT INTO `parties` (`party_id`, `user_id`, `date_created`, `date_edited`, `tos`, `title`, `description`, `party_img`, `location`, `address`, `start`, `end`, `goal`)
 VALUES
 	('51a7d833ef05d','51a6f29fa6c82','2013-05-30 18:52:35','0000-00-00 00:00:00',1,'fewf eff wef','Sum up your party in 145 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51a7d726bd03e.jpg','fawefwef','awefaewf','2013-05-30 12:00:00','2013-05-30 12:00:00',234),
 	('51a7d8e5d094f','51a6f29fa6c82','2013-05-30 18:55:33','0000-00-00 00:00:00',1,'awefewaf','Sum up your party in 200 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51a7d726bd03e.jpg','awefaewf','awefawef','2013-05-30 12:00:00','2013-05-30 12:00:00',52342),
@@ -69,7 +69,7 @@ VALUES
 	('51af73026f20a','51a6f29fa6c82','2013-06-05 13:18:58','0000-00-00 00:00:00',1,'fwefwef','Sum up your party in 200 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51af72f261a19.jpg','fwefe','ewfew','2013-06-05 12:00:00','2013-06-05 12:00:00',3123),
 	('51af78e263f5b','51a6f29fa6c82','2013-06-05 13:44:02','0000-00-00 00:00:00',1,'cdscas','Sum up your party in 200 characters. Try to describe what you plan kind of party it is, if there is a theme, what you plan on doing, and what you will spend the money on. (drinks, food, games, ect.)','51af7335efaff.jpg','fwafew','qwfqwf','2013-06-05 12:00:00','2013-06-05 12:00:00',12313);
 
-/*!40000 ALTER TABLE `partys` ENABLE KEYS */;
+/*!40000 ALTER TABLE `parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
