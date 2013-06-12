@@ -27,7 +27,7 @@
 	<header>
 		<div class="sizer">
 			<a href="<? echo base_url(); ?>">
-				<h1 id="logo">Beer Bucks</h1>
+				<img src="<? echo base_url(); ?>/img/logo-purple.png" alt="">
 			</a>
 			<nav>
 				<a href="<? echo base_url(); ?>index.php/discover" <? if($view == "discover") echo 'class="active"'?> >

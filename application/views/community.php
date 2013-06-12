@@ -13,9 +13,7 @@
 			<li>Photos</li>
 			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
 			<li><a href="#">Learn More</a></li>
-		</ul>
-
-		
+		</ul>	
 
 		<section id="community" class="sizer">
 			<article id="tumblr">
@@ -87,12 +85,6 @@
 			</article>
 
 
-
-
-
-
-
-			
 		</section>
 	</section>
 

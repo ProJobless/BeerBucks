@@ -166,7 +166,6 @@ body{
 	width: 960px;
 	height: 100%;
 	margin: 0 auto;
-	position: relative;
 }
 *{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
@@ -200,14 +199,13 @@ header{
 	background-color: $main-white;
 	border-bottom: solid 1px $medium-purple;
 }
-header #logo{
+header img:first-child{
 	width: 165px;
-	height: 100%;
-	background: url("../img/logo-purple.png") no-repeat 0px 7px;
+	height: 57px;
 	padding-right: 40px;
 	border-right: solid 1px $light-gray;
 	float: left;
-	text-indent: -9999px;
+	margin-top: 7px;
 }
 header nav{
 	height: 100%;
@@ -233,11 +231,11 @@ header nav a{
 	}
 }
 header nav .active{
-		height: 50px;
-		margin-top: 5px;
-		vertical-align: bottom;
-		padding-top: 15px;
-		@include transition(.12s);	
+	height: 50px;
+	margin-top: 5px;
+	vertical-align: bottom;
+	padding-top: 15px;
+	@include transition(.12s);	
 }
 header nav h1{
 	font-family: 'ChunkFiveRegular';
@@ -468,8 +466,6 @@ footer section:nth-of-type(2) li:last-child{
 	float: right;
 	margin-top: 80px;
 	@include corners(5px);
-	padding-right: 100px;
-	margin-right: -100px;
 }
 #cta h1{
 	font-family: 'LeckerliOne';

@@ -52,4 +52,47 @@ class Party_model extends CI_Model {
         return true;
     }
 
+    public function getPartys(){
+        $this->db->select('
+            partys.party_id, 
+            partys.user_id, 
+            partys.date_created, 
+            partys.date_edited, 
+            partys.title, 
+            partys.description, 
+            partys.party_img, 
+            partys.location, 
+            partys.address, 
+            partys.start, 
+            partys.end, 
+            partys.goal,
+            partys.attending,
+            users.username,
+        ');
+
+        $this->db->from('partys');
+        $this->db->join('users', 'partys.user_id = users.user_id');
+        //$this->db->limit($limit, $start);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            // echo '<pre>';
+            // print_r($dataResults);
+            // echo '</pre>';
+
+            return $dataResults;
+
+        }else{
+            // No Results Found
+        }
+    }
+
 }

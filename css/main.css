@@ -44,8 +44,7 @@ body {
 .sizer {
   width: 960px;
   height: 100%;
-  margin: 0 auto;
-  position: relative; }
+  margin: 0 auto; }
 
 * {
   font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif; }
@@ -79,14 +78,13 @@ header {
   background-color: #edf6f5;
   border-bottom: solid 1px #271640; }
 
-header #logo {
+header img:first-child {
   width: 165px;
-  height: 100%;
-  background: url("../img/logo-purple.png") no-repeat 0px 7px;
+  height: 57px;
   padding-right: 40px;
   border-right: solid 1px #dddddd;
   float: left;
-  text-indent: -9999px; }
+  margin-top: 7px; }
 
 header nav {
   height: 100%;
@@ -439,9 +437,7 @@ footer section:nth-of-type(2) li:last-child {
   float: right;
   margin-top: 80px;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  padding-right: 100px;
-  margin-right: -100px; }
+  border-radius: 5px 5px 5px 5px; }
 
 #cta h1 {
   font-family: 'LeckerliOne';

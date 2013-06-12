@@ -5,14 +5,13 @@ class Discover extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 
+		$this->load->model('party_model');
 	}
 
 	public function index (){	
 
-		//Tells template to load the discover view.
+		$data['partys'] = $this->party_model->getPartys();
 		$data['view'] = 'discover';
-
-		//Load template
 		$this->load->view('includes/template', $data);
 
 	}
