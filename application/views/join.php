@@ -2,8 +2,6 @@
 		<div class="sizer">
 			<h1>Welcome to the party</h1>
 		</div>
-
-		<div class="divider"></div>
 	</section>
 
 	<section id="forms">

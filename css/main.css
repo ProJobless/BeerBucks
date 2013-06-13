@@ -514,13 +514,14 @@ footer section:nth-of-type(2) li:last-child {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
 
-#cta .divider {
+#cta:after {
+  content: "";
+  display: block;
   height: 74px;
   width: 69px;
   position: absolute;
   left: 50%;
-  margin-top: -35px;
-  margin-left: -34.5px;
+  margin: -35px 0 0 -34.5px;
   background-image: url("../img/icon-divider1.png");
   z-index: 1; }
 
@@ -1596,13 +1597,34 @@ article#topImages > a {
   padding: 0px 30px 0px 5px;
   border-right: 0px;
   color: #071226;
-  font-size: 1.1em;
   cursor: default;
-  font-weight: 300;
   position: relative;
   margin-right: 36px; }
   #tabs.wizard li:hover:not(:nth-child(n+5)) {
     background-color: #edf6f5; }
+
+#tabs.wizard li h1 {
+  font-size: 1.1em;
+  font-weight: 300; }
+
+#tabs.wizard li h1:after {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-color: #edf6f5;
+  position: absolute;
+  right: -18px;
+  top: 7px;
+  border-top: solid 1px #dddddd;
+  border-right: solid 1px #dddddd;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  z-index: 2; }
+
+#tabs.wizard li.selected h1:after {
+  background-color: #f2137b; }
 
 #tabs.wizard li:first-child.selected {
   margin-left: 0px;
@@ -1639,23 +1661,6 @@ article#topImages > a {
   #tabs.wizard li:last-child a:hover {
     color: #ff0077;
     text-decoration: underline; }
-
-#tabs.wizard li > div {
-  width: 35px;
-  height: 35px;
-  background-color: #edf6f5;
-  position: absolute;
-  right: -18px;
-  top: 7px;
-  border-top: solid 1px #dddddd;
-  border-right: solid 1px #dddddd;
-  transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  z-index: 2; }
-
-#tabs.wizard li.selected > div {
-  background-color: #f2137b; }
 
 /* ------------------------------ Start Page - Page 2: Basic ------------------------------ */
 #tabContent.start {

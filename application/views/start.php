@@ -2,16 +2,14 @@
 		<div class="sizer">
 			<h1>Start an awesome party</h1>
 		</div>
-
-		<div class="divider"></div>
 	</section>
 
 	<section id="tabs" class="wizard">
 		<ul class="sizer">
-			<li class="selected">Guidelines<div></div></li>
-			<li>Basic Information<div></div></li>
-			<li>Party Details<div></div></li>
-			<li>Review<div></div></li>
+			<li class="selected"><h1>Guidelines</h1></li>
+			<li><h1>Basic Information</h1></li>
+			<li><h1>Party Details</h1></li>
+			<li><h1>Review</h1></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>
 

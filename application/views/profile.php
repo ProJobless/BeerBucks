@@ -2,8 +2,6 @@
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
 		</div>
-
-		<div class="divider"></div>
 	</section>
 
 	<section id="profile" class="sizer">

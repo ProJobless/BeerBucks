@@ -2,8 +2,6 @@
 		<div class="sizer">
 			<h1>Discover the best parties</h1>
 		</div>
-
-		<div class="divider"></div>
 	</section>
 
 	<section id="tabs">

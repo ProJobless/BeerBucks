@@ -25,8 +25,6 @@
 			</article>
 			<a href="<? echo base_url(); ?>index.php/join">Join The Party</a>
 		</div>
-
-		<div class="divider"></div>
 	</section>
 
 	<section id="partiesNear" class="sizer">
