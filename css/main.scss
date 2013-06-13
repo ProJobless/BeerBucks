@@ -203,7 +203,6 @@ header img:first-child{
 	width: 165px;
 	height: 57px;
 	padding-right: 40px;
-	border-right: solid 1px $light-gray;
 	float: left;
 	margin-top: 7px;
 }
@@ -229,6 +228,9 @@ header nav a{
 		padding-top: 15px;
 		@include transition(.12s);
 	}
+}
+header nav a:first-child{
+	border-left: solid 1px $light-gray;
 }
 header nav .active{
 	height: 50px;

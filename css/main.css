@@ -82,7 +82,6 @@ header img:first-child {
   width: 165px;
   height: 57px;
   padding-right: 40px;
-  border-right: solid 1px #dddddd;
   float: left;
   margin-top: 7px; }
 
@@ -109,6 +108,9 @@ header nav a {
     padding-top: 15px;
     transition: 0.12s;
     -webkit-transition: 0.12s; }
+
+header nav a:first-child {
+  border-left: solid 1px #dddddd; }
 
 header nav .active {
   height: 50px;

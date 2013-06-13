@@ -15,5 +15,10 @@ class Discover extends CI_Controller {
 		$this->load->view('includes/template', $data);
 
 	}
+	public function party($partyID){
+
+		echo $partyID;
+
+	}
 
 }

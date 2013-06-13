@@ -20,7 +20,7 @@
 			
 			<?php foreach ($parties as $party): ?>
 				<article>
-					<a href="">
+					<a href="<?=base_url()?>index.php/discover/party/<?=$party['party_id']?>">
 						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />
 						<hgroup>
 							<h2><?=$party['title']?></h2>
