@@ -39,12 +39,13 @@ class Party_model extends CI_Model {
             'tos' => 1,
             'title' => $title,
             'description' => $description,
-            'location' => $partyLocation,
+            'party_location' => $partyLocation,
             'address' => $address,
             'start' => $start,
             'end' => $end,
             'goal' => $goal,
-            'party_img' => $party_img
+            'party_img' => $party_img,
+            'attending' => 0
         );
 
         $q = $this->db->insert('parties', $data);
@@ -61,7 +62,7 @@ class Party_model extends CI_Model {
             parties.title, 
             parties.description, 
             parties.party_img, 
-            parties.location, 
+            parties.party_location, 
             parties.address, 
             parties.start, 
             parties.end, 
@@ -94,6 +95,59 @@ class Party_model extends CI_Model {
         }else{
             // No Results Found
         }
+    }
+
+    public function getParty($partyID){
+        $this->db->select('
+            parties.user_id, 
+            parties.date_created, 
+            parties.date_edited, 
+            parties.title, 
+            parties.description, 
+            parties.party_img, 
+            parties.party_location, 
+            parties.address, 
+            parties.start, 
+            parties.end, 
+            parties.goal,
+            parties.attending,
+            users.username,
+            users.profile_img,
+            users.bio,
+            users.location,
+            users.feedback,
+            users.views,
+            users.comments,
+            users.contributions,
+            users.parties,
+        ');
+
+        $this->db->from('parties');
+        $this->db->join('users', 'parties.user_id = users.user_id');
+        $this->db->where("parties.party_id = '$partyID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+
+            // echo '<pre>';
+            // print_r($dataResults);
+            // echo '</pre>';
+
+            return $dataResults;
+
+        }else{
+            // No Results Found
+        }
+
+
     }
 
 }

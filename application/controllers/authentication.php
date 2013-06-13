@@ -26,7 +26,7 @@ class Authentication extends CI_Controller {
 			array(
 				'field' => 'username',
 				'label' => 'Username',
-				'rules' => 'trim|required|min_length[5]|max_length[20]|xss_clean'
+				'rules' => 'trim|required|min_length[3]|max_length[20]|xss_clean'
 			), 
 			array(
 				'field' => 'email',

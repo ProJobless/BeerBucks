@@ -24,7 +24,7 @@
 							<h2><?=$party['title']?></h2>
 							<h3>Hosted by <i><?=$party['username']?></i></h3>
 							<h4><?=$party['description']?></h4>
-							<h3><?=$party['location']?></h3>
+							<h3><?=$party['party_location']?></h3>
 						</hgroup>
 						<div><p>$ XXX/<?=$party['goal']?></p></div>
 						<hgroup>

@@ -9,27 +9,18 @@
 				}?>
 				
 				<hgroup>
-					<h2><i><? echo $this->session->userdata('username') ?></i></h2>
-					<h3><? echo $this->session->userdata('location') ?></h3>
-					<h4><? echo $this->session->userdata('bio') ?></h4>
+					<h2><i><?= $this->session->userdata('username') ?></i></h2>
+					<h3><?= $this->session->userdata('location') ?></h3>
+					<h4><?= $this->session->userdata('bio') ?></h4>
 				</hgroup>
-				<!-- <ul>
-					<li>FeedBack <span>0</span></li>
-					<li>Views <span>0</span></li>
-					<li>Comments <span>0</span></li>
-				</ul>
-				<hgroup>
-					<h5>0</h5> <h6>contributors</h6>
-					<h5>0</h5> <h6>Hosted Parties</h6>
-				</hgroup> -->
 			</article>
 
-			<ul id="settingsNav">
+			<nav id="settingsNav">
 				<li class="selected">Profile Settings</li>
 				<li>Account Settings</li>
 				<li>Services Settings</li>
 				<li>Subscription Settings</li>
-			</ul>
+			</nav>
 		</aside>
 
 		<section id="settingsForms">

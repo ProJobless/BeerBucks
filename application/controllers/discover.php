@@ -17,7 +17,9 @@ class Discover extends CI_Controller {
 	}
 	public function party($partyID){
 
-		echo $partyID;
+		$data['party'] = $this->party_model->getParty($partyID);
+		$data['view'] = 'party';
+		$this->load->view('includes/template', $data);
 
 	}
 

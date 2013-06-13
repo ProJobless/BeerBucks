@@ -2645,6 +2645,12 @@ article#topImages > a {
   color: #f2137b;
   line-height: 40px; }
 
+#settingsForms form > p {
+  color: #f2137b;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: right; }
+
 /* ------------------------------ Start Community Page ------------------------------ */
 /* ------------------------------ Community Page - Tab Content ------------------------------ */
 #tabs #community {

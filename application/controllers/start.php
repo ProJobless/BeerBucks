@@ -6,6 +6,7 @@ class Start extends CI_Controller {
 		parent:: __construct();
 
 		$this->load->model('party_model');
+		$this->load->library('form_validation');
 
 	}
 
@@ -102,36 +103,44 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$this->load->library('form_validation');
-
-			$config = array(
-				array(
-					'field' => 'title',
-					'label' => 'Title',
-					'rules' => 'trim|required|min_length[5]|max_length[50]'
-				), 
-				array(
-					'field' => 'description',
-					'label' => 'Description',
-					'rules' => 'trim|required|min_length[5]|max_length[200]'
-				)
-			);
-
-			$this->form_validation->set_rules($config);
-
-			if($this->form_validation->run() == false){
+			if(!$this->session->userdata('img_name')){
 
 				$data['view'] = 'start_basic';
-				$data['error'] = 'Please fill out all the information.';
+				$data['error'] = 'Please upload an image for your party';
 				$this->load->view('includes/template', $data);
 
 			}else{
+				$config = array(
+					array(
+						'field' => 'title',
+						'label' => 'Title',
+						'rules' => 'trim|required|min_length[5]|max_length[50]'
+					), 
+					array(
+						'field' => 'description',
+						'label' => 'Description',
+						'rules' => 'trim|required|min_length[5]|max_length[200]'
+					)
+				);
 
-				$data['view'] = 'start_details';
-				$this->load->view('includes/template', $data);
+				$this->form_validation->set_rules($config);
 
+				if($this->form_validation->run() == false){
+
+					$data['view'] = 'start_basic';
+					$data['error'] = 'Please fill out all the information.';
+					$this->load->view('includes/template', $data);
+
+				}else{
+
+					$data['view'] = 'start_details';
+					$this->load->view('includes/template', $data);
+
+				}
 			}
+
 		}
+
 	}
 
 	public function review (){
@@ -152,8 +161,6 @@ class Start extends CI_Controller {
 			$this->load->view('includes/template', $data);
 
 		}else{
-
-			$this->load->library('form_validation');
 
 			$config = array(
 				array(
