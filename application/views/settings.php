@@ -1,12 +1,11 @@
-	<? $removeButton = true; ?>
 	<section id="settings" class="sizer">
 		<aside>
 			<article>
-				<? if($this->session->userdata('profileImage')){ 
-					echo '<img src="' . base_url() . 'uploads/profile/' . $this->session->userdata('profileImage') . '" width="220" height="210" />';
-				}else{
-					echo '<img src="" width="220" height="210" />';
-				}?>
+				<? if($this->session->userdata('profileImage')):?> 
+					<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" width="220" height="210" />
+				<? else: ?>
+					<img src="" width="220" height="210" />
+				<? endif; ?>
 				
 				<hgroup>
 					<h2><i><?= $this->session->userdata('username') ?></i></h2>
@@ -25,15 +24,19 @@
 
 		<section id="settingsForms">
 
-			<?php if(isset($error) && !isset($upload_data) ) echo '<p class="error">' . $error . '</p>' ?>
+			<? if(isset($error) && !isset($upload_data)):?>
+				<p class="error"><?=$error?></p>
+			<? endif; ?>
 			
-			<? if(isset($upload_data)) echo '<p class="success">Your image was successfully uploaded.</p>'; ?>
+			<? if(isset($upload_data)): ?>
+				<p class="success">Your image was successfully uploaded.</p>
+			<? endif; ?>
  			
- 			<?php echo form_open_multipart('/settings/do_upload');?>
+ 			<?=form_open_multipart('/settings/do_upload');?>
 
-				<h1>Username</h1> <hr>
+				<h1>Username</h1> <hr />
 
-				<?php echo form_error('username'); ?>
+				<?=form_error('username'); ?>
 
 				<div>
 					<input type="text" name="username" placeholder="username" value="<? if(!set_value('username')){
@@ -43,9 +46,9 @@
 						} ?>"/>
 				</div>
 
-				<h1>Biography</h1> <hr>
+				<h1>Biography</h1> <hr />
 
-				<?php echo form_error('bio'); ?>
+				<?=form_error('bio'); ?>
 
 				<div>
 					<textarea name="bio" placeholder="bio"><? if(!set_value('bio')){if($this->session->userdata('bio')) echo $this->session->userdata('bio');}else if(set_value('bio')){echo set_value('bio');}?></textarea>
@@ -56,9 +59,9 @@
 					</p>
 				</div>
 
-				<h1>Location</h1> <hr>
+				<h1>Location</h1> <hr />
 
-				<?php echo form_error('location'); ?>
+				<?=form_error('location'); ?>
 
 				<div>
 					<input type="text" name="location" placeholder="Orlando, FL" value="<? if(!set_value('location')){
@@ -68,9 +71,9 @@
 						} ?>"/>
 				</div>
 
-				<h1>Time Zone</h1> <hr>
+				<h1>Time Zone</h1> <hr />
 
-				<?php echo form_error('timezone'); ?>
+				<?=form_error('timezone'); ?>
 
 				<div>
 					<input type="text" name="timezone" placeholder="timezone" value="<? if(!set_value('timezone')){
@@ -80,7 +83,7 @@
 						} ?>"/>
 				</div>
 
-				<h1>Profile Image</h1> <hr>
+				<h1>Profile Image</h1> <hr />
 			
 				<div>
 					<p class="upload">
@@ -99,19 +102,19 @@
                		<span><input id="uploadSubmit" type="submit" name="upload" value="upload" /></span>
             	</label>
 
-			<?php echo form_close(); ?>	
+			<?=form_close(); ?>	
 
 		</section>
 	</section>
 
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="<? echo base_url(); ?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
-	<script src="<? echo base_url(); ?>js/libs/modernizr-2.6.2.min.js"></script>
-	<script src="<? echo base_url(); ?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
+	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
+	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
 
     <!-- Scripts -->
-	<script src="<? echo base_url(); ?>js/main.js"></script>
+	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
 	<script>initUpload();</script>

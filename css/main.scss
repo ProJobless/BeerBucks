@@ -158,7 +158,7 @@ html{
 }
 body{
 	width: 100%;
-	background: url("../img/bg-pattern1.jpg");
+	background: url("../img/bg-pattern1.jpg") $main-white;
 	overflow-x: hidden;
 	letter-spacing: .03em;
 }
@@ -305,7 +305,18 @@ header #tools #toolBox{
 		color: $dark-purple;
 	}
 }
-header #tools #toolBox div{
+header #tools #toolBox ul{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	bottom: 5px;
+	border: solid 1px $light-gray;
+	background-color: $light-white;
+	@include corners(5px, 5px, 0, 0);
+	@include outerglow(0, 1px, 2px, 0, $dark-purple);
+}
+header #tools #toolBox li:first-child:before{
+	content: "";
 	width: 25px;
 	height: 25px;
 	background-color: $light-white;
@@ -321,16 +332,7 @@ header #tools #toolBox div{
 	-webkit-transform: rotate(45deg); 
 	@include corners(5px, 0, 0, 0);
 	@include outerglow(0px, 0px, 2px, 0, $light-white);
-}
-header #tools #toolBox ul{
-	width: 100%;
-	height: auto;
-	position: absolute;
-	bottom: 5px;
-	border: solid 1px $light-gray;
-	background-color: $light-white;
-	@include corners(5px, 5px, 0, 0);
-	@include outerglow(0, 1px, 2px, 0, $dark-purple);
+
 }
 header #tools #toolBox li{
 	width: 100%;
@@ -624,7 +626,8 @@ footer section:nth-of-type(2) li:last-child{
 	font-size: .7em;
 	margin: 8px 0px 0px 3px;
 }
-#partiesNear .divider{
+#partiesNear article:nth-of-type(4):after{
+	content: "";
 	height: 74px;
 	width: 69px;
 	position: absolute;
@@ -759,7 +762,8 @@ footer section:nth-of-type(2) li:last-child{
 	font-size: .7em;
 	margin: 8px 0px 0px 3px;
 }
-#partiesUpcoming .divider{
+#partiesUpcoming .sizer:after{
+	content: "";
 	height: 74px;
 	width: 69px;
 	position: absolute;
@@ -909,14 +913,14 @@ footer section:nth-of-type(2) li:last-child{
 	width: 37px;
 	position: absolute;
 	top: 50px;
-	background: $light-white;
 	cursor: pointer;
 	z-index: 1;
 	border-top: solid 1px $light-gray;
+	border-right: solid 1px $light-gray;
+	background: url("../img/icon-leftArrow.png") no-repeat 50% 50% $light-white;
 	@include corners(0px, 0px, 0px, 5px);
 	&:hover{
-		border-right: solid 1px $light-gray;
-		background: url("../img/icon-leftArrow.png") no-repeat 50% 50% $light-white;
+		background-color: $main-white;
 	}
 }
 #topImages ul{
@@ -963,13 +967,13 @@ article#topImages>a{
 	position: absolute;
 	top: 50px;
 	right: 0px;
-	background-color: $light-white;
 	cursor: pointer;
 	z-index: 1;
 	border-top: solid 1px $light-gray;
+	border-left: solid 1px $light-gray;
+	background: url("../img/icon-rightArrow.png") no-repeat 50% 50% $light-white;
 	&:hover{
-		border-left: solid 1px $light-gray;
-		background: url("../img/icon-rightArrow.png") no-repeat 50% 50% $light-white;
+		background-color: $main-white;
 	}
 }
 #topImages ul li a{

@@ -100,6 +100,10 @@ class Settings extends CI_Controller {
 				if($result){
 					$data['view'] = 'settings';
 					$this->load->view('includes/template', $data);
+				}else{
+					$data['view'] = 'settings';
+					$data['error'] = 'Username already exists';
+					$this->load->view('includes/template', $data);
 				}
 
 			}

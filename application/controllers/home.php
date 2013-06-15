@@ -4,15 +4,16 @@ class Home extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-
 	}
 
 	public function index (){
 
-		//Tells template to load the home view.
-		$data['view'] = 'home';
+		$this->load->model('app_model'); 
+		$userLocation = unserialize(base64_decode($this->app_model->userLocation()));
 
-		//Load template
+		$data['view'] = 'home';
+		$data['userLocation'] = $userLocation;
+
 		$this->load->view('includes/template', $data);
 
 	}

@@ -9,54 +9,54 @@
 			<article>
 				<h1>Login or sign up via social</h1>
 				<div>
-					<a href="#"><img src="<? echo base_url(); ?>img/facebook.jpg" alt=""></a>
-					<a href="#"><img src="<? echo base_url(); ?>img/twitter.jpg" alt=""></a>
+					<a href="#"><img src="<?=base_url()?>img/facebook.jpg" alt=""></a>
+					<a href="#"><img src="<?=base_url()?>img/twitter.jpg" alt=""></a>
 					<p>We <strong>promise</strong> we’ll never post anything without your permission.</p>
 				</div>
 			</article>
 
-			<?php echo form_open("/authentication/login"); ?>
+			<?=form_open("/authentication/login"); ?>
 				<h1>Login with an email</h1>
 				<div>
 					<p><? if(isset($error)) echo $error; ?></p>
 					<h2>Email Adress</h2>
-					<?php echo form_input('email'); ?>
+					<?=form_input('email'); ?>
 
 					<h2>Password</h2>
-					<?php echo form_password('password'); ?>
+					<?=form_password('password'); ?>
 
 					<button type="submit">Login</button>
 					<a href="#">Forgot your password?</a>
 				</div>
-			<?php echo form_close(); ?>
+			<?=form_close(); ?>
 
-			<?php echo form_open("/authentication/signup"); ?>
+			<?=form_open("/authentication/signup"); ?>
 				<h1>Create an account</h1>
 				<div>
 					<p><? if(isset($joinError)) echo $joinError; ?></p>
 					<h2>Username</h2>
-					<?php echo form_input('username'); ?>
+					<?=form_input('username'); ?>
 
 					<h2>Email</h2>
-					<?php echo form_input('email'); ?>
+					<?=form_input('email'); ?>
 
 					<h2>Password</h2>
-					<?php echo form_password('password'); ?>
+					<?=form_password('password'); ?>
 
 					<button type="submit">Sign Up</button>
 				</div>
-			<?php echo form_close(); ?>
+			<?=form_close(); ?>
 		</section>
 	</section>
 
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="<? echo base_url(); ?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
-	<script src="<? echo base_url(); ?>js/libs/modernizr-2.6.2.min.js"></script>
-	<script src="<? echo base_url(); ?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
+	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
+	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
 
     <!-- Scripts -->
-	<script src="<? echo base_url(); ?>js/main.js"></script>
+	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
 	<script>initScroller();</script>

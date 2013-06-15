@@ -88,6 +88,7 @@ class Start extends CI_Controller {
 				$this->load->view('includes/template', $data);
 			}
 			else{
+				
 				$data = array('upload_data' => $this->upload->data());
 
 				$sData = array(
@@ -137,6 +138,7 @@ class Start extends CI_Controller {
 					$this->load->view('includes/template', $data);
 
 				}
+
 			}
 
 		}

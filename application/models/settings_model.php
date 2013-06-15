@@ -28,30 +28,35 @@ class Settings_model extends CI_Model {
         $location = $this->security->xss_clean($this->input->post('location'));
         $profileImage = $this->security->xss_clean($this->session->userdata('profileImage'));
         $timezone = $this->security->xss_clean($this->input->post('timezone'));
-    
-        $data = array(
-            'user_id' => $user_id,
-            'username' => $username,
-            'bio' => $bio,
-            'location' => $location,
-            'profile_img' => $profileImage,
-            'timezone' => $timezone
-        );
+        
+        $exists = $this->checkIfExists('username', $username);
+        if($exists){
+            $data = array(
+                'user_id' => $user_id,
+                'username' => $username,
+                'bio' => $bio,
+                'location' => $location,
+                'profile_img' => $profileImage,
+                'timezone' => $timezone
+            );
 
-        $this->db->where('user_id', $user_id);
-        $this->db->update('users', $data); 
+            $this->db->where('user_id', $user_id);
+            $this->db->update('users', $data); 
 
-        $sData = array(
-            'username' => $username,
-            'profileImage' => $profileImage,
-            'location' => $location,
-            'timezone' => $timezone,
-            'bio' => $bio
-        );
+            $sData = array(
+                'username' => $username,
+                'profileImage' => $profileImage,
+                'location' => $location,
+                'timezone' => $timezone,
+                'bio' => $bio
+            );
 
-        $this->session->set_userdata($sData);
+            $this->session->set_userdata($sData);
 
-        return true;
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

@@ -37,7 +37,7 @@ html {
 
 body {
   width: 100%;
-  background: url("../img/bg-pattern1.jpg");
+  background: url("../img/bg-pattern1.jpg") #edf6f5;
   overflow-x: hidden;
   letter-spacing: .03em; }
 
@@ -230,7 +230,20 @@ header #tools #toolBox {
     height: 210px;
     color: #071226; }
 
-header #tools #toolBox div {
+header #tools #toolBox ul {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 5px;
+  border: solid 1px #dddddd;
+  background-color: #fafdff;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  -webkit-box-shadow: 0 1px 2px 0 #071226;
+  box-shadow: 0 1px 2px 0 #071226; }
+
+header #tools #toolBox li:first-child:before {
+  content: "";
   width: 25px;
   height: 25px;
   background-color: #fafdff;
@@ -248,18 +261,6 @@ header #tools #toolBox div {
   border-radius: 5px 0 0 0;
   -webkit-box-shadow: 0px 0px 2px 0 #fafdff;
   box-shadow: 0px 0px 2px 0 #fafdff; }
-
-header #tools #toolBox ul {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  bottom: 5px;
-  border: solid 1px #dddddd;
-  background-color: #fafdff;
-  -webkit-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
-  -webkit-box-shadow: 0 1px 2px 0 #071226;
-  box-shadow: 0 1px 2px 0 #071226; }
 
 header #tools #toolBox li {
   width: 100%;
@@ -665,7 +666,8 @@ footer section:nth-of-type(2) li:last-child {
   font-size: .7em;
   margin: 8px 0px 0px 3px; }
 
-#partiesNear .divider {
+#partiesNear article:nth-of-type(4):after {
+  content: "";
   height: 74px;
   width: 69px;
   position: absolute;
@@ -821,7 +823,8 @@ footer section:nth-of-type(2) li:last-child {
   font-size: .7em;
   margin: 8px 0px 0px 3px; }
 
-#partiesUpcoming .divider {
+#partiesUpcoming .sizer:after {
+  content: "";
   height: 74px;
   width: 69px;
   position: absolute;
@@ -974,15 +977,15 @@ footer section:nth-of-type(2) li:last-child {
   width: 37px;
   position: absolute;
   top: 50px;
-  background: #fafdff;
   cursor: pointer;
   z-index: 1;
   border-top: solid 1px #dddddd;
+  border-right: solid 1px #dddddd;
+  background: url("../img/icon-leftArrow.png") no-repeat 50% 50% #fafdff;
   -webkit-border-radius: 0px 0px 0px 5px;
   border-radius: 0px 0px 0px 5px; }
   #topImages #leftArrow:hover {
-    border-right: solid 1px #dddddd;
-    background: url("../img/icon-leftArrow.png") no-repeat 50% 50% #fafdff; }
+    background-color: #edf6f5; }
 
 #topImages ul {
   width: 640px;
@@ -1028,13 +1031,13 @@ article#topImages > a {
   position: absolute;
   top: 50px;
   right: 0px;
-  background-color: #fafdff;
   cursor: pointer;
   z-index: 1;
-  border-top: solid 1px #dddddd; }
+  border-top: solid 1px #dddddd;
+  border-left: solid 1px #dddddd;
+  background: url("../img/icon-rightArrow.png") no-repeat 50% 50% #fafdff; }
   #topImages #rightArrow:hover {
-    border-left: solid 1px #dddddd;
-    background: url("../img/icon-rightArrow.png") no-repeat 50% 50% #fafdff; }
+    background-color: #edf6f5; }
 
 #topImages ul li a {
   line-height: 30px;
