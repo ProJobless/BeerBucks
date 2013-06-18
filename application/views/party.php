@@ -172,13 +172,17 @@
 
 				<button>Pitch In</button>
 
-				<p>After pitching in, check here to see where the party is</p>
+				<p>After pitching in, check here to see where the party is.</p>
 			</article>
 
 			<article class="partyHost">
 				<h1>Party Host</h1>
 
-				<img src="<?=base_url()?>uploads/profile/<?=$party[0]['profile_img']?>" width="220" height="210" />
+				<?if($party[0]['profile_img']):?>
+					<img src="<?=base_url()?>uploads/profile/<?=$party[0]['profile_img']?>" width="220" height="210" />
+				<?else:?>
+					<img src="" alt="" width="220" height="210"/>
+				<?endif;?>
 				
 				<hgroup>
 					<h2><i><?=$party[0]['username']?></i></h2>

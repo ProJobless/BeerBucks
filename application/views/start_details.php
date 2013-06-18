@@ -4,8 +4,8 @@
 		</div>
 	</section>
 
-	<section id="tabs" class="wizard">
-		<ul class="sizer">
+	<section id="tabs" class="sizer wizard">
+		<ul>
 			<li><h1>Guidelines</h1></li>
 			<li><h1>Basic Information</h1></li>
 			<li class="selected"><h1>Party Details</h1></li>
@@ -13,7 +13,7 @@
 			<li><a href="#">Need Help?</a></li>
 		</ul>
 
-		<section id="tabContent" class="sizer start">
+		<section id="tabContent" class="start">
 
 			<? if(isset($error) && !isset($upload_data)): ?>
 				<p class="error"><?=$error?></p>
@@ -87,7 +87,7 @@
 				<h1>Quick Preview</h1>
 				<h2>A quick example of how others will see your party.</h2>
 
-				<article>
+				<article class="party">
 					<img src="<? if($this->session->userdata('img_name')) echo base_url() . 'uploads/party/' . $this->session->userdata('img_name'); ?>" alt="" width="220" height="210"/>
 					<hgroup>
 						<h2> 

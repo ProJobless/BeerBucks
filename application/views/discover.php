@@ -17,7 +17,7 @@
 		<section id="tabContent">
 			
 			<?php foreach ($parties as $party): ?>
-				<article>
+				<article class="party">
 					<a href="<?=base_url()?>index.php/discover/party/<?=$party['party_id']?>">
 						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />
 						<hgroup>

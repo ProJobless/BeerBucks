@@ -41,8 +41,9 @@
 				<li>Activity</li>
 				<li>Parties</li>
 				<li class="selected">Friends</li>
-				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
-			</ul>
+				<li>Comments</li>
+<!-- 				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
+ -->			</ul>
 
 			<section id="tabContent" class="friends">
 

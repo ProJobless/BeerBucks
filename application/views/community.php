@@ -4,8 +4,8 @@
 		</div>
 	</section>
 
-	<section id="tabs">
-		<ul class="sizer">
+	<section id="tabs" class="sizer">
+		<ul>
 			<li class="selected">Featured</li>
 			<li>People</li>
 			<li>Photos</li>
@@ -13,7 +13,7 @@
 			<li><a href="#">Learn More</a></li>
 		</ul>	
 
-		<section id="community" class="sizer">
+		<section id="community">
 			<article id="tumblr">
 				<h2>Tumblr Winners</h2> 
 				<a href="">BigWillie</a> <span>&</span> <a href="">JazyJeff</a>

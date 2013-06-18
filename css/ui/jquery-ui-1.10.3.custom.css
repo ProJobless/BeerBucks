@@ -267,7 +267,7 @@
 }
 .ui-slider .ui-slider-range {
 	position: absolute;
-	z-index: 1;
+	z-index: 10;
 	font-size: .7em;
 	display: block;
 	border: 0;
@@ -728,4 +728,7 @@
 }
 .ui_tpicker_timezone{
 	overflow: hidden;
+}
+#ui-datepicker-div{
+	z-index: 9999 !important;
 }
