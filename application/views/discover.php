@@ -4,8 +4,8 @@
 		</div>
 	</section>
 
-	<section id="tabs">
-		<ul class="sizer">
+	<section id="tabs" class="sizer">
+		<ul>
 			<li class="selected">Featured</li>
 			<li>Near You</li>
 			<li>Upcoming</li>
@@ -14,7 +14,7 @@
 			<li><a href="#">Learn More</a></li>
 		</ul>
 
-		<section id="tabContent" class="sizer">
+		<section id="tabContent">
 			
 			<?php foreach ($parties as $party): ?>
 				<article>

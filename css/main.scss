@@ -1,5 +1,14 @@
 /* mains.scss | Kolby Sisk | www.kolbysisk.com | www.beer-bucks.com */
 
+/* Contents For Quick Find */
+// Home Page
+// Discover Page
+// Login Page
+// Start Page
+// Profile Page
+// Settings Page
+// Party Page
+
 /* ------------------------------ Colors ------------------------------ */
 $main-pink: #f2137b;
 $light-purple: #8c0f6b;
@@ -1010,16 +1019,16 @@ article#topImages>a{
 
 /* ------------------------------ Discover Page - Tabs ------------------------------ */
 #tabs{
-	width: 100%;
 	height: auto;
 	overflow: hidden;
-	padding-bottom: 50px;
+	margin-top: 60px;
+	@include outerglow();
 }
 #tabs>ul{
 	height: 50px;
 	background-color: $main-white;
 	border: 1px solid $light-gray;
-	margin-top: 60px;
+	//margin-top: 60px;
 	@include corners(5px, 5px, 0px, 0px);
 	@include outerglow();
 }
@@ -1118,7 +1127,7 @@ article#topImages>a{
 #tabContent{
 	height: auto;
 	overflow: hidden;
-	width: 934px;
+	width: 932px;
 	background-color: $light-white;
 	border: 1px solid $light-gray;
 	border-top: 0px;
@@ -1129,7 +1138,7 @@ article#topImages>a{
 	@include corners(0px, 0px, 5px, 5px);
 }
 #tabContent article{
-	width: 220px;
+	width: 219px;
 	height: 390px;
 	background-color: $main-white;
 	border: 1px solid $light-gray;
@@ -1243,7 +1252,7 @@ article#topImages>a{
 	margin: 20px auto;
 }
 
-/* ------------------------------ Start Login Page ------------------------------ */
+/* ------------------------------ Start Login Page ------------------------------- */
 /* ------------------------------ Login Page - Form ------------------------------ */
 #forms{
 	width: 100%;
@@ -1332,7 +1341,7 @@ article#topImages>a{
 	color: $main-pink;
 }
 
-/* ------------------------------ Start Start Page ------------------------------ */
+/* ------------------------------ Start Start Page --------------------------------- */
 /* ------------------------------ Start Page - Wizard ------------------------------ */
 #tabs.wizard{
 	width: 100%;
@@ -1824,7 +1833,7 @@ article#topImages>a{
 }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
-/* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
+/* ------------------------------ Settings Page - Profile Preview ------------------------------ */
 #settings{
 	clear: both;
 	height: auto;
@@ -1946,7 +1955,7 @@ article#topImages>a{
 	margin: 8px 0px 5px 3px;
 }
 
-/* ------------------------------ Settinsg Page - Settings Nav ------------------------------ */
+/* ------------------------------ Settings Page - Settings Nav ------------------------------ */
 #settings aside #settingsNav{
 	margin-top: 10px;
 }
@@ -1974,7 +1983,7 @@ article#topImages>a{
 	color: $dark-purple;
 }
 
-/* ------------------------------ Settinsg Page - Forms ------------------------------ */
+/* ------------------------------ Settings Page - Forms ------------------------------ */
 #settingsForms{
 	width: 709px;
 	height: 100%;
@@ -2129,7 +2138,7 @@ article#topImages>a{
 	text-align: right;
 }
 
-/* ------------------------------ Start Community Page ------------------------------ */
+/* ------------------------------ Start Community Page -------------------------------------- */
 /* ------------------------------ Community Page - Tab Content ------------------------------ */
 #tabs #community{
 	height: auto;
@@ -2202,10 +2211,469 @@ article#topImages>a{
 	margin-bottom: 15px;
 }
 
+/* ------------------------------ Start Party Page ------------------------------ */
+/* ------------------------------ Party Page - CTA ------------------------------ */
+#cta.party{
+	height: 174px;
+	width: 100%;
+	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
+	border-bottom: solid 5px $medium-purple;
+	position: relative;
+}
+#cta.party h1{
+	display: block;
+	width: 650px;
+	padding: 10px 0px;
+	line-height: 174px;
+	background-color: rgba(39, 22, 64, 0);
+	margin: 0 auto;
+	text-align: center;
+	@include corners(5px);
+}
+/* ------------------------------ Party Page - PartyImg ------------------------------ */
+#party #partyImg{
+	width: 720px;
+	height: 500px;
+	background-color: $dark-gray;
+	border: 1px solid $light-gray;
+	float: left;
+	position: relative;
+	margin: 60px 0 0 0;
+	float: left;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#party #partyImg h1{
+	color: $dark-purple;
+	font-size: 1.3em;
+	font-weight: lighter;
+	float: left;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	line-height: 50px;
+	text-indent: 10px;
+	background-color: $main-white;
+	border-bottom: solid 1px $light-gray;
+}
 
 
+/* ------------------------------ Party Page - Tabs ------------------------------ */
+#party.sizer{
+	height: auto;
+	overflow: hidden;
+}
+#party #tabs{
+	width: 720px;
+	float: left;
+	margin: 20px 0 50px 0;
+}
+#party #tabs>ul{
+	margin-top: 0;
+}
+#party #tabs>ul input{
+	width: 250px;
+}
+#party #tabs>ul li:last-child{
+	float: left;
+}
+#party #tabs>ul li:nth-last-child(2){
+	border-right: solid 1px $light-gray;
+}
+#party #tabs>ul li:nth-of-type(3){
+	height: 102%;
+}
+#party #tabs>ul li:last-child{
+	&:hover{
+		background-color: $main-white;
+	}
+}
 
+/* ------------------------------ Party Page - TabContent: Friends ------------------------------ */
+#party #tabContent{
+	height: auto;
+	width: 692px;
+}
+#party #tabContent.friends article{
+	height: 25px;
+	padding-top: 207px;
+	width: 220px;
+	cursor: default;
+	overflow: hidden;
+	margin:  13px 13px 0 0;
+	@include transition();
+	&:hover{
+		height: 167px;
+		padding-top: 65px;
+		background-position: 0 -60px !important;
+	}
+}
+#party #tabContent.friends article:nth-of-type(3n+3){
+	margin-right: 0;
+}
+#party #tabContent.friends article hgroup:nth-of-type(1){
+	border: none;
+	border-top: solid 1px $light-gray;
+}
+#party #tabContent.friends article hgroup:nth-of-type(2){
+	height: 25px;
+	width: 220px;
+	float: left;
+	background: $main-white;
+	overflow: hidden;
+	@include corners( 0, 0, 5px, 5px);
+}
+#party #tabContent.friends article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px 5px 0 5px;
+	background-color: $light-white;
+	position: relative;
+	height: auto;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+#party #tabContent.friends article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+#party #tabContent.friends article h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#party #tabContent.friends article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	height: auto;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 40px;
+}
+#party #tabContent.friends article i{
+	color: $main-blue;
+}
+#party #tabContent.friends article h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;
+}
+#party #tabContent.friends article ul{
+	float: left;
+	width: 210px;
+	background-color: $light-white;
+	padding: 0 5px 5px 5px;
+	border-bottom: solid 1px $light-gray;
+}
+#party #tabContent.friends article li{
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin-top: 10px;	
+	text-indent: 20px;
+	height: 15px;
+	line-height: 15px;
+}
+#party #tabContent.friends article li span{
+	font-weight: bold;
+	float: right;
+	font-size: 1.2em;
+}
+#party #tabContent.friends article li:nth-child(1){
+	background: url("../img/icon-thumb.png") no-repeat;
+}
+#party #tabContent.friends article li:nth-child(2){
+	background: url("../img/icon-eye.png") no-repeat 0 3px;
+}
+#party #tabContent.friends article li:nth-child(3){
+	background: url("../img/icon-clouds.png") no-repeat;
+}
+#party #tabContent.friends article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#party #tabContent.friends article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#party #tabContent.friends article h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 5px 3px;
+}
+#party #tabContent.friends aside article:nth-of-type(2){
+	height: 200px;
+	background-color: $light-white;
+}
+#party #tabContent.friends aside article:nth-of-type(2) h1{
+	height: 50px;
+	width: 100%;
+	background-color: $main-white;
+	color: $dark-purple;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 50px;
+	text-indent: 10px;
+	border-bottom: solid 1px $light-gray;
+}
 
+/* ------------------------------ Party Page - Aside: PartyInfo ------------------------------ */
+#party aside{
+	width: 223px;
+	height: auto;
+	margin-top: 40px;
+	overflow: hidden;
+	margin: 60px 0 0 0px;
+	padding-left: 15px;
+}
+#party aside article.partyInfo{
+	width: 220px;
+	height: auto;
+	overflow: hidden;
+	background-color: $light-white;
+	border: 1px solid $light-gray;
+	text-align: center;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#party aside article.partyInfo h1{
+	width: 100%;
+	height: 50px;
+	background-color: $main-white;
+	color: $dark-purple;
+	font-size: 1.3em;
+	font-weight: lighter;
+	float: left;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	text-indent: 10px;
+	background-color: $main-white;
+	border-bottom: solid 1px $light-gray;
+}
+#party aside article.partyInfo hgroup{
+	width: 100%;
+	height: 40px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	line-height: 40px;
+}
+#party aside article.partyInfo h2{
+	float: left;
+	margin-left: 10px;
+	font-size: 1.1em;
+	font-weight: 600;
+	color: $dark-purple;
+}
+#party aside article.partyInfo h4{
+	float: left;
+	font-size: .9em;
+	color: $dark-purple;
+	margin-left: 5px;
+	font-weight: 300;
+}
+#party aside article.partyInfo h3{
+	float: left;
+	color: $dark-purple;
+	margin-left: 5px;
+	font-size: .9em;
+	font-weight: 600;
+}
+#party aside article.partyInfo div{
+	width: 93%;
+	height: 24px;
+	background-color: $light-gray;
+	margin: 0 auto;
+	@include corners();
+	@include highlight(#ababab);
+	@include bar(80%);
+}
+#party aside article.partyInfo p{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	height: auto;
+	width: 200px;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 10px auto;
+	text-align: left;
+}
+#party aside article.partyInfo>h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin: 2px 0 5px 10px;
+	font-size: .7em;
+	font-weight: bold;
+}
+#party aside article.partyInfo ul{
+	width: 100%;
+	height: 40px;
+	clear: both;
+	background-color: $main-white;
+	border-top: solid 1px $light-gray;
+	border-bottom: solid 1px $light-gray;
+}
+#party aside article.partyInfo li{
+	width: 54px;
+	height: 100%;
+	border-right: solid 1px $light-gray;
+	float: left;
+}
+#party aside article.partyInfo li:last-child{
+	border: none;
+}
+#party aside article.partyInfo li h2{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	margin: 8px 0 0 0;
+}
+#party aside article.partyInfo li h3{
+	width: 100%;
+	text-align: center;
+	line-height: 0px;
+	font-size: .6em;
+	margin: 5px 0 0 0;
+	color: $dark-gray;
+}
+#party aside article.partyInfo button{
+	@include pinkbutton();
+	padding: 8px 25px;
+	margin-top: 10px;
+}
 
-
+/* ------------------------------ Party Page - Aside: PartyHost ------------------------------ */
+#party aside article.partyHost{
+	width: 220px;
+	height: auto;
+	overflow: hidden;
+	background-color: $main-white;
+	border: 1px solid $light-gray;
+	text-align: left;
+	margin: 20px 0 0 0;
+	@include corners(0px, 0px, 5px, 5px);
+	@include outerglow();
+}
+#party aside article.partyHost h1{
+	width: 100%;
+	height: 50px;
+	background-color: $main-white;
+	color: $dark-purple;
+	font-size: 1.3em;
+	font-weight: lighter;
+	float: left;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	line-height: 50px;
+	text-indent: 10px;
+	background-color: $main-white;
+	border-bottom: solid 1px $light-gray;
+}
+#party aside article.partyHost hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px 5px 0 5px;
+	background-color: $light-white;
+	position: relative;
+	height: auto;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#party aside article.partyHost h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+#party aside article.partyHost h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#party aside article.partyHost h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	height: auto;
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#party aside article.partyHost i{
+	color: $main-blue;
+}
+#party aside article.partyHost h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;
+}
+#party aside article.partyHost ul{
+	float: left;
+	width: 210px;
+	background-color: $light-white;
+	padding: 0 5px 5px 5px;
+	border-bottom: solid 1px $light-gray;
+}
+#party aside article.partyHost li{
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin-top: 10px;	
+	text-indent: 20px;
+	height: 15px;
+	line-height: 15px;
+}
+#party aside article.partyHost li span{
+	font-weight: bold;
+	float: right;
+	font-size: 1.2em;
+}
+#party aside article.partyHost li:nth-child(1){
+	background: url("../img/icon-thumb.png") no-repeat;
+}
+#party aside article.partyHost li:nth-child(2){
+	background: url("../img/icon-eye.png") no-repeat 0 3px;
+}
+#party aside article.partyHost li:nth-child(3){
+	background: url("../img/icon-clouds.png") no-repeat;
+}
+#party aside article.partyHost h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+}
+#party aside article.partyHost h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#party aside article.partyHost h6{
+	float: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 5px 3px;
+}
 

@@ -1,7 +1,205 @@
-	<section id="cta" class="discover">
+	<?
+		// echo '<pre>';
+		// print_r($party);
+		// echo '</pre>';
+	?>
+
+
+
+	<section id="cta" class="party">
 		<div class="sizer">
-			<h1>Community of awesome people</h1>
+			<h1>Discover the best parties</h1>
 		</div>
+	</section>
+
+	<section id="party" class="sizer">
+		<article id="partyImg">
+			<h1><?=$party[0]['title']?></h1>
+			<img src="<?=base_url()?>uploads/party/<?=$party[0]['party_img']?>" width="720" height="450" alt="" />
+		</article>
+
+		<section id="tabs">
+			<ul>
+				<li class="selected">Attending</li>
+				<li>Comments</li>
+				<li>Updates</li>
+				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
+			</ul>
+
+			<section id="tabContent" class="friends">
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
+					<hgroup>
+						<h2><i>JazzyJeff</i></h2>
+						<h3>Orlando, FL</h3>
+						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
+					</hgroup>
+
+					<ul>
+						<li>FeedBack <span>22</span></li>
+						<li>Views <span>22</span></li>
+						<li>Comments <span>22</span></li>
+					</ul>
+
+					<hgroup>
+						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Hosted Parties</h6>
+					</hgroup>
+				</article>
+
+				<div><button>See More</button></div>
+			</section>
+		</section>
+
+		<aside>
+
+			<article class="partyInfo">
+				<h1>Party Info</h1>
+				
+				<hgroup>
+					<h2>$300</h2>
+					<h4>raised out of</h4>
+					<h3>$<?=$party[0]['goal']?></h3>
+				</hgroup>
+
+				<div></div>
+
+				<p><?=$party[0]['description']?></p>
+
+				<h3><?=$party[0]['party_location']?></h3>
+
+				<ul>
+					<li><h2>2</h2><h3>Days</h3></li>
+					<li><h2>4</h2><h3>Hours</h3></li>
+					<li><h2>38</h2><h3>Mins</h3></li>
+					<li><h2>12</h2><h3>Secs</h3></li>
+				</ul>
+
+				<button>Pitch In</button>
+
+				<p>After pitching in, check here to see where the party is</p>
+			</article>
+
+			<article class="partyHost">
+				<h1>Party Host</h1>
+
+				<img src="<?=base_url()?>uploads/profile/<?=$party[0]['profile_img']?>" width="220" height="210" />
+				
+				<hgroup>
+					<h2><i><?=$party[0]['username']?></i></h2>
+					<h3><?=$party[0]['location']?></h3>
+					<h4><?=$party[0]['bio']?></h4>
+				</hgroup>
+
+				<ul>
+					<li>FeedBack <span><?=$party[0]['feedback']?></span></li>
+					<li>Views <span><?=$party[0]['views']?></span></li>
+					<li>Comments <span><?=$party[0]['comments']?></span></li>
+				</ul>
+
+				<hgroup>
+					<h5><?=$party[0]['contributions']?></h5> <h6>contributors</h6>
+					<h5><?=$party[0]['parties']?></h5> <h6>Hosted Parties</h6>
+				</hgroup>
+			</article>
+
+		</aside>
+
 	</section>
 
 	

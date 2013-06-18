@@ -1,4 +1,5 @@
 /* mains.scss | Kolby Sisk | www.kolbysisk.com | www.beer-bucks.com */
+/* Contents For Quick Find */
 /* ------------------------------ Colors ------------------------------ */
 /* ------------------------------ Mixins ------------------------------ */
 /* ------------------------------ Fonts ------------------------------ */
@@ -1072,16 +1073,16 @@ article#topImages > a {
 
 /* ------------------------------ Discover Page - Tabs ------------------------------ */
 #tabs {
-  width: 100%;
   height: auto;
   overflow: hidden;
-  padding-bottom: 50px; }
+  margin-top: 60px;
+  -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
+  box-shadow: 0px 0px 2px 0px #dddddd; }
 
 #tabs > ul {
   height: 50px;
   background-color: #edf6f5;
   border: 1px solid #dddddd;
-  margin-top: 60px;
   -webkit-border-radius: 5px 5px 0px 0px;
   border-radius: 5px 5px 0px 0px;
   -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
@@ -1245,7 +1246,7 @@ article#topImages > a {
 #tabContent {
   height: auto;
   overflow: hidden;
-  width: 934px;
+  width: 932px;
   background-color: #fafdff;
   border: 1px solid #dddddd;
   border-top: 0px;
@@ -1258,7 +1259,7 @@ article#topImages > a {
   border-radius: 0px 0px 5px 5px; }
 
 #tabContent article {
-  width: 220px;
+  width: 219px;
   height: 390px;
   background-color: #edf6f5;
   border: 1px solid #dddddd;
@@ -1437,7 +1438,7 @@ article#topImages > a {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
 
-/* ------------------------------ Start Login Page ------------------------------ */
+/* ------------------------------ Start Login Page ------------------------------- */
 /* ------------------------------ Login Page - Form ------------------------------ */
 #forms {
   width: 100%;
@@ -1575,7 +1576,7 @@ article#topImages > a {
 #forms form p {
   color: #f2137b; }
 
-/* ------------------------------ Start Start Page ------------------------------ */
+/* ------------------------------ Start Start Page --------------------------------- */
 /* ------------------------------ Start Page - Wizard ------------------------------ */
 #tabs.wizard {
   width: 100%;
@@ -2206,7 +2207,7 @@ article#topImages > a {
   max-height: 40px; }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
-/* ------------------------------ Settinsg Page - Profile Preview ------------------------------ */
+/* ------------------------------ Settings Page - Profile Preview ------------------------------ */
 #settings {
   clear: both;
   height: auto;
@@ -2331,7 +2332,7 @@ article#topImages > a {
   font-size: .7em;
   margin: 8px 0px 5px 3px; }
 
-/* ------------------------------ Settinsg Page - Settings Nav ------------------------------ */
+/* ------------------------------ Settings Page - Settings Nav ------------------------------ */
 #settings aside #settingsNav {
   margin-top: 10px; }
 
@@ -2357,7 +2358,7 @@ article#topImages > a {
   border-right: solid 4px #fafdff;
   color: #071226; }
 
-/* ------------------------------ Settinsg Page - Forms ------------------------------ */
+/* ------------------------------ Settings Page - Forms ------------------------------ */
 #settingsForms {
   width: 709px;
   height: 100%;
@@ -2654,7 +2655,7 @@ article#topImages > a {
   width: 100%;
   text-align: right; }
 
-/* ------------------------------ Start Community Page ------------------------------ */
+/* ------------------------------ Start Community Page -------------------------------------- */
 /* ------------------------------ Community Page - Tab Content ------------------------------ */
 #tabs #community {
   height: auto;
@@ -2775,3 +2776,530 @@ article#topImages > a {
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
+
+/* ------------------------------ Start Party Page ------------------------------ */
+/* ------------------------------ Party Page - CTA ------------------------------ */
+#cta.party {
+  height: 174px;
+  width: 100%;
+  background: url("../img/stock-banner.jpg") #271640 no-repeat 50%;
+  border-bottom: solid 5px #271640;
+  position: relative; }
+
+#cta.party h1 {
+  display: block;
+  width: 650px;
+  padding: 10px 0px;
+  line-height: 174px;
+  background-color: rgba(39, 22, 64, 0);
+  margin: 0 auto;
+  text-align: center;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+/* ------------------------------ Party Page - PartyImg ------------------------------ */
+#party #partyImg {
+  width: 720px;
+  height: 500px;
+  background-color: #666666;
+  border: 1px solid #dddddd;
+  float: left;
+  position: relative;
+  margin: 60px 0 0 0;
+  float: left;
+  -webkit-border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 5px 5px;
+  -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
+  box-shadow: 0px 0px 2px 0px #dddddd; }
+
+#party #partyImg h1 {
+  color: #071226;
+  font-size: 1.3em;
+  font-weight: lighter;
+  float: left;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  line-height: 50px;
+  text-indent: 10px;
+  background-color: #edf6f5;
+  border-bottom: solid 1px #dddddd; }
+
+/* ------------------------------ Party Page - Tabs ------------------------------ */
+#party.sizer {
+  height: auto;
+  overflow: hidden; }
+
+#party #tabs {
+  width: 720px;
+  float: left;
+  margin: 20px 0 50px 0; }
+
+#party #tabs > ul {
+  margin-top: 0; }
+
+#party #tabs > ul input {
+  width: 250px; }
+
+#party #tabs > ul li:last-child {
+  float: left; }
+
+#party #tabs > ul li:nth-last-child(2) {
+  border-right: solid 1px #dddddd; }
+
+#party #tabs > ul li:nth-of-type(3) {
+  height: 102%; }
+
+#party #tabs > ul li:last-child:hover {
+  background-color: #edf6f5; }
+
+/* ------------------------------ Party Page - TabContent: Friends ------------------------------ */
+#party #tabContent {
+  height: auto;
+  width: 692px; }
+
+#party #tabContent.friends article {
+  height: 25px;
+  padding-top: 207px;
+  width: 220px;
+  cursor: default;
+  overflow: hidden;
+  margin: 13px 13px 0 0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s; }
+  #party #tabContent.friends article:hover {
+    height: 167px;
+    padding-top: 65px;
+    background-position: 0 -60px !important; }
+
+#party #tabContent.friends article:nth-of-type(3n+3) {
+  margin-right: 0; }
+
+#party #tabContent.friends article hgroup:nth-of-type(1) {
+  border: none;
+  border-top: solid 1px #dddddd; }
+
+#party #tabContent.friends article hgroup:nth-of-type(2) {
+  height: 25px;
+  width: 220px;
+  float: left;
+  background: #edf6f5;
+  overflow: hidden;
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
+
+#party #tabContent.friends article hgroup:nth-of-type(1) {
+  margin-top: -2px;
+  padding: 5px 5px 0 5px;
+  background-color: #fafdff;
+  position: relative;
+  height: auto;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+#party #tabContent.friends article h2 {
+  color: #8c0f6b;
+  font-weight: bold;
+  font-size: .8em;
+  float: left; }
+
+#party #tabContent.friends article h3 {
+  float: right;
+  color: #666666;
+  font-weight: bold;
+  font-size: .7em;
+  margin-top: 5px; }
+
+#party #tabContent.friends article h4 {
+  color: #666666;
+  font-weight: bold;
+  font-size: .6em;
+  margin-top: 20px;
+  height: auto;
+  width: 100%;
+  line-height: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 40px; }
+
+#party #tabContent.friends article i {
+  color: #05a696; }
+
+#party #tabContent.friends article h3 {
+  background: url("../img/icon-location-small-gray.png") no-repeat;
+  text-indent: 10px;
+  color: #666666;
+  margin-top: 2px; }
+
+#party #tabContent.friends article ul {
+  float: left;
+  width: 210px;
+  background-color: #fafdff;
+  padding: 0 5px 5px 5px;
+  border-bottom: solid 1px #dddddd; }
+
+#party #tabContent.friends article li {
+  color: #666666;
+  font-weight: normal;
+  font-size: .7em;
+  margin-top: 10px;
+  text-indent: 20px;
+  height: 15px;
+  line-height: 15px; }
+
+#party #tabContent.friends article li span {
+  font-weight: bold;
+  float: right;
+  font-size: 1.2em; }
+
+#party #tabContent.friends article li:nth-child(1) {
+  background: url("../img/icon-thumb.png") no-repeat; }
+
+#party #tabContent.friends article li:nth-child(2) {
+  background: url("../img/icon-eye.png") no-repeat 0 3px; }
+
+#party #tabContent.friends article li:nth-child(3) {
+  background: url("../img/icon-clouds.png") no-repeat; }
+
+#party #tabContent.friends article h5 {
+  float: left;
+  margin: 5px 0px 0px 5px;
+  color: #071226;
+  font-weight: bold;
+  font-size: .9em; }
+
+#party #tabContent.friends article h5:nth-of-type(2) {
+  margin-left: 10px; }
+
+#party #tabContent.friends article h6 {
+  float: left;
+  color: #666666;
+  font-weight: bold;
+  font-size: .7em;
+  margin: 8px 0px 5px 3px; }
+
+#party #tabContent.friends aside article:nth-of-type(2) {
+  height: 200px;
+  background-color: #fafdff; }
+
+#party #tabContent.friends aside article:nth-of-type(2) h1 {
+  height: 50px;
+  width: 100%;
+  background-color: #edf6f5;
+  color: #071226;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 50px;
+  text-indent: 10px;
+  border-bottom: solid 1px #dddddd; }
+
+/* ------------------------------ Party Page - Aside: PartyInfo ------------------------------ */
+#party aside {
+  width: 223px;
+  height: auto;
+  margin-top: 40px;
+  overflow: hidden;
+  margin: 60px 0 0 0px;
+  padding-left: 15px; }
+
+#party aside article.partyInfo {
+  width: 220px;
+  height: auto;
+  overflow: hidden;
+  background-color: #fafdff;
+  border: 1px solid #dddddd;
+  text-align: center;
+  -webkit-border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 5px 5px;
+  -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
+  box-shadow: 0px 0px 2px 0px #dddddd; }
+
+#party aside article.partyInfo h1 {
+  width: 100%;
+  height: 50px;
+  background-color: #edf6f5;
+  color: #071226;
+  font-size: 1.3em;
+  font-weight: lighter;
+  float: left;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  text-indent: 10px;
+  background-color: #edf6f5;
+  border-bottom: solid 1px #dddddd; }
+
+#party aside article.partyInfo hgroup {
+  width: 100%;
+  height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 40px; }
+
+#party aside article.partyInfo h2 {
+  float: left;
+  margin-left: 10px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #071226; }
+
+#party aside article.partyInfo h4 {
+  float: left;
+  font-size: .9em;
+  color: #071226;
+  margin-left: 5px;
+  font-weight: 300; }
+
+#party aside article.partyInfo h3 {
+  float: left;
+  color: #071226;
+  margin-left: 5px;
+  font-size: .9em;
+  font-weight: 600; }
+
+#party aside article.partyInfo div {
+  width: 93%;
+  height: 24px;
+  background-color: #dddddd;
+  margin: 0 auto;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ababab;
+  box-shadow: inset 0px 1px 0px 0px #ababab;
+  background: #05a696;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #05a696 0%, #05a696 80%, #dddddd 80%, #dddddd 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #05a696), color-stop(80%, #05a696), color-stop(80%, #dddddd), color-stop(100%, #dddddd));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #05a696 0%, #05a696 50%, #dddddd 50%, #dddddd 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #05a696 0%, #05a696 80%, #dddddd 80%, #dddddd 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #05a696 0%, #05a696 80%, #dddddd 80%, #dddddd 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, #05a696 0%, #05a696 80%, #dddddd 80%, #dddddd 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#05a696', endColorstr='#dddddd',GradientType=1 );
+  /* IE6-9 */ }
+
+#party aside article.partyInfo p {
+  color: #666666;
+  font-weight: bold;
+  font-size: .6em;
+  margin-top: 20px;
+  height: auto;
+  width: 200px;
+  line-height: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 10px auto;
+  text-align: left; }
+
+#party aside article.partyInfo > h3 {
+  background: url("../img/icon-location-small-gray.png") no-repeat;
+  text-indent: 10px;
+  color: #666666;
+  margin: 2px 0 5px 10px;
+  font-size: .7em;
+  font-weight: bold; }
+
+#party aside article.partyInfo ul {
+  width: 100%;
+  height: 40px;
+  clear: both;
+  background-color: #edf6f5;
+  border-top: solid 1px #dddddd;
+  border-bottom: solid 1px #dddddd; }
+
+#party aside article.partyInfo li {
+  width: 54px;
+  height: 100%;
+  border-right: solid 1px #dddddd;
+  float: left; }
+
+#party aside article.partyInfo li:last-child {
+  border: none; }
+
+#party aside article.partyInfo li h2 {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin: 8px 0 0 0; }
+
+#party aside article.partyInfo li h3 {
+  width: 100%;
+  text-align: center;
+  line-height: 0px;
+  font-size: .6em;
+  margin: 5px 0 0 0;
+  color: #666666; }
+
+#party aside article.partyInfo button {
+  border: solid 1px #8c0f6b;
+  padding: 8px;
+  font-size: .7em;
+  font-weight: 500;
+  letter-spacing: .1em !important;
+  color: #edf6f5;
+  background: #f2137b;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2137b), color-stop(100%, #db116f));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f2137b 0%, #db116f 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  /* IE6-9 */
+  -webkit-box-shadow: inset 0px 1px 0px 0px #eb599d;
+  box-shadow: inset 0px 1px 0px 0px #eb599d;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  padding: 8px 25px;
+  margin-top: 10px; }
+  #party aside article.partyInfo button:hover {
+    -webkit-box-shadow: inset 0px 1px 0px 0px #071226;
+    box-shadow: inset 0px 1px 0px 0px #071226;
+    background: #c40f64;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c40f64), color-stop(100%, #db116f));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #c40f64 0%, #b30e5b 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+    /* IE6-9 */ }
+
+/* ------------------------------ Party Page - Aside: PartyHost ------------------------------ */
+#party aside article.partyHost {
+  width: 220px;
+  height: auto;
+  overflow: hidden;
+  background-color: #edf6f5;
+  border: 1px solid #dddddd;
+  text-align: left;
+  margin: 20px 0 0 0;
+  -webkit-border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 5px 5px;
+  -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
+  box-shadow: 0px 0px 2px 0px #dddddd; }
+
+#party aside article.partyHost h1 {
+  width: 100%;
+  height: 50px;
+  background-color: #edf6f5;
+  color: #071226;
+  font-size: 1.3em;
+  font-weight: lighter;
+  float: left;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  line-height: 50px;
+  text-indent: 10px;
+  background-color: #edf6f5;
+  border-bottom: solid 1px #dddddd; }
+
+#party aside article.partyHost hgroup:nth-of-type(1) {
+  margin-top: -2px;
+  padding: 5px 5px 0 5px;
+  background-color: #fafdff;
+  position: relative;
+  height: auto;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+#party aside article.partyHost h2 {
+  color: #8c0f6b;
+  font-weight: bold;
+  font-size: .8em;
+  float: left; }
+
+#party aside article.partyHost h3 {
+  float: right;
+  color: #666666;
+  font-weight: bold;
+  font-size: .7em;
+  margin-top: 5px; }
+
+#party aside article.partyHost h4 {
+  color: #666666;
+  font-weight: bold;
+  font-size: .6em;
+  margin-top: 20px;
+  height: auto;
+  width: 100%;
+  line-height: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+#party aside article.partyHost i {
+  color: #05a696; }
+
+#party aside article.partyHost h3 {
+  background: url("../img/icon-location-small-gray.png") no-repeat;
+  text-indent: 10px;
+  color: #666666;
+  margin-top: 2px; }
+
+#party aside article.partyHost ul {
+  float: left;
+  width: 210px;
+  background-color: #fafdff;
+  padding: 0 5px 5px 5px;
+  border-bottom: solid 1px #dddddd; }
+
+#party aside article.partyHost li {
+  color: #666666;
+  font-weight: normal;
+  font-size: .7em;
+  margin-top: 10px;
+  text-indent: 20px;
+  height: 15px;
+  line-height: 15px; }
+
+#party aside article.partyHost li span {
+  font-weight: bold;
+  float: right;
+  font-size: 1.2em; }
+
+#party aside article.partyHost li:nth-child(1) {
+  background: url("../img/icon-thumb.png") no-repeat; }
+
+#party aside article.partyHost li:nth-child(2) {
+  background: url("../img/icon-eye.png") no-repeat 0 3px; }
+
+#party aside article.partyHost li:nth-child(3) {
+  background: url("../img/icon-clouds.png") no-repeat; }
+
+#party aside article.partyHost h5 {
+  float: left;
+  margin: 5px 0px 0px 5px;
+  color: #071226;
+  font-weight: bold;
+  font-size: .9em; }
+
+#party aside article.partyHost h5:nth-of-type(2) {
+  margin-left: 10px; }
+
+#party aside article.partyHost h6 {
+  float: left;
+  color: #666666;
+  font-weight: bold;
+  font-size: .7em;
+  margin: 8px 0px 5px 3px; }

@@ -5,7 +5,6 @@
 	</section>
 
 	<section id="profile" class="sizer">
-	
 		<aside>
 			<article>
 				<? if($this->session->userdata('profileImage')):?> 

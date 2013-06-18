@@ -137,9 +137,9 @@ class Party_model extends CI_Model {
             $dataResults = objectToArray($dataResults);
 
 
-            echo '<pre>';
-            print_r($dataResults);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($dataResults);
+            // echo '</pre>';
 
             return $dataResults;
 
