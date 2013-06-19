@@ -11,7 +11,7 @@
 				<div>
 					<p><? if(isset($facebookError)) echo $facebookError; ?></p>
 					<a href="<?=base_url()?>index.php/authentication/facebook"><img src="<?=base_url()?>img/facebook.jpg" alt=""></a>
-					<a href="<?=base_url()?>index.php/authentication/facebook"><img src="<?=base_url()?>img/twitter.jpg" alt=""></a>
+					<a href="<?=base_url()?>index.php/twitter/auth"><img src="<?=base_url()?>img/twitter.jpg" alt=""></a>
 					<p>We <strong>promise</strong> we’ll never post anything without your permission.</p>
 				</div>
 			</article>

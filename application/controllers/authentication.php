@@ -124,6 +124,7 @@ class Authentication extends CI_Controller {
     }
 
     public function handleFacebookLogin(){
+
 		$this->load->library('fbconnect');
 
 		if($this->fbconnect->user){

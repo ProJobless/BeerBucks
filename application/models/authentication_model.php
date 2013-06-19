@@ -308,4 +308,56 @@ class Authentication_model extends CI_Model {
 
     }
 
+    public function twitter($twData){
+
+        $username = $twData['screen_name'];
+        $dateOfReg = date('Y/m/d h:i:s', time());
+        $userID = uniqid();
+        $twitterID = $twData['user_id'];
+
+        $exists = $this->checkIfExists('twitter_id', $twitterID);
+
+        if(!$exists){
+            $data = array(
+                'user_id' => $userID,
+                'username' => $username,
+                'date_of_reg' => $dateOfReg,
+                'user_ip' => $this->input->ip_address(),
+                'twitter_id' => $twitterID,
+            );
+
+            $q = $this->db->insert('users', $data);
+
+            $sData = array(
+                'userID' => $userID,
+                'username' => $username
+            );
+
+            $this->session->set_userdata($sData);
+
+            return true;
+
+        }else{
+
+            $uData = $this->getExisting('twitter_id', $twitterID); 
+
+            $sData = array(
+                'userID' => $uData[0]['user_id'],
+                'email' => $uData[0]['email'],
+                'username' => $uData[0]['username'],
+                'dateOfReg' => $uData[0]['date_of_reg'],
+                'profileImage' => $uData[0]['profile_img'],
+                'facebookID' => $uData[0]['facebook_id'],
+                'location' => $uData[0]['location'],
+                'timezone' => $uData[0]['timezone'],
+                'bio' => $uData[0]['bio'],
+            );
+
+            $this->session->set_userdata($sData);
+
+            return true;
+        }
+
+    }
+
 }

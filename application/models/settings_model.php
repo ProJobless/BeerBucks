@@ -8,20 +8,30 @@ class Settings_model extends CI_Model {
         $this->load->helper('object_to_array.php');
     }
 
-	public function checkIfExists($value, $variable) {
+	public function checkIfExists($value, $variable, $yours) {
         $this->db->select($value);
         $this->db->where($value, $variable);
 
         $q = $this->db->get('users');
 
         if ($q->num_rows() > 0) {
-            return true;
+
+            $row = $q->row();
+
+            $dataResults = objectToArray($row);
+
+            if($dataResults['username'] == $yours){
+                return false;
+            }else{
+                return true;
+            }
         } else {
             return false;
         }
+        
     } 
 
-    public function editUser(){
+    public function editUser(){        
         $user_id = $this->session->userdata('userID');
         $username = $this->security->xss_clean($this->input->post('username'));
         $bio = $this->security->xss_clean($this->input->post('bio'));
@@ -29,9 +39,10 @@ class Settings_model extends CI_Model {
         $profileImage = $this->security->xss_clean($this->session->userdata('profileImage'));
         $timezone = $this->security->xss_clean($this->input->post('timezone'));
         
-        $exists = $this->checkIfExists('username', $username);
+        $exists = $this->checkIfExists('username', $username, $username);
 
         if(!$exists){
+
             $data = array(
                 'user_id' => $user_id,
                 'username' => $username,
