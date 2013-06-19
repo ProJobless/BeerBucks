@@ -9,9 +9,17 @@ class Profile extends CI_Controller {
 
 	public function index (){	
 
-		$data['view'] = 'profile';
-		$this->load->view('includes/template', $data);
+		if($this->session->userdata('userID')) {
 
+			$data['view'] = 'profile';
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['view'] = 'login';
+			$this->load->view('includes/template', $data);
+
+		}
 	}
 
 	public function user ($userID){	

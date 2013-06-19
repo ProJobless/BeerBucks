@@ -36,7 +36,7 @@
 					<h1>Party Info</h1>
 					
 					<hgroup>
-						<h2>$300</h2>
+						<h2>$0</h2>
 						<h4>raised out of</h4>
 						<h3><?=$this->session->userdata('goal')?></h3>
 					</hgroup>

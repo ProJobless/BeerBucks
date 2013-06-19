@@ -1618,6 +1618,7 @@ article#topImages>a{
 #tabContent.start.review form {
 	margin: 0;
 	border: 0;
+	overflow: visible;
 }
 #tabContent.start #review #partyImg{
 	width: 698px;
@@ -1651,7 +1652,9 @@ article#topImages>a{
 	background-color: $main-white;
 	border-bottom: solid 1px $light-gray;
 }
-
+#tabContent.review form>div{
+	width: 960px;
+}
 /* ------------------------------ Start Page - Aside: PartyInfo ------------------------------ */
 #tabContent.start aside .partyInfo{
 	width: 220px;
@@ -2343,17 +2346,18 @@ article#topImages>a{
 #settingsForms form div:nth-of-type(6){
 	padding: 0;
 	height: 50px;
-	width: 100%;
+	width: 709px;
 	border-top: solid 1px $light-gray;
 	position: absolute;
 	bottom: 0px;
 	margin: 0;
 	margin-bottom: -40px;
+	margin-left: -40px;
 }
 #settingsForms button{
 	@include pinkbutton();
 	float: left;
-	margin: 10px 0 0 20px;
+	margin: 10px 0 0 60px;
 	@include corners();
 }
 #settingsForms label.filebutton{
@@ -2647,6 +2651,7 @@ article#topImages>a{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-height: 40px;
+	text-align: left;
 }
 #party #tabContent.friends article i{
 	color: $main-blue;
@@ -2672,6 +2677,7 @@ article#topImages>a{
 	text-indent: 20px;
 	height: 15px;
 	line-height: 15px;
+	text-align: left;
 }
 #party #tabContent.friends article li span{
 	font-weight: bold;

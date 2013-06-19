@@ -50,7 +50,7 @@ class Party_model extends CI_Model {
 
         $q = $this->db->insert('parties', $data);
 
-        return true;
+        return $party_id;
     }
 
     public function getParties(){
@@ -98,6 +98,7 @@ class Party_model extends CI_Model {
     }
 
     public function getParty($partyID){
+        
         $this->db->select('
             parties.user_id, 
             parties.date_created, 

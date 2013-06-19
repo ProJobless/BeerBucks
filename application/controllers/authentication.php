@@ -10,10 +10,7 @@ class Authentication extends CI_Controller {
 
 	public function index (){	
 
-		//Tells template to load the discover view.
 		$data['view'] = 'login';
-
-		//Load template
 		$this->load->view('includes/template', $data);
 
 	}
@@ -63,7 +60,9 @@ class Authentication extends CI_Controller {
 			}else{
 				redirect('profile');
 			}
+
 		}
+
 	}
 
 	public function login (){
@@ -106,6 +105,39 @@ class Authentication extends CI_Controller {
 			}else{
 				redirect('profile');
 			}
+
 		}
+
 	}
+
+	public function facebook() {
+
+		$this->load->library('fbconnect');
+
+		$data = array(
+			'redirect_uri' => site_url('authentication/handleFacebookLogin'),
+			'scope' => 'email'
+		);
+
+		redirect($this->fbconnect->getLoginUrl($data));
+    
+    }
+
+    public function handleFacebookLogin(){
+		$this->load->library('fbconnect');
+
+		if($this->fbconnect->user){
+
+			$fbUser = $this->fbconnect->user;
+
+			if($this->authentication_model->facebook($fbUser)){
+
+				redirect('profile');
+
+			}
+
+		}
+
+	}
+
 }

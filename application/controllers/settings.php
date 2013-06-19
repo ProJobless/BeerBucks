@@ -12,8 +12,17 @@ class Settings extends CI_Controller {
 
 	public function index (){
 
-		$data['view'] = 'settings';
-		$this->load->view('includes/template', $data);
+		if($this->session->userdata('userID')) {
+
+			$data['view'] = 'settings';
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['view'] = 'login';
+			$this->load->view('includes/template', $data);
+
+		}
 
 	}
 

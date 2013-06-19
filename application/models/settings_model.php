@@ -30,7 +30,8 @@ class Settings_model extends CI_Model {
         $timezone = $this->security->xss_clean($this->input->post('timezone'));
         
         $exists = $this->checkIfExists('username', $username);
-        if($exists){
+
+        if(!$exists){
             $data = array(
                 'user_id' => $user_id,
                 'username' => $username,

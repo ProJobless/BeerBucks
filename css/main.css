@@ -1984,7 +1984,8 @@ article#topImages > a {
 
 #tabContent.start.review form {
   margin: 0;
-  border: 0; }
+  border: 0;
+  overflow: visible; }
 
 #tabContent.start #review #partyImg {
   width: 698px;
@@ -2020,6 +2021,9 @@ article#topImages > a {
   text-indent: 10px;
   background-color: #edf6f5;
   border-bottom: solid 1px #dddddd; }
+
+#tabContent.review form > div {
+  width: 960px; }
 
 /* ------------------------------ Start Page - Aside: PartyInfo ------------------------------ */
 #tabContent.start aside .partyInfo {
@@ -2784,12 +2788,13 @@ article#topImages > a {
 #settingsForms form div:nth-of-type(6) {
   padding: 0;
   height: 50px;
-  width: 100%;
+  width: 709px;
   border-top: solid 1px #dddddd;
   position: absolute;
   bottom: 0px;
   margin: 0;
-  margin-bottom: -40px; }
+  margin-bottom: -40px;
+  margin-left: -40px; }
 
 #settingsForms button {
   border: solid 1px #8c0f6b;
@@ -2819,7 +2824,7 @@ article#topImages > a {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   float: left;
-  margin: 10px 0 0 20px;
+  margin: 10px 0 0 60px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
   #settingsForms button:hover {
@@ -3264,7 +3269,8 @@ article#topImages > a {
   line-height: 1.4em;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px; }
+  max-height: 40px;
+  text-align: left; }
 
 #party #tabContent.friends article i {
   color: #05a696; }
@@ -3289,7 +3295,8 @@ article#topImages > a {
   margin-top: 10px;
   text-indent: 20px;
   height: 15px;
-  line-height: 15px; }
+  line-height: 15px;
+  text-align: left; }
 
 #party #tabContent.friends article li span {
   font-weight: bold;

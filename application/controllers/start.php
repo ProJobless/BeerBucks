@@ -300,8 +300,7 @@ class Start extends CI_Controller {
 
 						$this->session->set_userdata($sData2);
 
-						$data['view'] = 'home';
-						$this->load->view('includes/template', $data);
+						redirect('discover/party/' . $result, 'refresh');
 
 		            }
 
