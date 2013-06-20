@@ -12,10 +12,10 @@
 
 		<section id="tabs">
 			<ul>
-				<li class="selected">Attending</li>
-				<li>Comments</li>
-				<li>Updates</li>
-				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
+				<a href=""><li class="selected">Attending</li></a>
+				<a href=""><li>Comments</li></a>
+				<a href=""><li>Updates</li></a>
+				<li class="more"><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
 			</ul>
 
 			<section id="tabContent" class="friends">

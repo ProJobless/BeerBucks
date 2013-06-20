@@ -6,9 +6,9 @@
 
 	<section id="tabs" class="sizer">
 		<ul>
-			<a href="<?=base_url()?>index.php/community/people"><li>Featured</li></a>
+			<a href="<?=base_url()?>index.php/community"><li>Featured</li></a>
 			<a href="<?=base_url()?>index.php/community/people"><li class="selected">People</li></a>
-			<a href="<?=base_url()?>index.php/community/people"><li>Photos</li></a>
+			<a href="<?=base_url()?>index.php/community/photos"><li>Photos</li></a>
 			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
 			<li class="more"><a href="#">Learn More</a></li>
 		</ul>	

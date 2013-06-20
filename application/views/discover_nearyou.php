@@ -6,8 +6,8 @@
 
 	<section id="tabs" class="sizer">
 		<ul>
-			<a href="#"><li class="selected">Featured</li></a>
-			<a href="<?=base_url()?>index.php/discover/nearYou"><li>Near You</li></a>
+			<a href="<?=base_url()?>index.php/discover"><li>Featured</li></a>
+			<a href="<?=base_url()?>index.php/discover/nearYou"><li class="selected">Near You</li></a>
 			<a href="<?=base_url()?>index.php/discover/upcoming"><li>Upcoming</li></a>
 			<a href="<?=base_url()?>index.php/discover/completed"><li>Completed</li></a>
 			<li><input type="text" placeholder="Search for a party by name, location, or host"></input><button>Search</button></li>

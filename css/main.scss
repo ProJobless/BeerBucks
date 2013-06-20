@@ -2500,7 +2500,7 @@ article#topImages>a{
 
 /* ------------------------------ Start Community Page -------------------------------------- */
 /* ------------------------------ Community Page - Tab Content: Featured -------------------- */
-#community{
+#tabs #community{
 	height: auto;
 	overflow: hidden;
 	background-color: $light-white;
@@ -2510,7 +2510,7 @@ article#topImages>a{
 	padding: 20px;
 	text-align: center;
 }
-#community #hof{
+#tabs #community #hof{
 	width: 185px;
 	height: auto;
 	float: right;
@@ -2519,7 +2519,7 @@ article#topImages>a{
 	@include corners(0px, 0px, 5px, 5px);
 	//@include outerglow();
 }
-#community #hof ul{
+#tabs #community #hof ul{
 	width: 185px;
 	height: auto;
 	overflow: hidden;
@@ -2528,7 +2528,7 @@ article#topImages>a{
 	border-top: none;
 	@include corners(0px, 0px, 5px, 5px);
 }
-#community #hof li{
+#tabs #community #hof li{
 	float: left;
 	width: 155px;
 	height: 155px;
@@ -2538,12 +2538,12 @@ article#topImages>a{
 	padding: 0;
 	@include outerglow();
 }
-#community #hof img{
+#tabs #community #hof img{
 	width: 155px;
 	height: 130px;
 	border-bottom: solid 1px $light-gray;
 }
-#community #hof h2{
+#tabs #community #hof h2{
 	width: 100%;
 	height: 50px;
 	background-color: $main-white;
@@ -2552,10 +2552,10 @@ article#topImages>a{
 	text-indent: 10px;
 	border-bottom: solid 1px $light-gray;
 }
-#community #hof a{
+#tabs #community #hof a{
 	line-height: 20px;
 }
-#community #hof h3{
+#tabs #community #hof h3{
 	line-height: 20px;
 	float: right;
 	font-size: .7em;
@@ -2563,7 +2563,7 @@ article#topImages>a{
 	margin: 4px;
 	color: $dark-purple;
 }
-#community #hof button{
+#tabs #community #hof button{
 	@include pinkbutton();
 	margin-bottom: 15px;
 }

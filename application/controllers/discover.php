@@ -17,6 +17,7 @@ class Discover extends CI_Controller {
 		$this->load->view('includes/template', $data);
 
 	}
+
 	public function party($partyID = 0){
 
 		if($partyID){
@@ -29,7 +30,29 @@ class Discover extends CI_Controller {
 			$this->load->view('includes/template', $data);
 		}
 
-		
+	}
+
+	public function nearYou(){
+
+		$data['parties'] = $this->party_model->getParties();
+		$data['view'] = 'discover_nearyou';
+		$this->load->view('includes/template', $data);
+
+	}
+
+	public function Upcoming(){
+
+		$data['parties'] = $this->party_model->getParties();
+		$data['view'] = 'discover_upcoming';
+		$this->load->view('includes/template', $data);
+
+	}
+
+	public function Completed(){
+
+		$data['parties'] = $this->party_model->getParties();
+		$data['view'] = 'discover_completed';
+		$this->load->view('includes/template', $data);
 
 	}
 

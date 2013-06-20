@@ -3114,7 +3114,7 @@ article#topImages > a {
 
 /* ------------------------------ Start Community Page -------------------------------------- */
 /* ------------------------------ Community Page - Tab Content: Featured -------------------- */
-#community {
+#tabs #community {
   height: auto;
   overflow: hidden;
   background-color: #fafdff;
@@ -3124,7 +3124,7 @@ article#topImages > a {
   padding: 20px;
   text-align: center; }
 
-#community #hof {
+#tabs #community #hof {
   width: 185px;
   height: auto;
   float: right;
@@ -3133,7 +3133,7 @@ article#topImages > a {
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px; }
 
-#community #hof ul {
+#tabs #community #hof ul {
   width: 185px;
   height: auto;
   overflow: hidden;
@@ -3143,7 +3143,7 @@ article#topImages > a {
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px; }
 
-#community #hof li {
+#tabs #community #hof li {
   float: left;
   width: 155px;
   height: 155px;
@@ -3154,12 +3154,12 @@ article#topImages > a {
   -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
   box-shadow: 0px 0px 2px 0px #dddddd; }
 
-#community #hof img {
+#tabs #community #hof img {
   width: 155px;
   height: 130px;
   border-bottom: solid 1px #dddddd; }
 
-#community #hof h2 {
+#tabs #community #hof h2 {
   width: 100%;
   height: 50px;
   background-color: #edf6f5;
@@ -3168,10 +3168,10 @@ article#topImages > a {
   text-indent: 10px;
   border-bottom: solid 1px #dddddd; }
 
-#community #hof a {
+#tabs #community #hof a {
   line-height: 20px; }
 
-#community #hof h3 {
+#tabs #community #hof h3 {
   line-height: 20px;
   float: right;
   font-size: .7em;
@@ -3179,7 +3179,7 @@ article#topImages > a {
   margin: 4px;
   color: #071226; }
 
-#community #hof button {
+#tabs #community #hof button {
   border: solid 1px #8c0f6b;
   padding: 8px;
   font-size: .7em;
@@ -3207,7 +3207,7 @@ article#topImages > a {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin-bottom: 15px; }
-  #community #hof button:hover {
+  #tabs #community #hof button:hover {
     -webkit-box-shadow: inset 0px 1px 0px 0px #071226;
     box-shadow: inset 0px 1px 0px 0px #071226;
     background: #c40f64;

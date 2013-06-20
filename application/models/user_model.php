@@ -29,6 +29,7 @@ class User_model extends CI_Model {
 
         $this->db->select('user1_id, user2_id');
         $this->db->where('user1_id', $user1ID);
+        $this->db->or_where("user2_id = '$user1ID'");
 
         $q = $this->db->get('friends');
 
@@ -42,6 +43,9 @@ class User_model extends CI_Model {
 
             foreach($dataResults as $row){
                 if($row['user2_id'] == $user2ID){
+                    return false;
+                }
+                if($row['user1_id'] == $user2ID){
                     return false;
                 }
             }
