@@ -16,13 +16,14 @@
 
 		<section id="tabContent">
 			
-			<?php foreach ($parties as $party): ?>
+			<? foreach ($parties as $party): ?>
 				<article class="party">
 					<a href="<?=base_url()?>index.php/discover/party/<?=$party['party_id']?>">
 						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />
+					</a>
 						<hgroup>
-							<h2><?=$party['title']?></h2>
-							<h3>Hosted by <i><?=$party['username']?></i></h3>
+							<h2><a href="<?=base_url()?>index.php/discover/party/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
+							<h3>Hosted by <i><a href="<?=base_url()?>index.php/community/user/<?=$party['user_id']?>"><?=$party['username']?></a></i></h3>
 							<h4><?=$party['description']?></h4>
 							<h3><?=$party['party_location']?></h3>
 						</hgroup>
@@ -31,9 +32,9 @@
 							<h5><?=$party['attending']?></h5> <h6>Attending</h6>
 							<h5>XX</h5> <h6>Days Till Party</h6>
 						</hgroup>
-					</a>
+					
 				</article>
-			<?php endforeach; ?>
+			<? endforeach; ?>
 
 			<div><button>See More</button></div>
 		</section>

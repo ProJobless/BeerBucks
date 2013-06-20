@@ -179,6 +179,9 @@ body{
 *{
 	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
 }
+a{
+	color: inherit;
+}
 p{
 	line-height: 130%;
 }
@@ -264,6 +267,23 @@ header #tools{
 	width: 320px;
 	height: 70px;
 }
+header #tools .alert{
+	float :right;
+	width: 32px;
+	height: 30px;
+	background: url("../img/icon-alert.png");
+	text-align: center;
+	color: $main-white;
+	line-height: 30px;
+	margin: 20px 0 0 10px;
+	cursor: pointer;
+}
+header #tools .alert a{
+	font-family: "Comic Sans MS";
+	font-weight: bolder;
+	font-size: .7em;
+	text-indent: 2px;
+}
 header #tools .button{
 	@include pinkbutton();
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -305,7 +325,7 @@ header #tools #toolBox{
 	position: absolute;
 	right: 0px;
 	z-index: 2;
-	@include corners();
+	@include corners(0, 0, 5px, 5px);
 	//@include transition(.1s);
 	color: $main-white;
 	&:hover{
@@ -1052,7 +1072,7 @@ article#topImages>a{
 }
 #tabs>ul li.selected{
 	height: 98%;
-	border-bottom: solid 2px $light-white;
+	border-bottom: solid 2px $light-white !important;
 	background-color: $light-white;
 	color: $dark-purple;
 	@include unglow;
@@ -1254,6 +1274,23 @@ article#topImages>a{
 #tabContent button{
 	@include pinkbutton();
 	margin: 20px auto;
+}
+#tabContent .party a img{
+	&:hover{
+		@include outerglow(0,0,4px, 0, $main-pink);
+	}
+}
+#tabContent .party h2 a{
+	&:hover{
+		color: $purple-highlight;
+		text-decoration: underline;
+	}
+}
+#tabContent .party h3 a{
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
 }
 
 /* ------------------------------ Start Login Page ------------------------------- */
@@ -2039,6 +2076,7 @@ article#topImages>a{
 #profile aside article:nth-of-type(2){
 	height: 200px;
 	background-color: $light-white;
+	margin-bottom: 100px;
 }
 #profile aside article:nth-of-type(2) h1{
 	height: 50px;
@@ -2050,6 +2088,21 @@ article#topImages>a{
 	line-height: 50px;
 	text-indent: 10px;
 	border-bottom: solid 1px $light-gray;
+}
+#profile aside>a button{
+	margin-top: 20px;
+	@include pinkbutton();
+	width: 220px;
+}
+#profile .error{
+	width: 100%;
+	height: 40px;
+	margin: 60px auto -20px;
+	background-color: $main-white;
+	border: solid 1px $main-pink;
+	text-align: center;
+	color: $main-pink;
+	line-height: 40px;
 }
 
 /* ------------------------------ Profile Page - Tabs ------------------------------ */
@@ -2082,6 +2135,10 @@ article#topImages>a{
 	height: auto;
 	width: 692px;
 }
+#profile #tabContent.friends{
+	float: left;
+	margin-top: -2px;
+}
 #profile #tabContent.friends article{
 	height: 25px;
 	padding-top: 207px;
@@ -2091,6 +2148,7 @@ article#topImages>a{
 	margin:  13px 13px 0 0;
 	border: solid 1px $light-gray;
 	float: left;
+	background-size: 100% !important;
 	@include transition();
 	@include outerglow();
 	@include corners(0, 0, 5px, 5px);
@@ -2116,7 +2174,10 @@ article#topImages>a{
 	@include corners( 0, 0, 5px, 5px);
 }
 #profile #tabContent.friends article h4{
-	max-height: 40px;
+	height: 40px;
+}
+#profile #tabContent.friends>h1{
+	margin-top: 15px;
 }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
@@ -2899,6 +2960,12 @@ article#topImages>a{
 	font-size: .8em;	
 	float: left;
 }
+#party aside article.partyHost h2 a{
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
 #party aside article.partyHost h3{
 	float: right;
 	color: $dark-gray;
@@ -2973,4 +3040,75 @@ article#topImages>a{
 	font-size: .7em;
 	margin: 8px 0px 5px 3px;
 }
+
+/* ------------------------------ Start Alerts Page ------------------------------ */
+/* ------------------------------ Alerts Page - CTA ------------------------------ */
+#cta.party{
+	height: 174px;
+	width: 100%;
+	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
+	border-bottom: solid 5px $medium-purple;
+	position: relative;
+}
+#cta.party h1{
+	display: block;
+	width: 650px;
+	padding: 10px 0px;
+	line-height: 174px;
+	background-color: rgba(39, 22, 64, 0);
+	margin: 0 auto;
+	text-align: center;
+	@include corners(5px);
+}
+
+/* ------------------------------ Alerts Page - Request ------------------------------ */
+
+#profile #tabContent.request{
+	padding-bottom: 20px;
+	float: left;
+	margin-top: -1px;
+}
+#profile #tabContent.request article {
+	width: 150px;
+	text-align: center;
+	float: left;
+}
+#profile #tabContent.request article img{
+	width: 150px;
+	height: 150px;
+}
+#profile #tabContent.request article h1{
+	font-weight: bold;
+	font-size: .8em;
+	color: $main-blue;
+	text-align: left;
+	margin-left: 5px;
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
+#profile #tabContent.request article p{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	text-align: left;
+	margin-left: 5px;
+}
+#profile #tabContent.request article a:nth-of-type(2) button{
+	@include corners(5px,0,0,5px);
+	float: left;
+	margin-top: 15px;
+	margin-left: 17px;
+}
+#profile #tabContent.request article a:nth-of-type(3) button{
+	float: left;
+	@include corners(0,5px,5px,0);
+	margin-left: -1px;
+	margin-top: 15px;
+}
+#profile #tabContent.request>h1{
+	margin-top: 15px;
+}
+
 

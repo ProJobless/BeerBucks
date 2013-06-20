@@ -9,6 +9,7 @@ class Party_model extends CI_Model {
     }
 
 	public function checkIfExists($value, $variable) {
+
         $this->db->select($value);
         $this->db->where($value, $variable);
 
@@ -19,6 +20,7 @@ class Party_model extends CI_Model {
         }else{
             return false;
         }
+
     } 
 
     public function newParty(){
@@ -51,6 +53,7 @@ class Party_model extends CI_Model {
         $q = $this->db->insert('parties', $data);
 
         return $party_id;
+
     }
 
     public function getParties(){
@@ -73,7 +76,6 @@ class Party_model extends CI_Model {
 
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
-        //$this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -85,16 +87,12 @@ class Party_model extends CI_Model {
 
             $dataResults = objectToArray($dataResults);
 
-
-            // echo '<pre>';
-            // print_r($dataResults);
-            // echo '</pre>';
-
             return $dataResults;
 
         }else{
-            // No Results Found
+            return false;
         }
+
     }
 
     public function getParty($partyID){
@@ -145,9 +143,8 @@ class Party_model extends CI_Model {
             return $dataResults;
 
         }else{
-            // No Results Found
+            return false;
         }
-
 
     }
 

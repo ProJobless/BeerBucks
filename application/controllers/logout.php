@@ -33,6 +33,8 @@ class Logout extends CI_Controller {
             'request_token_secret' => null,
             'twitter_user_id' => null,
             'twitter_screen_name' => null,
+            'alerts' => null,
+            
     	);
 
     	$this->session->unset_userdata($sData);

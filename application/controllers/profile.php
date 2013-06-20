@@ -5,12 +5,16 @@ class Profile extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 
+		$this->load->model('user_model');
+		$data['alerts'] = $this->user_model->checkAlerts();
+
 	}
 
 	public function index (){	
 
 		if($this->session->userdata('userID')) {
 
+			$data['friends'] = $this->user_model->getFriends($this->session->userdata('userID'));
 			$data['view'] = 'profile';
 			$this->load->view('includes/template', $data);
 
@@ -20,13 +24,7 @@ class Profile extends CI_Controller {
 			$this->load->view('includes/template', $data);
 
 		}
-	}
-
-	public function user ($userID){	
-
-		$data['view'] = 'profile';
-		$this->load->view('includes/template', $data);
-
+		
 	}
 
 }

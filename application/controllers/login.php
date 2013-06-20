@@ -9,11 +9,17 @@ class Login extends CI_Controller {
 
 	public function index (){	
 
-		//Tells template to load the discover view.
-		$data['view'] = 'login';
-				
-		//Load template
-		$this->load->view('includes/template', $data);
+		if($this->session->userdata('userID')) {
+
+			$data['view'] = 'profile';
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['view'] = 'login';
+			$this->load->view('includes/template', $data);
+
+		}
 
 	}
 

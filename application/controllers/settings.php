@@ -7,6 +7,8 @@ class Settings extends CI_Controller {
 
 		$this->load->model('settings_model');
 		$this->load->library('form_validation');
+		$this->load->model('user_model');
+		$data['alerts'] = $this->user_model->checkAlerts();
 
 	}
 

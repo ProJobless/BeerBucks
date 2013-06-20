@@ -1,11 +1,3 @@
-	<?
-		// echo '<pre>';
-		// print_r($party);
-		// echo '</pre>';
-	?>
-
-
-
 	<section id="cta" class="party">
 		<div class="sizer">
 			<h1>Discover the best parties</h1>
@@ -185,7 +177,7 @@
 				<?endif;?>
 				
 				<hgroup>
-					<h2><i><?=$party[0]['username']?></i></h2>
+					<h2><i><a href="<?=base_url()?>index.php/community/user/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
 					<h3><?=$party[0]['location']?></h3>
 					<h4><?=$party[0]['bio']?></h4>
 				</hgroup>

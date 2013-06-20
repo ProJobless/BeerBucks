@@ -9,10 +9,7 @@ class Join extends CI_Controller {
 
 	public function index (){	
 
-		//Tells template to load the discover view.
 		$data['view'] = 'join';
-
-		//Load template
 		$this->load->view('includes/template', $data);
 
 	}

@@ -6,6 +6,8 @@ class Discover extends CI_Controller {
 		parent:: __construct();
 
 		$this->load->model('party_model');
+		$this->load->model('user_model');
+		$data['alerts'] = $this->user_model->checkAlerts();
 	}
 
 	public function index (){	

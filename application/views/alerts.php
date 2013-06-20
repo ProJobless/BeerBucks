@@ -1,3 +1,4 @@
+
 	<section id="cta" class="profile">
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
@@ -40,44 +41,30 @@
 			<ul>
 				<li>Activity</li>
 				<li>Parties</li>
-				<li class="selected">Friends</li>
+				<li>Friends</li>
 				<li>Comments</li>
-				<li>Alerts</li>
-<!-- 				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
- -->			</ul>
+				<li class="selected">Alerts</li>
+ 			</ul>
 
-			<section id="tabContent" class="friends">
+			<section id="tabContent" class="request">
+	
+				<? if(isset($friendReqs[0])): ?>
+					<? foreach ($friendReqs as $req): ?>
 
-				<? if(isset($friends[0])): ?>
-					<? foreach ($friends as $friend): ?>
-
-						<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
-							<hgroup>
-								<h2><i><?=$friend[0]['username']?></i></h2>
-								<h3><?=$friend[0]['location']?></h3>
-								<h4><?=$friend[0]['bio']?></h4>
-							</hgroup>
-
-							<ul>
-								<li>FeedBack <span><?=$friend[0]['feedback']?></span></li>
-								<li>Views <span><?=$friend[0]['views']?></span></li>
-								<li>Comments <span><?=$friend[0]['comments']?></span></li>
-							</ul>
-
-							<hgroup>
-								<h5><?=$friend[0]['contributions']?></h5> <h6>contributions</h6>
-								<h5><?=$friend[0]['parties']?></h5> <h6>Hosted Parties</h6>
-							</hgroup>
+						<article>
+							<a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$req['profile_img']?>" alt=""></a>
+							<h1><a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><?=$req['username']?></a></h1>
+							<p>Wants to be your friend.</p>
+							<a href="<?=base_url()?>index.php/community/declineFriend/<?=$req['friendship_id']?>"><button>decline</button></a>
+							<a href="<?=base_url()?>index.php/community/acceptFriend/<?=$req['friendship_id']?>"><button>accept</button></a>
 						</article>
 
 					<? endforeach; ?>
 
-					<div><button>See More</button></div>
-
 				<?else:?>
-					<h1>Browse the community to find friends.</h1>
+					<h1>You have no new alerts</h1>
 				<?endif;?>
-				
+
 			</section>
 		</section>
 	</section>

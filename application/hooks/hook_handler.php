@@ -2,8 +2,6 @@
 
 class Hook_handler extends CI_Controller{
     function pre_controller() {
-        //$this->CI = & get_instance();
-
-		
+       	
     }
 }

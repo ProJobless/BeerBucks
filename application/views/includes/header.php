@@ -47,7 +47,12 @@
 
 			<div id="tools">
 				<? if($this->session->userdata('userID')): ?>
+				
 					<div id="toolBox">
+
+						<?if($this->session->userdata('alerts')):?>
+							<h1 class="alert"><a href="<?=base_url()?>index.php/alerts"><?=$this->session->userdata('alerts')?></a></h1>
+						<?endif;?>
 
 						<p><?=$this->session->userdata('username')?></p> 
 
