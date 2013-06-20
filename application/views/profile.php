@@ -42,7 +42,7 @@
 				<li>Parties</li>
 				<li class="selected">Friends</li>
 				<li>Comments</li>
-				<li>Alerts</li>
+				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
 <!-- 				<li><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
  -->			</ul>
 
@@ -51,24 +51,26 @@
 				<? if(isset($friends[0])): ?>
 					<? foreach ($friends as $friend): ?>
 
-						<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
-							<hgroup>
-								<h2><i><?=$friend[0]['username']?></i></h2>
-								<h3><?=$friend[0]['location']?></h3>
-								<h4><?=$friend[0]['bio']?></h4>
-							</hgroup>
+						<a href="<?=base_url()?>index.php/community/user/<?=$friend[0]['user_id']?>">
+							<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
+								<hgroup>
+									<h2><i><?=$friend[0]['username']?></i></h2>
+									<h3><?=$friend[0]['location']?></h3>
+									<h4><?=$friend[0]['bio']?></h4>
+								</hgroup>
 
-							<ul>
-								<li>FeedBack <span><?=$friend[0]['feedback']?></span></li>
-								<li>Views <span><?=$friend[0]['views']?></span></li>
-								<li>Comments <span><?=$friend[0]['comments']?></span></li>
-							</ul>
+								<ul>
+									<li>FeedBack <span><?=$friend[0]['feedback']?></span></li>
+									<li>Views <span><?=$friend[0]['views']?></span></li>
+									<li>Comments <span><?=$friend[0]['comments']?></span></li>
+								</ul>
 
-							<hgroup>
-								<h5><?=$friend[0]['contributions']?></h5> <h6>contributions</h6>
-								<h5><?=$friend[0]['parties']?></h5> <h6>Hosted Parties</h6>
-							</hgroup>
-						</article>
+								<hgroup>
+									<h5><?=$friend[0]['contributions']?></h5> <h6>contributions</h6>
+									<h5><?=$friend[0]['parties']?></h5> <h6>Hosted Parties</h6>
+								</hgroup>
+							</article>
+						</a>
 
 					<? endforeach; ?>
 

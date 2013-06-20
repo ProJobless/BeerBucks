@@ -6,12 +6,12 @@
 
 	<section id="tabs" class="sizer">
 		<ul>
-			<li class="selected">Featured</li>
-			<li>Near You</li>
-			<li>Upcoming</li>
-			<li>Completed</li>
+			<a href="#"><li class="selected">Featured</li></a>
+			<a href="#"><li>Near You</li></a>
+			<a href="#"><li>Upcoming</li></a>
+			<a href="#"><li>Completed</li></a>
 			<li><input type="text" placeholder="Search for a party by name, location, or host"></input><button>Search</button></li>
-			<li><a href="#">Learn More</a></li>
+			<li class="more"><a href="#">Learn More</a></li>
 		</ul>
 
 		<section id="tabContent">

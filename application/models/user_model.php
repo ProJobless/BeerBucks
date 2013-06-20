@@ -262,4 +262,40 @@ class User_model extends CI_Model {
 
     }
 
+    public function getUsers(){
+
+        $this->db->select('
+            user_id,
+            username,
+            profile_img,
+            bio,
+            location,
+            feedback,
+            views,
+            comments,
+            contributions,
+            parties,
+        ');
+
+        $this->db->from('users');
+        //$this->db->where("user_id = '$userID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
 }

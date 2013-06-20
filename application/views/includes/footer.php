@@ -36,7 +36,7 @@
 			<ul>
 				<li>www.beer-bucks.com</li>
 				<li>Facebook.com/TheBeerBucks</li>
-				<li>@Beer-Bucks</li>
+				<li>@thebeerbucks</li>
 				<li>beer-bucks.tumblr.com</li>
 			</ul>
 		</section>

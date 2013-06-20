@@ -41,7 +41,7 @@
 			<ul>
 				<li>Activity</li>
 				<li>Parties</li>
-				<li>Friends</li>
+				<a href="<?=base_url()?>index.php/profile"><li>Friends</li></a>
 				<li>Comments</li>
 				<li class="selected">Alerts</li>
  			</ul>

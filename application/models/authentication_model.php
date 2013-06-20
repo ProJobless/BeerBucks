@@ -81,7 +81,12 @@ class Authentication_model extends CI_Model {
 				'username' => $username,
 				'pword' => $password,
 				'date_of_reg' => $dateOfReg,
-                'user_ip' => $this->input->ip_address()
+                'user_ip' => $this->input->ip_address(),
+                'feedback' => 0,
+                'views' => 0,
+                'comments' => 0,
+                'contributions' => 0,
+                'parties' => 0,
 			);
 
 	    	$q = $this->db->insert('users', $data);
@@ -196,7 +201,12 @@ class Authentication_model extends CI_Model {
                     'location' => $location,
                     'timezone' => $fbData['timezone'],
                     'profile_img' => $profileImg,
-                    'user_ip' => $this->input->ip_address()
+                    'user_ip' => $this->input->ip_address(),
+                    'feedback' => 0,
+                    'views' => 0,
+                    'comments' => 0,
+                    'contributions' => 0,
+                    'parties' => 0,
                 );
 
                 $q = $this->db->insert('users', $data);
@@ -264,6 +274,11 @@ class Authentication_model extends CI_Model {
                 'location' => $uData[0]['location'],
                 'timezone' => $uData[0]['timezone'],
                 'bio' => $uData[0]['bio'],
+                'feedback' => 0,
+                'views' => 0,
+                'comments' => 0,
+                'contributions' => 0,
+                'parties' => 0,
             );
 
             $this->session->set_userdata($sData);
@@ -324,6 +339,11 @@ class Authentication_model extends CI_Model {
                 'date_of_reg' => $dateOfReg,
                 'user_ip' => $this->input->ip_address(),
                 'twitter_id' => $twitterID,
+                'feedback' => 0,
+                'views' => 0,
+                'comments' => 0,
+                'contributions' => 0,
+                'parties' => 0,
             );
 
             $q = $this->db->insert('users', $data);

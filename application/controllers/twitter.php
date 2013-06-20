@@ -164,11 +164,6 @@ class Twitter extends CI_Controller
 		}
 	}
 	
-	/**
-	 * Reset session data
-	 * @access	private
-	 * @return	void
-	 */
 	private function reset_session()
 	{
 		$this->session->unset_userdata('access_token');

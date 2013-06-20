@@ -1096,7 +1096,7 @@ article#topImages>a{
 		@include gradient(#c40f64, #b30e5b);
 	}
 }
-#tabs>ul li:last-child{
+#tabs .more{
 	float: right;
 	border: none;
 }
@@ -1474,6 +1474,8 @@ article#topImages>a{
 #tabContent.start{
 	height: auto;
 	overflow: hidden;
+	float: left;
+	margin-top: -1px;
 }
 #tabContent.start form{
 	width: 700px;
@@ -2139,11 +2141,17 @@ article#topImages>a{
 	float: left;
 	margin-top: -2px;
 }
+#profile #tabContent.friends>a{
+	height: auto;
+	width: auto;
+	display: block;
+	float: left;
+}
 #profile #tabContent.friends article{
 	height: 25px;
 	padding-top: 207px;
 	width: 220px;
-	cursor: default;
+	cursor: pointer;
 	overflow: hidden;
 	margin:  13px 13px 0 0;
 	border: solid 1px $light-gray;
@@ -2156,9 +2164,10 @@ article#topImages>a{
 		height: 167px;
 		padding-top: 65px;
 		background-position: 0 -60px !important;
+		@include outerglow(0,0,4px, 0, $main-pink);
 	}
 }
-#profile #tabContent.friends article:nth-of-type(3n+3){
+#profile #tabContent.friends a:nth-of-type(3n+3) article{
 	margin-right: 0;
 }
 #profile #tabContent.friends article hgroup:nth-of-type(1){
@@ -2171,13 +2180,15 @@ article#topImages>a{
 	float: left;
 	background: $main-white;
 	overflow: hidden;
+	margin-top: -1px;
+	border-top: solid 1px $light-gray;
 	@include corners( 0, 0, 5px, 5px);
 }
 #profile #tabContent.friends article h4{
 	height: 40px;
 }
 #profile #tabContent.friends>h1{
-	margin-top: 15px;
+	margin: 15px 0;
 }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
@@ -2488,8 +2499,8 @@ article#topImages>a{
 }
 
 /* ------------------------------ Start Community Page -------------------------------------- */
-/* ------------------------------ Community Page - Tab Content ------------------------------ */
-#tabs #community{
+/* ------------------------------ Community Page - Tab Content: Featured -------------------- */
+#community{
 	height: auto;
 	overflow: hidden;
 	background-color: $light-white;
@@ -2555,6 +2566,167 @@ article#topImages>a{
 #community #hof button{
 	@include pinkbutton();
 	margin-bottom: 15px;
+}
+
+/* ------------------------------ Community Page - Tab Content: People ---------- */
+#people{
+	height: auto;
+	overflow: hidden;
+	background-color: $light-white;
+	border: 1px solid $light-gray;
+	border-top: 0px;
+	clear: both;
+	padding: 15px;
+	text-align: center;
+}
+#people article{
+	height: 25px;
+	padding-top: 207px;
+	width: 220px;
+	cursor: pointer;
+	overflow: hidden;
+	margin:  13px 13px 0 0;
+	border: solid 1px $light-gray;
+	float: left;
+	background-size: 100% !important;
+	@include transition();
+	@include outerglow();
+	@include corners(0, 0, 5px, 5px);
+	&:hover{
+		height: 167px;
+		padding-top: 65px;
+		background-position: 0 -60px !important;
+		@include outerglow(0,0,4px, 0, $main-pink);
+	}
+}
+#people a:nth-of-type(4n+4) article{
+	margin-right: 0;
+}
+#people article hgroup:nth-of-type(1){
+	border: none;
+	border-top: solid 1px $light-gray;
+}
+#people article hgroup:nth-of-type(2){
+	height: 25px;
+	width: 220px;
+	float: left;
+	background: $main-white;
+	overflow: hidden;
+	margin-top: -1px;
+	border-top: solid 1px $light-gray;
+	@include corners( 0, 0, 5px, 5px);
+}
+#people article h4{
+	height: 40px;
+}
+#people>h1{
+	margin: 15px 0;
+}
+#people article img{
+	//background-color: $main-blue;
+}
+#people article hgroup:nth-of-type(1){
+	margin-top: -2px;
+	padding: 5px 5px 0 5px;
+	background-color: $light-white;
+	position: relative;
+	height: auto;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+#people article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+#people article h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;	
+}
+#people article h4{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	margin-top: 20px;	
+	width: 100%;
+	line-height: 1.4em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 40px;
+	text-align: left;
+}
+#people article i{
+	color: $main-blue;
+}
+#people article h3{
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;
+	text-align: left;
+}
+#people article ul{
+	float: left;
+	width: 210px;
+	background-color: $light-white;
+	padding: 0 5px 5px 5px;
+	border-bottom: solid 1px $light-gray;
+}
+#people article li{
+	color: $dark-gray;
+	font-weight: normal;
+	font-size: .7em;
+	margin-top: 10px;	
+	text-indent: 20px;
+	height: 15px;
+	line-height: 15px;
+	text-align: left;
+}
+#people article li span{
+	font-weight: bold;
+	float: right;
+	font-size: 1.2em;
+}
+#people article li:nth-child(1){
+	background: url("../img/icon-thumb.png") no-repeat;
+}
+#people article li:nth-child(2){
+	background: url("../img/icon-eye.png") no-repeat 0 3px;
+}
+#people article li:nth-child(3){
+	background: url("../img/icon-clouds.png") no-repeat;
+}
+#people article h5{
+	float: left;
+	margin: 5px 0px 0px 5px;
+	color: $dark-purple;
+	font-weight: bold;
+	font-size: .9em;
+	text-align: left;
+}
+#people article h5:nth-of-type(2){
+	margin-left: 10px;
+}
+#people article h6{
+	float: left;
+	text-align: left;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin: 8px 0px 5px 3px;
+}
+#people div{
+	clear: both;
+	height: auto;
+	width: 100%;
+}
+#people button{
+	@include pinkbutton();
+	margin: 20px auto;
 }
 
 /* ------------------------------ Start Party Page ------------------------------ */
@@ -3066,7 +3238,6 @@ article#topImages>a{
 #profile #tabContent.request{
 	padding-bottom: 20px;
 	float: left;
-	margin-top: -1px;
 }
 #profile #tabContent.request article {
 	width: 150px;

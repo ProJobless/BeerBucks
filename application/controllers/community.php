@@ -34,8 +34,7 @@ class Community extends CI_Controller {
 			
 		}else{
 
-			$data['view'] = 'profile';
-			$this->load->view('includes/template', $data);
+			redirect('profile');
 
 		}
 
@@ -92,6 +91,14 @@ class Community extends CI_Controller {
 			$data['message'] = 'Problem denying friend request.';
 			$this->load->view('includes/template', $data);
 		}
+
+	}
+
+	public function people(){
+
+		$data['users'] = $this->user_model->getUsers();
+		$data['view'] = 'community_people';
+		$this->load->view('includes/template', $data);
 
 	}
 
