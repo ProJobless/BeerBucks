@@ -23,40 +23,130 @@ class Party_model extends CI_Model {
 
     } 
 
-    public function newParty(){
-        $party_id = uniqid();
-        $user_id = $this->session->userdata('userID');
-        $title = $this->security->xss_clean($this->session->userdata('title'));
-        $description = $this->security->xss_clean($this->session->userdata('description'));
-        $partyLocation = $this->security->xss_clean($this->session->userdata('partyLocation'));
-        $address = $this->security->xss_clean($this->session->userdata('address'));
-        $start = $this->security->xss_clean($this->session->userdata('start'));
-        $end = $this->security->xss_clean($this->session->userdata('end'));
-        $goal = $this->security->xss_clean(ltrim($this->session->userdata('goal') , '$'));
-        $party_img = $this->security->xss_clean($this->session->userdata('img_name'));
+    public function checkStatus($partyInfo, $option){
+
+        $nonExpiredData   =   array();
+        $currentData      =   array();
+        $today            =   date('Y-m-d h:i:s', time());
+
+        foreach($partyInfo as $row){
+
+            if($row['start'] > $today){
+                array_push($nonExpiredData, $row);
+            }else if($row['start'] < $today && $row['end'] > $today){
+                array_push($currentData, $row);
+            }else{
+                $this->changeToExpired($row);
+            }
+        }
+
+        if($option){
+            return $nonExpiredData;
+        }else{
+            return $currentData;
+        }
+        
+    }
+
+    public function changeToExpired($partyInfo){
 
         $data = array(
-            'party_id' => $party_id,
-            'user_id' => $user_id,
-            'tos' => 1,
-            'title' => $title,
-            'description' => $description,
-            'party_location' => $partyLocation,
-            'address' => $address,
-            'start' => $start,
-            'end' => $end,
-            'goal' => $goal,
-            'party_img' => $party_img,
-            'attending' => 0
+            'expired' => 1,
         );
 
-        $q = $this->db->insert('parties', $data);
-
-        return $party_id;
+        $this->db->where('party_id', $partyInfo['party_id']);
+        $this->db->update('parties', $data); 
 
     }
 
+    public function getTimeTillParty($partyInfo){
+
+        $newPartyInfo = $partyInfo;
+
+        foreach($partyInfo as $key=>$row){
+
+            $date1     =   new DateTime(date('Y-m-d h:i:s', time()));
+            $date2     =   new DateTime($row['start']);
+            $interval  =   $date1->diff($date2);
+            $days      =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
+            $hours     =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
+            $minutes   =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
+            $seconds   =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
+
+            if($key+1 == count($partyInfo)){
+
+                return $newPartyInfo;
+            }
+            
+        }
+
+    }
+
+    public function converTimezone($time){
+
+        $timeP   =   new DateTime( $time );
+        $timezone;
+
+        if($time[strlen($time)-1] == '5'){
+            $timeP->modify('+6 hours');
+            $timezone = -6;
+        }else if($time[strlen($time)-1] == '6'){
+            $timeP->modify('+7 hours');
+            $timezone = -7;
+        }else if($time[strlen($time)-1] == '7'){
+            $timeP->modify('+8 hours');
+            $timezone = -8;
+        }else if($time[strlen($time)-1] == '8'){
+            $timeP->modify('+9 hours');
+            $timezone = -9;
+        }
+    
+        if (strpos($time,'pm') !== false) {
+            $timeP->modify('+12 hours');
+        }
+
+        return array($timeP->format( 'Y-m-d H:i:s' ), $timezone);  
+    }
+
+    public function newParty(){
+
+        $party_id        =   uniqid();
+        $user_id         =   $this->session->userdata('userID');
+        $title           =   $this->security->xss_clean($this->session->userdata('title'));
+        $description     =   $this->security->xss_clean($this->session->userdata('description'));
+        $partyLocation   =   $this->security->xss_clean($this->session->userdata('partyLocation'));
+        $address         =   $this->security->xss_clean($this->session->userdata('address'));
+        $start           =   $this->security->xss_clean($this->session->userdata('start'));
+        $end             =   $this->security->xss_clean($this->session->userdata('end'));
+        $goal            =   $this->security->xss_clean(ltrim($this->session->userdata('goal') , '$'));
+        $party_img       =   $this->security->xss_clean($this->session->userdata('img_name'));
+        $newStart        =   $this->converTimezone($start);
+        $newEnd          =   $this->converTimezone($end);
+
+        $data = array(
+            'party_id'         =>   $party_id,
+            'user_id'          =>   $user_id,
+            'tos'              =>   1,
+            'title'            =>   $title,
+            'description'      =>   $description,
+            'party_location'   =>   $partyLocation,
+            'address'          =>   $address,
+            'start'            =>   $newStart[0],
+            'end'              =>   $newEnd[0],
+            'goal'             =>   $goal,
+            'party_img'        =>   $party_img,
+            'attending'        =>   0,
+            'expired'          =>   0,
+            'party_timezone'   =>   $newStart[1],
+        );
+
+        $q = $this->db->insert('parties', $data);
+        
+        return $party_id;
+    }
+
     public function getParties(){
+
         $this->db->select('
             parties.party_id, 
             parties.user_id, 
@@ -70,12 +160,14 @@ class Party_model extends CI_Model {
             parties.start, 
             parties.end, 
             parties.goal,
+            parties.expired,
             parties.attending,
             users.username,
         ');
 
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
+        $this->db->where("parties.expired = 0");
 
         $query = $this->db->get();
 
@@ -87,7 +179,9 @@ class Party_model extends CI_Model {
 
             $dataResults = objectToArray($dataResults);
 
-            return $dataResults;
+            $filteredData = $this->checkStatus($dataResults, true);
+
+            return $this->getTimeTillParty($filteredData);
 
         }else{
             return false;
@@ -135,12 +229,7 @@ class Party_model extends CI_Model {
 
             $dataResults = objectToArray($dataResults);
 
-
-            // echo '<pre>';
-            // print_r($dataResults);
-            // echo '</pre>';
-
-            return $dataResults;
+            return $this->getTimeTillParty($dataResults);
 
         }else{
             return false;

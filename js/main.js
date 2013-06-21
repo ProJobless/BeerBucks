@@ -11,12 +11,12 @@ var initDatePicker = function(){
 
 	datePickerInput.datetimepicker({
 		dateFormat: 'yy-mm-dd',
-		timeFormat: "hh:mm:00 tt z",
+		timeFormat: "hh:mm:00 tt Z",
 		timezoneList: [
-			{ value: -300, label: 'Eastern'},
-			{ value: -360, label: 'Central' },
-			{ value: -420, label: 'Mountain' },
-			{ value: -480, label: 'Pacific' }
+			{ value: -5, label: 'Eastern'},
+			{ value: -6, label: 'Central' },
+			{ value: -7, label: 'Mountain' },
+			{ value: -8, label: 'Pacific' }
 		]
 	}).keydown(function(e){
 		return false;
@@ -63,6 +63,40 @@ var initScroller = function(){
 
 		scrollAmount > 0 ? cta.height(scrollLeft) : cta.height(ctaHeight);
 	});
+};
+
+var initTimeKeeper = function(){
+	var days      =   $('#party .time li:nth-of-type(1) h2'),
+		hours     =   $('#party .time li:nth-of-type(2) h2'),
+		minutes   =   $('#party .time li:nth-of-type(3) h2'),
+		seconds   =   $('#party .time li:nth-of-type(4) h2'),
+		day       =   days.text() || 0,
+		hor       =   hours.text() || 0,
+		min       =   minutes.text() || 0,
+		sec       =   seconds.text() || 0
+	;
+
+	var countDown = function(){
+		seconds.text(--sec);
+		if(day == '0' && hor == '0' && min == '0' && sec === 0){
+			clearInterval(timer);
+			//Code for what to do when timer ends here.
+		}else{
+			if(sec === 0){
+				minutes.text(--min);
+				sec = 60;
+			}
+			if(min === 0){
+				hours.text(--hor);
+				min = 59;
+			}
+			if(hor === 0){
+				days.text(--day);
+				hor = 23;
+			}
+		}
+	}
+	var timer = setInterval(countDown,1000);
 };
 
 

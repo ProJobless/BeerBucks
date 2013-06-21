@@ -155,11 +155,11 @@
 
 				<h3><?=$party[0]['party_location']?></h3>
 
-				<ul>
-					<li><h2>2</h2><h3>Days</h3></li>
-					<li><h2>4</h2><h3>Hours</h3></li>
-					<li><h2>38</h2><h3>Mins</h3></li>
-					<li><h2>12</h2><h3>Secs</h3></li>
+				<ul class="time">
+					<li><h2><?=$party[0]['days']?></h2><h3>Days</h3></li>
+					<li><h2><?=$party[0]['hours']?></h2><h3>Hours</h3></li>
+					<li><h2><?=$party[0]['minutes']?></h2><h3>Mins</h3></li>
+					<li><h2><?=$party[0]['seconds']?></h2><h3>Secs</h3></li>
 				</ul>
 
 				<button>Pitch In</button>
@@ -212,3 +212,4 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
+	<script>initTimeKeeper();</script>

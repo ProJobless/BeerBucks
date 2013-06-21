@@ -225,9 +225,12 @@ class User_model extends CI_Model {
         ');
 
         $this->db->from('friends');
-        $this->db->where("user1_id = '$userID'");
-        $this->db->or_where("user2_id = '$userID'");
-        $this->db->where("active = 1");
+        $this->db->where("(
+            user1_id = '$userID' OR 
+            user2_id = '$userID') AND 
+            active = '1'"
+        );
+        
 
         $query = $this->db->get();
 

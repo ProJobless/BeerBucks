@@ -36,7 +36,7 @@
 				</hgroup>
 			</article>
 
-			<? if(isset($friendCheck)): ?>
+			<? if(isset($friendCheck) && $this->session->userdata('userID')): ?>
 				<?if (!$friendCheck): ?>
 					<a href="<?=base_url()?>index.php/community/addFriend/<?=$user[0]['user_id']?>"><button>Add Friend</button></a>
 				<?endif;?>
@@ -88,7 +88,6 @@
 				<?else:?>
 					<h1>User has no friends added.</h1>
 				<?endif;?>
-				
 
 			</section>
 		</section>
