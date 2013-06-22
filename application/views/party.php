@@ -34,7 +34,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -53,7 +53,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -72,7 +72,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -91,7 +91,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -110,7 +110,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -129,7 +129,7 @@
 					</ul>
 
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -189,7 +189,7 @@
 				</ul>
 
 				<hgroup>
-					<h5><?=$party[0]['contributions']?></h5> <h6>contributors</h6>
+					<h5><?=$party[0]['contributions']?></h5> <h6>Contributions</h6>
 					<h5><?=$party[0]['parties']?></h5> <h6>Hosted Parties</h6>
 				</hgroup>
 			</article>

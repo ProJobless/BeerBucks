@@ -31,15 +31,15 @@
 			<a href="<?=base_url()?>"><img src="<?= base_url(); ?>/img/logo-purple.png" alt=""></a>
 
 			<nav>
-				<a href="<?= base_url(); ?>index.php/discover" <? if($view == "discover") echo 'class="active"'?> >
+				<a href="<?= base_url(); ?>index.php/discover" <? if($this->uri->rsegment(1) == "discover") echo 'class="active"'?> >
 					<h1>Discover</h1>
 					<h2>Parties Near You</h2>
 				</a>
-				<a href="<?= base_url(); ?>index.php/start" <? if($view == "start") echo 'class="active"'?> >
+				<a href="<?= base_url(); ?>index.php/start" <? if($this->uri->rsegment(1) == "start") echo 'class="active"'?> >
 					<h1>Start</h1>
 					<h2>A Party</h2>
 				</a>
-				<a href="<?= base_url(); ?>index.php/community" <? if($view == "community") echo 'class="active"'?> >
+				<a href="<?= base_url(); ?>index.php/community" <? if($this->uri->rsegment(1) == "community") echo 'class="active"'?> >
 					<h1>Community</h1>
 					<h2>Of Awesome People</h2>
 				</a>

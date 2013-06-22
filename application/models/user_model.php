@@ -56,6 +56,29 @@ class User_model extends CI_Model {
         }
     }
 
+    public function getTimeTillParty($partyInfo){
+
+        $newPartyInfo = $partyInfo;
+
+        foreach($partyInfo as $key=>$row){
+
+            $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
+            $date2      =   new DateTime($row['start']);
+            $interval   =   $date1->diff($date2);
+            $days       =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
+            $hours      =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
+            $minutes    =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
+            $seconds    =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
+
+            if($key+1 == count($partyInfo)){
+
+                return $newPartyInfo;
+            }
+            
+        }
+
+    }
+
     public function getUser($userID){
         
         $this->db->select('
@@ -298,6 +321,48 @@ class User_model extends CI_Model {
             $dataResults = objectToArray($dataResults);
 
             return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getUserParties($userID){
+
+        $this->db->select('
+            parties.party_id, 
+            parties.user_id, 
+            parties.date_created, 
+            parties.date_edited, 
+            parties.title, 
+            parties.description, 
+            parties.party_img, 
+            parties.party_location, 
+            parties.address, 
+            parties.start, 
+            parties.end, 
+            parties.goal,
+            parties.expired,
+            parties.attending,
+            users.username,
+        ');
+
+        $this->db->from('parties');
+        $this->db->join('users', 'parties.user_id = users.user_id');
+        $this->db->where("parties.user_id = '$userID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $this->getTimeTillParty($dataResults);
 
         }else{
             return false;

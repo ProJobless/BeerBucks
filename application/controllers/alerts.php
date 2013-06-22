@@ -12,7 +12,7 @@ class Alerts extends CI_Controller {
 	public function index (){
 
 		$data['friendReqs'] = $this->user_model->checkForFriendRequests();
-		$data['view'] = 'alerts';
+		$data['view'] = 'profile_alerts';
 		$this->load->view('includes/template', $data);
 
 	}

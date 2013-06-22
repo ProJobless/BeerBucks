@@ -81,7 +81,7 @@
 					</ul>
 					
 					<hgroup>
-						<h5>0</h5> <h6>contributors</h6>
+						<h5>0</h5> <h6>Contributions</h6>
 						<h5>0</h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
@@ -105,6 +105,7 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initDatePicker();</script>
+	<script>initDollarSign();</script>
 	<script>initDollarSign();</script>
 
 

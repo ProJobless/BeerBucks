@@ -1,4 +1,3 @@
-
 	<section id="cta" class="profile">
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
@@ -27,7 +26,7 @@
 				</ul>
 				
 				<hgroup>
-					<h5>0</h5> <h6>contributors</h6>
+					<h5>0</h5> <h6>Contributions</h6>
 					<h5>0</h5> <h6>Hosted Parties</h6>
 				</hgroup>
 			</article>
@@ -39,32 +38,47 @@
 
 		<section id="tabs">
 			<ul>
-				<li>Activity</li>
-				<li>Parties</li>
-				<a href="<?=base_url()?>index.php/profile"><li>Friends</li></a>
-				<li>Comments</li>
-				<li class="selected">Alerts</li>
- 			</ul>
+				<a href="<?=base_url()?>index.php/profile"><li>Activity</li>
+				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li>
+				<a href="<?=base_url()?>index.php/profile/friends"><li class="selected">Friends</li>
+				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li>
+				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
+			</ul>
 
-			<section id="tabContent" class="request">
-	
-				<? if(isset($friendReqs[0])): ?>
-					<? foreach ($friendReqs as $req): ?>
+			<section id="tabContent" class="friends">
 
-						<article>
-							<a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$req['profile_img']?>" alt=""></a>
-							<h1><a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><?=$req['username']?></a></h1>
-							<p>Wants to be your friend.</p>
-							<a href="<?=base_url()?>index.php/community/declineFriend/<?=$req['friendship_id']?>"><button>decline</button></a>
-							<a href="<?=base_url()?>index.php/community/acceptFriend/<?=$req['friendship_id']?>"><button>accept</button></a>
-						</article>
+				<? if(isset($friends[0])): ?>
+					<? foreach ($friends as $friend): ?>
+
+						<a href="<?=base_url()?>index.php/community/user/<?=$friend[0]['user_id']?>">
+							<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
+								<hgroup>
+									<h2><i><?=$friend[0]['username']?></i></h2>
+									<h3><?=$friend[0]['location']?></h3>
+									<h4><?=$friend[0]['bio']?></h4>
+								</hgroup>
+
+								<ul>
+									<li>FeedBack <span><?=$friend[0]['feedback']?></span></li>
+									<li>Views <span><?=$friend[0]['views']?></span></li>
+									<li>Comments <span><?=$friend[0]['comments']?></span></li>
+								</ul>
+
+								<hgroup>
+									<h5><?=$friend[0]['contributions']?></h5> <h6>contributions</h6>
+									<h5><?=$friend[0]['parties']?></h5> <h6>Hosted Parties</h6>
+								</hgroup>
+							</article>
+						</a>
 
 					<? endforeach; ?>
 
-				<?else:?>
-					<h1>You have no new alerts</h1>
-				<?endif;?>
+					<div><button>See More</button></div>
 
+				<?else:?>
+					<h1>Browse the community to find friends.</h1>
+				<?endif;?>
+				
 			</section>
 		</section>
 	</section>

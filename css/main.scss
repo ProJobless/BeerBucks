@@ -494,7 +494,7 @@ footer section:nth-of-type(2) li:last-child{
 #cta article{
 	width: 475px;
 	height: 190px;
-	background-color: rgba(39, 22, 64, .7);
+	background-color: rgba(39, 22, 64, .4);
 	float: right;
 	margin-top: 80px;
 	@include corners(5px);
@@ -516,7 +516,7 @@ footer section:nth-of-type(2) li:last-child{
 	font-weight: normal;
 	letter-spacing: 1px;
 	line-height: 1.1em;
-	@include textshadow();
+	@include textshadow(0, 0, 5px);
 }
 #cta a{
 	@include bluebutton();
@@ -1031,7 +1031,7 @@ article#topImages>a{
 }
 #cta.discover h1{
 	display: block;
-	width: 550px;
+	width: 100%;
 	line-height: 174px;
 	background-color: rgba(39, 22, 64, 0);
 	margin: 0 auto;
@@ -1166,7 +1166,7 @@ article#topImages>a{
 	background-color: $main-white;
 	border: 1px solid $light-gray;
 	float: left;
-	margin: 15px 15px 0px 0px;
+	margin: 15px 17px 0px 0px;
 	text-align: left;
 	@include corners(0px, 0px, 5px, 5px);
 	//@include outerglow();
@@ -1648,7 +1648,6 @@ article#topImages>a{
 	line-height: 40px;
 }
 
-
 /* ------------------------------ Start Page - Page 4: Review ------------------------------ */
 #tabContent.start #review{
 	width: 100%;
@@ -1694,6 +1693,7 @@ article#topImages>a{
 #tabContent.review form>div{
 	width: 960px;
 }
+
 /* ------------------------------ Start Page - Aside: PartyInfo ------------------------------ */
 #tabContent.start aside .partyInfo{
 	width: 220px;
@@ -1952,8 +1952,7 @@ article#topImages>a{
 }
 #cta.profile h1{
 	display: block;
-	width: 650px;
-	padding: 10px 0px;
+	width: 100%;
 	line-height: 174px;
 	background-color: rgba(39, 22, 64, 0);
 	margin: 0 auto;
@@ -1995,18 +1994,22 @@ article#topImages>a{
 	text-overflow:ellipsis;
 	overflow: hidden;
 }
-#profile article h2{
+#profile aside>article h2{
 	color: $light-purple;
 	font-weight: bold;
 	font-size: .8em;	
 	float: left;
 }
-#profile article h3{
+#profile aside>article h3{
 	float: right;
 	color: $dark-gray;
 	font-weight: bold;
 	font-size: .7em;
-	margin-top: 5px;	
+	margin-top: 5px;
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;	
 }
 #profile article h4{
 	color: $dark-gray;
@@ -2021,12 +2024,6 @@ article#topImages>a{
 }
 #profile article i{
 	color: $main-blue;
-}
-#profile article h3{
-	background: url("../img/icon-location-small-gray.png") no-repeat;
-	text-indent: 10px;
-	color: $dark-gray;
-	margin-top: 2px;
 }
 #profile article ul{
 	float: left;
@@ -2122,9 +2119,6 @@ article#topImages>a{
 #profile #tabs>ul li:nth-last-child(2){
 	border-right: solid 1px $light-gray;
 }
-#profile #tabs>ul li:nth-of-type(3){
-	height: 102%;
-}
 #profile #tabs>ul li:last-child{
 	border-right: solid 1px $light-gray;
 	&:hover{
@@ -2136,10 +2130,6 @@ article#topImages>a{
 #profile #tabContent{
 	height: auto;
 	width: 692px;
-}
-#profile #tabContent.friends{
-	float: left;
-	margin-top: -2px;
 }
 #profile #tabContent.friends>a{
 	height: auto;
@@ -2189,6 +2179,79 @@ article#topImages>a{
 }
 #profile #tabContent.friends>h1{
 	margin: 15px 0;
+}
+#profile #tabContent.friends article h3{
+	float: right;
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .7em;
+	margin-top: 5px;
+	background: url("../img/icon-location-small-gray.png") no-repeat;
+	text-indent: 10px;
+	color: $dark-gray;
+	margin-top: 2px;	
+}
+#profile #tabContent.friends article h2{
+	color: $light-purple;
+	font-weight: bold;
+	font-size: .8em;	
+	float: left;
+}
+
+/* ------------------------------ Profile Page - TabContent: Alerts ------------------------------ */
+#profile #tabContent.request{
+	padding-bottom: 20px;
+	float: left;
+}
+#profile #tabContent.request article {
+	width: 150px;
+	text-align: center;
+	float: left;
+}
+#profile #tabContent.request article img{
+	width: 150px;
+	height: 150px;
+}
+#profile #tabContent.request article h1{
+	font-weight: bold;
+	font-size: .8em;
+	color: $main-blue;
+	text-align: left;
+	margin-left: 5px;
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
+#profile #tabContent.request article p{
+	color: $dark-gray;
+	font-weight: bold;
+	font-size: .6em;
+	text-align: left;
+	margin-left: 5px;
+}
+#profile #tabContent.request article a:nth-of-type(2) button{
+	@include corners(5px,0,0,5px);
+	float: left;
+	margin-top: 15px;
+	margin-left: 17px;
+}
+#profile #tabContent.request article a:nth-of-type(3) button{
+	float: left;
+	@include corners(0,5px,5px,0);
+	margin-left: -1px;
+	margin-top: 15px;
+}
+#profile #tabContent.request>h1{
+	margin-top: 15px;
+}
+
+/* ------------------------------ Profile Page - TabContent: Parties ------------------------------ */
+#profile #tabContent.parties article{
+	margin-right: 16px;
+}
+#profile #tabContent.parties article:nth-of-type(3n+3){
+	margin-right: 0;
 }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
@@ -2740,8 +2803,7 @@ article#topImages>a{
 }
 #cta.party h1{
 	display: block;
-	width: 650px;
-	padding: 10px 0px;
+	width: 100%;
 	line-height: 174px;
 	background-color: rgba(39, 22, 64, 0);
 	margin: 0 auto;
@@ -3213,73 +3275,6 @@ article#topImages>a{
 	margin: 8px 0px 5px 3px;
 }
 
-/* ------------------------------ Start Alerts Page ------------------------------ */
-/* ------------------------------ Alerts Page - CTA ------------------------------ */
-#cta.party{
-	height: 174px;
-	width: 100%;
-	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
-	border-bottom: solid 5px $medium-purple;
-	position: relative;
-}
-#cta.party h1{
-	display: block;
-	width: 650px;
-	padding: 10px 0px;
-	line-height: 174px;
-	background-color: rgba(39, 22, 64, 0);
-	margin: 0 auto;
-	text-align: center;
-	@include corners(5px);
-}
 
-/* ------------------------------ Alerts Page - Request ------------------------------ */
-
-#profile #tabContent.request{
-	padding-bottom: 20px;
-	float: left;
-}
-#profile #tabContent.request article {
-	width: 150px;
-	text-align: center;
-	float: left;
-}
-#profile #tabContent.request article img{
-	width: 150px;
-	height: 150px;
-}
-#profile #tabContent.request article h1{
-	font-weight: bold;
-	font-size: .8em;
-	color: $main-blue;
-	text-align: left;
-	margin-left: 5px;
-	&:hover{
-		color: $blue-hover;
-		text-decoration: underline;
-	}
-}
-#profile #tabContent.request article p{
-	color: $dark-gray;
-	font-weight: bold;
-	font-size: .6em;
-	text-align: left;
-	margin-left: 5px;
-}
-#profile #tabContent.request article a:nth-of-type(2) button{
-	@include corners(5px,0,0,5px);
-	float: left;
-	margin-top: 15px;
-	margin-left: 17px;
-}
-#profile #tabContent.request article a:nth-of-type(3) button{
-	float: left;
-	@include corners(0,5px,5px,0);
-	margin-left: -1px;
-	margin-top: 15px;
-}
-#profile #tabContent.request>h1{
-	margin-top: 15px;
-}
 
 
