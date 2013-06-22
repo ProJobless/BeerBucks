@@ -73,29 +73,39 @@ var initTimeKeeper = function(){
 		day       =   days.text() || 0,
 		hor       =   hours.text() || 0,
 		min       =   minutes.text() || 0,
-		sec       =   seconds.text() || 0
+		sec       =   seconds.text() || 0,
+		reset     =   false
 	;
 
 	var countDown = function(){
-		seconds.text(--sec);
-		if(day == '0' && hor == '0' && min == '0' && sec === 0){
+		if(days.text() == '0' && hours.text() == '0' && minutes.text() == '0' && seconds.text() == '0'){
 			clearInterval(timer);
-			//Code for what to do when timer ends here.
 		}else{
-			if(sec === 0){
-				minutes.text(--min);
-				sec = 60;
-			}
-			if(min === 0){
-				hours.text(--hor);
-				min = 59;
-			}
-			if(hor === 0){
-				days.text(--day);
+
+			seconds.text(--sec);
+
+			if(sec === 0) sec = 60;
+
+			if(sec == 59) reset = true;
+
+			if(reset && minutes.text() == '0' && hours.text() == '0'){
+				hours.text('23');
 				hor = 23;
+				minutes.text('59');
+				min = 59;
+				days.text(--day);
+				reset = false;
+			}else if(reset && minutes.text() == '0'){
+				minutes.text('59');
+				min = 59;
+				hours.text(--hor);
+				reset = false;
+			}else if(seconds.text() == '59'){
+				minutes.text(--min);
+				reset = false;
 			}
 		}
-	}
+	};
 	var timer = setInterval(countDown,1000);
 };
 

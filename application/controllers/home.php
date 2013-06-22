@@ -14,6 +14,8 @@ class Home extends CI_Controller {
 		$this->load->model('app_model'); 
 		$userLocation = unserialize(base64_decode($this->app_model->userLocation()));
 
+		$this->app_model->getTweets();
+
 		$data['view'] = 'home';
 		$data['userLocation'] = $userLocation;
 

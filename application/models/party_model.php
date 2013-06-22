@@ -27,7 +27,7 @@ class Party_model extends CI_Model {
 
         $nonExpiredData   =   array();
         $currentData      =   array();
-        $today            =   date('Y-m-d h:i:s', time());
+        $today            =   date('Y-m-d H:i:s', time());
 
         foreach($partyInfo as $row){
 
@@ -38,6 +38,7 @@ class Party_model extends CI_Model {
             }else{
                 $this->changeToExpired($row);
             }
+
         }
 
         if($option){
@@ -65,13 +66,13 @@ class Party_model extends CI_Model {
 
         foreach($partyInfo as $key=>$row){
 
-            $date1     =   new DateTime(date('Y-m-d h:i:s', time()));
-            $date2     =   new DateTime($row['start']);
-            $interval  =   $date1->diff($date2);
-            $days      =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
-            $hours     =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
-            $minutes   =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
-            $seconds   =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
+            $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
+            $date2      =   new DateTime($row['start']);
+            $interval   =   $date1->diff($date2);
+            $days       =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
+            $hours      =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
+            $minutes    =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
+            $seconds    =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
 
             if($key+1 == count($partyInfo)){
 
@@ -102,10 +103,11 @@ class Party_model extends CI_Model {
         }
     
         if (strpos($time,'pm') !== false) {
-            $timeP->modify('+12 hours');
+            //$timeP->modify('-12 hours');
         }
 
         return array($timeP->format( 'Y-m-d H:i:s' ), $timezone);  
+
     }
 
     public function newParty(){
@@ -143,6 +145,7 @@ class Party_model extends CI_Model {
         $q = $this->db->insert('parties', $data);
         
         return $party_id;
+        
     }
 
     public function getParties(){

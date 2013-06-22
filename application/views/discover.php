@@ -35,19 +35,19 @@
 
 					<hgroup>
 						<h5><?=$party['attending']?></h5> <h6>Attending</h6>
-						<?if($party['days'] > 0):?>
+						<?if($party['days'] > 1):?>
 							<h5><?=$party['days']?></h5> <h6>Days Till Party</h6>
-						<?elseif($party['hours'] == 1):?>
+						<?elseif($party['days'] == 1):?>
 							<h5><?=$party['days']?></h5> <h6>Day Till Party</h6>
-						<?elseif($party['hours'] > 0):?>
+						<?elseif($party['hours'] > 1):?>
 							<h5><?=$party['hours']?></h5> <h6>Hours Till Party</h6>
 						<?elseif($party['hours'] == 1):?>
 							<h5><?=$party['hours']?></h5> <h6>Hour Till Party</h6>
-						<?elseif($party['minutes'] > 0):?>
+						<?elseif($party['minutes'] > 1):?>
 							<h5><?=$party['minutes']?></h5> <h6>Minutes Till Party</h6>
 						<?elseif($party['minutes'] = 1):?>
 							<h5><?=$party['minutes']?></h5> <h6>Minute Till Party</h6>
-						<?elseif($party['seconds'] > 0):?>
+						<?elseif($party['seconds'] > 1):?>
 							<h5><?=$party['seconds']?></h5> <h6>Seconds Till Party</h6>
 						<?elseif($party['seconds'] = 1):?>
 							<h5><?=$party['seconds']?></h5> <h6>Second Till Party</h6>
