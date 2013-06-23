@@ -147,40 +147,13 @@
 
 		<article id="tweets">
 			<h2>Tweets</h2>
-			<h3>@Beer-Bucks</h3>
+			<h3>@thebeerbucks</h3>
 			<ul>
+			<? foreach ($tweets as $tweet): ?>
 				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
+					<p><?=$tweet['text']?></p>
 				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<p>about 8 hours ago "No one looks back on their life and...”</p>
-				</li>
+			<? endforeach; ?>
 			</ul>
 		</article>
 

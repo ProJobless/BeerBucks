@@ -2649,8 +2649,18 @@ article#topImages > a {
 #profile #tabContent.friends article h4 {
   height: 40px; }
 
-#profile #tabContent.friends > h1 {
+#profile #tabContent > h1 {
   margin: 15px 0; }
+
+#profile #tabContent > a {
+  display: block;
+  font-weight: bold;
+  font-size: .8em;
+  color: #05a696;
+  margin: 15px 0; }
+  #profile #tabContent > a:hover {
+    color: #06bfad;
+    text-decoration: underline; }
 
 #profile #tabContent.friends article h3 {
   float: right;
@@ -2671,7 +2681,7 @@ article#topImages > a {
 
 /* ------------------------------ Profile Page - TabContent: Alerts ------------------------------ */
 #profile #tabContent.request {
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   float: left; }
 
 #profile #tabContent.request article {
@@ -2715,7 +2725,8 @@ article#topImages > a {
   margin-top: 15px; }
 
 #profile #tabContent.request > h1 {
-  margin-top: 15px; }
+  margin-top: 15px;
+  margin-bottom: 0px; }
 
 /* ------------------------------ Profile Page - TabContent: Parties ------------------------------ */
 #profile #tabContent.parties article {

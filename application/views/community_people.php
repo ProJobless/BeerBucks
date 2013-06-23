@@ -18,7 +18,7 @@
 			<? if(isset($users)): ?>
 				<? foreach ($users as $user): ?>
 
-					<a href="<?=base_url()?>index.php/community/user/<?=$user['user_id']?>">
+					<a href="<?=base_url()?>index.php/user/activity/<?=$user['user_id']?>">
 
 						<?if($user['profile_img']):?>
 							<article style="background: url(<?=base_url()?>uploads/profile/<?=$user['profile_img']?>);">

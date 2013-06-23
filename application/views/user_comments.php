@@ -49,16 +49,15 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li class="selected">Activity</li></a>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
 				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
+				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li class="selected">Comments</li></a>
 			</ul>
 
 			<section id="tabContent" class="friends">
 
 			
-
 			</section>
 		</section>
 	</section>

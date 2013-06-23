@@ -49,15 +49,45 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li class="selected">Activity</li></a>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
+				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li class="selected">Friends</li></a>
 				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
 			</ul>
 
 			<section id="tabContent" class="friends">
 
-			
+				<? if(isset($friends[0])): ?>
+					<? foreach ($friends as $friend): ?>
+
+						<a href="<?=base_url()?>index.php/community/user/<?=$friend[0]['user_id']?>">
+							<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
+								<hgroup>
+									<h2><i><?=$friend[0]['username']?></i></h2>
+									<h3><?=$friend[0]['location']?></h3>
+									<h4><?=$friend[0]['bio']?></h4>
+								</hgroup>
+
+								<ul>
+									<li>FeedBack <span><?=$friend[0]['feedback']?></span></li>
+									<li>Views <span><?=$friend[0]['views']?></span></li>
+									<li>Comments <span><?=$friend[0]['comments']?></span></li>
+								</ul>
+
+								<hgroup>
+									<h5><?=$friend[0]['contributions']?></h5> <h6>contributions</h6>
+									<h5><?=$friend[0]['parties']?></h5> <h6>Hosted Parties</h6>
+								</hgroup>
+							</article>
+						</a>
+
+					<? endforeach; ?>
+
+					<div><button>See More</button></div>
+
+				<?else:?>
+					<h1><?=$user[0]['username']?> has no friends added.</h1>
+				<?endif;?>
 
 			</section>
 		</section>

@@ -84,7 +84,7 @@ var initTimeKeeper = function(){
 
 			seconds.text(--sec);
 
-			if(sec === 0) sec = 60;
+			if(sec === 0 || sec == '0') sec = 60;
 
 			if(sec == 59) reset = true;
 

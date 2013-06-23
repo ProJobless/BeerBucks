@@ -39,25 +39,26 @@ class App_model extends CI_Model {
 
     public function getTweets(){
 
-
         $data = array(
-            'q' => '#BeerBucks',
+            'q' => '@thebeerbucks',
         );
 
-        //$content = $this->connection->get('search/tweets', $data);
+        $content = $this->connection->get('search/tweets', $data);
 
+        $tweets = objectToArray($content);
+        
+        $results = array();
 
-        //$tweets = objectToArray($content);
+        for ($i=0; $i < count($tweets['statuses']); $i++) { 
 
-        // echo '<pre>';
-        // print_r($tweets);
-        // echo '<pre>';
+            $text = $tweets['statuses'][$i]->text;
+            $name = $tweets['statuses'][$i]->user->screen_name;
 
+            $results[] = array('name' => $name, 'text' => $text);
 
-        // foreach($tweets as $row){
-         
-        //  }
+        }
 
+        return $results;
 
     }
 

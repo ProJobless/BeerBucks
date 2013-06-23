@@ -54,8 +54,8 @@
 							<a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$req['profile_img']?>" alt=""></a>
 							<h1><a href="<?=base_url()?>index.php/community/user/<?=$req['user_id']?>"><?=$req['username']?></a></h1>
 							<p>Wants to be your friend.</p>
-							<a href="<?=base_url()?>index.php/community/declineFriend/<?=$req['friendship_id']?>"><button>decline</button></a>
 							<a href="<?=base_url()?>index.php/community/acceptFriend/<?=$req['friendship_id']?>"><button>accept</button></a>
+							<a href="<?=base_url()?>index.php/community/declineFriend/<?=$req['friendship_id']?>"><button>decline</button></a>
 						</article>
 
 					<? endforeach; ?>
