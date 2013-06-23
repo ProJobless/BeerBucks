@@ -14,7 +14,8 @@ class Twitter extends CI_Controller{
         $this->load->model('authentication_model');
         $this->load->library('twitteroauth');
         $this->config->load('twitter');
-        
+        $this->load->model('app_model'); 
+
         if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret')){
             $this->connection = $this->twitteroauth->create($this->config->item('twitter_consumer_token'), $this->config->item('twitter_consumer_secret'), $this->session->userdata('access_token'),  $this->session->userdata('access_token_secret'));
         }elseif($this->session->userdata('request_token') && $this->session->userdata('request_token_secret')){
@@ -31,7 +32,12 @@ class Twitter extends CI_Controller{
 			// User is already authenticated. Add your user notification code here.
 			redirect(base_url('/'));
 		}else{
-			// Making a request for request_token
+			
+			if($this->session->userdata('request_token') || $this->session->userdata('request_token_secret')){
+				redirect('login');
+				$this->reset_session();
+			}
+			
 			$request_token = $this->connection->getRequestToken(base_url('index.php/twitter/callback'));
 
 			$this->session->set_userdata('request_token', $request_token['oauth_token']);
@@ -55,7 +61,6 @@ class Twitter extends CI_Controller{
 
 		if($this->input->get('oauth_token') && $this->session->userdata('request_token') !== $this->input->get('oauth_token')){
 			
-			$this->reset_session();
 			redirect(base_url('index.php/twitter/auth'));
 
 		}else{
@@ -73,11 +78,14 @@ class Twitter extends CI_Controller{
 				$this->session->unset_userdata('request_token_secret');
 
 				if($this->authentication_model->twitter($access_token)){
+
+					//$this->app_model->getTwitterImage();
 					redirect('profile');
 				}
 			
 			}else{
 				// An error occured. Add your notification code here.
+				$this->reset_session();
 				redirect(base_url('index.php/login'));
 			}
 
@@ -126,6 +134,17 @@ class Twitter extends CI_Controller{
 			}
 
 		}
+
+	}
+
+	private function reset_session(){
+
+		$this->session->unset_userdata('access_token');
+		$this->session->unset_userdata('access_token_secret');
+		$this->session->unset_userdata('request_token');
+		$this->session->unset_userdata('request_token_secret');
+		$this->session->unset_userdata('twitter_user_id');
+		$this->session->unset_userdata('twitter_screen_name');
 
 	}
 

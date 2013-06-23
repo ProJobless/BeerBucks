@@ -6,6 +6,7 @@ class Authentication_model extends CI_Model {
         parent::__construct();
 
         $this->load->helper('object_to_array.php');
+
     }
 
 	function checkIfExists($value, $variable) {
@@ -350,7 +351,8 @@ class Authentication_model extends CI_Model {
 
             $sData = array(
                 'userID' => $userID,
-                'username' => $username
+                'username' => $username,
+                'twitter_user_id' => $twData['user_id'],
             );
 
             $this->session->set_userdata($sData);
@@ -371,6 +373,7 @@ class Authentication_model extends CI_Model {
                 'location' => $uData[0]['location'],
                 'timezone' => $uData[0]['timezone'],
                 'bio' => $uData[0]['bio'],
+                'twitter_user_id' => $twData['user_id'],
             );
 
             $this->session->set_userdata($sData);

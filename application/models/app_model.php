@@ -39,6 +39,14 @@ class App_model extends CI_Model {
 
     public function getTweets(){
 
+        if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret')){
+            
+        }else{
+            $this->session->set_userdata('access_token', '708143798-Pbuioc0jI2xAgGhRugWduxkSjKxpVDEShvdEmjF1');
+            $this->session->set_userdata('access_token_secret', 'CbPzRrmLopnTJLdYFlGlPLnLT8KMVUSgqYF9fzMGzg');
+            redirect('/');
+        }
+
         $data = array(
             'q' => '@thebeerbucks',
         );
@@ -46,7 +54,7 @@ class App_model extends CI_Model {
         $content = $this->connection->get('search/tweets', $data);
 
         $tweets = objectToArray($content);
-        
+
         $results = array();
 
         for ($i=0; $i < count($tweets['statuses']); $i++) { 
@@ -60,6 +68,21 @@ class App_model extends CI_Model {
 
         return $results;
 
+    }
+
+    public function getTwitterImage(){
+
+        $data = array(
+            'user_id' => $this->session->userdata('twitter_user_id'),
+        );
+
+        $content = $this->connection->get('users/lookup', $data);
+
+        $info = objectToArray($content);
+
+        echo '<pre>';
+        print_r($info);
+        echo '<pre>';
     }
 
 }
