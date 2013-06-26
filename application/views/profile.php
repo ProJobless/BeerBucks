@@ -1,3 +1,9 @@
+	<? 
+		// echo '<pre>';
+		// print_r($activity);
+		// echo '<pre>'; 
+	?>
+
 	<section id="cta" class="profile">
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
@@ -38,16 +44,54 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li class="selected">Activity</li>
-				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li>
-				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li>
+				<a href="<?=base_url()?>index.php/profile/activity"><li class="selected">Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
 				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
 			</ul>
 
-			<section id="tabContent" class="friends">
+			<section id="tabContent" class="activity">
 
-				
+				<?if($activity['activity'][0]):?>
+					<?foreach($activity['activity'] as $a): ?>
+
+						<? if($a['type'] == 'party'):?>
+							<article>
+								<?if($a['party_img']):?>
+									<a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><img src="<?=base_url()?>uploads/party/<?=$a['party_img']?>" alt="" width="65" height="65" /></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><img src="" alt="" width="65" height="65" /></a>
+								<?endif;?>
+
+								<div>
+									<p>You started a new party <a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><?=$a['title']?></a> <span><?=$a['date']?></span></p>
+								</div>
+							</article>
+
+						<?elseif($a['type'] == 'friend'):?>
+							<article>
+								<?if($a['profile_img']):?>
+									<a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['profile_img']?>" alt="" width="65" height="65" /></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
+								<?endif;?>
+
+								<div>
+									<p>You and <a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date']?></span></p>
+								</div>
+							</article>
+
+
+
+
+
+
+						<?endif;?>
+					
+
+					<?endforeach;?>
+				<?endif;?>
 
 
 

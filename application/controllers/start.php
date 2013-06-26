@@ -297,7 +297,7 @@ class Start extends CI_Controller {
 
 						$this->session->set_userdata($sData2);
 
-						redirect('discover/party/' . $result, 'refresh');
+						redirect('party/attending/' . $result, 'refresh');
 
 		            }
 

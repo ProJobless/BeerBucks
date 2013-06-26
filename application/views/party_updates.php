@@ -13,46 +13,14 @@
 		<section id="tabs">
 			<ul>
 				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li>Attending</li></a>
-				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li class="selected">Comments</li></a>
-				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
+				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li>Comments</li></a>
+				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li class="selected">Updates</li></a>
 				<li class="more"><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
 			</ul>
 
-			<section id="tabContent" class="comments">
+			<section id="tabContent" class="updates">
 				
-				<?if($comments[0]):?>
-					<?foreach($comments as $comment): ?>
-
-						<article>
-							<?if($comment['profile_img']):?>
-								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
-							<?else:?>
-								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
-							<?endif;?>
-
-							<div>
-								<p><?=$comment['party_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
-							</div>
-						</article>
-
-					<?endforeach;?>
-				<?endif;?>
-
-				<h1>Post a comment</h1>
-
-				<article>
-					<?if($this->session->userdata('profileImage')):?>
-						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
-					<?else:?>
-						<img src="" alt="" width="50" height="50" />
-					<?endif;?>
-
-					<?=form_open("/party/comment/$partyID"); ?>
-						<textarea name="comment" cols="30" rows="10"></textarea>
-						<h2>400/400 characters left</h2>
-						<button>Post Comment</button>
-					<?=form_close();?>
-				</article>
+				
 			
 			</section>
 		</section>

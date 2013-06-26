@@ -170,6 +170,7 @@ body{
 	background: url("../img/bg-pattern1.jpg") $main-white;
 	overflow-x: hidden;
 	letter-spacing: .03em;
+	font-size: 16px;
 }
 .sizer{
 	width: 960px;
@@ -1178,7 +1179,7 @@ article#topImages>a{
 	background-color: $main-white;
 	border: 1px solid $light-gray;
 	float: left;
-	margin: 15px 17px 0px 0px;
+	margin: 13px 17px 0px 0px;
 	text-align: left;
 	@include corners(0px, 0px, 5px, 5px);
 	//@include outerglow();
@@ -2189,20 +2190,20 @@ article#topImages>a{
 #profile #tabContent.friends article h4{
 	height: 40px;
 }
-#profile #tabContent h1{
+#profile #tabContent>h1{
 	margin: 15px 0;
 }
-#profile #tabContent>a{
-	display: block;
-	font-weight: bold;
-	font-size: .8em;
-	color: $main-blue;
-	margin: 15px 0;
-	&:hover{
-		color: $blue-hover;
-		text-decoration: underline;
-	}
-}
+// #profile #tabContent>a{
+// 	display: block;
+// 	font-weight: bold;
+// 	font-size: .8em;
+// 	color: $main-blue;
+// 	//margin: 15px 0;
+// 	&:hover{
+// 		color: $blue-hover;
+// 		text-decoration: underline;
+// 	}
+// }
 #profile #tabContent.friends article h3{
 	float: right;
 	color: $dark-gray;
@@ -2230,6 +2231,7 @@ article#topImages>a{
 	width: 150px;
 	text-align: center;
 	float: left;
+	margin-top: 13px;
 }
 #profile #tabContent.request article img{
 	width: 150px;
@@ -2277,6 +2279,7 @@ article#topImages>a{
 #profile #tabContent.parties article:nth-of-type(3n+3){
 	margin-right: 0;
 }
+
 /* ------------------------------ Profile Page - TabContent: Comments ------------------------------ */
 #tabContent.comments>h1{
 	width: 720px;
@@ -2297,7 +2300,7 @@ article#topImages>a{
 	background-color: $light-white;
 	border: none;
 	padding-top: 3px;
-	margin-top: 15px;
+	margin-top: 13px;
 	text-align: left;
 	position: relative;
 	overflow: hidden;
@@ -2398,6 +2401,86 @@ article#topImages>a{
 #tabContent.comments article span{
 	font-size: .8em;
 }
+
+/* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
+#tabContent.activity>h1{
+	width: 720px;
+	height: 40px;
+	background-color: $main-white;
+	margin-left: -13px !important;
+	margin-top: 15px !important;
+	line-height: 40px;
+	font-size: 1.1em;
+	font-weight: 300;
+	color: $dark-gray;
+	border-top: solid 1px $light-gray;
+	border-bottom: solid 1px $light-gray;
+}
+#tabContent.activity article{
+	width: 100%;
+	height: auto;
+	background-color: $light-white;
+	border: none;
+	padding-top: 3px;
+	margin-top: 13px;
+	text-align: left;
+	position: relative;
+	overflow: hidden;
+	@include unglow();
+}
+#tabContent.activity article:last-of-type{
+	margin-bottom: 13px;
+}
+#tabContent.activity article img{
+	background-color: $dark-purple;
+	width: 65px;
+	height: 65px;
+}
+#tabContent.activity article form h2{
+	color: $dark-gray;
+	font-size: .8em;
+	position: absolute;
+	top: 175px;
+}
+#tabContent.activity article div{
+	width: 600px;
+	height: auto;
+	background-color: $main-white;
+	float: right;	
+	padding: 10px;
+	position: relative;
+	clear: none;
+}
+#tabContent.activity article:last-of-type button{
+	position: absolute;
+	right: 10px;
+	top: 170px;
+}
+#tabContent.activity article p{
+	width: 580px;
+	height: auto;
+	border: solid 1px $light-gray;
+	background-color: $light-white;
+	//position: absolute;
+	padding: 10px 5px;
+	z-index: 2;
+	margin: 1px;
+	margin-left: 3px;
+	color: $dark-gray;
+	@include corners();
+}
+#tabContent.activity article a{
+	font-weight: bold;
+	color: $main-blue;
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
+#tabContent.activity article span{
+	font-size: .8em;
+}
+
 /* ------------------------------ Start Settings Page ------------------------------ */
 /* ------------------------------ Settings Page - Profile Preview ------------------------------ */
 #settings{

@@ -110,4 +110,15 @@ class Party extends CI_Controller {
 
 	}
 
+	public function updates($partyID = 0){
+
+			//$data['updates']   =   $this->party_model->getUpdates();
+			$data['partyID']   =   $partyID;
+			$data['party']     =   $this->party_model->getParty($partyID);
+			$data['view']      =   'party_updates';
+
+			$this->load->view('includes/template', $data);
+
+	}
+
 }

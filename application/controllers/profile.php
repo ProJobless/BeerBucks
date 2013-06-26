@@ -14,10 +14,7 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$data['friends']   =   $this->user_model->getFriends($this->session->userdata('userID'));
-			$data['view']      =   'profile';
-
-			$this->load->view('includes/template', $data);
+			redirect('profile/activity');
 
 		}else{
 
@@ -31,7 +28,12 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$data['view'] = 'profile_activity';
+			$userID             =   $this->session->userdata('userID');
+			$data['friends']    =   $this->user_model->getFriends($userID);
+			$data['parties']    =   $this->user_model->getUserParties($userID);
+			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+			$data['view']       =   'profile';
+
 			$this->load->view('includes/template', $data);
 
 		}else{
@@ -46,7 +48,8 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$data['parties']   =   $this->user_model->getUserParties($this->session->userdata('userID'));
+			$userID            =   $this->session->userdata('userID');
+			$data['parties']   =   $this->user_model->getUserParties($userID);
 			$data['view']      =   'profile_parties';
 
 			$this->load->view('includes/template', $data);
@@ -99,9 +102,9 @@ class Profile extends CI_Controller {
 
 		$config = array(
 			array(
-				'field' => 'comment',
-				'label' => 'Comment',
-				'rules' => 'trim|required|min_length[3]|max_length[400]|xss_clean'
+				'field'   =>   'comment',
+				'label'   =>   'Comment',
+				'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
 			)
 		);
 
@@ -121,6 +124,50 @@ class Profile extends CI_Controller {
 
 			}
 
+		}
+
+	}
+
+	public function acceptFriend($friendshipID){
+
+		if($this->user_model->acceptFriend($friendshipID)){
+
+			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			$data['view']         =   'profile_alerts';
+			$data['message']      =   'Friend added.';
+
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			$data['view']         =   'profile_alerts';
+			$data['message']      =   'Problem adding friend.';
+
+			$this->load->view('includes/template', $data);
+
+		}
+
+	}
+
+	public function declineFriend($friendshipID){
+
+		if($this->user_model->declineFriend($friendshipID)){
+
+			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			$data['view']         =   'profile_alerts';
+			$data['message']      =   'Friend request denied.';
+
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			$data['view']         =   'profile_alerts';
+			$data['message']      =   'Problem denying friend request.';
+
+			$this->load->view('includes/template', $data);
+			
 		}
 
 	}

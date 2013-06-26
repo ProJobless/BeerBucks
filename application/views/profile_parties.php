@@ -38,10 +38,10 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li>Activity</li>
-				<a href="<?=base_url()?>index.php/profile/parties"><li class="selected">Parties</li>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li>
-				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li>
+				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><li class="selected">Parties</li></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
 				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
 			</ul>
 
@@ -58,7 +58,7 @@
 						
 							<hgroup>
 								<h2><a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
-								<h3>Hosted by <i><a href="<?=base_url()?>index.php/community/user/<?=$party['user_id']?>"><?=$party['username']?></a></i></h3>
+								<h3>Hosted by <i><?=$party['username']?></i></h3>
 								<h4><?=$party['description']?></h4>
 								<h3><?=$party['party_location']?></h3>
 							</hgroup>

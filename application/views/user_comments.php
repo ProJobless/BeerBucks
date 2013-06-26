@@ -75,7 +75,7 @@
 					<?endforeach;?>
 				<?endif;?>
 
-			<h1>Post a comment</h1>
+				<h1>Post a comment</h1>
 
 				<article>
 					<?if($this->session->userdata('profileImage')):?>

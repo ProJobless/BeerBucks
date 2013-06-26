@@ -177,7 +177,7 @@
 				<?endif;?>
 				
 				<hgroup>
-					<h2><i><a href="<?=base_url()?>index.php/community/user/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
+					<h2><i><a href="<?=base_url()?>index.php/user/activity/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
 					<h3><?=$party[0]['location']?></h3>
 					<h4><?=$party[0]['bio']?></h4>
 				</hgroup>

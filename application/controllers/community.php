@@ -42,50 +42,6 @@ class Community extends CI_Controller {
 
 	}
 
-	public function acceptFriend($friendshipID){
-
-		if($this->user_model->acceptFriend($friendshipID)){
-
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Friend added.';
-
-			$this->load->view('includes/template', $data);
-
-		}else{
-
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Problem adding friend.';
-
-			$this->load->view('includes/template', $data);
-
-		}
-
-	}
-
-	public function declineFriend($friendshipID){
-
-		if($this->user_model->declineFriend($friendshipID)){
-
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'alerts';
-			$data['message']      =   'Friend request denied.';
-
-			$this->load->view('includes/template', $data);
-
-		}else{
-
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'alerts';
-			$data['message']      =   'Problem denying friend request.';
-
-			$this->load->view('includes/template', $data);
-			
-		}
-
-	}
-
 	public function people(){
 
 		$data['users']   =   $this->user_model->getUsers();

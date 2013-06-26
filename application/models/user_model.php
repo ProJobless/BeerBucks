@@ -79,8 +79,8 @@ class User_model extends CI_Model {
 
     }
 
-    public function getUser($userID){
-        
+    public function getUser($userID, $dateOfAccept = 0){
+
         $this->db->select('
             user_id,
             username,
@@ -102,10 +102,17 @@ class User_model extends CI_Model {
         if($query->num_rows > 0){
 
             foreach($query->result() as $row){
+
                 $dataResults[] = $row;
             }
 
             $dataResults = objectToArray($dataResults);
+
+            if($dateOfAccept){
+                
+                $dataResults[0]['dateOfAccept'] = $dateOfAccept;
+
+            }
 
             return $dataResults;
 
@@ -190,8 +197,11 @@ class User_model extends CI_Model {
 
     public function acceptFriend($friendshipID){
 
+        $dateOfAccept = date('Y/m/d h:i:s', time());
+
         $data = array(
-            'active' => 1,
+            'active'           =>   1,
+            'date_of_accept'   =>   $dateOfAccept,
         );
 
         $this->db->where('friendship_id', $friendshipID);
@@ -245,15 +255,15 @@ class User_model extends CI_Model {
             user1_id,
             user2_id,
             active,
+            date_of_accept,
         ');
 
         $this->db->from('friends');
         $this->db->where("(
             user1_id = '$userID' OR 
             user2_id = '$userID') AND 
-            active = '1'"
-        );
-        
+            active = '1'
+        ");
 
         $query = $this->db->get();
 
@@ -268,10 +278,10 @@ class User_model extends CI_Model {
 
             foreach($dataResults as $row){
                 if($row['user1_id'] == $userID){
-                    array_push($results, $row['user2_id']);
+                    array_push($results, array($row['user2_id'], $row['date_of_accept']));
                 }
                 if($row['user2_id'] == $userID){
-                    array_push($results, $row['user1_id']);
+                    array_push($results, array($row['user1_id'], $row['date_of_accept']));
                 }
 
             }
@@ -280,7 +290,7 @@ class User_model extends CI_Model {
 
             foreach($results as $row){
 
-                array_push($userResults, $this->getUser($row));
+                array_push($userResults, $this->getUser($row[0], $row[1]));
             }
 
             return $userResults;
@@ -379,8 +389,7 @@ class User_model extends CI_Model {
 
         $comment         =   $this->security->xss_clean($this->input->post('comment'));
         $userCommentID   =   uniqid();
-        
-        $posterID = $this->session->userdata('userID'); 
+        $posterID        =   $this->session->userdata('userID'); 
         $dateOfCom       =   date('Y/m/d h:i:s', time());
 
         $data = array(
@@ -436,6 +445,46 @@ class User_model extends CI_Model {
             return false;
         }
 
+    }
+
+    public function sortActivity($friendInfo, $partyInfo){
+
+        $parsedActivity = array();
+        $key = 0;
+
+        foreach($friendInfo as $friend){
+
+            $parsedActivity['activity'][$key]['type'] = 'friend';
+            $parsedActivity['activity'][$key]['username'] = $friend[0]['username'];
+            $parsedActivity['activity'][$key]['date'] = $friend[0]['dateOfAccept'];
+            $parsedActivity['activity'][$key]['profile_img'] = $friend[0]['profile_img'];
+            $parsedActivity['activity'][$key]['user_id'] = $friend[0]['user_id'];
+            $key ++;
+
+        }
+
+        foreach($partyInfo as $party){
+
+            $parsedActivity['activity'][$key]['type'] = 'party';
+            $parsedActivity['activity'][$key]['title'] = $party['title'];
+            $parsedActivity['activity'][$key]['date'] = $party['date_created'];
+            $parsedActivity['activity'][$key]['party_id'] = $party['party_id'];
+            $parsedActivity['activity'][$key]['user_id'] = $party['user_id'];
+            $parsedActivity['activity'][$key]['party_img'] = $party['party_img'];
+            $key ++;
+
+        }
+
+        function date_compare($a, $b){
+
+            $t1 = strtotime($a['date']);
+            $t2 = strtotime($b['date']);
+            return $t2 - $t1;
+        }    
+
+        usort($parsedActivity['activity'], 'date_compare');
+
+        return $parsedActivity;
     }
 
 }

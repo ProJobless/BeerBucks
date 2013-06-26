@@ -40,7 +40,8 @@ body {
   width: 100%;
   background: url("../img/bg-pattern1.jpg") #edf6f5;
   overflow-x: hidden;
-  letter-spacing: .03em; }
+  letter-spacing: .03em;
+  font-size: 16px; }
 
 .sizer {
   width: 960px;
@@ -1290,7 +1291,7 @@ article#topImages > a {
   background-color: #edf6f5;
   border: 1px solid #dddddd;
   float: left;
-  margin: 15px 17px 0px 0px;
+  margin: 13px 17px 0px 0px;
   text-align: left;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px; }
@@ -2661,18 +2662,8 @@ article#topImages > a {
 #profile #tabContent.friends article h4 {
   height: 40px; }
 
-#profile #tabContent h1 {
+#profile #tabContent > h1 {
   margin: 15px 0; }
-
-#profile #tabContent > a {
-  display: block;
-  font-weight: bold;
-  font-size: .8em;
-  color: #05a696;
-  margin: 15px 0; }
-  #profile #tabContent > a:hover {
-    color: #06bfad;
-    text-decoration: underline; }
 
 #profile #tabContent.friends article h3 {
   float: right;
@@ -2699,7 +2690,8 @@ article#topImages > a {
 #profile #tabContent.request article {
   width: 150px;
   text-align: center;
-  float: left; }
+  float: left;
+  margin-top: 13px; }
 
 #profile #tabContent.request article img {
   width: 150px;
@@ -2767,7 +2759,7 @@ article#topImages > a {
   background-color: #fafdff;
   border: none;
   padding-top: 3px;
-  margin-top: 15px;
+  margin-top: 13px;
   text-align: left;
   position: relative;
   overflow: hidden;
@@ -2853,6 +2845,84 @@ article#topImages > a {
     text-decoration: underline; }
 
 #tabContent.comments article span {
+  font-size: .8em; }
+
+/* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
+#tabContent.activity > h1 {
+  width: 720px;
+  height: 40px;
+  background-color: #edf6f5;
+  margin-left: -13px !important;
+  margin-top: 15px !important;
+  line-height: 40px;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #666666;
+  border-top: solid 1px #dddddd;
+  border-bottom: solid 1px #dddddd; }
+
+#tabContent.activity article {
+  width: 100%;
+  height: auto;
+  background-color: #fafdff;
+  border: none;
+  padding-top: 3px;
+  margin-top: 13px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#tabContent.activity article:last-of-type {
+  margin-bottom: 13px; }
+
+#tabContent.activity article img {
+  background-color: #071226;
+  width: 65px;
+  height: 65px; }
+
+#tabContent.activity article form h2 {
+  color: #666666;
+  font-size: .8em;
+  position: absolute;
+  top: 175px; }
+
+#tabContent.activity article div {
+  width: 600px;
+  height: auto;
+  background-color: #edf6f5;
+  float: right;
+  padding: 10px;
+  position: relative;
+  clear: none; }
+
+#tabContent.activity article:last-of-type button {
+  position: absolute;
+  right: 10px;
+  top: 170px; }
+
+#tabContent.activity article p {
+  width: 580px;
+  height: auto;
+  border: solid 1px #dddddd;
+  background-color: #fafdff;
+  padding: 10px 5px;
+  z-index: 2;
+  margin: 1px;
+  margin-left: 3px;
+  color: #666666;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+#tabContent.activity article a {
+  font-weight: bold;
+  color: #05a696; }
+  #tabContent.activity article a:hover {
+    color: #06bfad;
+    text-decoration: underline; }
+
+#tabContent.activity article span {
   font-size: .8em; }
 
 /* ------------------------------ Start Settings Page ------------------------------ */

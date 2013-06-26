@@ -38,10 +38,10 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li>Activity</li>
-				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li>
-				<a href="<?=base_url()?>index.php/profile/comments"><li class="selected">Comments</li>
+				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><li class="selected">Comments</li></a>
 				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
 			</ul>
 
@@ -52,7 +52,7 @@
 
 						<article>
 							<?if($comment['profile_img']):?>
-								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
+								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="65" height="65" /></a>
 							<?else:?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
 							<?endif;?>
