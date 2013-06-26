@@ -46,21 +46,24 @@
 			</ul>
 
 			<section id="tabContent" class="comments">
-				<?foreach($comments as $comment): ?>
 
-					<article>
-						<?if($this->session->userdata('profileImage')):?>
-							<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
-						<?else:?>
-							<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
-						<?endif;?>
+				<?if($comments[0]):?>
+					<?foreach($comments as $comment): ?>
 
-						<div>
-							<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a></p>
-						</div>
-					</article>
-				
-				<?endforeach;?>
+						<article>
+							<?if($comment['profile_img']):?>
+								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
+							<?else:?>
+								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
+							<?endif;?>
+
+							<div>
+								<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?> </a><span>on <?=$comment['comment_date']?></span></p>
+							</div>
+						</article>
+					
+					<?endforeach;?>
+				<?endif;?>
 
 
 
@@ -75,6 +78,7 @@
 
 					<?=form_open("/profile/comment"); ?>
 						<textarea name="comment" cols="30" rows="10"></textarea>
+						<h2>400/400 characters left</h2>
 						<button>Post Comment</button>
 					<?=form_close();?>
 				</article>

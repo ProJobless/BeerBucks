@@ -12,9 +12,9 @@
 
 		<section id="tabs">
 			<ul>
-				<a href=""><li class="selected">Attending</li></a>
-				<a href=""><li>Comments</li></a>
-				<a href=""><li>Updates</li></a>
+				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li class="selected">Attending</li></a>
+				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li>Comments</li></a>
+				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
 				<li class="more"><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
 			</ul>
 

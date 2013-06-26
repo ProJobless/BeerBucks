@@ -56,13 +56,12 @@
 			</ul>
 
 			<section id="tabContent" class="comments">
-	
 
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
 
 						<article>
-							<?if($this->session->userdata('profileImage')):?>
+							<?if($comment['profile_img']):?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
 							<?else:?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
@@ -76,12 +75,6 @@
 					<?endforeach;?>
 				<?endif;?>
 
-
-
-
-
-
-
 			<h1>Post a comment</h1>
 
 				<article>
@@ -93,6 +86,7 @@
 
 					<?=form_open("/user/comment/$user2"); ?>
 						<textarea name="comment" cols="30" rows="10"></textarea>
+						<h2>400/400 characters left</h2>
 						<button>Post Comment</button>
 					<?=form_close();?>
 				</article>

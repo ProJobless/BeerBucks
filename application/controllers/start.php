@@ -21,8 +21,7 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'join';
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 
@@ -53,9 +52,7 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'join';
-
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 
@@ -160,8 +157,7 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'join';
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 
@@ -237,9 +233,7 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'join';
-
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 
@@ -313,9 +307,7 @@ class Start extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'join';
-			
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 

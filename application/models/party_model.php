@@ -284,4 +284,60 @@ class Party_model extends CI_Model {
 
     }
 
+    public function postComment($partyID = 0){
+
+        $comment         =   $this->security->xss_clean($this->input->post('comment'));
+        $partyCommentID   =   uniqid();
+        
+        $posterID = $this->session->userdata('userID'); 
+        $dateOfCom       =   date('Y/m/d h:i:s', time());
+
+        $data = array(
+            'party_comment_id'   =>   $partyCommentID,
+            'party_id'           =>   $partyID,
+            'poster_id'          =>   $posterID,
+            'party_comment'      =>   $comment,
+            'comment_date'       =>   $dateOfCom,
+        );
+
+        $q = $this->db->insert('party_comments', $data);
+
+        return true;
+
+    }
+
+    public function getComments($partyID = 0){
+
+        $this->db->select('
+            party_comments.party_comment_id,
+            party_comments.party_comment,
+            party_comments.comment_date,
+            users.user_id,
+            users.username,
+            users.profile_img,
+        ');
+
+        $this->db->from('party_comments');
+        $this->db->join('users', 'party_comments.poster_id = users.user_id');
+        $this->db->where("party_comments.party_id = '$partyID'");
+        $this->db->order_by("party_comment_id", "desc");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
 }

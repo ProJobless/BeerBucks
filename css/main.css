@@ -2661,7 +2661,7 @@ article#topImages > a {
 #profile #tabContent.friends article h4 {
   height: 40px; }
 
-#profile #tabContent > h1 {
+#profile #tabContent h1 {
   margin: 15px 0; }
 
 #profile #tabContent > a {
@@ -2748,11 +2748,12 @@ article#topImages > a {
   margin-right: 0; }
 
 /* ------------------------------ Profile Page - TabContent: Comments ------------------------------ */
-#profile #tabContent.comments > h1 {
+#tabContent.comments > h1 {
   width: 720px;
   height: 40px;
   background-color: #edf6f5;
-  margin-left: -13px;
+  margin-left: -13px !important;
+  margin-top: 15px !important;
   line-height: 40px;
   font-size: 1.1em;
   font-weight: 300;
@@ -2760,17 +2761,20 @@ article#topImages > a {
   border-top: solid 1px #dddddd;
   border-bottom: solid 1px #dddddd; }
 
-#profile #tabContent.comments article {
+#tabContent.comments article {
   width: 100%;
   height: auto;
   background-color: #fafdff;
   border: none;
   padding-top: 3px;
+  margin-top: 15px;
+  text-align: left;
   position: relative;
+  overflow: hidden;
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-#profile #tabContent.comments article:last-of-type {
+#tabContent.comments article:last-of-type {
   width: 100%;
   height: 240px;
   background-color: #fafdff;
@@ -2780,15 +2784,17 @@ article#topImages > a {
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-#profile #tabContent.comments article img {
+#tabContent.comments article img {
   background-color: #071226;
   width: 65px;
-  height: 65px;
-  float: left; }
+  height: 65px; }
 
-#profile #tabContent.comments article textarea {
+#tabContent.comments article textarea {
   width: 590px;
+  max-width: 590px;
   height: 140px;
+  max-height: 140px;
+  resize: none;
   border: solid 2px #dddddd;
   background-color: #fafdff;
   z-index: 2;
@@ -2796,7 +2802,7 @@ article#topImages > a {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
 
-#profile #tabContent.comments article form {
+#tabContent.comments article form {
   width: 600px;
   height: auto;
   background-color: #edf6f5;
@@ -2805,7 +2811,13 @@ article#topImages > a {
   position: relative;
   clear: none; }
 
-#profile #tabContent.comments article div {
+#tabContent.comments article form h2 {
+  color: #666666;
+  font-size: .8em;
+  position: absolute;
+  top: 175px; }
+
+#tabContent.comments article div {
   width: 600px;
   height: auto;
   background-color: #edf6f5;
@@ -2814,12 +2826,12 @@ article#topImages > a {
   position: relative;
   clear: none; }
 
-#profile #tabContent.comments article:last-of-type button {
+#tabContent.comments article:last-of-type button {
   position: absolute;
   right: 10px;
   top: 170px; }
 
-#profile #tabContent.comments article p {
+#tabContent.comments article p {
   width: 580px;
   height: auto;
   border: solid 1px #dddddd;
@@ -2832,15 +2844,15 @@ article#topImages > a {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
 
-#profile #tabContent.comments article a {
+#tabContent.comments article a {
   font-weight: bold;
   font-size: .8em;
   color: #05a696; }
-  #profile #tabContent.comments article a:hover {
+  #tabContent.comments article a:hover {
     color: #06bfad;
     text-decoration: underline; }
 
-#profile #tabContent.comments article span {
+#tabContent.comments article span {
   font-size: .8em; }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
@@ -3696,7 +3708,8 @@ article#topImages > a {
 /* ------------------------------ Party Page - TabContent: Friends ------------------------------ */
 #party #tabContent {
   height: auto;
-  width: 692px; }
+  width: 692px;
+  overflow: hidden; }
 
 #party #tabContent.friends article {
   height: 25px;

@@ -16,7 +16,7 @@ class User extends CI_Controller {
 
 	}
 
-	public function activity($user2ID){	
+	public function activity($user2ID = 0){	
 
 		if($user2ID != $this->session->userdata('userID') && $user2ID){
 
@@ -26,9 +26,10 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['user'] = $this->user_model->getUser($user2ID);
-			$data['friends'] = $this->user_model->getFriends($user2ID);
-			$data['view'] = 'user';
+			$data['user']      =   $this->user_model->getUser($user2ID);
+			$data['friends']   =   $this->user_model->getFriends($user2ID);
+			$data['view']      =   'user';
+			
 			$this->load->view('includes/template', $data);
 			
 		}else{
@@ -49,9 +50,10 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['user'] = $this->user_model->getUser($user2ID);
-			$data['parties'] = $this->user_model->getUserParties($user2ID);
-			$data['view'] = 'user_parties';
+			$data['user']      =   $this->user_model->getUser($user2ID);
+			$data['parties']   =   $this->user_model->getUserParties($user2ID);
+			$data['view']      =   'user_parties';
+
 			$this->load->view('includes/template', $data);
 			
 		}else{
@@ -72,9 +74,10 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['user'] = $this->user_model->getUser($user2ID);
-			$data['friends'] = $this->user_model->getFriends($user2ID);
-			$data['view'] = 'user_friends';
+			$data['user']      =   $this->user_model->getUser($user2ID);
+			$data['friends']   =   $this->user_model->getFriends($user2ID);
+			$data['view']      =   'user_friends';
+
 			$this->load->view('includes/template', $data);
 			
 		}else{
@@ -95,11 +98,12 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['comments'] = $this->user_model->getComments($user2ID);
-			$data['user'] = $this->user_model->getUser($user2ID);
-			$data['user2'] = $user2ID;
-			$data['friends'] = $this->user_model->getFriends($user2ID);
-			$data['view'] = 'user_comments';
+			$data['comments']   =   $this->user_model->getComments($user2ID);
+			$data['user']       =   $this->user_model->getUser($user2ID);
+			$data['user2']      =   $user2ID;
+			$data['friends']    =   $this->user_model->getFriends($user2ID);
+			$data['view']       =   'user_comments';
+
 			$this->load->view('includes/template', $data);
 			
 		}else{
@@ -112,39 +116,47 @@ class User extends CI_Controller {
 
 	public function comment ($user2ID = 0){
 
-		if($user2ID != $this->session->userdata('userID') && $user2ID){
+		if($this->session->userdata('userID')){
 
-			$this->load->library('form_validation');
+			if($user2ID != $this->session->userdata('userID') && $user2ID){
 
-			$config = array(
-				array(
-					'field'   =>   'comment',
-					'label'   =>   'Comment',
-					'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
-				)
-			);
+				$this->load->library('form_validation');
 
-			$this->form_validation->set_rules($config);
+				$config = array(
+					array(
+						'field'   =>   'comment',
+						'label'   =>   'Comment',
+						'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
+					)
+				);
 
-			if($this->form_validation->run() == false){
+				$this->form_validation->set_rules($config);
 
-				redirect('user/comments/$user2ID');
+				if($this->form_validation->run() == false){
 
-			}else{
-				
-				$result = $this->user_model->postComment($user2ID);
+					redirect('user/comments/$user2ID');
 
-				if($result){
+				}else{
+					
+					$result = $this->user_model->postComment($user2ID);
 
-					redirect("user/comments/$user2ID");
+					if($result){
+
+						redirect("user/comments/$user2ID");
+
+					}
 
 				}
+
+			}else{
+
+				redirect('profile');
 
 			}
 
 		}else{
 
-			redirect('profile');
+			redirect('join');
 
 		}
 

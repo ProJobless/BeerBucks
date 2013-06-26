@@ -65,7 +65,7 @@ class User_model extends CI_Model {
             $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
             $date2      =   new DateTime($row['start']);
             $interval   =   $date1->diff($date2);
-            $days       =   $newPartyInfo[$key]['days']      =   $interval->format("%d"); 
+            $days       =   $newPartyInfo[$key]['days']      =   $interval->format("%a"); 
             $hours      =   $newPartyInfo[$key]['hours']     =   $interval->format("%h"); 
             $minutes    =   $newPartyInfo[$key]['minutes']   =   $interval->format("%i"); 
             $seconds    =   $newPartyInfo[$key]['seconds']   =   $interval->format("%s"); 
@@ -407,16 +407,18 @@ class User_model extends CI_Model {
         
 
         $this->db->select('
-           user_comments.user_comment,
-           user_comments.comment_date,
-           users.user_id,
-           users.username,
-           users.profile_img,
+            user_comments.user_comment_id,
+            user_comments.user_comment,
+            user_comments.comment_date,
+            users.user_id,
+            users.username,
+            users.profile_img,
         ');
 
         $this->db->from('user_comments');
         $this->db->join('users', 'user_comments.poster_id = users.user_id');
         $this->db->where("user_comments.user_id = '$userID'");
+        $this->db->order_by("user_comment_id", "desc");
 
         $query = $this->db->get();
 

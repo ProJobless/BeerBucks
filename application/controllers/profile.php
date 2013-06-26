@@ -21,9 +21,7 @@ class Profile extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'login';
-
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 		
@@ -38,8 +36,7 @@ class Profile extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'login';
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 		
@@ -56,9 +53,7 @@ class Profile extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'login';
-
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 		
@@ -75,9 +70,7 @@ class Profile extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'login';
-
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 		
@@ -94,9 +87,7 @@ class Profile extends CI_Controller {
 
 		}else{
 
-			$data['view'] = 'login';
-			
-			$this->load->view('includes/template', $data);
+			redirect('join');
 
 		}
 		

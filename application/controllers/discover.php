@@ -19,26 +19,6 @@ class Discover extends CI_Controller {
 
 	}
 
-	public function party($partyID = 0){
-
-		if($partyID){
-
-			$data['party']   =   $this->party_model->getParty($partyID);
-			$data['view']    =   'party';
-
-			$this->load->view('includes/template', $data);
-
-		}else{
-
-			$data['parties']   =   $this->party_model->getParties();
-			$data['view']      =   'discover';
-
-			$this->load->view('includes/template', $data);
-
-		}
-
-	}
-
 	public function nearYou(){
 
 		$data['parties']   =   $this->party_model->getParties();
