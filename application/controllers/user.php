@@ -18,7 +18,7 @@ class User extends CI_Controller {
 
 	public function activity($user2ID){	
 
-		if($user2ID != $this->session->userdata('userID')){
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
 
 			if($this->user_model->checkFriendship($user2ID)){
 				$data['friendCheck'] = false;	
@@ -39,9 +39,9 @@ class User extends CI_Controller {
 		
 	}
 
-	public function parties($user2ID){	
+	public function parties($user2ID = 0){	
 
-		if($user2ID != $this->session->userdata('userID')){
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
 
 			if($this->user_model->checkFriendship($user2ID)){
 				$data['friendCheck'] = false;	
@@ -62,9 +62,9 @@ class User extends CI_Controller {
 		
 	}
 
-	public function friends($user2ID){	
+	public function friends($user2ID = 0){	
 
-		if($user2ID != $this->session->userdata('userID')){
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
 
 			if($this->user_model->checkFriendship($user2ID)){
 				$data['friendCheck'] = false;	
@@ -85,9 +85,9 @@ class User extends CI_Controller {
 		
 	}
 
-	public function comments($user2ID){	
+	public function comments($user2ID = 0){	
 
-		if($user2ID != $this->session->userdata('userID')){
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
 
 			if($this->user_model->checkFriendship($user2ID)){
 				$data['friendCheck'] = false;	
@@ -95,7 +95,9 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
+			$data['comments'] = $this->user_model->getComments($user2ID);
 			$data['user'] = $this->user_model->getUser($user2ID);
+			$data['user2'] = $user2ID;
 			$data['friends'] = $this->user_model->getFriends($user2ID);
 			$data['view'] = 'user_comments';
 			$this->load->view('includes/template', $data);
@@ -106,6 +108,46 @@ class User extends CI_Controller {
 
 		}
 		
+	}
+
+	public function comment ($user2ID = 0){
+
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
+
+			$this->load->library('form_validation');
+
+			$config = array(
+				array(
+					'field'   =>   'comment',
+					'label'   =>   'Comment',
+					'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
+				)
+			);
+
+			$this->form_validation->set_rules($config);
+
+			if($this->form_validation->run() == false){
+
+				redirect('user/comments/$user2ID');
+
+			}else{
+				
+				$result = $this->user_model->postComment($user2ID);
+
+				if($result){
+
+					redirect("user/comments/$user2ID");
+
+				}
+
+			}
+
+		}else{
+
+			redirect('profile');
+
+		}
+
 	}
 
 }

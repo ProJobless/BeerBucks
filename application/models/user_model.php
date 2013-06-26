@@ -65,10 +65,10 @@ class User_model extends CI_Model {
             $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
             $date2      =   new DateTime($row['start']);
             $interval   =   $date1->diff($date2);
-            $days       =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
-            $hours      =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
-            $minutes    =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
-            $seconds    =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
+            $days       =   $newPartyInfo[$key]['days']      =   $interval->format("%d"); 
+            $hours      =   $newPartyInfo[$key]['hours']     =   $interval->format("%h"); 
+            $minutes    =   $newPartyInfo[$key]['minutes']   =   $interval->format("%i"); 
+            $seconds    =   $newPartyInfo[$key]['seconds']   =   $interval->format("%s"); 
 
             if($key+1 == count($partyInfo)){
 
@@ -126,11 +126,11 @@ class User_model extends CI_Model {
         if($exists){
 
             $data = array(
-                'friendship_id' => $friendshipID,
-                'user1_id' => $user1ID,
-                'user2_id' => $user2ID,
-                'active' => 0,
-                'date_of_req' => $dateOfReq,
+                'friendship_id'   =>   $friendshipID,
+                'user1_id'        =>   $user1ID,
+                'user2_id'        =>   $user2ID,
+                'active'          =>   0,
+                'date_of_req'     =>   $dateOfReq,
             );
 
             $q = $this->db->insert('friends', $data);
@@ -263,9 +263,8 @@ class User_model extends CI_Model {
                 $dataResults[] = $row;
             }
 
-            $dataResults = objectToArray($dataResults);
-
-            $results = array();
+            $dataResults   =   objectToArray($dataResults);
+            $results       =   array();
 
             foreach($dataResults as $row){
                 if($row['user1_id'] == $userID){
@@ -370,4 +369,80 @@ class User_model extends CI_Model {
 
     }
 
+    public function postComment($user2ID = 0){
+
+        if($user2ID){
+            $userID = $user2ID;
+        }else{
+           $userID = $this->session->userdata('userID');
+        }
+
+        $comment         =   $this->security->xss_clean($this->input->post('comment'));
+        $userCommentID   =   uniqid();
+        
+        $posterID = $this->session->userdata('userID'); 
+        $dateOfCom       =   date('Y/m/d h:i:s', time());
+
+        $data = array(
+            'user_comment_id'   =>   $userCommentID,
+            'user_id'           =>   $userID,
+            'poster_id'         =>   $posterID,
+            'user_comment'      =>   $comment,
+            'comment_date'      =>   $dateOfCom,
+        );
+
+        $q = $this->db->insert('user_comments', $data);
+
+        return true;
+
+    }
+
+    public function getComments($user2ID = 0){
+
+        if($user2ID){
+            $userID = $user2ID;
+        }else{
+           $userID = $this->session->userdata('userID'); 
+        }
+        
+
+        $this->db->select('
+           user_comments.user_comment,
+           user_comments.comment_date,
+           users.user_id,
+           users.username,
+           users.profile_img,
+        ');
+
+        $this->db->from('user_comments');
+        $this->db->join('users', 'user_comments.poster_id = users.user_id');
+        $this->db->where("user_comments.user_id = '$userID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
 }
+
+
+
+
+
+
+
+
+

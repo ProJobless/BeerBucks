@@ -65,7 +65,7 @@
 						<ul>
 							<li><a href="<?=base_url()?>index.php/profile">Profile</a></li>
 							<li><a href="<?=base_url()?>index.php/settings">Settings</a></li>
-							<li><a href="<?=base_url()?>index.php/profile">Your Parties</a></li>
+							<li><a href="<?=base_url()?>index.php/profile/parties">Your Parties</a></li>
 							<li><a href="<?=base_url()?>index.php/logout">Logout</a></li>
 						</ul>
 

@@ -68,15 +68,18 @@ class Party_model extends CI_Model {
 
             $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
             $date2      =   new DateTime($row['start']);
+
             $interval   =   $date1->diff($date2);
-            $days       =   $newPartyInfo[$key]['days'] = $interval->format("%d"); 
-            $hours      =   $newPartyInfo[$key]['hours'] = $interval->format("%h"); 
-            $minutes    =   $newPartyInfo[$key]['minutes'] = $interval->format("%i"); 
-            $seconds    =   $newPartyInfo[$key]['seconds'] = $interval->format("%s"); 
+            
+            $days       =   $newPartyInfo[$key]['days']      =   $interval->format("%a");
+            $hours      =   $newPartyInfo[$key]['hours']     =   $interval->format("%h"); 
+            $minutes    =   $newPartyInfo[$key]['minutes']   =   $interval->format("%i"); 
+            $seconds    =   $newPartyInfo[$key]['seconds']   =   $interval->format("%s"); 
 
             if($key+1 == count($partyInfo)){
 
                 return $newPartyInfo;
+                
             }
             
         }
@@ -180,9 +183,8 @@ class Party_model extends CI_Model {
                 $dataResults[] = $row;
             }
 
-            $dataResults = objectToArray($dataResults);
-
-            $filteredData = $this->checkStatus($dataResults, true);
+            $dataResults    =   objectToArray($dataResults);
+            $filteredData   =   $this->checkStatus($dataResults, true);
 
             return $this->getTimeTillParty($filteredData);
 
@@ -221,6 +223,48 @@ class Party_model extends CI_Model {
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
         $this->db->where("parties.party_id = '$partyID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $this->getTimeTillParty($dataResults);
+
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getCompleted(){
+
+        $this->db->select('
+            parties.party_id, 
+            parties.user_id, 
+            parties.date_created, 
+            parties.date_edited, 
+            parties.title, 
+            parties.description, 
+            parties.party_img, 
+            parties.party_location, 
+            parties.address, 
+            parties.start, 
+            parties.end, 
+            parties.goal,
+            parties.expired,
+            parties.attending,
+            users.username,
+        ');
+
+        $this->db->from('parties');
+        $this->db->join('users', 'parties.user_id = users.user_id');
+        $this->db->where("parties.expired = 1");
 
         $query = $this->db->get();
 

@@ -976,6 +976,18 @@ footer section:nth-of-type(2) li:last-child {
   margin-top: 4px;
   color: #071226; }
 
+#community #tweets a {
+  color: #05a696;
+  line-height: 0;
+  display: block;
+  float: none;
+  clear: both;
+  margin: 8px 0 0 0;
+  font-size: .7em; }
+  #community #tweets a:hover {
+    color: #06bfad;
+    text-decoration: underline; }
+
 /* ------------------------------ Home Page - Community - Top Images ------------------------------ */
 #topImages {
   width: 713px;
@@ -2734,6 +2746,102 @@ article#topImages > a {
 
 #profile #tabContent.parties article:nth-of-type(3n+3) {
   margin-right: 0; }
+
+/* ------------------------------ Profile Page - TabContent: Comments ------------------------------ */
+#profile #tabContent.comments > h1 {
+  width: 720px;
+  height: 40px;
+  background-color: #edf6f5;
+  margin-left: -13px;
+  line-height: 40px;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #666666;
+  border-top: solid 1px #dddddd;
+  border-bottom: solid 1px #dddddd; }
+
+#profile #tabContent.comments article {
+  width: 100%;
+  height: auto;
+  background-color: #fafdff;
+  border: none;
+  padding-top: 3px;
+  position: relative;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#profile #tabContent.comments article:last-of-type {
+  width: 100%;
+  height: 240px;
+  background-color: #fafdff;
+  border: none;
+  padding-top: 3px;
+  position: relative;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#profile #tabContent.comments article img {
+  background-color: #071226;
+  width: 65px;
+  height: 65px;
+  float: left; }
+
+#profile #tabContent.comments article textarea {
+  width: 590px;
+  height: 140px;
+  border: solid 2px #dddddd;
+  background-color: #fafdff;
+  z-index: 2;
+  margin: 1px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+#profile #tabContent.comments article form {
+  width: 600px;
+  height: auto;
+  background-color: #edf6f5;
+  float: right;
+  padding: 10px;
+  position: relative;
+  clear: none; }
+
+#profile #tabContent.comments article div {
+  width: 600px;
+  height: auto;
+  background-color: #edf6f5;
+  float: right;
+  padding: 10px;
+  position: relative;
+  clear: none; }
+
+#profile #tabContent.comments article:last-of-type button {
+  position: absolute;
+  right: 10px;
+  top: 170px; }
+
+#profile #tabContent.comments article p {
+  width: 580px;
+  height: auto;
+  border: solid 1px #dddddd;
+  background-color: #fafdff;
+  padding: 10px 5px;
+  z-index: 2;
+  margin: 1px;
+  margin-left: 3px;
+  color: #666666;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+#profile #tabContent.comments article a {
+  font-weight: bold;
+  font-size: .8em;
+  color: #05a696; }
+  #profile #tabContent.comments article a:hover {
+    color: #06bfad;
+    text-decoration: underline; }
+
+#profile #tabContent.comments article span {
+  font-size: .8em; }
 
 /* ------------------------------ Start Settings Page ------------------------------ */
 /* ------------------------------ Settings Page - Profile Preview ------------------------------ */

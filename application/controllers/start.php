@@ -34,19 +34,19 @@ class Start extends CI_Controller {
 
 			if($this->input->post() == false){
 
-				$data['view'] = 'start';
-				$data['error'] = 'You must accept the terms before continuing.';
+				$data['view']    =   'start';
+				$data['error']   =   'You must accept the terms before continuing.';
+
 				$this->load->view('includes/template', $data);
 
 			}else{
 
-				$sData = array(
-	                'tos' => 1,
-	            );
+				$sData = array('tos' => 1);
 
 	    		$this->session->set_userdata($sData);
 
 				$data['view'] = 'start_basic';
+
 				$this->load->view('includes/template', $data);
 
 			}
@@ -54,6 +54,7 @@ class Start extends CI_Controller {
 		}else{
 
 			$data['view'] = 'join';
+
 			$this->load->view('includes/template', $data);
 
 		}
@@ -65,8 +66,8 @@ class Start extends CI_Controller {
 		if($this->session->userdata('userID')) {
 
 			$sData = array(
-	            'title' => $this->input->post('title'),
-	            'description' => $this->input->post('description')
+	            'title'         =>   $this->input->post('title'),
+	            'description'   =>   $this->input->post('description')
 	        );
 
 			$this->session->set_userdata($sData);
@@ -75,42 +76,41 @@ class Start extends CI_Controller {
 			if($this->input->post('back')){
 
 				$data['view'] = 'start';
+
 				$this->load->view('includes/template', $data);
 
 			}else if($_FILES['userfile']['name']){
 
-				$imageID = uniqid();
-
-				$config['upload_path'] = './uploads/party';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				$config['max_size']	= '2048';
-				$config['max_width']  = '0';
-				$config['max_height']  = '0';
-				$config["file_name"]  = $imageID;
-				$config["overwrite"] = true;
-				$config["remove_spaces"] = true;
+				$imageID                   =   uniqid();
+				$config['upload_path']     =   './uploads/party';
+				$config['allowed_types']   =   'gif|jpg|png|jpeg';
+				$config['max_size']	       =   '2048';
+				$config['max_width']       =   '0';
+				$config['max_height']      =   '0';
+				$config["file_name"]       =   $imageID;
+				$config["overwrite"]       =   true;
+				$config["remove_spaces"]   =   true;
 
 				$this->load->library('upload', $config);
 
 				if (!$this->upload->do_upload()){
-					$error = array('error' => $this->upload->display_errors());
 
-					$data['view'] = 'start_basic';
-					$data['error'] = 'There was a problem uploading your image.';
+					$error           =   array('error' => $this->upload->display_errors());
+					$data['view']    =   'start_basic';
+					$data['error']   =   'There was a problem uploading your image.';
+
 					$this->load->view('includes/template', $data);
 
 				}else{
 					
-					$data = array('upload_data' => $this->upload->data());
-
-					$sData = array(
-			            'img_name' => $data['upload_data']['file_name']
-			        );
+					$data    =   array('upload_data' => $this->upload->data());
+					$sData   =   array('img_name' => $data['upload_data']['file_name']);
 
 					$this->session->set_userdata($sData);
 
-					$data['view'] = 'start_basic';
-					$data['error'] = 'There was a problem uploading your image.';
+					$data['view']    =   'start_basic';
+					$data['error']   =   'There was a problem uploading your image.';
+
 					$this->load->view('includes/template', $data);
 				}
 
@@ -118,22 +118,23 @@ class Start extends CI_Controller {
 
 				if(!$this->session->userdata('img_name')){
 
-					$data['view'] = 'start_basic';
-					$data['error'] = 'Please upload an image for your party';
+					$data['view']    =   'start_basic';
+					$data['error']   =   'Please upload an image for your party';
+
 					$this->load->view('includes/template', $data);
 
 				}else{
 
 					$config = array(
 						array(
-							'field' => 'title',
-							'label' => 'Title',
-							'rules' => 'trim|required|min_length[5]|max_length[50]'
+							'field'   =>   'title',
+							'label'   =>   'Title',
+							'rules'   =>   'trim|required|min_length[5]|max_length[50]'
 						), 
 						array(
-							'field' => 'description',
-							'label' => 'Description',
-							'rules' => 'trim|required|min_length[5]|max_length[200]'
+							'field'   =>   'description',
+							'label'   =>   'Description',
+							'rules'   =>   'trim|required|min_length[5]|max_length[200]'
 						)
 					);
 
@@ -141,8 +142,9 @@ class Start extends CI_Controller {
 
 					if($this->form_validation->run() == false){
 
-						$data['view'] = 'start_basic';
-						$data['error'] = 'Please fill out all the information.';
+						$data['view']    =   'start_basic';
+						$data['error']   =   'Please fill out all the information.';
+
 						$this->load->view('includes/template', $data);
 
 					}else{
@@ -170,11 +172,11 @@ class Start extends CI_Controller {
 		if($this->session->userdata('userID')) {
 
 			$sData2 = array(
-	            'partyLocation' => $this->input->post('partyLocation'),
-				'address' => $this->input->post('address'),
-	            'start' => $this->input->post('start'),
-	            'end' => $this->input->post('end'),
-	            'goal' => $this->input->post('goal')
+	            'partyLocation'   =>   $this->input->post('partyLocation'),
+				'address'         =>   $this->input->post('address'),
+	            'start'           =>   $this->input->post('start'),
+	            'end'             =>   $this->input->post('end'),
+	            'goal'            =>   $this->input->post('goal')
 	        );
 
 			$this->session->set_userdata($sData2);
@@ -188,29 +190,29 @@ class Start extends CI_Controller {
 
 				$config = array(
 					array(
-						'field' => 'partyLocation',
-						'label' => 'partyLocation',
-						'rules' => 'trim|required|min_length[5]|max_length[50]'
+						'field'   =>   'partyLocation',
+						'label'   =>   'partyLocation',
+						'rules'   =>   'trim|required|min_length[5]|max_length[50]'
 					), 
 					array(
-						'field' => 'address',
-						'label' => 'Address',
-						'rules' => 'trim|required|min_length[5]|max_length[50]'
+						'field'   =>   'address',
+						'label'   =>   'Address',
+						'rules'   =>   'trim|required|min_length[5]|max_length[50]'
 					), 
 					array(
-						'field' => 'start',
-						'label' => 'Start',
-						'rules' => 'trim|required|min_length[5]|max_length[145]'
+						'field'   =>   'start',
+						'label'   =>   'Start',
+						'rules'   =>   'trim|required|min_length[5]|max_length[145]'
 					),
 					array(
-						'field' => 'end',
-						'label' => 'End',
-						'rules' => 'trim|required|min_length[5]|max_length[145]'
+						'field'   =>   'end',
+						'label'   =>   'End',
+						'rules'   =>   'trim|required|min_length[5]|max_length[145]'
 					),
 					array(
-						'field' => 'goal',
-						'label' => 'Goal',
-						'rules' => 'trim|required|min_length[2]|max_length[7]'
+						'field'   =>   'goal',
+						'label'   =>   'Goal',
+						'rules'   =>   'trim|required|min_length[2]|max_length[7]'
 					)
 				);
 
@@ -218,13 +220,15 @@ class Start extends CI_Controller {
 
 				if($this->form_validation->run() == false){
 
-					$data['view'] = 'start_details';
-					$data['error'] = 'Please fill out all the information.';
+					$data['view']    =   'start_details';
+					$data['error']   =   'Please fill out all the information.';
+
 					$this->load->view('includes/template', $data);
 
 				}else{
 
 					$data['view'] = 'start_review';
+
 					$this->load->view('includes/template', $data);
 
 				}
@@ -234,6 +238,7 @@ class Start extends CI_Controller {
 		}else{
 
 			$data['view'] = 'join';
+
 			$this->load->view('includes/template', $data);
 
 		}
@@ -247,25 +252,19 @@ class Start extends CI_Controller {
 			if($this->input->post('back')){
 
 				$data['view'] = 'start_details';
+
 				$this->load->view('includes/template', $data);
 
 			}else{
 
 				$pData = array(
 					$this->session->userdata('title'),
-			
 					$this->session->userdata('description'),
-
-					$this->session->userdata('location'),
-
+					$this->session->userdata('partyLocation'),
 					$this->session->userdata('address'),
-
 					$this->session->userdata('start'),
-
 					$this->session->userdata('end'),
-
 					$this->session->userdata('goal'),
-
 					$this->session->userdata('img_name'),
 				);
 
@@ -273,8 +272,9 @@ class Start extends CI_Controller {
 
 				if(!$testData){
 
-					$data['view'] = 'start';
-					$data['error'] = 'Problem starting party. Please try again.';
+					$data['view']    =   'start';
+					$data['error']   =   'Problem starting party. Please try again.';
+
 					$this->load->view('includes/template', $data);
 
 				}else{
@@ -283,21 +283,22 @@ class Start extends CI_Controller {
 
 		            if(!$result){
 
-		            	$data['view'] = 'start_review';
-		            	$data['error'] = 'There was a problem, try again. If the problem continues please email support.';
+		            	$data['view']    =   'start_review';
+		            	$data['error']   =   'There was a problem, try again. If the problem continues please email support.';
+						
 						$this->load->view('includes/template', $data);
 
 		            }else{
 
 			            $sData2 = array(
-			            	'title' => null,
-			            	'description' => null,
-				            'partyLocation' => null,
-							'address' => null,
-				            'start' => null,
-				            'end' => null,
-				            'goal' => null,
-				            'img_name' => null
+			            	'title'           =>   null,
+			            	'description'     =>   null,
+				            'partyLocation'   =>   null,
+							'address'         =>   null,
+				            'start'           =>   null,
+				            'end'             =>   null,
+				            'goal'            =>   null,
+				            'img_name'        =>   null
 				        );
 
 						$this->session->set_userdata($sData2);
@@ -313,6 +314,7 @@ class Start extends CI_Controller {
 		}else{
 
 			$data['view'] = 'join';
+			
 			$this->load->view('includes/template', $data);
 
 		}

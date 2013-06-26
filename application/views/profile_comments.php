@@ -45,8 +45,39 @@
 				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
 			</ul>
 
-			<section id="tabContent" class="friends">
+			<section id="tabContent" class="comments">
+				<?foreach($comments as $comment): ?>
 
+					<article>
+						<?if($this->session->userdata('profileImage')):?>
+							<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
+						<?else:?>
+							<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
+						<?endif;?>
+
+						<div>
+							<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a></p>
+						</div>
+					</article>
+				
+				<?endforeach;?>
+
+
+
+				<h1>Post a comment</h1>
+
+				<article>
+					<?if($this->session->userdata('profileImage')):?>
+						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
+					<?else:?>
+						<img src="" alt="" width="50" height="50" />
+					<?endif;?>
+
+					<?=form_open("/profile/comment"); ?>
+						<textarea name="comment" cols="30" rows="10"></textarea>
+						<button>Post Comment</button>
+					<?=form_close();?>
+				</article>
 			
 				
 			</section>

@@ -29,13 +29,17 @@ class Twitter extends CI_Controller{
 	public function auth(){
 
 		if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret')){
-			// User is already authenticated. Add your user notification code here.
-			redirect(base_url('/'));
+			
+			redirect('login');
+			$this->reset_session();
+
 		}else{
 			
 			if($this->session->userdata('request_token') || $this->session->userdata('request_token_secret')){
+
 				redirect('login');
 				$this->reset_session();
+
 			}
 			
 			$request_token = $this->connection->getRequestToken(base_url('index.php/twitter/callback'));
@@ -47,10 +51,11 @@ class Twitter extends CI_Controller{
 
 				$url = $this->connection->getAuthorizeURL($request_token);
 				redirect($url);
-			}
-			else{
-				// An error occured. Make sure to put your error notification code here.
+
+			}else{
+				echo 'the f?';
 				redirect(base_url('/'));
+				
 			}
 
 		}
@@ -77,16 +82,18 @@ class Twitter extends CI_Controller{
 				$this->session->unset_userdata('request_token');
 				$this->session->unset_userdata('request_token_secret');
 
-				if($this->authentication_model->twitter($access_token)){
+				$twitterImg = $this->app_model->getTwitterImage();
 
-					//$this->app_model->getTwitterImage();
+				if($this->authentication_model->twitter($access_token, $twitterImg)){
+					
 					redirect('profile');
 				}
 			
 			}else{
-				// An error occured. Add your notification code here.
+
 				$this->reset_session();
 				redirect(base_url('index.php/login'));
+
 			}
 
 		}
@@ -115,8 +122,8 @@ class Twitter extends CI_Controller{
 				}else{
 
 					$data = array(
-						'status' => $message,
-						'in_reply_to_status_id' => $in_reply_to
+						'status'                  =>   $message,
+						'in_reply_to_status_id'   =>   $in_reply_to
 					);
 
 					$result = $this->connection->post('statuses/update', $data);

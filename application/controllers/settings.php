@@ -17,11 +17,13 @@ class Settings extends CI_Controller {
 		if($this->session->userdata('userID')) {
 
 			$data['view'] = 'settings';
+
 			$this->load->view('includes/template', $data);
 
 		}else{
 
 			$data['view'] = 'login';
+
 			$this->load->view('includes/template', $data);
 
 		}
@@ -57,50 +59,50 @@ class Settings extends CI_Controller {
 
 		if($this->form_validation->run() == false){
 
-			$data['view'] = 'settings';
-			$data['error'] = 'Please fix the errors';
+			$data['view']    =   'settings';
+			$data['error']   =   'Please fix the errors';
+
 			$this->load->view('includes/template', $data);
 
 		}else{
 
 			if($_FILES['userfile']['name']){
-				$imageID = uniqid();
 
-				$config['upload_path'] = './uploads/profile';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				$config['max_size']	= '2048';
-				$config['min_width']  = '220';
-				$config['min_height']  = '220';
-				$config['max_width']  = '0';
-				$config['max_height']  = '0';
-				$config["file_name"]  = $imageID;
-				$config["overwrite"] = true;
-				$config["remove_spaces"] = true;
+				$imageID                   =   uniqid();
+				$config['upload_path']     =   './uploads/profile';
+				$config['allowed_types']   =   'gif|jpg|png|jpeg';
+				$config['max_size']	       =   '2048';
+				$config['max_width']       =   '0';
+				$config['max_height']      =   '0';
+				$config["file_name"]       =   $imageID;
+				$config["overwrite"]       =   true;
+				$config["remove_spaces"]   =   true;
 
 				$this->load->library('upload', $config);
 
 				if (!$this->upload->do_upload()){
-					$error = array('error' => $this->upload->display_errors());
 
-					$data['view'] = 'settings';
-					$data['error'] = 'There was a problem uploading your image.';
+					$error           =   array('error' => $this->upload->display_errors());
+					$data['view']    =   'settings';
+					$data['error']   =   'There was a problem uploading your image.';
+
 					$this->load->view('includes/template', $data);
 
 				}else{
 
-					$data = array('upload_data' => $this->upload->data());
-
-					$sData = array(
-			            'profileImage' => $data['upload_data']['file_name']
-			        );
+					$data    =   array('upload_data' => $this->upload->data());
+					$sData   =   array('profileImage' => $data['upload_data']['file_name']);
 
 					$this->session->set_userdata($sData);
 
 					$result = $this->settings_model->editUser();
 
 					if($result){
+
 						$data['view'] = 'settings';
+
 						$this->load->view('includes/template', $data);
+
 					}
 				}
 
@@ -109,12 +111,18 @@ class Settings extends CI_Controller {
 				$result = $this->settings_model->editUser();
 
 				if($result){
+
 					$data['view'] = 'settings';
+
 					$this->load->view('includes/template', $data);
+
 				}else{
-					$data['view'] = 'settings';
-					$data['error'] = 'Username already exists';
+
+					$data['view']    =   'settings';
+					$data['error']   =   'Username already exists';
+
 					$this->load->view('includes/template', $data);
+
 				}
 
 			}

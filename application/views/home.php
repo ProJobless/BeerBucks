@@ -151,7 +151,7 @@
 			<ul>
 			<? foreach ($tweets as $tweet): ?>
 				<li>
-					<p><?=$tweet['text']?></p>
+					<p><?=$tweet['text']?> <a href="http://twitter.com/<?=$tweet['name']?>">@<?=$tweet['name']?></a></p>
 				</li>
 			<? endforeach; ?>
 			</ul>

@@ -13,10 +13,9 @@ class Home extends CI_Controller {
 
 	public function index (){
 		
-		$userLocation = unserialize(base64_decode($this->app_model->userLocation()));
-
-		$data['tweets'] = $this->app_model->getTweets();
-		$data['view'] = 'home';
+		$userLocation     =   unserialize(base64_decode($this->app_model->userLocation()));
+		$data['tweets']   =   $this->app_model->getTweets();
+		$data['view']     =   'home';
 		$data['userLocation'] = $userLocation;
 
 		$this->load->view('includes/template', $data);

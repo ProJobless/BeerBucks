@@ -12,8 +12,9 @@ class Discover extends CI_Controller {
 
 	public function index (){	
 
-		$data['parties'] = $this->party_model->getParties();
-		$data['view'] = 'discover';
+		$data['parties']   =   $this->party_model->getParties();
+		$data['view']      =   'discover';
+
 		$this->load->view('includes/template', $data);
 
 	}
@@ -21,37 +22,46 @@ class Discover extends CI_Controller {
 	public function party($partyID = 0){
 
 		if($partyID){
-			$data['party'] = $this->party_model->getParty($partyID);
-			$data['view'] = 'party';
+
+			$data['party']   =   $this->party_model->getParty($partyID);
+			$data['view']    =   'party';
+
 			$this->load->view('includes/template', $data);
+
 		}else{
-			$data['parties'] = $this->party_model->getParties();
-			$data['view'] = 'discover';
+
+			$data['parties']   =   $this->party_model->getParties();
+			$data['view']      =   'discover';
+
 			$this->load->view('includes/template', $data);
+
 		}
 
 	}
 
 	public function nearYou(){
 
-		$data['parties'] = $this->party_model->getParties();
-		$data['view'] = 'discover_nearyou';
+		$data['parties']   =   $this->party_model->getParties();
+		$data['view']      =   'discover_nearyou';
+
 		$this->load->view('includes/template', $data);
 
 	}
 
 	public function Upcoming(){
 
-		$data['parties'] = $this->party_model->getParties();
-		$data['view'] = 'discover_upcoming';
+		$data['parties']   =   $this->party_model->getParties();
+		$data['view']      =   'discover_upcoming';
+
 		$this->load->view('includes/template', $data);
 
 	}
 
 	public function Completed(){
 
-		$data['parties'] = $this->party_model->getParties();
-		$data['view'] = 'discover_completed';
+		$data['parties']   =   $this->party_model->getCompleted();
+		$data['view']      =   'discover_completed';
+		
 		$this->load->view('includes/template', $data);
 
 	}

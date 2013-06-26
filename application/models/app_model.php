@@ -42,27 +42,31 @@ class App_model extends CI_Model {
         if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret')){
             
         }else{
+
             $this->session->set_userdata('access_token', '708143798-Pbuioc0jI2xAgGhRugWduxkSjKxpVDEShvdEmjF1');
             $this->session->set_userdata('access_token_secret', 'CbPzRrmLopnTJLdYFlGlPLnLT8KMVUSgqYF9fzMGzg');
             redirect('/');
+
         }
 
         $data = array(
-            'q' => '@thebeerbucks',
+            'q' => 'thebeerbucks -RT',
         );
 
-        $content = $this->connection->get('search/tweets', $data);
+        $content   =   $this->connection->get('search/tweets', $data);
+        $tweets    =   objectToArray($content);
 
-        $tweets = objectToArray($content);
+        // echo '<pre>';
+        // var_dump($tweets);
+        // echo '<pre>';
 
-        $results = array();
+        $results   =   array();
 
         for ($i=0; $i < count($tweets['statuses']); $i++) { 
 
-            $text = $tweets['statuses'][$i]->text;
-            $name = $tweets['statuses'][$i]->user->screen_name;
-
-            $results[] = array('name' => $name, 'text' => $text);
+            $text = preg_replace('/(@(\w+))/', '', $tweets['statuses'][$i]->text);
+            $name        =   $tweets['statuses'][$i]->user->screen_name;
+            $results[]   =   array('name' => $name, 'text' => $text);
 
         }
 
@@ -73,16 +77,15 @@ class App_model extends CI_Model {
     public function getTwitterImage(){
 
         $data = array(
-            'user_id' => $this->session->userdata('twitter_user_id'),
+            'user_id'   =>   $this->session->userdata('twitter_user_id'),
+            'variant'   =>   'original'
         );
 
-        $content = $this->connection->get('users/lookup', $data);
+        $content   =   $this->connection->get('users/lookup', $data);
+        $info      =   objectToArray($content);
 
-        $info = objectToArray($content);
+        return str_replace('_normal', "", $info[0]['profile_image_url_https']);
 
-        echo '<pre>';
-        print_r($info);
-        echo '<pre>';
     }
 
 }
