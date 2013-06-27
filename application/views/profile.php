@@ -53,9 +53,8 @@
 
 			<section id="tabContent" class="activity">
 
-				<?if($activity['activity'][0]):?>
+				<?if($activity['activity']):?>
 					<?foreach($activity['activity'] as $a): ?>
-
 						<? if($a['type'] == 'party'):?>
 							<article>
 								<?if($a['party_img']):?>
@@ -68,7 +67,6 @@
 									<p>You started a new party <a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><?=$a['title']?></a> <span><?=$a['date']?></span></p>
 								</div>
 							</article>
-
 						<?elseif($a['type'] == 'friend'):?>
 							<article>
 								<?if($a['profile_img']):?>
@@ -81,20 +79,11 @@
 									<p>You and <a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date']?></span></p>
 								</div>
 							</article>
-
-
-
-
-
-
 						<?endif;?>
-					
-
 					<?endforeach;?>
+				<?else:?>
+					<h1>You have no recent activity</h1>
 				<?endif;?>
-
-
-
 
 			</section>
 		</section>

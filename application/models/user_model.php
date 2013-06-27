@@ -447,42 +447,57 @@ class User_model extends CI_Model {
 
     }
 
-    public function sortActivity($friendInfo, $partyInfo){
+    public function sortActivity($friendInfo = 0, $partyInfo = 0){
 
-        $parsedActivity = array();
-        $key = 0;
+        $parsedActivity   =   array();
+        $key              =   0;
 
-        foreach($friendInfo as $friend){
+        if($friendInfo){
 
-            $parsedActivity['activity'][$key]['type'] = 'friend';
-            $parsedActivity['activity'][$key]['username'] = $friend[0]['username'];
-            $parsedActivity['activity'][$key]['date'] = $friend[0]['dateOfAccept'];
-            $parsedActivity['activity'][$key]['profile_img'] = $friend[0]['profile_img'];
-            $parsedActivity['activity'][$key]['user_id'] = $friend[0]['user_id'];
-            $key ++;
+            foreach($friendInfo as $friend){
 
-        }
+                $parsedActivity['activity'][$key]['type'] = 'friend';
+                $parsedActivity['activity'][$key]['username'] = $friend[0]['username'];
+                $parsedActivity['activity'][$key]['date'] = $friend[0]['dateOfAccept'];
+                $parsedActivity['activity'][$key]['profile_img'] = $friend[0]['profile_img'];
+                $parsedActivity['activity'][$key]['user_id'] = $friend[0]['user_id'];
+                $key ++;
 
-        foreach($partyInfo as $party){
-
-            $parsedActivity['activity'][$key]['type'] = 'party';
-            $parsedActivity['activity'][$key]['title'] = $party['title'];
-            $parsedActivity['activity'][$key]['date'] = $party['date_created'];
-            $parsedActivity['activity'][$key]['party_id'] = $party['party_id'];
-            $parsedActivity['activity'][$key]['user_id'] = $party['user_id'];
-            $parsedActivity['activity'][$key]['party_img'] = $party['party_img'];
-            $key ++;
+            }
 
         }
 
-        function date_compare($a, $b){
+        if($partyInfo){
+            
+            foreach($partyInfo as $party){
 
-            $t1 = strtotime($a['date']);
-            $t2 = strtotime($b['date']);
-            return $t2 - $t1;
-        }    
+                $parsedActivity['activity'][$key]['type'] = 'party';
+                $parsedActivity['activity'][$key]['title'] = $party['title'];
+                $parsedActivity['activity'][$key]['date'] = $party['date_created'];
+                $parsedActivity['activity'][$key]['party_id'] = $party['party_id'];
+                $parsedActivity['activity'][$key]['user_id'] = $party['user_id'];
+                $parsedActivity['activity'][$key]['party_img'] = $party['party_img'];
+                $key ++;
 
-        usort($parsedActivity['activity'], 'date_compare');
+            }
+        }
+
+        if($friendInfo || $partyInfo){
+
+            function date_compare($a, $b){
+
+                $t1   =   strtotime($a['date']);
+                $t2   =   strtotime($b['date']);
+                return $t2 - $t1;
+            }    
+
+            usort($parsedActivity['activity'], 'date_compare');
+
+        }else{
+
+            return false;
+
+        }
 
         return $parsedActivity;
     }

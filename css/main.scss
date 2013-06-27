@@ -2403,19 +2403,6 @@ article#topImages>a{
 }
 
 /* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
-#tabContent.activity>h1{
-	width: 720px;
-	height: 40px;
-	background-color: $main-white;
-	margin-left: -13px !important;
-	margin-top: 15px !important;
-	line-height: 40px;
-	font-size: 1.1em;
-	font-weight: 300;
-	color: $dark-gray;
-	border-top: solid 1px $light-gray;
-	border-bottom: solid 1px $light-gray;
-}
 #tabContent.activity article{
 	width: 100%;
 	height: auto;
@@ -2479,6 +2466,7 @@ article#topImages>a{
 }
 #tabContent.activity article span{
 	font-size: .8em;
+	//float: right;
 }
 
 /* ------------------------------ Start Settings Page ------------------------------ */

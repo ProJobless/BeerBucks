@@ -55,8 +55,39 @@
 				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
 			</ul>
 
-			<section id="tabContent" class="friends">
+			<section id="tabContent" class="activity">
 
+				<?if($activity['activity']):?>
+					<?foreach($activity['activity'] as $a): ?>
+						<? if($a['type'] == 'party'):?>
+							<article>
+								<?if($a['party_img']):?>
+									<a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><img src="<?=base_url()?>uploads/party/<?=$a['party_img']?>" alt="" width="65" height="65" /></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><img src="" alt="" width="65" height="65" /></a>
+								<?endif;?>
+
+								<div>
+									<p><?=$user[0]['username']?> started a new party <a href="<?=base_url()?>index.php/party/attending/<?=$a['party_id']?>"><?=$a['title']?></a> <span><?=$a['date']?></span></p>
+								</div>
+							</article>
+						<?elseif($a['type'] == 'friend'):?>
+							<article>
+								<?if($a['profile_img']):?>
+									<a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['profile_img']?>" alt="" width="65" height="65" /></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
+								<?endif;?>
+
+								<div>
+									<p><?=$user[0]['username']?> and <a href="<?=base_url()?>index.php/user/activity/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date']?></span></p>
+								</div>
+							</article>
+						<?endif;?>
+					<?endforeach;?>
+				<?else:?>
+					<h1><?=$user[0]['username']?> has no recent activity</h1>
+				<?endif;?>
 			
 
 			</section>

@@ -2848,19 +2848,6 @@ article#topImages > a {
   font-size: .8em; }
 
 /* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
-#tabContent.activity > h1 {
-  width: 720px;
-  height: 40px;
-  background-color: #edf6f5;
-  margin-left: -13px !important;
-  margin-top: 15px !important;
-  line-height: 40px;
-  font-size: 1.1em;
-  font-weight: 300;
-  color: #666666;
-  border-top: solid 1px #dddddd;
-  border-bottom: solid 1px #dddddd; }
-
 #tabContent.activity article {
   width: 100%;
   height: auto;

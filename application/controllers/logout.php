@@ -22,6 +22,7 @@ class Logout extends CI_Controller {
             'title' => null,
         	'description' => null,
             'location' => null,
+            'partyLocation' => null,
 			'address' => null,
             'start' => null,
             'end' => null,

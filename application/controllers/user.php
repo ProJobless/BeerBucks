@@ -26,9 +26,11 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['user']      =   $this->user_model->getUser($user2ID);
-			$data['friends']   =   $this->user_model->getFriends($user2ID);
-			$data['view']      =   'user';
+			$data['friends']    =   $this->user_model->getFriends($user2ID);
+			$data['parties']    =   $this->user_model->getUserParties($user2ID);
+			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+			$data['user']       =   $this->user_model->getUser($user2ID);
+			$data['view']       =   'user';
 			
 			$this->load->view('includes/template', $data);
 			
