@@ -24,7 +24,7 @@
 				<p class="success">Your image was successfully uploaded.</p>
 			<? endif; ?>
  			
- 			<?=form_open_multipart('/start/do_upload');?>
+ 			<?=form_open_multipart('/start/details');?>
 				<section id="basic">
 
 					<h1>Party Title</h1> <hr />
@@ -41,6 +41,7 @@
 							Choose a catchy title for your party. This is the first thing other users will see.
 							You should try to make your title <strong>catchy and descriptive.</strong>
 						</p>
+						
 						<p>Ex: Bobbies 21st birthday bash</p>
 					</div>
 

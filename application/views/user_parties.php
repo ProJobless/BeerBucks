@@ -99,7 +99,7 @@
 						</article>
 					<? endforeach; ?>
 
-					<div><button>See More</button></div>
+					<div><button>See More Parties</button></div>
 
 				<?else:?>
 					<h1><?=$user[0]['username']?> hasn't started any parties</h1>

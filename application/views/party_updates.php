@@ -15,12 +15,11 @@
 				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li>Attending</li></a>
 				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li>Comments</li></a>
 				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li class="selected">Updates</li></a>
-				<li class="more"><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
 			</ul>
 
 			<section id="tabContent" class="updates">
 				
-				
+				<h1>No Updates</h1>	
 			
 			</section>
 		</section>
@@ -49,7 +48,11 @@
 					<li><h2><?=$party[0]['seconds']?></h2><h3>Secs</h3></li>
 				</ul>
 
-				<button>Pitch In</button>
+				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
+					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Edit Party</a>
+				<?else:?>
+					<button>Pitch In</button>
+				<?endif;?>
 
 				<p>After pitching in, check here to see where the party is.</p>
 			</article>

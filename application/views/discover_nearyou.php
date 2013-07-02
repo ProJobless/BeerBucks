@@ -21,7 +21,7 @@
 				<article class="party">
 
 					<a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>">
-						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />
+						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt=""  width="220" height="210"/>
 					</a>
 				
 					<hgroup>

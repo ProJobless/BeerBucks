@@ -89,7 +89,7 @@
 						</article>
 					<? endforeach; ?>
 
-					<div><button>See More</button></div>
+					<div><button>See More Parties</button></div>
 
 					<?else:?>
 					<a href="<?=base_url('index.php/start')?>">Start your first party</a>

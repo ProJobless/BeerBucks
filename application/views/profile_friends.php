@@ -73,7 +73,7 @@
 
 					<? endforeach; ?>
 
-					<div><button>See More</button></div>
+					<div><button>See More Friends</button></div>
 
 				<?else:?>
 					<h1>Browse the community to find friends.</h1>

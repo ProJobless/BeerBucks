@@ -7,7 +7,7 @@ var initUpload = function(){
 };
 
 var initDatePicker = function(){
-	var datePickerInput   =   $('#details div:nth-of-type(2) input');
+	var datePickerInput   =   $('form div:nth-of-type(2) input');
 
 	datePickerInput.datetimepicker({
 		dateFormat: 'yy-mm-dd',
@@ -24,7 +24,7 @@ var initDatePicker = function(){
 };
 
 var initDollarSign = function(){
-	var goalInput = $('#details div:nth-of-type(3) input');
+	var goalInput = $('form div:nth-of-type(3) input');
 
 	goalInput.keydown(function(e){
 

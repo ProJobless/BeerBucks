@@ -58,7 +58,7 @@ class Start extends CI_Controller {
 
 	}
 
-	public function do_upload(){
+	public function details(){
 
 		if($this->session->userdata('userID')) {
 

@@ -63,6 +63,7 @@
 						</article>
 					
 					<?endforeach;?>
+					<div><button>See More Comments</button></div>
 				<?endif;?>
 
 

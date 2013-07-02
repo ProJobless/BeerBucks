@@ -30,7 +30,7 @@ class Settings extends CI_Controller {
 
 	}
 
-	public function do_upload (){
+	public function profile (){
 
 		$config = array(
 			array(

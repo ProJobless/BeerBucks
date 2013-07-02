@@ -15,7 +15,6 @@
 				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li>Attending</li></a>
 				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li class="selected">Comments</li></a>
 				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
-				<li class="more"><input type="text" placeholder="Search for a friend"></input><button>Search</button></li>
 			</ul>
 
 			<section id="tabContent" class="comments">
@@ -37,6 +36,8 @@
 
 					<?endforeach;?>
 				<?endif;?>
+				
+				<div><button>See More Comments</button></div>
 
 				<h1>Post a comment</h1>
 
@@ -81,7 +82,11 @@
 					<li><h2><?=$party[0]['seconds']?></h2><h3>Secs</h3></li>
 				</ul>
 
-				<button>Pitch In</button>
+				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
+					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Edit Party</a>
+				<?else:?>
+					<button>Pitch In</button>
+				<?endif;?>
 
 				<p>After pitching in, check here to see where the party is.</p>
 			</article>

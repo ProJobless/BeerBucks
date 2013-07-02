@@ -15,10 +15,10 @@
 			</article>
 
 			<nav id="settingsNav">
-				<li class="selected">Profile Settings</li>
-				<li>Account Settings</li>
-				<li>Services Settings</li>
-				<li>Subscription Settings</li>
+				<a href="#" class="selected">Profile Settings</a>
+				<a href="#">Account Settings</a>
+				<a href="#">Services Settings</a>
+				<a href="#">Subscription Settings</a>
 			</nav>
 		</aside>
 
@@ -32,7 +32,7 @@
 				<p class="success">Your image was successfully uploaded.</p>
 			<? endif; ?>
  			
- 			<?=form_open_multipart('/settings/do_upload');?>
+ 			<?=form_open_multipart('/settings/profile');?>
 
 				<h1>Username</h1> <hr />
 

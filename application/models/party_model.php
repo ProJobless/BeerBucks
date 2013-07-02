@@ -89,7 +89,7 @@ class Party_model extends CI_Model {
     public function converTimezone($time){
 
         $timeP   =   new DateTime( $time );
-        $timezone;
+        $timezone = 0;
 
         if($time[strlen($time)-1] == '5'){
             $timeP->modify('+6 hours');
@@ -194,7 +194,9 @@ class Party_model extends CI_Model {
 
     }
 
-    public function getParty($partyID){
+    public function getParty($partyID = 0){
+
+        if(!$partyID) return false;
         
         $this->db->select('
             parties.user_id, 
@@ -286,6 +288,8 @@ class Party_model extends CI_Model {
 
     public function postComment($partyID = 0){
 
+        if(!$partyID) return false;
+
         $comment         =   $this->security->xss_clean($this->input->post('comment'));
         $partyCommentID   =   uniqid();
         
@@ -307,6 +311,8 @@ class Party_model extends CI_Model {
     }
 
     public function getComments($partyID = 0){
+
+        if(!$partyID) return false;
 
         $this->db->select('
             party_comments.party_comment_id,
@@ -340,4 +346,101 @@ class Party_model extends CI_Model {
 
     }
 
+    public function checkUser($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('user_id');
+        $this->db->where("party_id = '$partyID'");
+        $this->db->from('parties');
+
+        $query = $this->db->get();
+
+        foreach($query->result() as $row){
+            $dataResults[] = $row;
+        }
+
+        $dataResults = objectToArray($dataResults);
+
+        if($dataResults[0]['user_id'] == $this->session->userdata('userID')){
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function updateImage($partyID = 0, $image){
+
+        if(!$partyID) return false;
+
+        $data = array(
+            'party_img' => $image,
+        );
+
+        $this->db->where('party_id', $partyID);
+        $this->db->update('parties', $data); 
+
+
+    }
+
+    public function updateInfo($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $title         =   $this->security->xss_clean($this->input->post('title'));
+        $description   =   $this->security->xss_clean($this->input->post('description'));
+
+        $data = array(
+            'title' => $title,
+            'description' => $description,
+        );
+
+        $this->db->where('party_id', $partyID);
+        $this->db->update('parties', $data); 
+
+        return true;
+
+    }
+
+    public function updateDetails($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $partyLocation   =   $this->security->xss_clean($this->input->post('partyLocation'));
+        $address         =   $this->security->xss_clean($this->input->post('address'));
+        $start           =   $this->security->xss_clean($this->input->post('start'));
+        $end             =   $this->security->xss_clean($this->input->post('end'));
+        $goal            =   $this->security->xss_clean(ltrim($this->input->post('goal') , '$'));
+        $newStart        =   $this->converTimezone($start);
+        $newEnd          =   $this->converTimezone($end);
+
+        $data = array(
+            'party_location' => $partyLocation,
+            'address' => $address,
+            'start' => $newStart[0],
+            'end' => $newEnd[0],
+            'goal' => $goal,
+            'party_timezone'   =>   $newStart[1],
+        );
+
+        $this->db->where('party_id', $partyID);
+        $this->db->update('parties', $data); 
+
+        return true;
+
+    }
+
 }
+
+
+
+
+
+
+
+

@@ -83,7 +83,7 @@
 
 					<? endforeach; ?>
 
-					<div><button>See More</button></div>
+					<div><button>See More Friends</button></div>
 
 				<?else:?>
 					<h1><?=$user[0]['username']?> has no friends added.</h1>

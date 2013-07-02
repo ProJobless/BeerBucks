@@ -71,8 +71,9 @@
 								<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
 							</div>
 						</article>
-
+	
 					<?endforeach;?>
+					<div><button>See More Comments</button></div>
 				<?endif;?>
 
 				<h1>Post a comment</h1>

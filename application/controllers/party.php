@@ -7,6 +7,7 @@ class Party extends CI_Controller {
 
 		$this->load->model('party_model');
 		$this->load->model('user_model');
+		$this->load->library('form_validation');
 		$data['alerts'] = $this->user_model->checkAlerts();
 	}
 
@@ -112,12 +113,12 @@ class Party extends CI_Controller {
 
 	public function updates($partyID = 0){
 
-			//$data['updates']   =   $this->party_model->getUpdates();
-			$data['partyID']   =   $partyID;
-			$data['party']     =   $this->party_model->getParty($partyID);
-			$data['view']      =   'party_updates';
+		//$data['updates']   =   $this->party_model->getUpdates();
+		$data['partyID']   =   $partyID;
+		$data['party']     =   $this->party_model->getParty($partyID);
+		$data['view']      =   'party_updates';
 
-			$this->load->view('includes/template', $data);
+		$this->load->view('includes/template', $data);
 
 	}
 
