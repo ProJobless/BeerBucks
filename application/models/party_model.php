@@ -48,6 +48,43 @@ class Party_model extends CI_Model {
 
     }
 
+    public function incrementValue($title, $userID, $amount){
+
+        $this->db->select($title);
+        $this->db->from('users');
+        $this->db->where("user_id = '$userID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            $new = $dataResults[0][$title] + $amount;
+
+            $data = array($title => $new);
+
+            $this->db->where("user_id = '$userID'");
+            $this->db->update('users', $data); 
+
+            $sData = array($title => $new);
+
+            $this->session->set_userdata($sData);
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
 	public function checkIfExists($value, $variable) {
 
         $this->db->select($value);
@@ -186,6 +223,8 @@ class Party_model extends CI_Model {
         );
 
         $q = $this->db->insert('parties', $data);
+
+        $this->incrementValue('parties', $user_id, '1');
         
         return $party_id;
         
@@ -330,11 +369,10 @@ class Party_model extends CI_Model {
 
         if(!$partyID) return false;
 
-        $comment         =   $this->security->xss_clean($this->input->post('comment'));
+        $comment          =   $this->security->xss_clean($this->input->post('comment'));
         $partyCommentID   =   uniqid();
-        
-        $posterID = $this->session->userdata('userID'); 
-        $dateOfCom       =   date('Y/m/d h:i:s', time());
+        $posterID         =   $this->session->userdata('userID'); 
+        $dateOfCom        =   date('Y/m/d h:i:s', time());
 
         $data = array(
             'party_comment_id'   =>   $partyCommentID,
@@ -346,7 +384,18 @@ class Party_model extends CI_Model {
 
         $q = $this->db->insert('party_comments', $data);
 
-        return true;
+        if($q){
+
+            if($this->incrementValue('comments', $posterID, '1')){
+
+                return true;
+            }
+
+        }else{
+
+            return false;
+
+        }
 
     }
 
@@ -391,11 +440,29 @@ class Party_model extends CI_Model {
     public function deleteComment($commentID){
 
         if(!$commentID) return false;
-        
-        $this->db->where('party_comment_id', $commentID);
-        $this->db->delete('party_comments'); 
 
-        return true;
+
+        $this->db->select('party_comment_id');
+        $this->db->where('party_comment_id', $commentID);
+
+        $q = $this->db->get('party_comments');
+
+        if ($q->num_rows() > 0) {
+
+            $this->db->where('party_comment_id', $commentID);
+            $this->db->delete('party_comments'); 
+
+            if($this->incrementValue('comments', $this->session->userdata('userID'), '-1')){
+
+                return true;
+            }
+
+        }else{
+
+            return false;
+
+        } 
+
     }
 
     public function checkUser($partyID = 0){

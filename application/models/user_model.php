@@ -10,13 +10,13 @@ class User_model extends CI_Model {
 
     }
 
-    public function prepTime($data, $what){
+    public function prepTime($data, $title){
 
         $newData = array();
 
         foreach($data as $key=>$row){
 
-            $date = new DateTime($row[$what]);
+            $date = new DateTime($row[$title]);
 
             if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
 
@@ -43,7 +43,7 @@ class User_model extends CI_Model {
             }
 
             $newData[$key] = $row;
-            $newData[$key][$what] = $formatted;
+            $newData[$key][$title] = $formatted;
         }
 
         return $newData;
@@ -311,9 +311,7 @@ class User_model extends CI_Model {
         $this->db->where('friendship_id', $friendshipID);
         $this->db->update('friends', $data); 
 
-        $sData = array(
-            'alerts' => 0,
-        );
+        $sData = array('alerts' => 0);
 
         $this->session->set_userdata($sData);
 
@@ -330,9 +328,7 @@ class User_model extends CI_Model {
         $this->db->where('friendship_id', $friendshipID);
         $this->db->update('friends', $data); 
 
-        $sData = array(
-            'alerts' => 0,
-        );
+        $sData = array('alerts' => 0);
 
         $this->session->set_userdata($sData);
 
@@ -348,9 +344,7 @@ class User_model extends CI_Model {
             $alert = false;
         }
 
-        $sData = array(
-            'alerts' => $alert,
-        );
+        $sData = array('alerts' => $alert);
 
         $this->session->set_userdata($sData);
 
@@ -487,6 +481,43 @@ class User_model extends CI_Model {
 
     }
 
+    public function incrementValue($title, $userID, $amount){
+
+        $this->db->select($title);
+        $this->db->from('users');
+        $this->db->where("user_id = '$userID'");
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            $new = $dataResults[0][$title] + $amount;
+
+            $data = array($title => $new);
+
+            $this->db->where("user_id = '$userID'");
+            $this->db->update('users', $data); 
+
+            $sData = array($title => $new);
+
+            $this->session->set_userdata($sData);
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
     public function postComment($user2ID = 0){
 
         if($user2ID){
@@ -510,7 +541,18 @@ class User_model extends CI_Model {
 
         $q = $this->db->insert('user_comments', $data);
 
-        return true;
+        if($q){
+
+            if($this->incrementValue('comments', $posterID, '1')){
+
+                return true;
+            }
+
+        }else{
+
+            return false;
+
+        }
 
     }
 
@@ -560,11 +602,29 @@ class User_model extends CI_Model {
     public function deleteComment($commentID){
 
         if(!$commentID) return false;
-        
-        $this->db->where('user_comment_id', $commentID);
-        $this->db->delete('user_comments'); 
 
-        return true;
+
+        $this->db->select('user_comment_id');
+        $this->db->where('user_comment_id', $commentID);
+
+        $q = $this->db->get('user_comments');
+
+        if ($q->num_rows() > 0) {
+
+            $this->db->where('user_comment_id', $commentID);
+            $this->db->delete('user_comments'); 
+
+            if($this->incrementValue('comments', $this->session->userdata('userID'), '-1')){
+
+                return true;
+            }
+
+        }else{
+
+            return false;
+            
+        } 
+
     }
 
     public function sortActivity($friendInfo = 0, $partyInfo = 0){

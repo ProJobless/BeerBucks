@@ -112,6 +112,18 @@ var initTimeKeeper = function(){
 
 
 
+var initTabs = function(){
+
+	console.log('fwef');
+
+
+
+
+
+};
+
+
+
 
 
 

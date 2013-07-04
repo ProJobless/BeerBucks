@@ -20,14 +20,14 @@
 				</hgroup>
 
 				<ul>
-					<li>FeedBack <span>0</span></li>
-					<li>Views <span>0</span></li>
-					<li>Comments <span>0</span></li>
+					<li>Feedback <span><?=$this->session->userdata('feedback')?></span></li>
+					<li>Views <span><?=$this->session->userdata('views')?></span></li>
+					<li>Comments <span><?=$this->session->userdata('comments')?></span></li>
 				</ul>
 				
 				<hgroup>
-					<h5>0</h5> <h6>Contributions</h6>
-					<h5>0</h5> <h6>Hosted Parties</h6>
+					<h5><?=$this->session->userdata('contributions')?></h5> <h6>Contributions</h6>
+					<h5><?=$this->session->userdata('parties')?></h5> <h6>Hosted Parties</h6>
 				</hgroup>
 			</article>
 

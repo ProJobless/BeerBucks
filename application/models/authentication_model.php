@@ -118,9 +118,14 @@ class Authentication_model extends CI_Model {
 	    	$q = $this->db->insert('users', $data);
 
             $sData = array(
-                'userID'     =>   $userID,
-                'email'      =>   $email,
-                'username'   =>   $username
+                'userID'          =>   $userID,
+                'email'           =>   $email,
+                'username'        =>   $username,
+                'feedback'        =>   0,
+                'views'           =>   0,
+                'comments'        =>   0,
+                'contributions'   =>   0,
+                'parties'         =>   0,
             );
 
     		$this->session->set_userdata($sData);
@@ -150,15 +155,20 @@ class Authentication_model extends CI_Model {
     		$row = $q->row();
 
     		$sData = array(
-    			'userID'         =>   $row->user_id,
-    			'email'          =>   $row->email,
-    			'username'       =>   $row->username,
-                'dateOfReg'      =>   $row->date_of_reg,
-                'profileImage'   =>   $row->profile_img,
-                'facebookID'     =>   $row->facebook_id,
-                'location'       =>   $row->location,
-                'timezone'       =>   $row->timezone,
-                'bio'            =>   $row->bio
+    			'userID'          =>   $row->user_id,
+    			'email'           =>   $row->email,
+    			'username'        =>   $row->username,
+                'dateOfReg'       =>   $row->date_of_reg,
+                'profileImage'    =>   $row->profile_img,
+                'facebookID'      =>   $row->facebook_id,
+                'location'        =>   $row->location,
+                'timezone'        =>   $row->timezone,
+                'bio'             =>   $row->bio,
+                'feedback'        =>   $row->feedback,
+                'views'           =>   $row->views,
+                'comments'        =>   $row->comments,
+                'contributions'   =>   $row->contributions,
+                'parties'         =>   $row->parties,
     		);
 
     		$this->session->set_userdata($sData);
@@ -192,15 +202,20 @@ class Authentication_model extends CI_Model {
             $uData = $this->getExisting('email', $fbData['email']); 
 
             $sData = array(
-                'userID'         =>   $uData[0]['user_id'],
-                'email'          =>   $uData[0]['email'],
-                'username'       =>   $uData[0]['username'],
-                'dateOfReg'      =>   $uData[0]['date_of_reg'],
-                'profileImage'   =>   $profileImg,
-                'facebookID'     =>   $uData[0]['facebook_id'],
-                'location'       =>   $fbData['location']['name'],
-                'timezone'       =>   $fbData['timezone'],
-                'bio'            =>   $uData[0]['bio'],
+                'userID'          =>   $uData[0]['user_id'],
+                'email'           =>   $uData[0]['email'],
+                'username'        =>   $uData[0]['username'],
+                'dateOfReg'       =>   $uData[0]['date_of_reg'],
+                'profileImage'    =>   $profileImg,
+                'facebookID'      =>   $uData[0]['facebook_id'],
+                'location'        =>   $fbData['location']['name'],
+                'timezone'        =>   $fbData['timezone'],
+                'bio'             =>   $uData[0]['bio'],
+                'feedback'        =>   0,
+                'views'           =>   0,
+                'comments'        =>   0,
+                'contributions'   =>   0,
+                'parties'         =>   0,
             );
 
             $this->session->set_userdata($sData);
@@ -243,12 +258,17 @@ class Authentication_model extends CI_Model {
                 $q = $this->db->insert('users', $data);
 
                 $sData = array(
-                    'userID'         =>   $userID,
-                    'email'          =>   $email,
-                    'username'       =>   $username,
-                    'profileImage'   =>   $profileImg,
-                    'timezone'       =>   $fbData['timezone'],
-                    'location'       =>   $location,
+                    'userID'          =>   $userID,
+                    'email'           =>   $email,
+                    'username'        =>   $username,
+                    'profileImage'    =>   $profileImg,
+                    'timezone'        =>   $fbData['timezone'],
+                    'location'        =>   $location,
+                    'feedback'        =>   0,
+                    'views'           =>   0,
+                    'comments'        =>   0,
+                    'contributions'   =>   0,
+                    'parties'         =>   0,
                 );
 
                 $this->session->set_userdata($sData);
@@ -269,15 +289,20 @@ class Authentication_model extends CI_Model {
             $uData = $this->getExisting('email', $fbData['email']); 
 
             $sData = array(
-                'userID'         =>   $uData[0]['user_id'],
-                'email'          =>   $uData[0]['email'],
-                'username'       =>   $uData[0]['username'],
-                'dateOfReg'      =>   $uData[0]['date_of_reg'],
-                'profileImage'   =>   $uData[0]['profile_img'],
-                'facebookID'     =>   $uData[0]['facebook_id'],
-                'location'       =>   $uData[0]['location'],
-                'timezone'       =>   $uData[0]['timezone'],
-                'bio'            =>   $uData[0]['bio'],
+                'userID'          =>   $uData[0]['user_id'],
+                'email'           =>   $uData[0]['email'],
+                'username'        =>   $uData[0]['username'],
+                'dateOfReg'       =>   $uData[0]['date_of_reg'],
+                'profileImage'    =>   $uData[0]['profile_img'],
+                'facebookID'      =>   $uData[0]['facebook_id'],
+                'location'        =>   $uData[0]['location'],
+                'timezone'        =>   $uData[0]['timezone'],
+                'bio'             =>   $uData[0]['bio'],
+                'feedback'        =>   $uData[0]['feedback'],
+                'views'           =>   $uData[0]['views'],
+                'comments'        =>   $uData[0]['comments'],
+                'contributions'   =>   $uData[0]['contributions'],
+                'parties'         =>   $uData[0]['parties'],
             );
 
             $this->session->set_userdata($sData);
@@ -392,6 +417,11 @@ class Authentication_model extends CI_Model {
                 'username'          =>   $username,
                 'twitter_user_id'   =>   $twData['user_id'],
                 'profileImage'      =>   $profileImg,
+                'feedback'          =>   0,
+                'views'             =>   0,
+                'comments'          =>   0,
+                'contributions'     =>   0,
+                'parties'           =>   0,
             );
 
             $this->session->set_userdata($sData);
@@ -425,6 +455,11 @@ class Authentication_model extends CI_Model {
                 'timezone'          =>   $uData[0]['timezone'],
                 'bio'               =>   $uData[0]['bio'],
                 'twitter_user_id'   =>   $twData['user_id'],
+                'feedback'          =>   $uData[0]['feedback'],
+                'views'             =>   $uData[0]['views'],
+                'comments'          =>   $uData[0]['comments'],
+                'contributions'     =>   $uData[0]['contributions'],
+                'parties'           =>   $uData[0]['parties'],
             );
 
             $this->session->set_userdata($sData);

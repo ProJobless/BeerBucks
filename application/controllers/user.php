@@ -136,7 +136,7 @@ class User extends CI_Controller {
 
 				if($this->form_validation->run() == false){
 
-					redirect('user/comments/$user2ID');
+					redirect("user/comments/$user2ID");
 
 				}else{
 					
