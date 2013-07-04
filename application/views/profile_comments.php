@@ -114,3 +114,4 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
+	<script>initTabs();</script>

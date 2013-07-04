@@ -114,11 +114,36 @@ var initTimeKeeper = function(){
 
 var initTabs = function(){
 
-	console.log('fwef');
+	var tabs         =   $('#tabs>ul>a'),
+		tabContent   =   $('#tabContent')
+	;
 
+	tabs.off('click').on('click', function(e){
+		var that            =   $(this),
+			url             =   that.attr('href'),
+			contentHeight   =   tabContent.height()
+		;
 
+		tabs.find('li').removeClass('selected');
 
+		tabContent.height(contentHeight);
 
+		tabContent.children().animate({opacity: 0}, 600, function() {
+
+			$(tabContent).empty();
+
+			$.get(url, function(data){
+				var newContent = $(data).find('#tabContent');
+				tabContent.replaceWith(newContent);
+				$(newContent).children().css('opacity', 0);
+				$(e.target).addClass('selected');
+				$(newContent).children().animate({opacity: 1}, 600, function(){initTabs();});
+			});
+
+		});
+
+		return false;
+	});
 
 };
 

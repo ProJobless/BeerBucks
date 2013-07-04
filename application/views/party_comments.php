@@ -142,3 +142,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTimeKeeper();</script>
+	<script>initTabs();</script>
