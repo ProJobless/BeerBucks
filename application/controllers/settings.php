@@ -90,8 +90,8 @@ class Settings extends CI_Controller {
 
 				}else{
 
-					$data    =   array('upload_data' => $this->upload->data());
-					$sData   =   array('profileImage' => $data['upload_data']['file_name']);
+					$data    =   array('upload_data'    =>   $this->upload->data());
+					$sData   =   array('profileImage'   =>   $data['upload_data']['file_name']);
 
 					$this->session->set_userdata($sData);
 
@@ -100,6 +100,7 @@ class Settings extends CI_Controller {
 					if($result){
 
 						$data['view'] = 'settings';
+						$data['success']   =   'Information successfully updated.';
 
 						$this->load->view('includes/template', $data);
 
@@ -113,7 +114,8 @@ class Settings extends CI_Controller {
 				if($result){
 
 					$data['view'] = 'settings';
-
+					$data['success']   =   'Information successfully updated.';
+					
 					$this->load->view('includes/template', $data);
 
 				}else{

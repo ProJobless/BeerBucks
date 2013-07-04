@@ -37,8 +37,10 @@
 			</article>
 
 			<? if(isset($friendCheck) && $this->session->userdata('userID')): ?>
-				<?if (!$friendCheck): ?>
+				<?if(!$friendCheck):?>
 					<a href="<?=base_url()?>index.php/community/addFriend/<?=$user[0]['user_id']?>"><button>Add Friend</button></a>
+				<?else:?>
+					<a class="remove" href="<?=base_url()?>index.php/community/removeFriend/<?=$user[0]['user_id']?>"><button>Remove Friend</button></a>
 				<?endif;?>
 			<?endif;?>
 

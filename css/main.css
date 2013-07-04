@@ -51,41 +51,6 @@
   font-style: normal; }
 
 @font-face {
-  font-family: 'WalkwayObliqueRegular';
-  src: url("fonts/walkway/Walkway_Oblique-webfont.eot");
-  src: url("fonts/walkway/Walkway_Oblique-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/walkway/Walkway_Oblique-webfont.woff") format("woff"), url("fonts/walkway/Walkway_Oblique-webfont.ttf") format("truetype"), url("fonts/walkway/Walkway_Oblique-webfont.svg#WalkwayObliqueRegular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'WalkwayObliqueSemiBoldRegular';
-  src: url("fonts/walkway/Walkway_Oblique_SemiBold-webfont.eot");
-  src: url("fonts/walkway/Walkway_Oblique_SemiBold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/walkway/Walkway_Oblique_SemiBold-webfont.woff") format("woff"), url("fonts/walkway/Walkway_Oblique_SemiBold-webfont.ttf") format("truetype"), url("fonts/walkway/Walkway_Oblique_SemiBold-webfont.svg#WalkwayObliqueSemiBoldRegular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'WalkwayObliqueBoldRegular';
-  src: url("fonts/walkway/Walkway_Oblique_Bold-webfont.eot");
-  src: url("fonts/walkway/Walkway_Oblique_Bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/walkway/Walkway_Oblique_Bold-webfont.woff") format("woff"), url("fonts/walkway/Walkway_Oblique_Bold-webfont.ttf") format("truetype"), url("fonts/walkway/Walkway_Oblique_Bold-webfont.svg#WalkwayObliqueBoldRegular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'WalkwayObliqueUltraBoldRg';
-  src: url("fonts/walkway/Walkway_Oblique_UltraBold-webfont.eot");
-  src: url("fonts/walkway/Walkway_Oblique_UltraBold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/walkway/Walkway_Oblique_UltraBold-webfont.woff") format("woff"), url("fonts/walkway/Walkway_Oblique_UltraBold-webfont.ttf") format("truetype"), url("fonts/walkway/Walkway_Oblique_UltraBold-webfont.svg#WalkwayObliqueUltraBoldRg") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'WalkwayObliqueBlackRegular';
-  src: url("fonts/walkway/Walkway_Oblique_Black-webfont.eot");
-  src: url("fonts/walkway/Walkway_Oblique_Black-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/walkway/Walkway_Oblique_Black-webfont.woff") format("woff"), url("fonts/walkway/Walkway_Oblique_Black-webfont.ttf") format("truetype"), url("fonts/walkway/Walkway_Oblique_Black-webfont.svg#WalkwayObliqueBlackRegular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
   font-family: 'BevanRegular';
   src: url("fonts/bevan/Bevan-webfont.eot");
   src: url("fonts/bevan/Bevan-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/bevan/Bevan-webfont.woff") format("woff"), url("fonts/bevan/Bevan-webfont.ttf") format("truetype"), url("fonts/bevan/Bevan-webfont.svg#BevanRegular") format("svg");
@@ -145,6 +110,34 @@ input:focus, input[type=password]:focus, textarea:focus {
   box-shadow: 0 0 3px #f2137b;
   border: none; }
 
+.success {
+  height: 30px;
+  background-color: #fafdff;
+  border: solid 1px #05a696;
+  margin: 20px auto -20px;
+  text-align: center;
+  line-height: 30px;
+  color: #05a696;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+.error {
+  height: 30px;
+  background-color: #fafdff;
+  border: solid 1px #f2137b;
+  margin: 20px auto -20px;
+  text-align: center;
+  line-height: 30px;
+  color: #f2137b;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px; }
+
+#cta + .success, #cta + .error {
+  margin-top: 50px; }
+
+.success + .success, .error + .error {
+  margin-top: 30px; }
+
 /* ------------------------------ Header Styles ------------------------------ */
 header {
   height: 70px;
@@ -173,15 +166,16 @@ header nav a {
   border-right: solid 1px #dddddd;
   float: left;
   padding-top: 20px;
-  transition: 0.09s;
-  -webkit-transition: 0.09s; }
+  color: #666666;
+  transition: 0.4s;
+  -webkit-transition: 0.4s; }
   header nav a:hover {
-    height: 50px;
     margin-top: 5px;
     vertical-align: bottom;
     padding-top: 15px;
-    transition: 0.12s;
-    -webkit-transition: 0.12s; }
+    color: #f2137b;
+    transition: 0.2s;
+    -webkit-transition: 0.2s; }
 
 header nav a:first-child {
   border-left: solid 1px #dddddd; }
@@ -202,8 +196,7 @@ header nav h1 {
 
 header nav h2 {
   font-size: .8em;
-  font-weight: 100;
-  color: #666666; }
+  color: inherit; }
 
 header #tools {
   float: right;
@@ -2074,25 +2067,6 @@ article#topImages > a {
 #tabContent.start .upload {
   padding-top: 40px; }
 
-#tabContent.start .success {
-  width: 990px;
-  height: 40px;
-  margin: 10px 0 10px -30px;
-  background-color: #05a696;
-  text-align: center;
-  color: #edf6f5;
-  line-height: 40px; }
-
-#tabContent.start .error {
-  width: 990px;
-  height: 40px;
-  margin: 10px 0 10px -30px;
-  background-color: #edf6f5;
-  border: solid 1px #f2137b;
-  text-align: center;
-  color: #f2137b;
-  line-height: 40px; }
-
 /* ------------------------------ Start Page - Page 4: Review ------------------------------ */
 #tabContent.start #review {
   width: 100%;
@@ -2646,15 +2620,17 @@ article#topImages > a {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
     /* IE6-9 */ }
 
-#profile .error {
-  width: 100%;
-  height: 40px;
-  margin: 60px auto -20px;
-  background-color: #edf6f5;
-  border: solid 1px #f2137b;
-  text-align: center;
-  color: #f2137b;
-  line-height: 40px; }
+#profile aside > a.remove button {
+  color: #666666;
+  background: #edf6f5;
+  border: solid 1px #dddddd;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: 0px 0px 2px 0px #dddddd;
+  box-shadow: 0px 0px 2px 0px #dddddd; }
+  #profile aside > a.remove button:hover {
+    background: #f2137b;
+    color: #edf6f5; }
 
 /* ------------------------------ Profile Page - Tabs ------------------------------ */
 #profile #tabs {
@@ -2731,8 +2707,17 @@ article#topImages > a {
 #profile #tabContent.friends article h4 {
   height: 40px; }
 
-#profile #tabContent > h1 {
+#tabContent > h1 {
   margin: 15px 0; }
+
+#profile #tabContent > h1 > a {
+  display: block;
+  font-weight: bold;
+  font-size: .8em;
+  color: #05a696; }
+  #profile #tabContent > h1 > a:hover {
+    color: #06bfad;
+    text-decoration: underline; }
 
 #profile #tabContent.friends article h3 {
   float: right;
@@ -2822,7 +2807,7 @@ article#topImages > a {
   border-top: solid 1px #dddddd;
   border-bottom: solid 1px #dddddd; }
 
-#tabContent.comments article {
+#tabContent.comments article, #tabContent.updates article {
   width: 100%;
   height: auto;
   background-color: #fafdff;
@@ -2845,7 +2830,10 @@ article#topImages > a {
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-#tabContent.comments article img {
+#tabContent.updates article:last-of-type {
+  margin-bottom: 13px; }
+
+#tabContent.comments article img, #tabContent.updates article img {
   background-color: #071226;
   width: 65px;
   height: 65px; }
@@ -2878,7 +2866,7 @@ article#topImages > a {
   position: absolute;
   top: 175px; }
 
-#tabContent.comments article div {
+#tabContent.comments article div, #tabContent.updates article div {
   width: 600px;
   height: auto;
   background-color: #edf6f5;
@@ -2895,8 +2883,8 @@ article#topImages > a {
   right: 10px;
   top: 170px; }
 
-#tabContent.comments article p {
-  width: 580px;
+#tabContent.comments article p, #tabContent.updates article p {
+  width: 555px;
   height: auto;
   border: solid 1px #dddddd;
   background-color: #fafdff;
@@ -2908,6 +2896,67 @@ article#topImages > a {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
 
+#tabs #tabContent article .delete {
+  border: solid 1px #8c0f6b;
+  padding: 8px;
+  font-size: .7em;
+  font-weight: 500;
+  letter-spacing: .1em !important;
+  color: #edf6f5;
+  background: #f2137b;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2137b), color-stop(100%, #db116f));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f2137b 0%, #db116f 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f2137b 0%, #db116f 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  /* IE6-9 */
+  -webkit-box-shadow: inset 0px 1px 0px 0px #eb599d;
+  box-shadow: inset 0px 1px 0px 0px #eb599d;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  padding: 0px;
+  position: absolute;
+  font-size: .9em;
+  font-weight: bold;
+  top: 13px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 0px;
+  text-align: center; }
+  #tabs #tabContent article .delete:hover {
+    -webkit-box-shadow: inset 0px 1px 0px 0px #071226;
+    box-shadow: inset 0px 1px 0px 0px #071226;
+    background: #c40f64;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c40f64), color-stop(100%, #db116f));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #c40f64 0%, #b30e5b 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #c40f64 0%, #b30e5b 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+    /* IE6-9 */ }
+  #tabs #tabContent article .delete:hover {
+    color: #edf6f5;
+    text-decoration: none; }
+
 #tabContent.comments article a {
   font-weight: bold;
   font-size: .8em;
@@ -2918,6 +2967,25 @@ article#topImages > a {
 
 #tabContent.comments article span {
   font-size: .8em; }
+
+#tabContent.updates article span {
+  font-size: 1.1em;
+  font-weight: 300;
+  margin-bottom: 5px;
+  color: #05a696; }
+
+#tabContent.updates article span:nth-of-type(2) {
+  display: block;
+  font-size: .8em;
+  font-weight: normal;
+  margin: 0;
+  color: #666666; }
+
+#tabContent.updates article p {
+  float: none; }
+
+#tabContent.updates h1 {
+  margin-left: 5px; }
 
 /* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
 #tabContent.activity article {
@@ -3140,6 +3208,7 @@ article#topImages > a {
 /* ------------------------------ Settings Page - Forms ------------------------------ */
 #settingsForms {
   width: 709px;
+  min-height: 760px;
   height: 100%;
   overflow: hidden;
   float: right; }
@@ -3409,25 +3478,6 @@ article#topImages > a {
 
 #settingsForms .upload {
   padding-top: 40px; }
-
-#settingsForms .success {
-  width: 100%;
-  height: 40px;
-  margin: 10px auto;
-  background-color: #05a696;
-  text-align: center;
-  color: #edf6f5;
-  line-height: 40px; }
-
-#settingsForms .error {
-  width: 99.8%;
-  height: 40px;
-  margin: 10px auto;
-  background-color: #edf6f5;
-  border: solid 1px #f2137b;
-  text-align: center;
-  color: #f2137b;
-  line-height: 40px; }
 
 #settingsForms form > p {
   color: #f2137b;
@@ -3815,7 +3865,8 @@ article#topImages > a {
 #party #tabs {
   width: 720px;
   float: left;
-  margin: 20px 0 50px 0; }
+  margin: 20px 0 50px 0;
+  height: auto; }
 
 #party #tabs > ul {
   margin-top: 0; }
@@ -4480,7 +4531,7 @@ article#topImages > a {
   margin: 8px 0px 0px 3px; }
 
 /* ------------------------------ Edit Party Page - Tab: Basic Information ------------------------------ */
-#settingsForms.partyEdit form div:nth-of-type(4) {
+#settingsForms.partyEdit form div:nth-last-of-type(1) {
   padding: 0;
   height: 50px;
   width: 709px;
@@ -4500,3 +4551,6 @@ article#topImages > a {
 
 #settingsForms.partyEdit form div:nth-of-type(1) input:nth-of-type(2) {
   margin-top: 15px; }
+
+#settingsForms.partyEdit form textarea[name="update"] {
+  height: 400px; }

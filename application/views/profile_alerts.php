@@ -4,6 +4,14 @@
 		</div>
 	</section>
 
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="profile" class="sizer">
 		<aside>
 			<article>

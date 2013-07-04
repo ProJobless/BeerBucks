@@ -32,11 +32,11 @@ class User extends CI_Controller {
 			$data['user']       =   $this->user_model->getUser($user2ID);
 			$data['view']       =   'user';
 			
-			$this->load->view('includes/template', $data);
+			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			
 		}else{
 
-			redirect('profile');
+			redirect('community/people');
 
 		}
 		
@@ -56,7 +56,7 @@ class User extends CI_Controller {
 			$data['parties']   =   $this->user_model->getUserParties($user2ID);
 			$data['view']      =   'user_parties';
 
-			$this->load->view('includes/template', $data);
+			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			
 		}else{
 
@@ -80,7 +80,7 @@ class User extends CI_Controller {
 			$data['friends']   =   $this->user_model->getFriends($user2ID);
 			$data['view']      =   'user_friends';
 
-			$this->load->view('includes/template', $data);
+			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			
 		}else{
 
@@ -106,7 +106,7 @@ class User extends CI_Controller {
 			$data['friends']    =   $this->user_model->getFriends($user2ID);
 			$data['view']       =   'user_comments';
 
-			$this->load->view('includes/template', $data);
+			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			
 		}else{
 
@@ -149,6 +149,43 @@ class User extends CI_Controller {
 					}
 
 				}
+
+			}else{
+
+				redirect('profile');
+
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
+
+	}
+
+	public function deleteComment($commentID = 0, $user2ID = 0){
+
+		if($this->session->userdata('userID')){
+
+			if($user2ID != $this->session->userdata('userID') && $user2ID){
+
+				$this->user_model->deleteComment($commentID);
+
+				if($this->user_model->checkFriendship($user2ID)){
+					$data['friendCheck'] = false;	
+				}else{
+					$data['friendCheck'] = true;	
+				}
+
+				$data['comments']   =   $this->user_model->getComments($user2ID);
+				$data['user']       =   $this->user_model->getUser($user2ID);
+				$data['user2']      =   $user2ID;
+				$data['friends']    =   $this->user_model->getFriends($user2ID);
+				$data['view']       =   'user_comments';
+
+				$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+
 
 			}else{
 

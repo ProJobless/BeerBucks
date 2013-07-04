@@ -8,6 +8,21 @@ class User_model extends CI_Model {
         $this->load->helper('object_to_array.php');
     }
 
+    public function checkForUser($userID){
+
+        $this->db->select('user_id');
+        $this->db->where('user_id', $userID);
+
+        $q = $this->db->get('users');
+
+        if ($q->num_rows() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 	public function checkIfExists($value, $variable) {
 
         $this->db->select($value);
@@ -51,6 +66,7 @@ class User_model extends CI_Model {
             }
 
             return true;
+
         }else{
             return true;
         }
@@ -140,12 +156,58 @@ class User_model extends CI_Model {
                 'date_of_req'     =>   $dateOfReq,
             );
 
-            $q = $this->db->insert('friends', $data);
+            $this->db->insert('friends', $data);
 
             return true;
 
         }else{
+
             return false;
+
+        }
+
+    }
+
+    public function removeFriend($user2ID){
+
+        $user1ID = $this->session->userdata('userID');
+        $dateOfReq = date('Y/m/d h:i:s', time());
+        $friendshipID = uniqid();
+
+        $this->db->select('friendship_id, user1_id, user2_id');
+        $this->db->where('user1_id', $user1ID);
+        $this->db->or_where("user2_id = '$user1ID'");
+
+        $query = $this->db->get('friends');
+
+        if ($query->num_rows() > 0) {
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            foreach($dataResults as $row){
+                if($row['user2_id'] == $user2ID && $row['user1_id'] == $user1ID){
+                    
+                    $this->db->where('friendship_id', $row['friendship_id']);
+                    $this->db->delete('friends'); 
+
+                    return true;
+                }
+                if($row['user1_id'] == $user2ID && $row['user2_id'] == $user1ID){
+
+                    $this->db->where('friendship_id', $row['friendship_id']);
+                    $this->db->delete('friends');
+
+                    return true;
+                }
+            }
+        }else{
+
+            return false;
+
         }
 
     }
@@ -213,6 +275,8 @@ class User_model extends CI_Model {
 
         $this->session->set_userdata($sData);
 
+        return true;
+
     }
 
     public function declineFriend($friendshipID){
@@ -229,6 +293,8 @@ class User_model extends CI_Model {
         );
 
         $this->session->set_userdata($sData);
+
+        return true;
 
     }
 
@@ -445,6 +511,16 @@ class User_model extends CI_Model {
             return false;
         }
 
+    }
+
+    public function deleteComment($commentID){
+
+        if(!$commentID) return false;
+        
+        $this->db->where('user_comment_id', $commentID);
+        $this->db->delete('user_comments'); 
+
+        return true;
     }
 
     public function sortActivity($friendInfo = 0, $partyInfo = 0){

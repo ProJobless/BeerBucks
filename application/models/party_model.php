@@ -346,6 +346,16 @@ class Party_model extends CI_Model {
 
     }
 
+    public function deleteComment($commentID){
+
+        if(!$commentID) return false;
+        
+        $this->db->where('party_comment_id', $commentID);
+        $this->db->delete('party_comments'); 
+
+        return true;
+    }
+
     public function checkUser($partyID = 0){
 
         if(!$partyID) return false;
@@ -356,15 +366,23 @@ class Party_model extends CI_Model {
 
         $query = $this->db->get();
 
-        foreach($query->result() as $row){
-            $dataResults[] = $row;
-        }
+        if($query->num_rows > 0){    
 
-        $dataResults = objectToArray($dataResults);
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
 
-        if($dataResults[0]['user_id'] == $this->session->userdata('userID')){
+            $dataResults = objectToArray($dataResults);
 
-            return true;
+            if($dataResults[0]['user_id'] == $this->session->userdata('userID')){
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }
 
         }else{
 
@@ -396,8 +414,8 @@ class Party_model extends CI_Model {
         $description   =   $this->security->xss_clean($this->input->post('description'));
 
         $data = array(
-            'title' => $title,
-            'description' => $description,
+            'title'         =>   $title,
+            'description'   =>   $description,
         );
 
         $this->db->where('party_id', $partyID);
@@ -420,11 +438,11 @@ class Party_model extends CI_Model {
         $newEnd          =   $this->converTimezone($end);
 
         $data = array(
-            'party_location' => $partyLocation,
-            'address' => $address,
-            'start' => $newStart[0],
-            'end' => $newEnd[0],
-            'goal' => $goal,
+            'party_location'   =>   $partyLocation,
+            'address'          =>   $address,
+            'start'            =>   $newStart[0],
+            'end'              =>   $newEnd[0],
+            'goal'             =>   $goal,
             'party_timezone'   =>   $newStart[1],
         );
 
@@ -435,12 +453,68 @@ class Party_model extends CI_Model {
 
     }
 
+    public function addUpdate($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $updateTitle   =   $this->security->xss_clean($this->input->post('updateTitle'));
+        $update        =   $this->security->xss_clean($this->input->post('update'));
+        $updateID      =   uniqid();
+        $updateDate    =   date('Y/m/d h:i:s', time());
+
+
+        $data = array(
+            'update_id'      =>   $updateID,
+            'party_id'       =>   $partyID,
+            'update_title'   =>   $updateTitle,
+            'update'         =>   $update,
+            'update_date'    =>   $updateDate,
+        );
+
+        $this->db->insert('updates', $data);
+
+    }
+
+    public function getUpdates($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('
+            update_id,
+            party_id,
+            update_title,
+            update,
+            update_date,
+        ');
+
+        $this->db->where('party_id', $partyID);
+        $query = $this->db->get('updates');
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
+    public function deleteUpdate($updateID = 0){
+
+        if(!$updateID) return false;
+
+        $this->db->where('update_id', $updateID);
+        $this->db->delete('updates'); 
+
+        return true;
+
+    }
+
 }
-
-
-
-
-
-
-
-

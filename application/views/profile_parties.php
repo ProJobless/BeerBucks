@@ -92,7 +92,7 @@
 					<div><button>See More Parties</button></div>
 
 					<?else:?>
-					<a href="<?=base_url('index.php/start')?>">Start your first party</a>
+					<h1><a href="<?=base_url('index.php/start')?>">Start your first party</a></h1>
 				<?endif;?>
 
 			</section>

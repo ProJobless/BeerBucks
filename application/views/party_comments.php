@@ -24,13 +24,18 @@
 
 						<article>
 							<?if($comment['profile_img']):?>
-								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
+								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="65" height="65" /></a>
 							<?else:?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
 							<?endif;?>
 
 							<div>
 								<p><?=$comment['party_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
+								
+								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
+									<a href="<?=base_url()?>index.php/party/deleteComment/<?=$comment['party_comment_id']?>/<?=$partyID?>" class="delete">x</a>
+								<?endif;?>
+
 							</div>
 						</article>
 
@@ -83,7 +88,7 @@
 				</ul>
 
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
-					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Edit Party</a>
+					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
 					<button>Pitch In</button>
 				<?endif;?>

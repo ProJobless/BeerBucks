@@ -1,14 +1,16 @@
-	<? 
-		// echo '<pre>';
-		// print_r($activity);
-		// echo '<pre>'; 
-	?>
-
 	<section id="cta" class="profile">
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
 		</div>
 	</section>
+
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
 
 	<section id="profile" class="sizer">
 		<aside>

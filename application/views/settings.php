@@ -1,3 +1,11 @@
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error) && !isset($upload_data)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="settings" class="sizer">
 		<aside>
 			<article>
@@ -23,14 +31,6 @@
 		</aside>
 
 		<section id="settingsForms">
-
-			<? if(isset($error) && !isset($upload_data)):?>
-				<p class="error"><?=$error?></p>
-			<? endif; ?>
-			
-			<? if(isset($upload_data)): ?>
-				<p class="success">Your image was successfully uploaded.</p>
-			<? endif; ?>
  			
  			<?=form_open_multipart('/settings/profile');?>
 

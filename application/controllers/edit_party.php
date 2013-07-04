@@ -96,7 +96,7 @@ class Edit_party extends CI_Controller {
 
 					if($this->form_validation->run() == false){
 
-						$data    =   array('upload_data' => $this->upload->data());					
+						$data = array('upload_data' => $this->upload->data());					
 						$this->party_model->updateImage($partyID, $data['upload_data']['file_name']);
 
 						$data['partyID']   =   $partyID;
@@ -107,13 +107,14 @@ class Edit_party extends CI_Controller {
 
 					}else{
 
-						$data    =   array('upload_data' => $this->upload->data());					
+						$data = array('upload_data' => $this->upload->data());					
 						$this->party_model->updateImage($partyID, $data['upload_data']['file_name']);
 						$this->party_model->updateInfo($partyID);
 
 						$data['partyID']   =   $partyID;
 						$data['party']     =   $this->party_model->getParty($partyID);
 						$data['view']      =   'party_edit';
+						$data['success']   =   'Information successfully updated.';
 
 						$this->load->view('includes/template', $data);
 
@@ -153,6 +154,7 @@ class Edit_party extends CI_Controller {
 
 					$data['partyID']   =   $partyID;
 					$data['party']     =   $this->party_model->getParty($partyID);
+					$data['success']   =   'Information successfully updated.';
 					$data['view']      =   'party_edit';
 
 					$this->load->view('includes/template', $data);
@@ -226,7 +228,7 @@ class Edit_party extends CI_Controller {
 				$data['partyID']   =   $partyID;
 				$data['party']     =   $this->party_model->getParty($partyID);
 				$data['view']      =   'party_edit_details';
-				$data['error']   =   'Please fill out all the information.';
+				$data['error']     =   'Please fill out all the information.';
 
 				$this->load->view('includes/template', $data);
 
@@ -237,11 +239,81 @@ class Edit_party extends CI_Controller {
 				$data['partyID']   =   $partyID;
 				$data['party']     =   $this->party_model->getParty($partyID);
 				$data['view']      =   'party_edit_details';
+				$data['success']   =   'Information successfully updated.';
 
 				$this->load->view('includes/template', $data);
 
 			}
 	
+
+		}else{
+
+			redirect('discover');
+
+		}
+
+	}
+
+	public function updates($partyID = 0){
+
+		if($this->party_model->checkUser($partyID)){
+
+			$data['partyID']   =   $partyID;
+			$data['party']     =   $this->party_model->getParty($partyID);
+			$data['view']      =   'party_edit_updates';
+
+			$this->load->view('includes/template', $data);
+
+
+		}else{
+
+			redirect('discover');
+
+		}
+
+	}
+
+	public function update($partyID = 0){
+
+		if($this->party_model->checkUser($partyID)){
+
+			$config = array(
+				array(
+					'field'   =>   'updateTitle',
+					'label'   =>   'Update Title',
+					'rules'   =>   'trim|required|min_length[5]|max_length[25]'
+				), 
+				array(
+					'field'   =>   'update',
+					'label'   =>   'Update',
+					'rules'   =>   'trim|required|min_length[5]|max_length[1000]'
+				)
+			);
+
+			$this->form_validation->set_rules($config);
+
+			if($this->form_validation->run() == false){
+
+				$data['partyID']   =   $partyID;
+				$data['party']     =   $this->party_model->getParty($partyID);
+				$data['view']      =   'party_edit_updates';
+				$data['error']     =   'Please fill out all the information.';
+
+				$this->load->view('includes/template', $data);
+
+			}else{
+
+				$this->party_model->addUpdate($partyID);
+
+				$data['partyID']   =   $partyID;
+				$data['party']     =   $this->party_model->getParty($partyID);
+				$data['view']      =   'party_edit_updates';
+				$data['success']   =   'Update successfully added.';
+
+				$this->load->view('includes/template', $data);
+
+			}
+
 
 		}else{
 

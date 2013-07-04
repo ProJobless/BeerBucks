@@ -128,13 +128,40 @@ class Profile extends CI_Controller {
 
 	}
 
+	public function deleteComment($commentID = 0){
+		
+		if($commentID){
+
+			if($this->session->userdata('userID')) {
+
+				$this->user_model->deleteComment($commentID);
+
+				$data['comments']   =   $this->user_model->getComments();
+				$data['view']       =   'profile_comments';
+
+				$this->load->view('includes/template', $data);
+
+			}else{
+
+				redirect('join');
+
+			}
+
+		}else{
+
+			redirect('profile/comments');
+
+		}
+
+	}
+
 	public function acceptFriend($friendshipID){
 
 		if($this->user_model->acceptFriend($friendshipID)){
 
 			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
 			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Friend added.';
+			$data['success']      =   'Friend added.';
 
 			$this->load->view('includes/template', $data);
 
@@ -142,7 +169,7 @@ class Profile extends CI_Controller {
 
 			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
 			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Problem adding friend.';
+			$data['error']        =   'Problem adding friend.';
 
 			$this->load->view('includes/template', $data);
 
@@ -156,7 +183,7 @@ class Profile extends CI_Controller {
 
 			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
 			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Friend request denied.';
+			$data['success']      =   'Friend request denied.';
 
 			$this->load->view('includes/template', $data);
 
@@ -164,7 +191,7 @@ class Profile extends CI_Controller {
 
 			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
 			$data['view']         =   'profile_alerts';
-			$data['message']      =   'Problem denying friend request.';
+			$data['error']      =   'Problem denying friend request.';
 
 			$this->load->view('includes/template', $data);
 			

@@ -37,8 +37,10 @@
 			</article>
 
 			<? if(isset($friendCheck) && $this->session->userdata('userID')): ?>
-				<?if (!$friendCheck): ?>
+				<?if(!$friendCheck):?>
 					<a href="<?=base_url()?>index.php/community/addFriend/<?=$user[0]['user_id']?>"><button>Add Friend</button></a>
+				<?else:?>
+					<a class="remove" href="<?=base_url()?>index.php/community/removeFriend/<?=$user[0]['user_id']?>"><button>Remove Friend</button></a>
 				<?endif;?>
 			<?endif;?>
 
@@ -69,6 +71,10 @@
 
 							<div>
 								<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
+								
+								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
+									<a href="<?=base_url()?>index.php/user/deleteComment/<?=$comment['user_comment_id']?>/<?=$user[0]['user_id']?>" class="delete">x</a>
+								<?endif;?>
 							</div>
 						</article>
 	

@@ -163,13 +163,10 @@
 				
 
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
-					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Edit Party</a>
+					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
 					<button>Pitch In</button>
 				<?endif;?>
-
-
-
 
 				<p>After pitching in, check here to see where the party is.</p>
 			</article>

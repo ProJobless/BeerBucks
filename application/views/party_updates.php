@@ -19,7 +19,28 @@
 
 			<section id="tabContent" class="updates">
 				
-				<h1>No Updates</h1>	
+				<?if($updates[0]):?>
+					<?foreach($updates as $update): ?>
+
+						<article>
+							<?if($party[0]['party_img']):?>
+								<img src="<?=base_url()?>uploads/party/<?=$party[0]['party_img']?>" alt="" width="65" height="65" />
+							<?else:?>
+								<img src="" alt="" width="65" height="65" />
+							<?endif;?>
+
+							<div>
+								<p><span><?=$update['update_title']?></span><span><?=$update['update_date']?></span><?=$update['update']?></p>
+								
+								<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
+									<a href="<?=base_url()?>index.php/party/deleteUpdate/<?=$update['update_id']?>/<?=$partyID?>" class="delete">x</a>
+								<?endif;?>
+							</div>
+						</article>
+					<?endforeach;?>
+				<?else:?>
+					<h1>No Updates</h1>	
+				<?endif;?>
 			
 			</section>
 		</section>
@@ -49,7 +70,7 @@
 				</ul>
 
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
-					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Edit Party</a>
+					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
 					<button>Pitch In</button>
 				<?endif;?>

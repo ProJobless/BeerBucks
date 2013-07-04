@@ -28,6 +28,25 @@ class Authentication_model extends CI_Model {
 
     } 
 
+    function checkTwitterImage($twitterID){
+
+        $this->db->select('profile_img');
+        $this->db->where('twitter_id', $twitterID);
+
+        $q = $this->db->get('users');
+
+        if ($q->num_rows() > 0) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
     function getExisting($value, $variable){
 
         $this->db->select('
@@ -348,7 +367,7 @@ class Authentication_model extends CI_Model {
         $twitterID   =   $twData['user_id'];
 
         $exists = $this->checkIfExists('twitter_id', $twitterID);
-        $imgeEists = $this->checkIfExists('profile_img', $twitterID);
+        $imageExists = $this->checkTwitterImage($twitterID);
 
         if(!$exists){
 
@@ -372,7 +391,7 @@ class Authentication_model extends CI_Model {
                 'userID'            =>   $userID,
                 'username'          =>   $username,
                 'twitter_user_id'   =>   $twData['user_id'],
-                'profile_img'       =>   $profileImg,
+                'profileImage'      =>   $profileImg,
             );
 
             $this->session->set_userdata($sData);
@@ -381,15 +400,17 @@ class Authentication_model extends CI_Model {
 
         }else{
 
-            if(!$imgeEists){
+            if(!$imageExists){
 
                 $data = array(
                     'profile_img'     =>   $profileImg,
                 );
+                
+                $this->db->where('twitter_id', $twitterID);
+                $this->db->update('users', $data);
             }
 
-            $this->db->where('twitter_id', $twitterID);
-            $this->db->update('users', $data);
+            
 
             $uData = $this->getExisting('twitter_id', $twitterID); 
 

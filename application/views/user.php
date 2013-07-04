@@ -4,12 +4,15 @@
 		</div>
 	</section>
 
-	<section id="profile" class="sizer">
-		
-		<? if(isset($message)): ?>
-			<h1 class="error"><?=$message?></h1>			
-		<?endif;?>
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
 
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
+	<section id="profile" class="sizer">
 		<aside>
 			<article>
 				<? if($user[0]['profile_img']):?> 
@@ -37,11 +40,13 @@
 			</article>
 
 			<? if(isset($friendCheck) && $this->session->userdata('userID')): ?>
-				<?if (!$friendCheck): ?>
+				<?if(!$friendCheck):?>
 					<a href="<?=base_url()?>index.php/community/addFriend/<?=$user[0]['user_id']?>"><button>Add Friend</button></a>
+				<?else:?>
+					<a class="remove" href="<?=base_url()?>index.php/community/removeFriend/<?=$user[0]['user_id']?>"><button>Remove Friend</button></a>
 				<?endif;?>
 			<?endif;?>
-
+	
 			<article>
 				<h1>Badges</h1>
 			</article>

@@ -1,6 +1,6 @@
 	<footer>
 
-		<? if($this->uri->segment(1) != 'settings' && $this->uri->segment(1) != 'start'): ?>
+		<? if($this->uri->segment(1) != 'settings' && $this->uri->segment(1) != 'start' && $this->uri->segment(1) != 'edit_party'): ?>
 			<? if(!$this->session->userdata('userID')): ?>
 				<a href="<?=base_url()?>index.php/join">Start a party</a>
 			<? else: ?>

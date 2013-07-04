@@ -1,3 +1,11 @@
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="cta" class="profile">
 		<div class="sizer">
 			<h1>Community of awesome people</h1>
@@ -58,15 +66,21 @@
 							<?endif;?>
 
 							<div>
-								<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?> </a><span>on <?=$comment['comment_date']?></span></p>
+								<p>
+									<?=$comment['user_comment']?> 
+									<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?> </a>
+									<span>on <?=$comment['comment_date']?></span>
+								</p>
+
+								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
+									<a href="<?=base_url("index.php/profile/deleteComment/$comment[user_comment_id]");?>" class="delete">x</a>
+								<?endif;?>
 							</div>
 						</article>
 					
 					<?endforeach;?>
 					<div><button>See More Comments</button></div>
 				<?endif;?>
-
-
 
 				<h1>Post a comment</h1>
 

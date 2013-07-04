@@ -4,6 +4,13 @@
 		</div>
 	</section>
 
+	<? if(isset($error) && !isset($upload_data)): ?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+	
+	<? if(isset($upload_data)): ?> 
+		<p class="success sizer">Your image was successfully uploaded.</p>
+	<? endif; ?>
 
 	<section id="tabs" class="sizer wizard">
 		<ul>
@@ -15,14 +22,6 @@
 		</ul>
 
 		<section id="tabContent" class="start">
-
-			<? if(isset($error) && !isset($upload_data)): ?>
-				<p class="error"><?=$error?></p>
-			<? endif; ?>
-			
-			<? if(isset($upload_data)): ?> 
-				<p class="success">Your image was successfully uploaded.</p>
-			<? endif; ?>
  			
  			<?=form_open_multipart('/start/details');?>
 				<section id="basic">

@@ -28,7 +28,7 @@ class Party extends CI_Controller {
 			$data['party']     =   $this->party_model->getParty($partyID);
 			$data['view']      =   'party';
 
-			$this->load->view('includes/template', $data);
+			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
 		}else{
 
@@ -50,7 +50,7 @@ class Party extends CI_Controller {
 			$data['party']      =   $this->party_model->getParty($partyID);
 			$data['view']       =   'party_comments';
 
-			$this->load->view('includes/template', $data);
+			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
 		}else{
 
@@ -83,7 +83,7 @@ class Party extends CI_Controller {
 
 				if($this->form_validation->run() == false){
 
-					redirect('user/comments/$partyID');
+					redirect("party/comments/$partyID");
 
 				}else{
 					
@@ -111,14 +111,88 @@ class Party extends CI_Controller {
 
 	}
 
+	public function deleteComment($commentID = 0, $partyID = 0){
+		
+		if($this->session->userdata('userID')){
+
+			if($partyID) {
+
+				$this->party_model->deleteComment($commentID);
+
+				$data['comments']   =   $this->party_model->getComments($partyID);
+				$data['partyID']    =   $partyID;
+				$data['party']      =   $this->party_model->getParty($partyID);
+				$data['view']       =   'party_comments';
+
+				$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+
+			}else{
+
+				redirect('discover');
+
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
+
+	}
+
 	public function updates($partyID = 0){
 
-		//$data['updates']   =   $this->party_model->getUpdates();
-		$data['partyID']   =   $partyID;
-		$data['party']     =   $this->party_model->getParty($partyID);
-		$data['view']      =   'party_updates';
+		if($this->session->userdata('userID')){
 
-		$this->load->view('includes/template', $data);
+			if($partyID) {
+
+				$data['updates']   =   $this->party_model->getUpdates($partyID);
+				$data['partyID']   =   $partyID;
+				$data['party']     =   $this->party_model->getParty($partyID);
+				$data['view']      =   'party_updates';
+
+				$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+
+			}else{
+
+				redirect('discover');
+
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
+
+	}
+
+	public function deleteUpdate($updateID = 0, $partyID = 0){
+
+		if($this->session->userdata('userID')){
+
+			if($partyID) {
+
+				$this->party_model->deleteUpdate($updateID);
+
+				$data['updates']   =   $this->party_model->getUpdates($partyID);
+				$data['partyID']   =   $partyID;
+				$data['party']     =   $this->party_model->getParty($partyID);
+				$data['view']      =   'party_updates';
+
+				$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');				
+
+			}else{
+
+				redirect('discover');
+
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
 
 	}
 

@@ -187,56 +187,6 @@ $pink-hover: #ff0077;
     font-style: normal;
 }
 @font-face {
-    font-family: 'WalkwayObliqueRegular';
-    src: url('fonts/walkway/Walkway_Oblique-webfont.eot');
-    src: url('fonts/walkway/Walkway_Oblique-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/walkway/Walkway_Oblique-webfont.woff') format('woff'),
-         url('fonts/walkway/Walkway_Oblique-webfont.ttf') format('truetype'),
-         url('fonts/walkway/Walkway_Oblique-webfont.svg#WalkwayObliqueRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'WalkwayObliqueSemiBoldRegular';
-    src: url('fonts/walkway/Walkway_Oblique_SemiBold-webfont.eot');
-    src: url('fonts/walkway/Walkway_Oblique_SemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/walkway/Walkway_Oblique_SemiBold-webfont.woff') format('woff'),
-         url('fonts/walkway/Walkway_Oblique_SemiBold-webfont.ttf') format('truetype'),
-         url('fonts/walkway/Walkway_Oblique_SemiBold-webfont.svg#WalkwayObliqueSemiBoldRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'WalkwayObliqueBoldRegular';
-    src: url('fonts/walkway/Walkway_Oblique_Bold-webfont.eot');
-    src: url('fonts/walkway/Walkway_Oblique_Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/walkway/Walkway_Oblique_Bold-webfont.woff') format('woff'),
-         url('fonts/walkway/Walkway_Oblique_Bold-webfont.ttf') format('truetype'),
-         url('fonts/walkway/Walkway_Oblique_Bold-webfont.svg#WalkwayObliqueBoldRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'WalkwayObliqueUltraBoldRg';
-    src: url('fonts/walkway/Walkway_Oblique_UltraBold-webfont.eot');
-    src: url('fonts/walkway/Walkway_Oblique_UltraBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/walkway/Walkway_Oblique_UltraBold-webfont.woff') format('woff'),
-         url('fonts/walkway/Walkway_Oblique_UltraBold-webfont.ttf') format('truetype'),
-         url('fonts/walkway/Walkway_Oblique_UltraBold-webfont.svg#WalkwayObliqueUltraBoldRg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'WalkwayObliqueBlackRegular';
-    src: url('fonts/walkway/Walkway_Oblique_Black-webfont.eot');
-    src: url('fonts/walkway/Walkway_Oblique_Black-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/walkway/Walkway_Oblique_Black-webfont.woff') format('woff'),
-         url('fonts/walkway/Walkway_Oblique_Black-webfont.ttf') format('truetype'),
-         url('fonts/walkway/Walkway_Oblique_Black-webfont.svg#WalkwayObliqueBlackRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
     font-family: 'BevanRegular';
     src: url('fonts/bevan/Bevan-webfont.eot');
     src: url('fonts/bevan/Bevan-webfont.eot?#iefix') format('embedded-opentype'),
@@ -301,7 +251,32 @@ input:focus, input[type=password]:focus, textarea:focus {
   	box-shadow: 0 0 3px rgba(242, 19, 123, 1);
   	border: none;
 }
-
+.success{
+	height: 30px;
+	background-color: $light-white;
+	border: solid 1px $main-blue;
+	margin: 20px auto -20px;
+	text-align: center;
+	line-height: 30px;
+	color: $main-blue;
+	@include corners();
+}
+.error{
+	height: 30px;
+	background-color: $light-white;
+	border: solid 1px $main-pink;
+	margin: 20px auto -20px;
+	text-align: center;
+	line-height: 30px;
+	color: $main-pink;
+	@include corners();
+}
+#cta+.success, #cta+.error{
+	margin-top: 50px;
+}
+.success+.success, .error+.error{ 
+	margin-top: 30px;
+}
 /* ------------------------------ Header Styles ------------------------------ */
 header{
 	height: 70px;
@@ -330,13 +305,14 @@ header nav a{
 	border-right: solid 1px $light-gray;
 	float: left;
 	padding-top: 20px;
-	@include transition(.09s);
+	color: $dark-gray;
+	@include transition(.4s);
 	&:hover{ 
-		height: 50px;
 		margin-top: 5px;
 		vertical-align: bottom;
 		padding-top: 15px;
-		@include transition(.12s);
+		color: $main-pink;
+		@include transition(.2s);
 	}
 }
 header nav a:first-child{
@@ -357,8 +333,7 @@ header nav h1{
 }
 header nav h2{
 	font-size: .8em;
-	font-weight: 100;
-	color: $dark-gray;
+	color: inherit;
 }
 header #tools{
 	float: right;
@@ -1739,25 +1714,6 @@ article#topImages>a{
 #tabContent.start .upload{
 	padding-top: 40px;
 }
-#tabContent.start .success{
-	width: 990px;
-	height: 40px;
-	margin: 10px 0 10px -30px;
-	background-color: $main-blue;
-	text-align: center;
-	color: $main-white;
-	line-height: 40px;
-}
-#tabContent.start .error{
-	width: 990px;
-	height: 40px;
-	margin: 10px 0 10px -30px;
-	background-color: $main-white;
-	border: solid 1px $main-pink;
-	text-align: center;
-	color: $main-pink;
-	line-height: 40px;
-}
 
 /* ------------------------------ Start Page - Page 4: Review ------------------------------ */
 #tabContent.start #review{
@@ -2204,15 +2160,17 @@ article#topImages>a{
 	@include pinkbutton();
 	width: 220px;
 }
-#profile .error{
-	width: 100%;
-	height: 40px;
-	margin: 60px auto -20px;
-	background-color: $main-white;
-	border: solid 1px $main-pink;
-	text-align: center;
-	color: $main-pink;
-	line-height: 40px;
+#profile aside>a.remove button{
+	color: $dark-gray;
+	background: $main-white;
+	border: solid 1px $light-gray;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+    @include outerglow();
+	&:hover{
+		background: $main-pink;
+		color: $main-white;
+	}
 }
 
 /* ------------------------------ Profile Page - Tabs ------------------------------ */
@@ -2288,20 +2246,20 @@ article#topImages>a{
 #profile #tabContent.friends article h4{
 	height: 40px;
 }
-#profile #tabContent>h1{
+#tabContent>h1{
 	margin: 15px 0;
 }
-// #profile #tabContent>a{
-// 	display: block;
-// 	font-weight: bold;
-// 	font-size: .8em;
-// 	color: $main-blue;
-// 	//margin: 15px 0;
-// 	&:hover{
-// 		color: $blue-hover;
-// 		text-decoration: underline;
-// 	}
-// }
+#profile #tabContent>h1>a{
+	display: block;
+	font-weight: bold;
+	font-size: .8em;
+	color: $main-blue;
+	//margin: 15px 0;
+	&:hover{
+		color: $blue-hover;
+		text-decoration: underline;
+	}
+}
 #profile #tabContent.friends article h3{
 	float: right;
 	color: $dark-gray;
@@ -2392,7 +2350,7 @@ article#topImages>a{
 	border-top: solid 1px $light-gray;
 	border-bottom: solid 1px $light-gray;
 }
-#tabContent.comments article{
+#tabContent.comments article, #tabContent.updates article{
 	width: 100%;
 	height: auto;
 	background-color: $light-white;
@@ -2413,7 +2371,10 @@ article#topImages>a{
 	position: relative;
 	@include unglow();
 }
-#tabContent.comments article img{
+#tabContent.updates article:last-of-type{
+	margin-bottom: 13px;
+}
+#tabContent.comments article img, #tabContent.updates article img{
 	background-color: $dark-purple;
 	width: 65px;
 	height: 65px;
@@ -2426,7 +2387,6 @@ article#topImages>a{
 	resize: none;
 	border: solid 2px $light-gray;
 	background-color: $light-white;
-	//position: absolute;
 	z-index: 2;
 	margin: 1px;
 	@include corners();
@@ -2446,7 +2406,7 @@ article#topImages>a{
 	position: absolute;
 	top: 175px;
 }
-#tabContent.comments article div{
+#tabContent.comments article div, #tabContent.updates article div{
 	width: 600px;
 	height: auto;
 	background-color: $main-white;
@@ -2455,20 +2415,6 @@ article#topImages>a{
 	position: relative;
 	clear: none;
 }
-// #tabContent.comments article:last-of-type form:before{
-// 	content: "";
-// 	width: 25px;
-// 	height: 25px;
-// 	display: block;
-// 	background-color: $main-white;
-// 	position: absolute;
-// 	transform: rotate(45deg);
-// 	-ms-transform: rotate(45deg);
-// 	-webkit-transform: rotate(45deg); 
-// 	margin-left: -20px;
-// 	margin-top: 10px;
-// 	@include corners();
-// }
 #tabContent.comments button{
 	margin-bottom: 0;
 }
@@ -2477,18 +2423,35 @@ article#topImages>a{
 	right: 10px;
 	top: 170px;
 }
-#tabContent.comments article p{
-	width: 580px;
+#tabContent.comments article p, #tabContent.updates article p{
+	width: 555px;
 	height: auto;
 	border: solid 1px $light-gray;
 	background-color: $light-white;
-	//position: absolute;
 	padding: 10px 5px;
 	z-index: 2;
 	margin: 1px;
 	margin-left: 3px;
 	color: $dark-gray;
 	@include corners();
+}
+#tabs #tabContent article .delete{
+	@include pinkbutton();
+	padding: 0px;
+	position: absolute;
+	font-size: .9em;
+	font-weight: bold;
+	top: 13px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-indent: 0px;
+	text-align: center;
+	&:hover{
+		color: $main-white;
+		text-decoration: none;
+	}
 }
 #tabContent.comments article a{
 	font-weight: bold;
@@ -2502,7 +2465,25 @@ article#topImages>a{
 #tabContent.comments article span{
 	font-size: .8em;
 }
-
+#tabContent.updates article span{
+	font-size: 1.1em;
+	font-weight: 300;
+	margin-bottom: 5px;
+	color: $main-blue;
+}
+#tabContent.updates article span:nth-of-type(2){
+	display: block;
+	font-size: .8em;
+	font-weight: normal;
+	margin: 0;
+	color: $dark-gray;
+}
+#tabContent.updates article p{
+	float: none;
+}
+#tabContent.updates h1{
+	margin-left: 5px;
+}
 /* ------------------------------ Profile Page - TabContent: Activity ------------------------------ */
 #tabContent.activity article{
 	width: 100%;
@@ -2725,6 +2706,7 @@ article#topImages>a{
 /* ------------------------------ Settings Page - Forms ------------------------------ */
 #settingsForms{
 	width: 709px;
+	min-height: 760px;
 	height: 100%;
 	overflow: hidden;
 	float: right;
@@ -2851,25 +2833,6 @@ article#topImages>a{
 }
 #settingsForms .upload{
 	padding-top: 40px;
-}
-#settingsForms .success{
-	width: 100%;
-	height: 40px;
-	margin: 10px auto;
-	background-color: $main-blue;
-	text-align: center;
-	color: $main-white;
-	line-height: 40px;
-}
-#settingsForms .error{
-	width: 99.8%;
-	height: 40px;
-	margin: 10px auto;
-	background-color: $main-white;
-	border: solid 1px $main-pink;
-	text-align: center;
-	color: $main-pink;
-	line-height: 40px;
 }
 #settingsForms form>p{
 	color: $main-pink;
@@ -3170,6 +3133,7 @@ article#topImages>a{
 	width: 720px;
 	float: left;
 	margin: 20px 0 50px 0;
+	height: auto;
 }
 #party #tabs>ul{
 	margin-top: 0;
@@ -3711,7 +3675,7 @@ article#topImages>a{
 #settingsForms.partyEdit label.filebutton{
     //margin-top: -260px;
 }
-#settingsForms.partyEdit form div:nth-of-type(4){
+#settingsForms.partyEdit form div:nth-last-of-type(1){
 	padding: 0;
 	height: 50px;
 	width: 709px;
@@ -3730,8 +3694,12 @@ article#topImages>a{
 	float: right;
 }
 #settingsForms.partyEdit form div:nth-of-type(1) input:nth-of-type(2) {
-margin-top: 15px;
+	margin-top: 15px;
 }
+#settingsForms.partyEdit form textarea[name="update"] {
+	height: 400px;
+}
+
 
 
 
