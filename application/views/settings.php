@@ -76,11 +76,14 @@
 				<?=form_error('timezone'); ?>
 
 				<div>
-					<input type="text" name="timezone" placeholder="timezone" value="<? if(!set_value('timezone')){
-							if($this->session->userdata('timezone')) echo $this->session->userdata('timezone');
-						}else{
-							echo set_value('timezone');
-						} ?>"/>
+					<span class="styled" name="timezone">
+						<select name="timezone">
+					        <option <? if(set_value('timezone') == '-6' || $this->session->userdata('timezone') == '-6') echo 'selected'?> value="-6">Eastern</option>
+					        <option <? if(set_value('timezone') == '-7' || $this->session->userdata('timezone') == '-7') echo 'selected'?> value="-7">Central</option>
+					        <option <? if(set_value('timezone') == '-8' || $this->session->userdata('timezone') == '-8') echo 'selected'?> value="-8">Mountain</option>
+					        <option <? if(set_value('timezone') == '-9' || $this->session->userdata('timezone') == '-9') echo 'selected'?> value="-9">Pacific</option>
+					    </select>
+					</span>
 				</div>
 
 				<h1>Profile Image</h1> <hr />

@@ -6,6 +6,48 @@ class User_model extends CI_Model {
         parent::__construct();
 
         $this->load->helper('object_to_array.php');
+        $this->load->helper('cookie');
+
+    }
+
+    public function prepTime($data, $what){
+
+        $newData = array();
+
+        foreach($data as $key=>$row){
+
+            $date = new DateTime($row[$what]);
+
+            if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
+
+            if($this->session->userdata('timezone') == '-6'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Eastern')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-7'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Central')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-8'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Mountain')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-9'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Pacific')), 'm/d/Y h:i A'); 
+            }
+            //fallback to cookie if user hasn't set timezone.
+            else if($visitorGeolocation['timeZone'] == '-04:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Eastern')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-05:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Central')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-06:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Mountain')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-07:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Pacific')), 'm/d/Y h:i A'); 
+            }else{
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Eastern')), 'm/d/Y h:i A'); 
+            }
+
+            $newData[$key] = $row;
+            $newData[$key][$what] = $formatted;
+        }
+
+        return $newData;
+
     }
 
     public function checkForUser($userID){
@@ -504,6 +546,8 @@ class User_model extends CI_Model {
             }
 
             $dataResults = objectToArray($dataResults);
+
+            $dataResults = $this->prepTime($dataResults, 'comment_date');
 
             return $dataResults;
 

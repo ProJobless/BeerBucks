@@ -6,6 +6,46 @@ class Party_model extends CI_Model {
         parent::__construct();
 
         $this->load->helper('object_to_array.php');
+        $this->load->helper('cookie');
+        
+    }
+
+    public function prepTime($data, $what){
+
+        $newData = array();
+
+        foreach($data as $key=>$row){
+
+            $date = new DateTime($row[$what]);
+
+            if(get_cookie("geolocation"))$visitorGeolocation = unserialize(base64_decode($_COOKIE["geolocation"]));
+
+            if($this->session->userdata('timezone') == '-6'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Eastern')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-7'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Central')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-8'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Mountain')), 'm/d/Y h:i A'); 
+            }else  if($this->session->userdata('timezone') == '-9'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Pacific')), 'm/d/Y h:i A'); 
+            }
+            //fallback to cookie if user hasn't set timezone.
+            else if($visitorGeolocation['timeZone'] == '-04:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Eastern')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-05:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Central')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-06:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Mountain')), 'm/d/Y h:i A'); 
+            }else  if($visitorGeolocation['timeZone'] == '-07:00'){
+                $formatted = date_format($date->setTimezone(new DateTimeZone('US/Pacific')), 'm/d/Y h:i A'); 
+            }
+
+            $newData[$key] = $row;
+            $newData[$key][$what] = $formatted;
+        }
+
+        return $newData;
+
     }
 
 	public function checkIfExists($value, $variable) {
@@ -86,7 +126,7 @@ class Party_model extends CI_Model {
 
     }
 
-    public function converTimezone($time){
+    public function convertTimezone($time){
 
         $timeP   =   new DateTime( $time );
         $timezone = 0;
@@ -125,8 +165,8 @@ class Party_model extends CI_Model {
         $end             =   $this->security->xss_clean($this->session->userdata('end'));
         $goal            =   $this->security->xss_clean(ltrim($this->session->userdata('goal') , '$'));
         $party_img       =   $this->security->xss_clean($this->session->userdata('img_name'));
-        $newStart        =   $this->converTimezone($start);
-        $newEnd          =   $this->converTimezone($end);
+        $newStart        =   $this->convertTimezone($start);
+        $newEnd          =   $this->convertTimezone($end);
 
         $data = array(
             'party_id'         =>   $party_id,
@@ -338,6 +378,8 @@ class Party_model extends CI_Model {
 
             $dataResults = objectToArray($dataResults);
 
+            $dataResults = $this->prepTime($dataResults, 'comment_date');
+
             return $dataResults;
 
         }else{
@@ -434,8 +476,8 @@ class Party_model extends CI_Model {
         $start           =   $this->security->xss_clean($this->input->post('start'));
         $end             =   $this->security->xss_clean($this->input->post('end'));
         $goal            =   $this->security->xss_clean(ltrim($this->input->post('goal') , '$'));
-        $newStart        =   $this->converTimezone($start);
-        $newEnd          =   $this->converTimezone($end);
+        $newStart        =   $this->convertTimezone($start);
+        $newEnd          =   $this->convertTimezone($end);
 
         $data = array(
             'party_location'   =>   $partyLocation,
@@ -497,6 +539,8 @@ class Party_model extends CI_Model {
             }
 
             $dataResults = objectToArray($dataResults);
+
+            $dataResults = $this->prepTime($dataResults, 'update_date');
 
             return $dataResults;
 

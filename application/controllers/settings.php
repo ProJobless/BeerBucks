@@ -51,7 +51,7 @@ class Settings extends CI_Controller {
 			array(
 				'field' => 'timezone',
 				'label' => 'Timezone',
-				'rules' => 'trim|min_length[3]|max_length[100]'
+				'rules' => 'trim|min_length[1]|max_length[100]'
 			)
 		);
 
@@ -99,7 +99,7 @@ class Settings extends CI_Controller {
 
 					if($result){
 
-						$data['view'] = 'settings';
+						$data['view']      =   'settings';
 						$data['success']   =   'Information successfully updated.';
 
 						$this->load->view('includes/template', $data);
@@ -113,7 +113,7 @@ class Settings extends CI_Controller {
 
 				if($result){
 
-					$data['view'] = 'settings';
+					$data['view']      = 'settings';
 					$data['success']   =   'Information successfully updated.';
 					
 					$this->load->view('includes/template', $data);
