@@ -259,6 +259,7 @@ input:focus, input[type=password]:focus, textarea:focus {
 	text-align: center;
 	line-height: 30px;
 	color: $main-blue;
+	overflow: hidden;
 	@include corners();
 }
 .error{
@@ -269,6 +270,7 @@ input:focus, input[type=password]:focus, textarea:focus {
 	text-align: center;
 	line-height: 30px;
 	color: $main-pink;
+	overflow: hidden;
 	@include corners();
 }
 #cta+.success, #cta+.error{

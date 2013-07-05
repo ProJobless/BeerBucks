@@ -104,11 +104,3 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
-	<script>initDatePicker();</script>
-	<script>initDollarSign();</script>
-	<script>initDollarSign();</script>
-
-
-
-
-

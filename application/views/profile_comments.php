@@ -1,3 +1,9 @@
+	<section id="cta" class="profile">
+		<div class="sizer">
+			<h1>Community of awesome people</h1>
+		</div>
+	</section>
+
 	<? if(isset($success)): ?>
 		<p class="success sizer"><?=$success?></p>			
 	<?endif;?>
@@ -5,12 +11,6 @@
 	<? if(isset($error)):?>
 		<p class="error sizer"><?=$error?></p>
 	<? endif; ?>
-
-	<section id="cta" class="profile">
-		<div class="sizer">
-			<h1>Community of awesome people</h1>
-		</div>
-	</section>
 
 	<section id="profile" class="sizer">
 		<aside>
@@ -115,3 +115,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTabs();</script>
+	<script>initSuccessError();</script>

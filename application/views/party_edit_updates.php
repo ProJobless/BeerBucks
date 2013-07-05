@@ -93,5 +93,5 @@
 	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initDatePicker();</script>
-	<script>initDollarSign();</script>
+	<script>initSettings();</script>
+	<script>initSuccessError();</script>

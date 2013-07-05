@@ -118,6 +118,7 @@ input:focus, input[type=password]:focus, textarea:focus {
   text-align: center;
   line-height: 30px;
   color: #05a696;
+  overflow: hidden;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
 
@@ -129,6 +130,7 @@ input:focus, input[type=password]:focus, textarea:focus {
   text-align: center;
   line-height: 30px;
   color: #f2137b;
+  overflow: hidden;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
 

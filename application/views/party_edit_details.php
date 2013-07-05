@@ -107,3 +107,5 @@
 	<!-- Inits -->
 	<script>initDatePicker();</script>
 	<script>initDollarSign();</script>
+	<script>initSettings();</script>
+	<script>initSuccessError();</script>

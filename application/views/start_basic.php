@@ -141,3 +141,4 @@
 	<script>initScroller();</script>
 	<script>initWizardOfOz();</script>
 	<script>initUpload();</script>
+	<script>initSuccessError();</script>

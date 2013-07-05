@@ -82,7 +82,7 @@ class Community extends CI_Controller {
 				$data['friends']    =   $this->user_model->getFriends($user2ID);
 				$data['parties']    =   $this->user_model->getUserParties($user2ID);
 				$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-				$data['message']    =   'Friend removed.';
+				$data['success']    =   'Friend removed.';
 				$data['view']       =   'user';
 
 				$this->load->view('includes/template', $data);

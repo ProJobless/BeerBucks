@@ -145,8 +145,4 @@
 	<script>initScroller();</script>
 	<script>initDatePicker();</script>
 	<script>initDollarSign();</script>
-
-
-
-
-
+	<script>initSuccessError();</script>

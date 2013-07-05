@@ -121,3 +121,4 @@
 
 	<!-- Inits -->
 	<script>initUpload();</script>
+	<script>initSuccessError();</script>

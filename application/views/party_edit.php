@@ -113,3 +113,5 @@
 
 	<!-- Inits -->
 	<script>initUpload();</script>
+	<script>initSettings();</script>
+	<script>initSuccessError();</script>

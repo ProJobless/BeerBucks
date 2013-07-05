@@ -104,3 +104,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initWizardOfOz();</script>
+	<script>initSuccessError();</script>

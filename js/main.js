@@ -1,5 +1,22 @@
 /* Author: Kolby Sisk */
 
+var initSuccessError = function(){
+
+	var message = $('.success, .error, .message');
+
+	function hideMessage(){
+		message.animate({height:0},500,function(){
+			message.animate({opacity:0},100,function(){
+				message.remove();
+			});
+		});
+	}
+	message.on('click', function(e){
+		hideMessage();
+	});
+	setTimeout(hideMessage, 1000);
+};
+
 var initUpload = function(){
 	$('.filebutton').change(function(e){
 		$("form").submit();
@@ -77,7 +94,7 @@ var initTimeKeeper = function(){
 		reset     =   false
 	;
 
-	var countDown = function(){
+	function countDown(){
 		if(days.text() == '0' && hours.text() == '0' && minutes.text() == '0' && seconds.text() == '0'){
 			clearInterval(timer);
 		}else{
@@ -105,7 +122,7 @@ var initTimeKeeper = function(){
 				reset = false;
 			}
 		}
-	};
+	}
 	var timer = setInterval(countDown,1000);
 };
 
@@ -143,9 +160,48 @@ var initTabs = function(){
 				});
 				check = false;
 			}
-
 		});
 		return false;
 	});
+};
 
+var initSettings = function(){
+	initDatePicker();
+	initDollarSign();
+	var tabs         =   $('#settingsNav a'),
+		tabContent   =   $('#settingsForms'),
+		check        =   true
+	;
+
+	tabs.off('click').on('click', function(e){
+		var that            =   $(this),
+			url             =   that.attr('href'),
+			contentHeight   =   tabContent.height()
+		;
+
+		tabs.removeClass('selected');
+
+		tabContent.find('*').animate({opacity: 0}, 1000, function() {
+
+			if(check){
+				$.ajax({
+					url: url,
+					async: true,
+					beforeSend: function(){
+						tabContent.height(contentHeight);
+						tabContent.empty();
+						$(e.target).addClass('selected');
+						tabContent.css('background-position', '45% 10px');
+					}
+				}).done(function(data){
+					var newContent = $(data).find('#settingsForms');
+					tabContent.replaceWith(newContent);
+					$(newContent).children().css('opacity', 0);
+					$(newContent).children().animate({opacity: 1}, 600, function(){initSettings();});
+				});
+				check = false;
+			}
+		});
+		return false;
+	});
 };

@@ -136,6 +136,7 @@ class Profile extends CI_Controller {
 
 				$this->user_model->deleteComment($commentID);
 
+				$data['success']    =   'Comment was deleted.';
 				$data['comments']   =   $this->user_model->getComments();
 				$data['view']       =   'profile_comments';
 
