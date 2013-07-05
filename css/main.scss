@@ -1244,6 +1244,8 @@ article#topImages>a{
 	clear: both;
 	padding: 0px 13px;
 	text-align: center;
+	position: relative;
+	background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
 	//@include outerglow(0px, 2px, 2px, 0px, $light-gray);
 	@include corners(0px, 0px, 5px, 5px);
 }
@@ -2853,6 +2855,8 @@ article#topImages>a{
 	clear: both;
 	padding: 20px;
 	text-align: center;
+		background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
+
 }
 #tabs #community #hof{
 	width: 185px;
@@ -2922,6 +2926,8 @@ article#topImages>a{
 	clear: both;
 	padding: 15px;
 	text-align: center;
+		background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
+
 }
 #people article{
 	height: 25px;

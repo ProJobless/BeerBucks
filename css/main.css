@@ -1344,6 +1344,8 @@ article#topImages > a {
   clear: both;
   padding: 0px 13px;
   text-align: center;
+  position: relative;
+  background: url("../img/ajax-loader.gif") no-repeat 50% -200px #fafdff;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px; }
 
@@ -3495,7 +3497,8 @@ article#topImages > a {
   border-top: 0px;
   clear: both;
   padding: 20px;
-  text-align: center; }
+  text-align: center;
+  background: url("../img/ajax-loader.gif") no-repeat 50% -200px #fafdff; }
 
 #tabs #community #hof {
   width: 185px;
@@ -3609,7 +3612,8 @@ article#topImages > a {
   border-top: 0px;
   clear: both;
   padding: 15px;
-  text-align: center; }
+  text-align: center;
+  background: url("../img/ajax-loader.gif") no-repeat 50% -200px #fafdff; }
 
 #people article {
   height: 25px;

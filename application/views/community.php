@@ -82,7 +82,6 @@
 				<div id="rightArrow"></div>
 			</article>
 
-
 		</section>
 	</section>
 
@@ -97,3 +96,4 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
+	<script>initTabs();</script>
