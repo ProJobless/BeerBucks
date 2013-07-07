@@ -2661,7 +2661,7 @@ article#topImages > a {
   height: auto;
   width: 692px; }
 
-#profile #tabContent.friends > a {
+#profile #tabContent.friends > a, #people > a {
   height: auto;
   width: auto;
   display: block;

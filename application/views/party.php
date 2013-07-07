@@ -12,7 +12,7 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li class="selected">Attending</li></a>
+				<a href="<?=base_url()?>index.php/party/<?=$partyID?>"><li class="selected">Attending</li></a>
 				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li>Comments</li></a>
 				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
 			</ul>
@@ -181,7 +181,7 @@
 				<?endif;?>
 				
 				<hgroup>
-					<h2><i><a href="<?=base_url()?>index.php/user/activity/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
+					<h2><i><a href="<?=base_url()?>index.php/user/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
 					<h3><?=$party[0]['location']?></h3>
 					<h4><?=$party[0]['bio']?></h4>
 				</hgroup>

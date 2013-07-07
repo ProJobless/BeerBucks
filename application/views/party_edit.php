@@ -108,6 +108,9 @@
 	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
 	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
 
+	<!-- Plugins -->
+	<script src="<?=base_url()?>js/plugins/jquery-ui-timepicker-addon.js"></script>
+
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>
 

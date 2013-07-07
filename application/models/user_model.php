@@ -10,7 +10,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function prepTime($data, $title){
+    function prepTime($data, $title){
 
         $newData = array();
 
@@ -50,7 +50,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function checkForUser($userID){
+    function checkForUser($userID){
 
         $this->db->select('user_id');
         $this->db->where('user_id', $userID);
@@ -65,7 +65,7 @@ class User_model extends CI_Model {
 
     }
 
-	public function checkIfExists($value, $variable) {
+	function checkIfExists($value, $variable) {
 
         $this->db->select($value);
         $this->db->where($value, $variable);
@@ -80,7 +80,7 @@ class User_model extends CI_Model {
         
     } 
 
-    public function checkFriendship($user2ID){
+    function checkFriendship($user2ID){
 
         $user1ID = $this->session->userdata('userID');
 
@@ -114,7 +114,7 @@ class User_model extends CI_Model {
         }
     }
 
-    public function getTimeTillParty($partyInfo){
+    function getTimeTillParty($partyInfo){
 
         $newPartyInfo = $partyInfo;
 
@@ -137,7 +137,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function getUser($userID, $dateOfAccept = 0){
+    function getUser($userID, $dateOfAccept = 0){
 
         $this->db->select('
             user_id,
@@ -180,7 +180,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function addFriend($user2ID){
+    function addFriend($user2ID){
 
         $user1ID = $this->session->userdata('userID');
         $dateOfReq = date('Y/m/d h:i:s', time());
@@ -210,7 +210,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function removeFriend($user2ID){
+    function removeFriend($user2ID){
 
         $user1ID = $this->session->userdata('userID');
         $dateOfReq = date('Y/m/d h:i:s', time());
@@ -254,7 +254,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function checkForFriendRequests(){
+    function checkForFriendRequests(){
 
         $userID = $this->session->userdata('userID');
 
@@ -299,7 +299,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function acceptFriend($friendshipID){
+    function acceptFriend($friendshipID){
 
         $dateOfAccept = date('Y/m/d h:i:s', time());
 
@@ -319,7 +319,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function declineFriend($friendshipID){
+    function declineFriend($friendshipID){
 
         $data = array(
             'active' => 2,
@@ -336,7 +336,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function checkAlerts(){
+    function checkAlerts(){
 
         if($this->checkForFriendRequests()){
             $alert = count($this->checkForFriendRequests());
@@ -350,7 +350,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function getFriends($userID){
+    function getFriends($userID){
 
         $this->db->select('
             friendship_id,
@@ -403,7 +403,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function getUsers(){
+    function getUsers(){
 
         $this->db->select('
             user_id,
@@ -439,7 +439,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function getUserParties($userID){
+    function getUserParties($userID){
 
         $this->db->select('
             parties.party_id, 
@@ -481,7 +481,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function incrementValue($title, $userID, $amount){
+    function incrementValue($title, $userID, $amount){
 
         $this->db->select($title);
         $this->db->from('users');
@@ -518,7 +518,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function postComment($user2ID = 0){
+    function postComment($user2ID = 0){
 
         if($user2ID){
             $userID = $user2ID;
@@ -556,7 +556,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function getComments($user2ID = 0){
+    function getComments($user2ID = 0){
 
         if($user2ID){
             $userID = $user2ID;
@@ -599,7 +599,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function deleteComment($commentID){
+    function deleteComment($commentID){
 
         if(!$commentID) return false;
 
@@ -627,7 +627,7 @@ class User_model extends CI_Model {
 
     }
 
-    public function sortActivity($friendInfo = 0, $partyInfo = 0){
+    function sortActivity($friendInfo = 0, $partyInfo = 0){
 
         $parsedActivity   =   array();
         $key              =   0;
@@ -682,7 +682,104 @@ class User_model extends CI_Model {
         return $parsedActivity;
     }
 
+
+    function userViewCount($user2ID){
+
+        $user1ID     =   $this->session->userdata('userID');
+        $viewID      =   uniqid();
+        $viewCheck   =   false;
+
+        if(!$user1ID) return false;
+
+        $this->db->select('user1_id, user2_id');
+        $this->db->where('user1_id', $user1ID);
+
+        $q = $this->db->get('user_views');
+
+        if ($q->num_rows() > 0) {
+
+            foreach($q->result() as $row){
+
+                $dataResults[] = $row;
+
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            foreach($dataResults as $row){
+
+                if($row['user2_id'] == $user2ID){
+
+                    $viewCheck = true;
+
+                }
+
+            }
+
+            if($viewCheck){
+
+                return false;
+
+            }else{
+
+                $this->db->select('user_id');
+                $this->db->where('user_id', $user2ID);
+
+                $q2 = $this->db->get('users');
+
+                if ($q2->num_rows() > 0) {
+
+                    $data = array(
+                        'view_id'    =>   $viewID,
+                        'user1_id'   =>   $user1ID,
+                        'user2_id'   =>   $user2ID,
+                    );
+
+                    $this->db->insert('user_views', $data);
+
+                    if($this->incrementValue('views', $user2ID, '1')){
+
+                        return true;
+
+                    }
+
+                }else{
+
+                    return false;
+
+                }
+                
+            }
+
+        }else{
+
+            $this->db->select('user_id');
+            $this->db->where('user_id', $user2ID);
+
+            $q = $this->db->get('users');
+
+            if ($q->num_rows() > 0) {
+
+                $data = array(
+                    'view_id'    =>   $viewID,
+                    'user1_id'   =>   $user1ID,
+                    'user2_id'   =>   $user2ID,
+                );
+
+                $this->db->insert('user_views', $data);
+
+            }else{
+
+                return false;
+
+            }
+
+        }
+
+    }
+
 }
+
 
 
 

@@ -51,7 +51,7 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li class="selected">Parties</li></a>
 				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
 				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
@@ -64,12 +64,12 @@
 
 						<article class="party">
 
-							<a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>">
+							<a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>">
 								<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt="" />
 							</a>
 						
 							<hgroup>
-								<h2><a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
+								<h2><a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
 								<h3>Hosted by <i><?=$party['username']?></i></h3>
 								<h4><?=$party['description']?></h4>
 								<h3><?=$party['party_location']?></h3>

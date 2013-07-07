@@ -51,7 +51,7 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
 				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li class="selected">Friends</li></a>
 				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
@@ -62,7 +62,7 @@
 				<? if(isset($friends[0])): ?>
 					<? foreach ($friends as $friend): ?>
 
-						<a href="<?=base_url()?>index.php/user/activity/<?=$friend[0]['user_id']?>">
+						<a href="<?=base_url()?>index.php/user/<?=$friend[0]['user_id']?>">
 							<article style="background: url(<?=base_url()?>uploads/profile/<?=$friend[0]['profile_img']?>);">
 								<hgroup>
 									<h2><i><?=$friend[0]['username']?></i></h2>

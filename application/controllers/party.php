@@ -10,13 +10,39 @@ class Party extends CI_Controller {
 		$this->load->library('form_validation');
 		$data['alerts'] = $this->user_model->checkAlerts();
 	}
+	
+	function _remap($method){
 
-	public function index (){	
+		$param_offset = 2;
 
-		$data['parties']   =   $this->party_model->getParties();
-		$data['view']      =   'discover';
+		if ( ! method_exists($this, $method)){
+			$param_offset = 1;
+			$method = 'index';
+		}
 
-		$this->load->view('includes/template', $data);
+		$params = array_slice($this->uri->rsegment_array(), $param_offset);
+		call_user_func_array(array($this, $method), $params);
+
+	} 
+
+	public function index ($partyID = 0){	
+
+		if($partyID){
+
+			$data['partyID']   =   $partyID;
+			$data['party']     =   $this->party_model->getParty($partyID);
+			$data['view']      =   'party';
+
+			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+
+		}else{
+
+			$data['parties']   =   $this->party_model->getParties();
+			$data['view']      =   'discover';
+
+			$this->load->view('includes/template', $data);
+
+		}
 
 	}
 
@@ -119,6 +145,7 @@ class Party extends CI_Controller {
 
 				$this->party_model->deleteComment($commentID);
 
+				$data['success']    =   'Comment was deleted.';
 				$data['comments']   =   $this->party_model->getComments($partyID);
 				$data['partyID']    =   $partyID;
 				$data['party']      =   $this->party_model->getParty($partyID);

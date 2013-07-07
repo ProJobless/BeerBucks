@@ -4,6 +4,14 @@
 		</div>
 	</section>
 
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="party" class="sizer">
 		<article id="partyImg">
 			<h1><?=$party[0]['title']?></h1>
@@ -12,7 +20,7 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><li>Attending</li></a>
+				<a href="<?=base_url()?>index.php/party/<?=$partyID?>"><li>Attending</li></a>
 				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li class="selected">Comments</li></a>
 				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
 			</ul>
@@ -106,7 +114,7 @@
 				<?endif;?>
 				
 				<hgroup>
-					<h2><i><a href="<?=base_url()?>index.php/user/activity/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
+					<h2><i><a href="<?=base_url()?>index.php/user/<?=$party[0]['user_id']?>"><?=$party[0]['username']?></a></i></h2>
 					<h3><?=$party[0]['location']?></h3>
 					<h4><?=$party[0]['bio']?></h4>
 				</hgroup>
@@ -143,3 +151,4 @@
 	<script>initScroller();</script>
 	<script>initTimeKeeper();</script>
 	<script>initTabs();</script>
+	<script>initSuccessError();</script>

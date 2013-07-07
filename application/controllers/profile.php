@@ -14,7 +14,13 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			redirect('profile/activity');
+			$userID             =   $this->session->userdata('userID');
+			$data['friends']    =   $this->user_model->getFriends($userID);
+			$data['parties']    =   $this->user_model->getUserParties($userID);
+			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+			$data['view']       =   'profile';
+
+			$this->load->view('includes/template', $data);
 
 		}else{
 

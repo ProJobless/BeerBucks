@@ -10,9 +10,44 @@ class User extends CI_Controller {
 
 	}
 
-	public function index(){	
+	function _remap($method){
 
-		redirect('community/people');
+		$param_offset = 2;
+
+		if ( ! method_exists($this, $method)){
+			$param_offset = 1;
+			$method = 'index';
+		}
+
+		$params = array_slice($this->uri->rsegment_array(), $param_offset);
+		call_user_func_array(array($this, $method), $params);
+
+	} 
+
+	public function index($user2ID = 0){	
+
+		if($user2ID != $this->session->userdata('userID') && $user2ID){
+
+			if($this->user_model->checkFriendship($user2ID)){
+				$data['friendCheck'] = false;	
+			}else{
+				$data['friendCheck'] = true;	
+			}
+
+			$data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+			$data['friends']     =   $this->user_model->getFriends($user2ID);
+			$data['parties']     =   $this->user_model->getUserParties($user2ID);
+			$data['activity']    =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+			$data['user']        =   $this->user_model->getUser($user2ID);
+			$data['view']        =   'user';
+			
+			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+			
+		}else{
+
+			redirect('community/people');
+
+		}
 
 	}
 
@@ -26,11 +61,12 @@ class User extends CI_Controller {
 				$data['friendCheck'] = true;	
 			}
 
-			$data['friends']    =   $this->user_model->getFriends($user2ID);
-			$data['parties']    =   $this->user_model->getUserParties($user2ID);
-			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-			$data['user']       =   $this->user_model->getUser($user2ID);
-			$data['view']       =   'user';
+			$data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+			$data['friends']     =   $this->user_model->getFriends($user2ID);
+			$data['parties']     =   $this->user_model->getUserParties($user2ID);
+			$data['activity']    =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+			$data['user']        =   $this->user_model->getUser($user2ID);
+			$data['view']        =   'user';
 			
 			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			

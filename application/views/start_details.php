@@ -51,12 +51,12 @@
 					<?=form_error('end'); ?>
 
 					<div>
-						<input type="text" name="start" placeholder="Party Start Time" value="<? if(!set_value('start')){
+						<input class="startTime" type="text" name="start" placeholder="Party Start Time" value="<? if(!set_value('start')){
 								if($this->session->userdata('start')) echo $this->session->userdata('start');
 							}else{
 								echo set_value('start');
 							} ?>"/>
-						<input type="text" name="end" placeholder="Party End Time" value="<? if(!set_value('end')){
+						<input class="end" type="text" name="end" placeholder="Party End Time" value="<? if(!set_value('end')){
 								if($this->session->userdata('end')) echo $this->session->userdata('end');
 							}else{
 								echo set_value('end');

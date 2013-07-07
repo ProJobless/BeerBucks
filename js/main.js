@@ -24,7 +24,11 @@ var initUpload = function(){
 };
 
 var initDatePicker = function(){
-	var datePickerInput   =   $('form div:nth-of-type(2) input');
+	var datePickerInput   =   $('.end, .startTime');
+
+	datePickerInput.on('click', function(e){
+		console.log('woaa');
+	});
 
 	datePickerInput.datetimepicker({
 		dateFormat: 'yy-mm-dd',
@@ -99,9 +103,9 @@ var initTimeKeeper = function(){
 			clearInterval(timer);
 		}else{
 
-			seconds.text(--sec);
-
 			if(sec === 0 || sec == '0') sec = 60;
+
+			seconds.text(--sec);
 
 			if(sec == 59) reset = true;
 
@@ -140,7 +144,7 @@ var initTabs = function(){
 
 		tabs.find('li').removeClass('selected');
 
-		tabContent.find('*').animate({opacity: 0}, 1000, function() {
+		tabContent.find('*').animate({opacity: 0}, 500, function() {
 
 			if(check){
 				$.ajax({
@@ -156,7 +160,7 @@ var initTabs = function(){
 					var newContent = $(data).find('#tabContent,#community,#people');
 					tabContent.replaceWith(newContent);
 					$(newContent).children().css('opacity', 0);
-					$(newContent).children().animate({opacity: 1}, 600, function(){initTabs();});
+					$(newContent).children().animate({opacity: 1}, 800, function(){initTabs();});
 				});
 				check = false;
 			}
@@ -166,8 +170,6 @@ var initTabs = function(){
 };
 
 var initSettings = function(){
-	initDatePicker();
-	initDollarSign();
 	var tabs         =   $('#settingsNav a'),
 		tabContent   =   $('#settingsForms'),
 		check        =   true
@@ -181,7 +183,7 @@ var initSettings = function(){
 
 		tabs.removeClass('selected');
 
-		tabContent.find('*').animate({opacity: 0}, 1000, function() {
+		tabContent.find('*').animate({opacity: 0}, 500, function() {
 
 			if(check){
 				$.ajax({
@@ -196,8 +198,14 @@ var initSettings = function(){
 				}).done(function(data){
 					var newContent = $(data).find('#settingsForms');
 					tabContent.replaceWith(newContent);
+
+					if(newContent.find("input[name='start']").length > 0){
+						initDatePicker();
+						initDollarSign();
+					}
+
 					$(newContent).children().css('opacity', 0);
-					$(newContent).children().animate({opacity: 1}, 600, function(){initSettings();});
+					$(newContent).children().animate({opacity: 1}, 800, function(){initSettings();});
 				});
 				check = false;
 			}

@@ -20,13 +20,13 @@
 
 				<article class="party">
 
-					<a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>">
+					<a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>">
 						<img src="<?=base_url()?>uploads/party/<?=$party['party_img']?>" alt=""  width="220" height="210"/>
 					</a>
 				
 					<hgroup>
-						<h2><a href="<?=base_url()?>index.php/party/attending/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
-						<h3>Hosted by <i><a href="<?=base_url()?>index.php/user/activity/<?=$party['user_id']?>"><?=$party['username']?></a></i></h3>
+						<h2><a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>"><?=$party['title']?></a></h2>
+						<h3>Hosted by <i><a href="<?=base_url()?>index.php/user/<?=$party['user_id']?>"><?=$party['username']?></a></i></h3>
 						<h4><?=$party['description']?></h4>
 						<h3><?=$party['party_location']?></h3>
 					</hgroup>

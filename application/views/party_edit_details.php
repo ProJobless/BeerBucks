@@ -72,8 +72,8 @@
 				<?=form_error('end'); ?>
 
 				<div>
-					<input type="text" name="start" placeholder="Party Start Time" value="<?=$party[0]['start']?>" />
-					<input type="text" name="end" placeholder="Party End Time" value="<?=$party[0]['end']?>" />
+					<input class="startTime" type="text" name="start" placeholder="Party Start Time" value="<?=$party[0]['start']?>" />
+					<input class="end" type="text" name="end" placeholder="Party End Time" value="<?=$party[0]['end']?>" />
 				</div>
 
 				<h1>Funding Goal</h1> <hr>
