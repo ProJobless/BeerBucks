@@ -46,14 +46,28 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
 				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
 				<a href="<?=base_url()?>index.php/profile/comments"><li class="selected">Comments</li></a>
-				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><li>Alerts</li></a>
 			</ul>
 
 			<section id="tabContent" class="comments">
+
+				<article>
+					<?if($this->session->userdata('profileImage')):?>
+						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
+					<?else:?>
+						<img src="" alt="" width="50" height="50" />
+					<?endif;?>
+
+					<?=form_open("/profile/comment"); ?>
+						<textarea name="comment" cols="30" rows="10"></textarea>
+						<h2><span class="char">400</span>/400 characters left</h2>
+						<button>Post Comment</button>
+					<?=form_close();?>
+				</article>
 
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
@@ -80,25 +94,7 @@
 					
 					<?endforeach;?>
 					<div><button>See More Comments</button></div>
-				<?endif;?>
-
-				<h1>Post a comment</h1>
-
-				<article>
-					<?if($this->session->userdata('profileImage')):?>
-						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
-					<?else:?>
-						<img src="" alt="" width="50" height="50" />
-					<?endif;?>
-
-					<?=form_open("/profile/comment"); ?>
-						<textarea name="comment" cols="30" rows="10"></textarea>
-						<h2>400/400 characters left</h2>
-						<button>Post Comment</button>
-					<?=form_close();?>
-				</article>
-			
-				
+				<?endif;?>	
 			</section>
 		</section>
 	</section>
@@ -116,3 +112,4 @@
 	<script>initScroller();</script>
 	<script>initTabs();</script>
 	<script>initSuccessError();</script>
+	<script>initComments();</script>

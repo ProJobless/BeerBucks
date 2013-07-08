@@ -12,6 +12,16 @@ class Discover extends CI_Controller {
 
 	public function index (){	
 
+		// $data['parties']   =   $this->party_model->getParties();
+		// $data['view']      =   'discover';
+
+		// $this->load->view('includes/template', $data);
+		redirect('discover/featured');
+
+	}
+
+	public function featured(){
+
 		$data['parties']   =   $this->party_model->getParties();
 		$data['view']      =   'discover';
 

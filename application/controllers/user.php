@@ -26,28 +26,29 @@ class User extends CI_Controller {
 
 	public function index($user2ID = 0){	
 
-		if($user2ID != $this->session->userdata('userID') && $user2ID){
+		// if($user2ID != $this->session->userdata('userID') && $user2ID){
 
-			if($this->user_model->checkFriendship($user2ID)){
-				$data['friendCheck'] = false;	
-			}else{
-				$data['friendCheck'] = true;	
-			}
+		// 	if($this->user_model->checkFriendship($user2ID)){
+		// 		$data['friendCheck'] = false;	
+		// 	}else{
+		// 		$data['friendCheck'] = true;	
+		// 	}
 
-			$data['viewCount']   =   $this->user_model->userViewCount($user2ID);
-			$data['friends']     =   $this->user_model->getFriends($user2ID);
-			$data['parties']     =   $this->user_model->getUserParties($user2ID);
-			$data['activity']    =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-			$data['user']        =   $this->user_model->getUser($user2ID);
-			$data['view']        =   'user';
+		// 	$data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+		// 	$data['friends']     =   $this->user_model->getFriends($user2ID);
+		// 	$data['parties']     =   $this->user_model->getUserParties($user2ID);
+		// 	$data['activity']    =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+		// 	$data['user']        =   $this->user_model->getUser($user2ID);
+		// 	$data['view']        =   'user';
 			
-			$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+		// 	$data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
 			
-		}else{
+		// }else{
 
-			redirect('community/people');
+		// 	redirect('community/people');
 
-		}
+		// }
+		redirect("user/activity/$user2ID");
 
 	}
 
@@ -232,6 +233,41 @@ class User extends CI_Controller {
 		}else{
 
 			redirect('join');
+
+		}
+
+	}
+
+	public function ajaxDeleteComment(){
+
+		$commentID = $_POST['commentID'];
+
+		echo json_encode($this->user_model->deleteComment($commentID));
+	}
+
+	public function ajaxComment(){
+
+		$user2ID = $_POST['user2ID'];
+
+		$this->load->library('form_validation');
+
+		$config = array(
+			array(
+				'field'   =>   'comment',
+				'label'   =>   'Comment',
+				'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
+			)
+		);
+
+		$this->form_validation->set_rules($config);
+
+		if($this->form_validation->run() == false){
+
+			echo json_encode(false);
+
+		}else{
+			
+			echo json_encode($this->user_model->postComment($user2ID));
 
 		}
 

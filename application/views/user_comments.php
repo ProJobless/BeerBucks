@@ -59,6 +59,20 @@
 
 			<section id="tabContent" class="comments">
 
+				<article>
+					<?if($this->session->userdata('profileImage')):?>
+						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
+					<?else:?>
+						<img src="" alt="" width="50" height="50" />
+					<?endif;?>
+
+					<?=form_open("/user/comment/$user2"); ?>
+						<textarea name="comment" cols="30" rows="10"></textarea>
+						<h2><span class="char">400</span>/400 characters left</h2>
+						<button>Post Comment</button>
+					<?=form_close();?>
+				</article>
+
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
 
@@ -81,22 +95,6 @@
 					<?endforeach;?>
 					<div><button>See More Comments</button></div>
 				<?endif;?>
-
-				<h1>Post a comment</h1>
-
-				<article>
-					<?if($this->session->userdata('profileImage')):?>
-						<img src="<?=base_url()?>uploads/profile/<?=$this->session->userdata('profileImage')?>" alt="" width="50" height="50" />
-					<?else:?>
-						<img src="" alt="" width="50" height="50" />
-					<?endif;?>
-
-					<?=form_open("/user/comment/$user2"); ?>
-						<textarea name="comment" cols="30" rows="10"></textarea>
-						<h2>400/400 characters left</h2>
-						<button>Post Comment</button>
-					<?=form_close();?>
-				</article>
 			</section>
 		</section>
 	</section>
@@ -112,5 +110,6 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
-	<script>initTabs();</script>
+	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>
+	<script>initComments(1);</script>

@@ -106,5 +106,5 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
-	<script>initTabs();</script>
+	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>

@@ -38,11 +38,11 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
 				<a href="<?=base_url()?>index.php/profile/friends"><li class="selected">Friends</li></a>
 				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/alerts"><li>Alerts</li></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><li>Alerts</li></a>
 			</ul>
 
 			<section id="tabContent" class="friends">

@@ -4,6 +4,10 @@
 		</div>
 	</section>
 
+	<? if(isset($error) && !isset($upload_data)): ?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="tabs" class="sizer wizard">
 		<ul>
 			<li class="selected"><h1>Guidelines</h1></li>
@@ -14,11 +18,6 @@
 		</ul>
 
 		<section id="tabContent" class="start">
-
-			<? if(isset($error) && !isset($upload_data)): ?>
-				<p class="error"><?=$error?></p>
-			<? endif; ?>
-
 
  			<?=form_open("/start/basic"); ?>
 				<section id="guidelines">

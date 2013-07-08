@@ -12,21 +12,23 @@ class Profile extends CI_Controller {
 
 	public function index (){	
 
-		if($this->session->userdata('userID')) {
+		// if($this->session->userdata('userID')) {
 
-			$userID             =   $this->session->userdata('userID');
-			$data['friends']    =   $this->user_model->getFriends($userID);
-			$data['parties']    =   $this->user_model->getUserParties($userID);
-			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-			$data['view']       =   'profile';
+		// 	$userID             =   $this->session->userdata('userID');
+		// 	$data['friends']    =   $this->user_model->getFriends($userID);
+		// 	$data['parties']    =   $this->user_model->getUserParties($userID);
+		// 	$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+		// 	$data['view']       =   'profile';
 
-			$this->load->view('includes/template', $data);
+		// 	$this->load->view('includes/template', $data);
 
-		}else{
+		// }else{
 
-			redirect('join');
+		// 	redirect('join');
 
-		}
+		// }
+		// 
+		redirect('profile/activity');
 		
 	}
 
@@ -202,6 +204,47 @@ class Profile extends CI_Controller {
 
 			$this->load->view('includes/template', $data);
 			
+		}
+
+	}
+
+	public function alerts(){
+		
+		$data['friendReqs'] = $this->user_model->checkForFriendRequests();
+		$data['view'] = 'profile_alerts';
+		$this->load->view('includes/template', $data);
+
+	}
+
+	public function ajaxDeleteComment(){
+
+		$commentID = $_POST['commentID'];
+
+		echo json_encode($this->user_model->deleteComment($commentID));
+	}
+
+	public function ajaxComment(){
+
+		$this->load->library('form_validation');
+
+		$config = array(
+			array(
+				'field'   =>   'comment',
+				'label'   =>   'Comment',
+				'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
+			)
+		);
+
+		$this->form_validation->set_rules($config);
+
+		if($this->form_validation->run() == false){
+
+			echo json_encode(false);
+
+		}else{
+			
+			echo json_encode($this->user_model->postComment());
+
 		}
 
 	}

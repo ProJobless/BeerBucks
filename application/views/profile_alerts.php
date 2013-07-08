@@ -46,11 +46,11 @@
 
 		<section id="tabs">
 			<ul>
-				<a href="<?=base_url()?>index.php/profile"><li>Activity</li></a>
+				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
 				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
 				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
 				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/alerts"><li  class="selected">Alerts</li></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><li  class="selected">Alerts</li></a>
 			</ul>
 
 			<section id="tabContent" class="request">

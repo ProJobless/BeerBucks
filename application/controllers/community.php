@@ -16,6 +16,25 @@ class Community extends CI_Controller {
 
 		$this->load->view('includes/template', $data);
 
+		redirect('community/featured');
+
+	}
+
+	public function featured(){
+
+		$data['view'] = 'community';
+
+		$this->load->view('includes/template', $data);
+		
+	}
+
+	public function people(){
+
+		$data['users']   =   $this->user_model->getUsers();
+		$data['view']    =   'community_people';
+		
+		$this->load->view('includes/template', $data);
+
 	}
 
 	public function addFriend($user2ID = 0){
@@ -111,15 +130,6 @@ class Community extends CI_Controller {
 
 		}
 
-
-	}
-
-	public function people(){
-
-		$data['users']   =   $this->user_model->getUsers();
-		$data['view']    =   'community_people';
-		
-		$this->load->view('includes/template', $data);
 
 	}
 

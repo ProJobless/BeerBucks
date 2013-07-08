@@ -27,22 +27,24 @@ class Party extends CI_Controller {
 
 	public function index ($partyID = 0){	
 
-		if($partyID){
+		// if($partyID){
 
-			$data['partyID']   =   $partyID;
-			$data['party']     =   $this->party_model->getParty($partyID);
-			$data['view']      =   'party';
+		// 	$data['partyID']   =   $partyID;
+		// 	$data['party']     =   $this->party_model->getParty($partyID);
+		// 	$data['view']      =   'party';
 
-			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+		// 	$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
-		}else{
+		// }else{
 
-			$data['parties']   =   $this->party_model->getParties();
-			$data['view']      =   'discover';
+		// 	$data['parties']   =   $this->party_model->getParties();
+		// 	$data['view']      =   'discover';
 
-			$this->load->view('includes/template', $data);
+		// 	$this->load->view('includes/template', $data);
 
-		}
+		// }
+		
+		redirect("party/attending/$partyID");
 
 	}
 
@@ -218,6 +220,41 @@ class Party extends CI_Controller {
 		}else{
 
 			redirect('join');
+
+		}
+
+	}
+
+	public function ajaxDeleteComment(){
+
+		$commentID = $_POST['commentID'];
+
+		echo json_encode($this->party_model->deleteComment($commentID));
+	}
+
+	public function ajaxComment(){
+
+		$user2ID = $_POST['user2ID'];
+
+		$this->load->library('form_validation');
+
+		$config = array(
+			array(
+				'field'   =>   'comment',
+				'label'   =>   'Comment',
+				'rules'   =>   'trim|required|min_length[3]|max_length[400]|xss_clean'
+			)
+		);
+
+		$this->form_validation->set_rules($config);
+
+		if($this->form_validation->run() == false){
+
+			echo json_encode(false);
+
+		}else{
+			
+			echo json_encode($this->party_model->postComment($user2ID));
 
 		}
 
