@@ -5,9 +5,9 @@ class Profile extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 
+		$this->load->library("pagination");
 		$this->load->model('user_model');
 		$data['alerts'] = $this->user_model->checkAlerts();
-
 	}
 
 	public function index (){	
@@ -39,6 +39,7 @@ class Profile extends CI_Controller {
 			$userID             =   $this->session->userdata('userID');
 			$data['friends']    =   $this->user_model->getFriends($userID);
 			$data['parties']    =   $this->user_model->getUserParties($userID);
+			
 			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
 			$data['view']       =   'profile';
 

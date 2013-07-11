@@ -8,8 +8,8 @@
 		<ul>
 			<a href="<?=base_url()?>index.php/community"><li class="selected">Featured</li></a>
 			<a href="<?=base_url()?>index.php/community/people"><li>People</li></a>
-			<a href="<?=base_url()?>index.php/community/photos"><li>Photos</li></a>
-			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
+<!-- 			<a href="<?=base_url()?>index.php/community/photos"><li>Photos</li></a>
+ -->			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
 			<li class="more"><a href="#">Learn More</a></li>
 		</ul>	
 

@@ -10,32 +10,42 @@ class Login extends CI_Controller {
 	public function index (){	
 
 		$sData = array(
-			'userID'                 =>   null,
-			'email'                  =>   null,
-			'username'               =>   null,
+            //User Session Data
+            'userID'                 =>   null,
+            'email'                  =>   null,
+            'username'               =>   null,
             'dateOfReg'              =>   null,
             'profileImage'           =>   null,
             'facebookID'             =>   null,
             'bio'                    =>   null,
             'timezone'               =>   null,
+            'alerts'                 =>   null,
+            'feedback'               =>   null,
+            'views'                  =>   null,
+            'comments'               =>   null,
+            'contributions'          =>   null,
+            'parties'                =>   null,
+            //Party Session Data
             'title'                  =>   null,
-        	'description'            =>   null,
+            'description'            =>   null,
             'location'               =>   null,
-			'address'                =>   null,
+            'partyLocation'          =>   null,
+            'address'                =>   null,
             'start'                  =>   null,
             'end'                    =>   null,
             'goal'                   =>   null,
             'img_name'               =>   null,
+            //Twitter Session Data
             'access_token'           =>   null,
             'access_token_secret'    =>   null,
             'request_token'          =>   null,
             'request_token_secret'   =>   null,
             'twitter_user_id'        =>   null,
             'twitter_screen_name'    =>   null,
-            'alerts'                 =>   null,
-    	);
+            'geoLocation'            =>   null,
+        );
 
-    	$this->session->unset_userdata($sData);
+        $this->session->unset_userdata($sData);
 
 		if($this->session->userdata('userID')) {
 

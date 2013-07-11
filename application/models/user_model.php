@@ -10,7 +10,16 @@ class User_model extends CI_Model {
 
     }
 
-    function prepTime($data, $title){
+    public function getCount(){
+
+        $this->db->select('COUNT(user_id) as totalUserCount');
+        $this->db->from('users');
+
+        return $this->db->count_all_results();
+
+    }
+
+    public function prepTime($data, $title){
 
         $newData = array();
 
@@ -403,7 +412,7 @@ class User_model extends CI_Model {
 
     }
 
-    function getUsers(){
+    function getUsers($limit, $start){
 
         $this->db->select('
             user_id,
@@ -419,7 +428,7 @@ class User_model extends CI_Model {
         ');
 
         $this->db->from('users');
-        //$this->db->where("user_id = '$userID'");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 

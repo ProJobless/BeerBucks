@@ -56,8 +56,7 @@
 				
 				</article>
 			<? endforeach; ?>
-
-			<div><button>See More</button></div>
+			<div class="pagination"><?=$links?></div>
 		</section>
 	</section>
 
@@ -73,3 +72,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTabs();</script>
+	<script>initPagination();</script>

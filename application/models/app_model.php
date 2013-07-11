@@ -31,6 +31,14 @@ class App_model extends CI_Model {
             $data = base64_encode(serialize($visitorGeolocation));
             setcookie("geolocation", $data, time()+3600*24*7); 
 
+            $geoLocation = $visitorGeolocation['cityName'] . ', ' . $visitorGeolocation['regionName'];
+
+            $sData = array(
+                'geoLocation' => $geoLocation,
+            );
+
+            $this->session->set_userdata($sData);
+
             return $data;
 
         }
@@ -43,30 +51,33 @@ class App_model extends CI_Model {
             
         }else{
 
-            $this->session->set_userdata('access_token', '708143798-Pbuioc0jI2xAgGhRugWduxkSjKxpVDEShvdEmjF1');
-            $this->session->set_userdata('access_token_secret', 'CbPzRrmLopnTJLdYFlGlPLnLT8KMVUSgqYF9fzMGzg');
+            $this->session->set_userdata('access_token', $this->config->item('twitter_access_token'));
+            $this->session->set_userdata('access_token_secret', $this->config->item('twitter_access_secret'));
             redirect('/');
 
         }
 
         $data = array(
-            'q' => 'thebeerbucks -RT',
+            'q' => 'thebeerbucks',
         );
 
-        $content   =   $this->connection->get('search/tweets', $data);
+        $content   =   $this->connection->get('statuses/mentions_timeline', $data);
         $tweets    =   objectToArray($content);
+        $results   =   array();
 
         // echo '<pre>';
         // var_dump($tweets);
         // echo '<pre>';
+        
+        if(isset($tweets[0])){
 
-        $results   =   array();
+            for ($i=0; $i < count($tweets); $i++) { 
 
-        for ($i=0; $i < count($tweets['statuses']); $i++) { 
+                $text        =   preg_replace('/(@(\w+))/', '', $tweets[$i]['text']);
+                $name        =   $tweets[$i]['user']->screen_name;
+                $results[]   =   array('name' => $name, 'text' => $text);
 
-            $text = preg_replace('/(@(\w+))/', '', $tweets['statuses'][$i]->text);
-            $name        =   $tweets['statuses'][$i]->user->screen_name;
-            $results[]   =   array('name' => $name, 'text' => $text);
+            }
 
         }
 

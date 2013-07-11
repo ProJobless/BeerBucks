@@ -6,7 +6,7 @@
 
 	<section id="tabs" class="sizer">
 		<ul>
-			<a href="<?=base_url()?>index.php/discover"><li>Featured</li></a>
+			<a href="<?=base_url()?>index.php/discover/featured"><li>Featured</li></a>
 			<a href="<?=base_url()?>index.php/discover/nearYou"><li>Near You</li></a>
 			<a href="<?=base_url()?>index.php/discover/upcoming"><li class="selected">Upcoming</li></a>
 			<a href="<?=base_url()?>index.php/discover/completed"><li>Completed</li></a>
@@ -56,8 +56,7 @@
 				
 				</article>
 			<? endforeach; ?>
-
-			<div><button>See More</button></div>
+			<div class="pagination"><?=$links?></div>
 		</section>
 	</section>
 
@@ -73,3 +72,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTabs();</script>
+	<script>initPagination();</script>

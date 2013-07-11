@@ -109,3 +109,4 @@
 	<script>initDollarSign();</script>
 	<script>initSettings();</script>
 	<script>initSuccessError();</script>
+	<script>initAutoComplete();</script>

@@ -122,3 +122,4 @@
 	<!-- Inits -->
 	<script>initUpload();</script>
 	<script>initSuccessError();</script>
+	<script>initAutoComplete();</script>

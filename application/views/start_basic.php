@@ -86,7 +86,7 @@
 				<article class="party">
 					<img src="<? if($this->session->userdata('img_name')) echo base_url() . 'uploads/party/' . $this->session->userdata('img_name'); ?>" alt="" width="220" height="210"/>
 					<hgroup>
-						<h2> 
+						<h2 class="title"> 
 							<? if(!set_value('title')):?>
 								<?if($this->session->userdata('title')) echo $this->session->userdata('title');?>
 							<? elseif(set_value('title')):?>
@@ -96,7 +96,7 @@
 
 						<h3>Hosted by <i> <?=$this->session->userdata('username')?> </i></h3>
 
-						<h4>
+						<h4 class="description">
 							<? if(!set_value('description')):?>
 								<?if($this->session->userdata('description')) echo $this->session->userdata('description');?>
 							<? elseif(set_value('description')):?>
@@ -104,10 +104,10 @@
 							<? endif; ?>
 						</h4>
 
-						<h3>Orlando, FL</h3>
+						<h3 class="partyLocation"></h3>
 					</hgroup>
 
-					<div><p>
+					<div><p class="goal">
 							<? if(!set_value('goal')):?>
 								<?if($this->session->userdata('goal')) echo '$ 0/' . ltrim($this->session->userdata('goal') , '$');?>
 							<? elseif(set_value('goal')):?>
@@ -115,11 +115,6 @@
 							<? endif; ?>
 						</p>
 					</div>
-
-					<hgroup>
-						<h5>0</h5> <h6>Attending</h6>
-						<h5>0</h5> <h6>Days Till Party</h6>
-					</hgroup>
 				</article>
 			</aside>
 		</section>

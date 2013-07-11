@@ -53,7 +53,7 @@ class Twitter extends CI_Controller{
 				redirect($url);
 
 			}else{
-				echo 'the f?';
+				
 				redirect(base_url('/'));
 				
 			}

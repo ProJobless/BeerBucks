@@ -27,10 +27,6 @@ var initUpload = function(){
 var initDatePicker = function(){
 	var datePickerInput   =   $('.end, .startTime');
 
-	datePickerInput.on('click', function(e){
-		console.log('woaa');
-	});
-
 	datePickerInput.datetimepicker({
 		dateFormat: 'yy-mm-dd',
 		timeFormat: "hh:mm:00 tt Z",
@@ -130,7 +126,6 @@ var initTimeKeeper = function(){
 
 
 var initTabs = function(type){
-
 	var currentURL         =   window.location.pathname.split('/'),
 		currentParameter   =   type ? currentURL[currentURL.length -3] + '/' + currentURL[currentURL.length -2] + '/' + currentURL.pop() : currentURL.pop()
 	;
@@ -147,39 +142,32 @@ var initTabs = function(type){
 		}
 	};
 
-	if(window.history.state === null){
-		type ? history.replaceState({title:currentParameter}, currentParameter, base + "index.php/" + currentParameter) : history.replaceState({title:currentParameter}, currentParameter, currentParameter);
-	}
+	if(window.history.state === null) type ? history.replaceState({title:currentParameter}, currentParameter, base + "index.php/" + currentParameter) : history.replaceState({title:currentParameter}, currentParameter, currentParameter);
 
 	function runInits(type){
+		var location = window.location.pathname.split('/');
+		var locationPop = location.pop();
+
 		initTabs(type);
-		if(window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'comments') initComments(type);
-		if(window.location.pathname.split('/').pop() == 'comments') initComments(type);
+		if(location[location.length-2] == 'comments') initComments(type);
+		if(locationPop == 'comments') initComments(type);
+		initPagination();
 	}
 
 	function changePage(url, ele){
-
-		var newURL = type ? url.split('/')[url.split('/').length-3] + '/' + url.split('/')[url.split('/').length-2] + '/' + url.split('/')[url.split('/').length-1] : url.split('/').pop();
+		var splitURL = url.split('/');
+		var newURL = type ? splitURL[splitURL.length-3] + '/' + splitURL[splitURL.length-2] + '/' + splitURL[splitURL.length-1] : splitURL.pop();
 
 		$.ajax({
 			url: url,
 			async: true,
 			beforeSend: function(){
-				if(type){
-					if(window.history.state.title != newURL){
-						history.pushState({title:newURL}, newURL, base + "index.php/" + newURL);
-					}
-				}else{
-					if(window.history.state.title != newURL){
-						history.pushState({title:newURL}, newURL, newURL);
-					}
-				}
-
+				if(window.history.state.title != newURL) history.pushState({title:newURL}, newURL, type ? base + "index.php/" + newURL : newURL);
 				tabContent.height(50);
 				tabContent.empty();
 				tabs.find('li').removeClass('selected');
 				tabs.find('li:contains('+ele.replace( /([a-z])([A-Z])/g, "$1 $2")+')').attr('class', 'selected');
-				tabContent.css('background-position', '45% 10px');
+				tabContent.css('background-position', '45% 50%');
 			}
 		}).done(function(data){
 			var newContent   =   $(data).find('#tabContent,#community,#people'),
@@ -247,18 +235,17 @@ var initSettings = function(){
 						initDollarSign();
 					}
 
-					$(newContent).children().css('opacity', 0);
-					$(newContent).children().animate({opacity: 1}, 800, function(){initSettings();});
+					$(newContent).children().css('opacity', 0).animate({opacity: 1}, 800, function(){initSettings();});
 				});
 				check = false;
 			}
 		});
 		return false;
 	});
+	initAutoComplete();
 };
 
 var initComments = function(type){
-
 	var deleteButton   =   $('.delete'),
 		form           =   $('form'),
 		textarea       =   $('textarea')
@@ -274,6 +261,7 @@ var initComments = function(type){
 		$.ajax({
 			url: url,
 			type: "post",
+			async: false,
 			dataType: "json",
 			data: {commentID: commentID}
 		}).done(function(response){
@@ -283,7 +271,7 @@ var initComments = function(type){
 	});
 
 	//Add Comment
-	form.on('submit', function(e){
+	form.off('submit').on('submit', function(e){
 		var comment   =   textarea.val(),
 			url       =   base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-type ? 3 : 3] + '/ajaxComment',
 			user2ID   =   type ? window.location.pathname.split('/').pop() : 0
@@ -292,6 +280,7 @@ var initComments = function(type){
 		$.ajax({
 			url: url,
 			type: "post",
+			async: false,
 			dataType: "json",
 			data: {
 				comment: comment,
@@ -307,16 +296,25 @@ var initComments = function(type){
 					url: path,
 					async: true
 				}).done(function(data){
-					var newPost = $(data).find('#tabContent article:nth-of-type(2)');
-					var oldPost = $('#tabContent article:nth-of-type(2)');
+
+					var newPost   =   $(data).find('#tabContent article:nth-of-type(2)'),
+						oldPost   =   $('#tabContent article:nth-of-type(2)')
+					;
+
+					if(oldPost.length === 0){
+						$('#tabContent article:first-of-type').after(newPost);
+						newPost.css('opacity', 0).animate({opacity: 1},{ duration: 800});
+						initComments(type);
+					}
 
 					oldPost.animate({marginTop: 71},{ duration: 500,
 						complete: function(){
 							oldPost.css({marginTop: 13});
 							$('#tabContent article:first-of-type').after(newPost);
 							newPost.css('opacity', 0).animate({opacity: 1},{ duration: 800});
+							initComments(type);
 						}
-					});		
+					});
 				});
 			}
 		});
@@ -333,25 +331,127 @@ var initComments = function(type){
 	});
 };
 
-var initWizardOfOz = function(){
+var initPagination = function(){
 
+	$('.pagination').replaceWith('<div class="ajax"><button class="ajaxButton">See More</button></div>');
+
+	var ajaxButton   =   $('.ajaxButton'),
+		count        =   8,
+		win          =   $(window),
+		check        =   true
+	;
+
+	function isInView(elem){
+		var docViewTop      =   $(window).scrollTop(),
+			docViewBottom   =   docViewTop + $(window).height(),
+			elemTop         =   $(elem).offset().top,
+			elemBottom      =   elemTop + $(elem).height()
+		;
+
+		return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+	}
+
+	function loadMore(){
+		var url = base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-2] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-1] + '/' + count;
+
+		ajaxButton.addClass('loading');
+		$.ajax({
+			url: url,
+			async: true
+		}).done(function(data){
+			var newContent = $(data).find('#tabContent .party, #people>a');
+
+			if(newContent.length){
+				$('.ajax').before(newContent);
+				newContent.css('opacity', 0);
+				count += 8;
+				newContent.animate({opacity: 1}, 800, function(){
+					check = true;
+					ajaxButton.removeClass('loading');
+				});
+			}else{
+				ajaxButton.remove();
+			}
+		});
+	}
+
+	ajaxButton.off('click').on('click', function(e){
+		loadMore();
+	});
+
+	win.on('scroll', function(e){
+		if(isInView(ajaxButton) && check){
+			check = false;
+			loadMore();
+		}
+	});
 };
 
+var initAutoComplete = function(){
+	var location = $('input[name="partyLocation"],input[name="location"]');
 
+	function log(message){
+		message = message.replace(', United States', '');
+		location.replaceWith('<input name="'+location.attr("name")+'" value="'+ message + '"/>');
+		$('.partyLocation').text(message);
+		initAutoComplete();
+    }
 
+	location.autocomplete({
+		source: function( request, response ) {
+			var that = $(this);
+			
+			$(this).addClass('loading');
+			$.ajax({
+				url: "http://ws.geonames.org/searchJSON",
+				dataType: "jsonp",
+				data: {
+					country: 'US',
+					featureClass: "P",
+					style: "full",
+					maxRows: 6,
+					name_startsWith: request.term
+				},
+				success: function( data ) {
+					response($.map(data.geonames, function(item){
+						return {
+							label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+							value: item.name
+						};
+					}));
+				}
+			});
+		},
+		minLength: 2,
+		select: function( event, ui ) {
+			log(ui.item.label);
+		},
+		open: function() {
+			$(this).removeClass('closed').addClass('opened');
+		},
+		close: function() {
+			$(this).removeClass('opened').addClass('closed');
+		}
+	});
+};
 
+var initWizardOfOz = function(){
+	var inputs     =   $('input, textarea'),
+		preview    =   $('.party')
+	;
 
+	initAutoComplete();
 
+	function updatePreview(where, what){
+		preview.find('.'+where).text(what);
+	}
 
+	inputs.on('keyup', function(e){
+		var that   =   $(this),
+			val    =   that.val(),
+			name   =   that.attr('name')
+		;
 
-
-
-
-
-
-
-
-
-
-
-
+		updatePreview(name, val);
+	}).on('keypress', function(e){if(e.which == 13) return false;});
+};

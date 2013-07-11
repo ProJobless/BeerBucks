@@ -890,9 +890,9 @@ footer section:nth-of-type(2) li:last-child{
 	padding-bottom: 50px;
 }
 #community h1{
-	font-family: 'WalkwayBlackRegular';
+	font-family: 'CodePro';
 	color: $dark-purple;
-	font-size: 1.7em;
+	font-size: 1.5em;
 	background: url("../img/icon-community.png") no-repeat;
 	text-indent: 29px;
 	line-height: 34px;
@@ -1246,10 +1246,11 @@ article#topImages>a{
 	border: 1px solid $light-gray;
 	border-top: 0px;
 	clear: both;
-	padding: 0px 13px;
+	padding: 0px 13px 13px;
 	text-align: center;
 	position: relative;
 	background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
+	cursor: default;
 	//@include outerglow(0px, 2px, 2px, 0px, $light-gray);
 	@include corners(0px, 0px, 5px, 5px);
 }
@@ -1383,7 +1384,7 @@ article#topImages>a{
 }
 #tabContent button{
 	@include pinkbutton();
-	margin: 20px auto;
+	margin: 13px auto 0;
 }
 
 /* ------------------------------ Start Login Page ------------------------------- */
@@ -1398,6 +1399,7 @@ article#topImages>a{
 	background-color: $light-white;
 	margin: 60px auto 100px;
 	border: 1px solid $light-gray;
+	overflow: hidden;
 	@include corners(0px, 0px, 5px, 5px);
 	@include outerglow();
 }
@@ -1569,6 +1571,7 @@ article#topImages>a{
 	overflow: hidden;
 	float: left;
 	margin-top: -1px;
+	padding-bottom: 0;
 }
 #tabContent.start form{
 	width: 700px;
@@ -2368,7 +2371,6 @@ article#topImages>a{
 	position: relative;
 	overflow: hidden;
 	@include unglow();
-	@include transition();
 }
 #tabContent.comments article:first-of-type{
 	width: 100%;
@@ -2397,6 +2399,9 @@ article#topImages>a{
 	background-color: $light-white;
 	z-index: 2;
 	margin: 1px;
+	font-size: 1em;
+	font-weight: 300;
+	color: $dark-purple;
 	@include corners();
 }
 #tabContent.comments article form{
@@ -2858,7 +2863,7 @@ article#topImages>a{
 	border: 1px solid $light-gray;
 	border-top: 0px;
 	clear: both;
-	padding: 20px;
+	padding: 15px;
 	text-align: center;
 		background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
 
@@ -2931,8 +2936,7 @@ article#topImages>a{
 	clear: both;
 	padding: 15px;
 	text-align: center;
-		background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
-
+	background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
 }
 #people article{
 	height: 25px;
@@ -3081,7 +3085,7 @@ article#topImages>a{
 }
 #people button{
 	@include pinkbutton();
-	margin: 20px auto;
+	margin: 20px auto 0;
 }
 
 /* ------------------------------ Start Party Page ------------------------------ */
@@ -3711,8 +3715,6 @@ article#topImages>a{
 #settingsForms.partyEdit form textarea[name="update"] {
 	height: 400px;
 }
-
-
 .styled{
 	display: block;
 	width: 100%;
@@ -3735,3 +3737,50 @@ article#topImages>a{
 	padding: 3px;
 }
 
+#tabContent .pagination{
+	float: right;
+	margin: 20px;
+	margin-top: 50px;
+}
+#tabContent .pagination a{
+	@include pinkbutton();
+}
+#tabContent .pagination strong{
+	@include pinkbutton();
+	color: $dark-gray;
+	background: $main-white;
+	border: solid 1px $light-gray;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+    @include outerglow();
+    cursor: default;
+	&:hover{
+		background: $main-white;
+		color: $dark-gray;
+	}
+}
+#tabContent .ajaxButton.loading{
+	text-indent: -9999px;
+	border: none;
+	background: url("../img/ajax-loader.gif") no-repeat 50%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	&:hover{
+		border: none;
+		background: url("../img/ajax-loader.gif") no-repeat 50%;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+}
+input[name="partyLocation"]{
+	transition: none;
+    -webkit-transition: none; 
+}
+input.opened{
+	background: none;
+}
+input.ui-autocomplete-loading{
+	background: url("../img/ajax-loader.gif") no-repeat 98%;
+	transition: none;
+    -webkit-transition: none; 
+}

@@ -20,8 +20,8 @@
 				<h1>Login with an email</h1>
 				<div>
 					<p><? if(isset($error)) echo $error; ?></p>
-					<h2>Email Adress</h2>
-					<?=form_input('email'); ?>
+					<h2>Email Address</h2>
+					<input type="text" name="email" />
 
 					<h2>Password</h2>
 					<?=form_password('password'); ?>
@@ -36,10 +36,10 @@
 				<div>
 					<p><? if(isset($joinError)) echo $joinError; ?></p>
 					<h2>Username</h2>
-					<?=form_input('username'); ?>
+					<input type="username" value="<?=set_value('username'); ?>" />
 
-					<h2>Email</h2>
-					<?=form_input('email'); ?>
+					<h2>Email Address</h2>
+					<input type="text" name="email" value="<?=set_value('email'); ?>" />
 
 					<h2>Password</h2>
 					<?=form_password('password'); ?>
@@ -47,6 +47,7 @@
 					<button type="submit">Sign Up</button>
 				</div>
 			<?=form_close(); ?>
+
 		</section>
 	</section>
 

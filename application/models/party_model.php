@@ -230,7 +230,7 @@ class Party_model extends CI_Model {
         
     }
 
-    public function getParties(){
+    public function getParties($limit, $start){
 
         $this->db->select('
             parties.party_id, 
@@ -253,6 +253,7 @@ class Party_model extends CI_Model {
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
         $this->db->where("parties.expired = 0");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -323,7 +324,7 @@ class Party_model extends CI_Model {
 
     }
 
-    public function getCompleted(){
+    public function getCompleted($limit, $start){
 
         $this->db->select('
             parties.party_id, 
@@ -346,6 +347,7 @@ class Party_model extends CI_Model {
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
         $this->db->where("parties.expired = 1");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -625,6 +627,26 @@ class Party_model extends CI_Model {
         $this->db->delete('updates'); 
 
         return true;
+
+    }
+
+    public function getCount(){
+
+        $this->db->select('COUNT(party_id) as totalPartyCount');
+        $this->db->from('parties');
+        $this->db->where("expired = 0");
+
+        return $this->db->count_all_results();
+
+    }
+
+    public function getCompletedCount(){
+
+        $this->db->select('COUNT(party_id) as totalPartyCount');
+        $this->db->from('parties');
+        $this->db->where("expired = 1");
+
+        return $this->db->count_all_results();
 
     }
 
