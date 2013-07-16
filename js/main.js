@@ -1,5 +1,31 @@
 /* Author: Kolby Sisk */
 
+var initTools = function(){
+	var tools     =   $('#tools'),
+		toolBox   =   $('#toolBox'),
+        element   =   $('#toolBox'),
+        distance,
+        mX,
+		mY
+	;
+
+	toolBox.on('click', function(e){
+		$(this).height($(this).height() == 210 ? 0 : 210);
+	});
+
+	function calculateDistance(elem, mouseX, mouseY) {
+        return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
+    }
+
+    $(document).mousemove(function(e) {
+        mX = e.pageX;
+        mY = e.pageY;
+        if(calculateDistance(element, mX, mY) > 200) toolBox.height(0);
+    }).on('scroll', function(e){
+		toolBox.height(0);
+    });
+};
+
 var initSuccessError = function(){
 	var message = $('.success, .error, .message');
 
@@ -123,7 +149,6 @@ var initTimeKeeper = function(){
 
 	var timer = setInterval(countDown,1000);
 };
-
 
 var initTabs = function(type){
 	var currentURL         =   window.location.pathname.split('/'),

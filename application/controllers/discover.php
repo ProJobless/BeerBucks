@@ -97,19 +97,13 @@ class Discover extends CI_Controller {
 
 	}
 
-	public function Search(){
+	public function Search($search = 0){
 
-		$config = array();
-        $config["base_url"]      =   base_url()."/index.php/discover/search";
-        $config["total_rows"]    =   $this->party_model->getCount();
-        $config["per_page"]      =   8;
-        $config["uri_segment"]   =   3;
+		if(strlen($this->input->post('search')) == 0 && !$this->uri->segment(3)) redirect('discover');
 
-        $this->pagination->initialize($config);
+		if(!$search) redirect('discover/search/'.$this->input->post('search'));
 
-        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data["links"]     =   $this->pagination->create_links();
-		$data['parties']   =   $this->party_model->getSearchResults($config["per_page"], $page);
+		$data['parties']   =   $this->party_model->getSearchResults();
 		$data['view']      =   'discover_search';
 		
 		$this->load->view('includes/template', $data);

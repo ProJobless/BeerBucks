@@ -6,11 +6,11 @@
 
 	<section id="tabs" class="sizer">
 		<nav>
-			<a href="<?=base_url()?>index.php/discover/featured"><h1 class="selected">Featured</h1></a>
+			<a href="<?=base_url()?>index.php/discover/featured"><h1>Featured</h1></a>
 			<a href="<?=base_url()?>index.php/discover/nearYou"><h1>Near You</h1></a>
 			<a href="<?=base_url()?>index.php/discover/upcoming"><h1>Upcoming</h1></a>
 			<a href="<?=base_url()?>index.php/discover/completed"><h1>Completed</h1></a>
-			<?=form_open("#"); ?><input type="text" placeholder="Search for a party by name, location, or host"></input><button>Search</button><?=form_close(); ?>
+			<?=form_open("discover/search"); ?><input type="text" name="search" placeholder="Search for a party by name or location"></input><button>Search</button><?=form_close(); ?>
 		</nav>
 
 		<section id="tabContent">
@@ -57,10 +57,8 @@
 					
 					</article>
 				<? endforeach; ?>
-				<div class="pagination"><?=$links?></div>
-
-				<?else:?>
-				<h1>There are no parties yet. Why not start one?</h1>
+			<?else:?>
+				<h1>There was no parties found.</h1>
 			<?endif;?>
 
 		</section>
@@ -77,5 +75,3 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
-	<script>initTabs();</script>
-	<script>initPagination();</script>

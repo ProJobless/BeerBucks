@@ -10,7 +10,7 @@
 			<a href="<?=base_url()?>index.php/discover/nearYou"><h1>Near You</h1></a>
 			<a href="<?=base_url()?>index.php/discover/upcoming"><h1 class="selected">Upcoming</h1></a>
 			<a href="<?=base_url()?>index.php/discover/completed"><h1>Completed</h1></a>
-			<?=form_open("#"); ?><input type="text" placeholder="Search for a party by name, location, or host"></input><button>Search</button><?=form_close(); ?>
+			<?=form_open("discover/search"); ?><input type="text" name="search" placeholder="Search for a party by name or location"></input><button>Search</button><?=form_close(); ?>
 		</nav>
 
 		<section id="tabContent">

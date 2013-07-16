@@ -390,7 +390,7 @@ header #tools p{
     padding-right: 15px;
     float: right;
     line-height: 70px;
-    cursor: default;
+    cursor: pointer;
     &:hover{
     	background: url("../img/icon-downArrow.png") no-repeat right center;
     	-webkit-box-shadow: none;
@@ -406,8 +406,9 @@ header #tools #toolBox{
 	@include corners(0, 0, 5px, 5px);
 	//@include transition(.1s);
 	color: $main-white;
+	cursor: pointer;
 	&:hover{
-		height: 210px;
+		//height: 210px;
 		color: $dark-purple;
 	}
 }

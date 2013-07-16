@@ -877,8 +877,48 @@ class Party_model extends CI_Model {
 
     public function getSearchResults(){
 
-        $search = $this->security->xss_clean($this->input->post('search'));
+        $search = $this->security->xss_clean($this->uri->segment(3));
 
+        $this->db->select('
+            parties.party_id, 
+            parties.user_id, 
+            parties.date_created, 
+            parties.date_edited, 
+            parties.title, 
+            parties.description, 
+            parties.party_img, 
+            parties.party_location, 
+            parties.address, 
+            parties.start, 
+            parties.end, 
+            parties.goal,
+            parties.expired,
+            parties.attending,
+            users.username,
+        ');
+
+        $this->db->from('parties');
+        $this->db->join('users', 'parties.user_id = users.user_id');
+        $this->db->where("parties.expired = 0");
+        $this->db->like('parties.party_location', $search); 
+        $this->db->or_like('parties.title', $search);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults    =   objectToArray($dataResults);
+            $filteredData   =   $this->checkStatus($dataResults, true);
+
+            return $this->getTimeTillParty($filteredData);
+
+        }else{
+            return false;
+        }
 
     }    
 

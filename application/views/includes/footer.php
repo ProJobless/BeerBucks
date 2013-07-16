@@ -1,3 +1,4 @@
+	<script>initTools();</script>
 	<footer>
 		<? if($this->uri->segment(1) != 'settings' && $this->uri->segment(1) != 'start' && $this->uri->segment(1) != 'edit_party' && $this->uri->segment(1) != 'vip') :?>
 			<? if(!$this->session->userdata('userID')): ?>

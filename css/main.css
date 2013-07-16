@@ -299,7 +299,7 @@ header #tools p {
   padding-right: 15px;
   float: right;
   line-height: 70px;
-  cursor: default; }
+  cursor: pointer; }
   header #tools p:hover {
     background: url("../img/icon-downArrow.png") no-repeat right center;
     -webkit-box-shadow: none;
@@ -313,9 +313,9 @@ header #tools #toolBox {
   z-index: 2;
   -webkit-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
-  color: #edf6f5; }
+  color: #edf6f5;
+  cursor: pointer; }
   header #tools #toolBox:hover {
-    height: 210px;
     color: #071226; }
 
 header #tools #toolBox ul {
