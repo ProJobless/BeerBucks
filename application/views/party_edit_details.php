@@ -66,6 +66,9 @@
 					<p>Exact party locations will be <strong>hidden</strong> to everyone who hasn’t donated to the party. Users who have not donated will only see the <strong>city and state</strong> of the party location.</p>
 				</div>
 
+				<input type="text" name="lat" class="lat" style="display:none;" value="<?=$party[0]['party_lat']?>">
+				<input type="text" name="lng" class="lng" style="display:none;" value="<?=$party[0]['party_lng']?>">
+
 				<h1>Party Time</h1> <hr>
 
 				<?=form_error('start'); ?>

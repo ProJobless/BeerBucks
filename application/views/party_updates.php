@@ -33,7 +33,7 @@
 								<p><span><?=$update['update_title']?></span><span><?=$update['update_date']?></span><?=$update['update']?></p>
 								
 								<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
-									<a href="<?=base_url()?>index.php/party/deleteUpdate/<?=$update['update_id']?>/<?=$partyID?>" class="delete">x</a>
+									<a href="<?=base_url()?>index.php/party/deleteUpdate/<?=$update['update_id']?>/<?=$partyID?>" class="delete"></a>
 								<?endif;?>
 							</div>
 						</article>

@@ -9,7 +9,7 @@
 			<a href="<?=base_url()?>index.php/community"><h1 class="selected">Featured</h1></a>
 			<a href="<?=base_url()?>index.php/community/people"><h1>People</h1></a>
 <!-- 			<a href="<?=base_url()?>index.php/community/photos"><h1>Photos</h1></a>
- -->			<?=form_open("#"); ?><input type="text" placeholder="Search for your friends"></input><button>Search</button><?=form_close(); ?>
+ -->		<?=form_open("community/search"); ?><input type="text" name="search" placeholder="Search for a friend by username or location"></input><button>Search</button><?=form_close(); ?>
 		</nav>	
 
 		<section id="community">

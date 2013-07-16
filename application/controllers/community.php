@@ -175,4 +175,18 @@ class Community extends CI_Controller {
 
 	}
 
+	public function Search($search = 0){
+
+		if(strlen($this->input->post('search')) == 0 && !$this->uri->segment(3)) redirect('community');
+
+		if(!$search) redirect('community/search/'.$this->input->post('search'));
+
+		$data['users']   =   $this->user_model->getSearchResults();
+		$data['view']      =   'community_search';
+		
+		$this->load->view('includes/template', $data);
+
+
+	}
+
 }

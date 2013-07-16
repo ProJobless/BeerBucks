@@ -192,7 +192,7 @@ class User_model extends CI_Model {
     function addFriend($user2ID){
 
         $user1ID = $this->session->userdata('userID');
-        $dateOfReq = date('Y/m/d h:i:s', time());
+        $dateOfReq = date('Y/m/d H:i:s', time());
         $friendshipID = uniqid();
 
         $exists = $this->checkFriendship($user2ID);
@@ -373,7 +373,7 @@ class User_model extends CI_Model {
 
         if($this->checkStatus($friendshipID)){
 
-            $dateOfAccept = date('Y/m/d h:i:s', time());
+            $dateOfAccept = date('Y/m/d H:i:s', time());
 
             $data = array(
                 'active'           =>   1,
@@ -657,7 +657,7 @@ class User_model extends CI_Model {
         $comment         =   $this->security->xss_clean($this->input->post('comment'));
         $userCommentID   =   uniqid();
         $posterID        =   $this->session->userdata('userID'); 
-        $dateOfCom       =   date('Y/m/d h:i:s', time());
+        $dateOfCom       =   date('Y/m/d H:i:s', time());
 
         $data = array(
             'user_comment_id'   =>   $userCommentID,
@@ -943,6 +943,45 @@ class User_model extends CI_Model {
         $this->db->insert('reports', $data);
 
         return true;
+
+    }
+
+    public function getSearchResults(){
+
+        $search = $this->security->xss_clean($this->uri->segment(3));
+
+        $this->db->select('
+            user_id,
+            username,
+            profile_img,
+            bio,
+            location,
+            feedback,
+            views,
+            comments,
+            contributions,
+            parties,
+        ');
+
+        $this->db->from('users');
+        $this->db->like('location', $search); 
+        $this->db->or_like('username', $search);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
 
     }
 

@@ -209,7 +209,7 @@ class Party_model extends CI_Model {
 
         $partyID         =   uniqid();
         $userID          =   $this->session->userdata('userID');
-        $dateCreated     =   date('Y/m/d h:i:s', time());
+        $dateCreated     =   date('Y/m/d H:i:s', time());
         $title           =   $this->security->xss_clean($this->session->userdata('title'));
         $description     =   $this->security->xss_clean($this->session->userdata('description'));
         $partyLocation   =   $this->security->xss_clean($this->session->userdata('partyLocation'));
@@ -498,6 +498,8 @@ class Party_model extends CI_Model {
             parties.end, 
             parties.goal,
             parties.attending,
+            parties.party_lat,
+            parties.party_lng,
             users.username,
             users.profile_img,
             users.bio,
@@ -581,7 +583,7 @@ class Party_model extends CI_Model {
         $comment          =   $this->security->xss_clean($this->input->post('comment'));
         $partyCommentID   =   uniqid();
         $posterID         =   $this->session->userdata('userID'); 
-        $dateOfCom        =   date('Y/m/d h:i:s', time());
+        $dateOfCom        =   date('Y/m/d H:i:s', time());
 
         $data = array(
             'party_comment_id'   =>   $partyCommentID,
@@ -748,6 +750,8 @@ class Party_model extends CI_Model {
 
         $partyLocation   =   $this->security->xss_clean($this->input->post('partyLocation'));
         $address         =   $this->security->xss_clean($this->input->post('address'));
+        $lat             =   $this->security->xss_clean($this->input->post('lat'));
+        $lng             =   $this->security->xss_clean($this->input->post('lng'));
         $start           =   $this->security->xss_clean($this->input->post('start'));
         $end             =   $this->security->xss_clean($this->input->post('end'));
         $goal            =   $this->security->xss_clean(ltrim($this->input->post('goal') , '$'));
@@ -759,6 +763,8 @@ class Party_model extends CI_Model {
             'address'          =>   $address,
             'start'            =>   $newStart[0],
             'end'              =>   $newEnd[0],
+            'party_lat'        =>   $lat,
+            'party_lng'        =>   $lng,
             'goal'             =>   $goal,
             'party_timezone'   =>   $newStart[1],
         );
@@ -777,7 +783,7 @@ class Party_model extends CI_Model {
         $updateTitle   =   $this->security->xss_clean($this->input->post('updateTitle'));
         $update        =   $this->security->xss_clean($this->input->post('update'));
         $updateID      =   uniqid();
-        $updateDate    =   date('Y/m/d h:i:s', time());
+        $updateDate    =   date('Y/m/d H:i:s', time());
 
 
         $data = array(
@@ -788,7 +794,7 @@ class Party_model extends CI_Model {
             'update_date'    =>   $updateDate,
         );
 
-        $this->db->insert('updates', $data);
+        $this->db->insert('party_updates', $data);
 
     }
 
@@ -805,7 +811,7 @@ class Party_model extends CI_Model {
         ');
 
         $this->db->where('party_id', $partyID);
-        $query = $this->db->get('updates');
+        $query = $this->db->get('party_updates');
 
         if($query->num_rows > 0){
 
@@ -830,7 +836,7 @@ class Party_model extends CI_Model {
         if(!$updateID) return false;
 
         $this->db->where('update_id', $updateID);
-        $this->db->delete('updates'); 
+        $this->db->delete('parties_updates'); 
 
         return true;
 
