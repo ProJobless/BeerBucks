@@ -50,12 +50,12 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li class="selected">Friends</li></a>
-				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><h1 class="selected">Friends</h1></a>
+				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><h1>Comments</h1></a>
+			</nav>
 
 			<section id="tabContent" class="friends">
 
@@ -82,15 +82,12 @@
 								</hgroup>
 							</article>
 						</a>
-
+						
 					<? endforeach; ?>
-
-					<div><button>See More Friends</button></div>
-
 				<?else:?>
 					<h1><?=$user[0]['username']?> has no friends added.</h1>
 				<?endif;?>
-
+				<div class="pagination"><?=$links?></div>
 			</section>
 		</section>
 	</section>
@@ -108,3 +105,4 @@
 	<script>initScroller();</script>
 	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>
+	<script>initPagination(1)</script>

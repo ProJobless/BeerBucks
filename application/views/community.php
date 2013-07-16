@@ -5,13 +5,12 @@
 	</section>
 
 	<section id="tabs" class="sizer">
-		<ul>
-			<a href="<?=base_url()?>index.php/community"><li class="selected">Featured</li></a>
-			<a href="<?=base_url()?>index.php/community/people"><li>People</li></a>
-<!-- 			<a href="<?=base_url()?>index.php/community/photos"><li>Photos</li></a>
- -->			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
-			<li class="more"><a href="#">Learn More</a></li>
-		</ul>	
+		<nav>
+			<a href="<?=base_url()?>index.php/community"><h1 class="selected">Featured</h1></a>
+			<a href="<?=base_url()?>index.php/community/people"><h1>People</h1></a>
+<!-- 			<a href="<?=base_url()?>index.php/community/photos"><h1>Photos</h1></a>
+ -->			<?=form_open("#"); ?><input type="text" placeholder="Search for your friends"></input><button>Search</button><?=form_close(); ?>
+		</nav>	
 
 		<section id="community">
 			<article id="tumblr">

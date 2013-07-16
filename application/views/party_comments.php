@@ -19,11 +19,11 @@
 		</article>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/party/<?=$partyID?>"><li>Attending</li></a>
-				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li class="selected">Comments</li></a>
-				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li>Updates</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><h1>Attending</h1></a>
+				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><h1 class="selected">Comments</h1></a>
+				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><h1>Updates</h1></a>
+			</nav>
 
 			<section id="tabContent" class="comments">
 
@@ -53,11 +53,12 @@
 
 							<div>
 								<p><?=$comment['party_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
-								
+									
 								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
-									<a href="<?=base_url()?>index.php/party/deleteComment/<?=$comment['party_comment_id']?>/<?=$partyID?>" class="delete">x</a>
+									<a href="<?=base_url()?>index.php/party/deleteComment/<?=$comment['party_comment_id']?>/<?=$partyID?>" class="delete"></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/party/reportComment/<?=$comment['party_comment_id']?>/<?=$partyID?>" class="report"></a>
 								<?endif;?>
-
 							</div>
 						</article>
 
@@ -75,7 +76,7 @@
 				<h1>Party Info</h1>
 				
 				<hgroup>
-					<h2>$300</h2>
+					<h2>$0</h2>
 					<h4>raised out of</h4>
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>

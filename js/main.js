@@ -15,7 +15,7 @@ var initSuccessError = function(){
 		hideMessage();
 	});
 
-	setTimeout(hideMessage, 1000);
+	setTimeout(hideMessage, 3000);
 };
 
 var initUpload = function(){
@@ -142,6 +142,8 @@ var initTabs = function(type){
 		}
 	};
 
+	if(currentURL.length == 6) currentParameter = currentURL[currentURL.length-3] +'/'+ currentParameter;
+
 	if(window.history.state === null) type ? history.replaceState({title:currentParameter}, currentParameter, base + "index.php/" + currentParameter) : history.replaceState({title:currentParameter}, currentParameter, currentParameter);
 
 	function runInits(type){
@@ -149,9 +151,8 @@ var initTabs = function(type){
 		var locationPop = location.pop();
 
 		initTabs(type);
-		if(location[location.length-2] == 'comments') initComments(type);
-		if(locationPop == 'comments') initComments(type);
-		initPagination();
+		if(location[location.length-1] == 'comments' || locationPop == 'comments') initComments(type);
+		initPagination(type);
 	}
 
 	function changePage(url, ele){
@@ -165,8 +166,8 @@ var initTabs = function(type){
 				if(window.history.state.title != newURL) history.pushState({title:newURL}, newURL, type ? base + "index.php/" + newURL : newURL);
 				tabContent.height(50);
 				tabContent.empty();
-				tabs.find('li').removeClass('selected');
-				tabs.find('li:contains('+ele.replace( /([a-z])([A-Z])/g, "$1 $2")+')').attr('class', 'selected');
+				tabs.find('h1').removeClass('selected');
+				tabs.find('h1:contains('+ele.replace( /([a-z])([A-Z])/g, "$1 $2")+')').attr('class', 'selected');
 				tabContent.css('background-position', '45% 50%');
 			}
 		}).done(function(data){
@@ -183,7 +184,7 @@ var initTabs = function(type){
 		});
 	}
 
-	var tabs         =   $('#tabs>ul>a'),
+	var tabs         =   $('#tabs>nav>a'),
 		tabContent   =   $('#tabContent, #community, #people')
 	;
 
@@ -331,7 +332,7 @@ var initComments = function(type){
 	});
 };
 
-var initPagination = function(){
+var initPagination = function(type){
 
 	$('.pagination').replaceWith('<div class="ajax"><button class="ajaxButton">See More</button></div>');
 
@@ -340,6 +341,12 @@ var initPagination = function(){
 		win          =   $(window),
 		check        =   true
 	;
+
+	if(window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties'){
+		count = 6;
+	}else if(window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'parties'){
+		count = 6;
+	}
 
 	function isInView(elem){
 		var docViewTop      =   $(window).scrollTop(),
@@ -354,17 +361,19 @@ var initPagination = function(){
 	function loadMore(){
 		var url = base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-2] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-1] + '/' + count;
 
+		if(type) url = base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-3] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-2] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-1] + '/' + count;
+
 		ajaxButton.addClass('loading');
 		$.ajax({
 			url: url,
 			async: true
 		}).done(function(data){
-			var newContent = $(data).find('#tabContent .party, #people>a');
+			var newContent = $(data).find('#tabContent .party, #people>a, .activity article, .friends>a, .comment');
 
 			if(newContent.length){
 				$('.ajax').before(newContent);
 				newContent.css('opacity', 0);
-				count += 8;
+				count += count;
 				newContent.animate({opacity: 1}, 800, function(){
 					check = true;
 					ajaxButton.removeClass('loading');
@@ -385,10 +394,11 @@ var initPagination = function(){
 			loadMore();
 		}
 	});
+	loadMore();
 };
 
 var initAutoComplete = function(){
-	var location = $('input[name="partyLocation"],input[name="location"]');
+	var location = $('input[name="partyLocation"], input[name="location"]');
 
 	function log(message){
 		message = message.replace(', United States', '');
@@ -400,7 +410,7 @@ var initAutoComplete = function(){
 	location.autocomplete({
 		source: function( request, response ) {
 			var that = $(this);
-			
+
 			$(this).addClass('loading');
 			$.ajax({
 				url: "http://ws.geonames.org/searchJSON",
@@ -415,8 +425,10 @@ var initAutoComplete = function(){
 				success: function( data ) {
 					response($.map(data.geonames, function(item){
 						return {
-							label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-							value: item.name
+							label: item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
+							value: item.name,
+							lat: item.lat,
+							lng: item.lng
 						};
 					}));
 				}
@@ -425,6 +437,8 @@ var initAutoComplete = function(){
 		minLength: 2,
 		select: function( event, ui ) {
 			log(ui.item.label);
+			$('.lat').val(ui.item.lat);
+			$('.lng').val(ui.item.lng);
 		},
 		open: function() {
 			$(this).removeClass('closed').addClass('opened');
@@ -433,6 +447,16 @@ var initAutoComplete = function(){
 			$(this).removeClass('opened').addClass('closed');
 		}
 	});
+	if(location.length){
+		$('.start form').on('submit', function(e){
+			if($('.lat').val().length < 1 && $('.lng').val().length < 1){
+				$('#cta').after('<p class="error sizer">Where is your party happening? Use autocomplete please.</p>');
+				$("html, body").animate({ scrollTop: $('#cta')[0].scrollHeight}, 500);
+				initSuccessError();
+				return false;
+			}
+		});
+	}
 };
 
 var initWizardOfOz = function(){

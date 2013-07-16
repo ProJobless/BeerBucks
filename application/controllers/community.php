@@ -54,38 +54,53 @@ class Community extends CI_Controller {
 
 			if($this->user_model->addFriend($user2ID)){
 
-				if($this->user_model->checkFriendship($user2ID)){
-					$data['friendCheck'] = false;	
-				}else{
-					$data['friendCheck'] = true;	
-				}
+				// $config = array();
+		  //       $config["base_url"]      =   base_url()."/index.php/user/activity/".$user2ID;
+		  //       $config["total_rows"]    =   $this->user_model->getActivityCount($user2ID);
+		  //       $config["per_page"]      =   8;
+		  //       $config["uri_segment"]   =   4;
 
-				$data['user']       =   $this->user_model->getUser($user2ID);
-				$data['friends']    =   $this->user_model->getFriends($user2ID);
-				$data['parties']    =   $this->user_model->getUserParties($user2ID);
-				$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-				$data['success']    =   'Friend request sent.';
-				$data['view']       =   'user';
+		  //       $this->pagination->initialize($config);
 
-				$this->load->view('includes/template', $data);
+		  //       $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+		  //       $data["links"]     =   $this->pagination->create_links();
+
+				// if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
+				
+				// $data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+				// $data['activity']   =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
+				// $data['user']        =   $this->user_model->getUser($user2ID);
+				// $data['view']        =   'user';
+				// $data['success']    =   'Friend request sent.';
+
+				// $data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+				
+				redirect("user/$user2ID");
 
 			}else{
 
-				if($this->user_model->checkFriendship($user2ID)){
-					$data['friendCheck'] = false;	
-				}else{
-					$data['friendCheck'] = true;	
-				}
+				// $config = array();
+		  //       $config["base_url"]      =   base_url()."/index.php/user/activity/".$user2ID;
+		  //       $config["total_rows"]    =   $this->user_model->getActivityCount($user2ID);
+		  //       $config["per_page"]      =   8;
+		  //       $config["uri_segment"]   =   4;
 
-				$data['user']       =   $this->user_model->getUser($user2ID);
-				$data['friends']    =   $this->user_model->getFriends($user2ID);
-				$data['parties']    =   $this->user_model->getUserParties($user2ID);
-				$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-				$data['error']      =   'Request has already been sent.';
-				$data['view']       =   'user';
+		  //       $this->pagination->initialize($config);
 
-				$this->load->view('includes/template', $data);
+		  //       $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+		  //       $data["links"]     =   $this->pagination->create_links();
 
+				// if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
+				
+				// $data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+				// $data['activity']   =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
+				// $data['user']        =   $this->user_model->getUser($user2ID);
+				// $data['view']        =   'user';
+				// $data['error']      =   'Request has already been sent.';
+
+				// $data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+
+				redirect("user/$user2ID");
 			}
 
 		}else{
@@ -102,37 +117,53 @@ class Community extends CI_Controller {
 
 			if($this->user_model->removeFriend($user2ID)){
 
-				if($this->user_model->checkFriendship($user2ID)){
-					$data['friendCheck'] = false;	
-				}else{
-					$data['friendCheck'] = true;	
-				}
+				// $config = array();
+		  //       $config["base_url"]      =   base_url()."/index.php/user/activity/".$user2ID;
+		  //       $config["total_rows"]    =   $this->user_model->getActivityCount($user2ID);
+		  //       $config["per_page"]      =   8;
+		  //       $config["uri_segment"]   =   4;
 
-				$data['user']       =   $this->user_model->getUser($user2ID);
-				$data['friends']    =   $this->user_model->getFriends($user2ID);
-				$data['parties']    =   $this->user_model->getUserParties($user2ID);
-				$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-				$data['success']    =   'Friend removed.';
-				$data['view']       =   'user';
+		  //       $this->pagination->initialize($config);
 
-				$this->load->view('includes/template', $data);
+		  //       $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+		  //       $data["links"]     =   $this->pagination->create_links();
+
+				// if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
+				
+				// $data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+				// $data['activity']   =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
+				// $data['user']        =   $this->user_model->getUser($user2ID);
+				// $data['view']        =   'user';
+				// $data['success']    =   'Friend removed.';
+
+				// $data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+				
+				redirect("user/$user2ID");
 
 			}else{
 
-				if($this->user_model->checkFriendship($user2ID)){
-					$data['friendCheck'] = false;	
-				}else{
-					$data['friendCheck'] = true;	
-				}
+				// $config = array();
+		  //       $config["base_url"]      =   base_url()."/index.php/user/activity/".$user2ID;
+		  //       $config["total_rows"]    =   $this->user_model->getActivityCount($user2ID);
+		  //       $config["per_page"]      =   8;
+		  //       $config["uri_segment"]   =   4;
 
-				$data['user']       =   $this->user_model->getUser($user2ID);
-				$data['friends']    =   $this->user_model->getFriends($user2ID);
-				$data['parties']    =   $this->user_model->getUserParties($user2ID);
-				$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
-				$data['view']       =   'user';
+		  //       $this->pagination->initialize($config);
 
-				$this->load->view('includes/template', $data);
+		  //       $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+		  //       $data["links"]     =   $this->pagination->create_links();
 
+				// if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
+				
+				// $data['viewCount']   =   $this->user_model->userViewCount($user2ID);
+				// $data['activity']   =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
+				// $data['user']        =   $this->user_model->getUser($user2ID);
+				// $data['view']        =   'user';
+
+				// $data['user'] ? $this->load->view('includes/template', $data) : redirect('community/people');
+
+				redirect("user/$user2ID");
+				
 			}
 
 		}else{

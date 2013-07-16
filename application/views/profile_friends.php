@@ -37,13 +37,13 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/profile/friends"><li class="selected">Friends</li></a>
-				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/profile/alerts"><li>Alerts</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/profile/activity"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><h1 class="selected">Friends</h1></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><h1>Comments</h1></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><h1>Alerts</h1></a>
+			</nav>
 
 			<section id="tabContent" class="friends">
 
@@ -72,13 +72,10 @@
 						</a>
 
 					<? endforeach; ?>
-
-					<div><button>See More Friends</button></div>
-
 				<?else:?>
 					<h1>Browse the community to find friends.</h1>
 				<?endif;?>
-				
+				<div class="pagination"><?=$links?></div>				
 			</section>
 		</section>
 	</section>
@@ -95,3 +92,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTabs();</script>
+	<script>initPagination();</script>

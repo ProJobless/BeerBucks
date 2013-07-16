@@ -37,10 +37,19 @@ class Profile extends CI_Controller {
 		if($this->session->userdata('userID')) {
 
 			$userID             =   $this->session->userdata('userID');
-			$data['friends']    =   $this->user_model->getFriends($userID);
-			$data['parties']    =   $this->user_model->getUserParties($userID);
-			
-			$data['activity']   =   $this->user_model->sortActivity($data['friends'], $data['parties']);
+
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/profile/activity";
+	        $config["total_rows"]    =   $this->user_model->getActivityCount($userID);
+	        $config["per_page"]      =   8;
+	        $config["uri_segment"]   =   3;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
+			$data['activity']   =   $this->user_model->getActivity($userID, $config["per_page"], $page);
 			$data['view']       =   'profile';
 
 			$this->load->view('includes/template', $data);
@@ -58,7 +67,19 @@ class Profile extends CI_Controller {
 		if($this->session->userdata('userID')) {
 
 			$userID            =   $this->session->userdata('userID');
-			$data['parties']   =   $this->user_model->getUserParties($userID);
+
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/profile/parties";
+	        $config["total_rows"]    =   $this->user_model->getPartyCount($userID);
+	        $config["per_page"]      =   6;
+	        $config["uri_segment"]   =   3;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
+			$data['parties']   =   $this->user_model->getUserParties($userID, $config["per_page"], $page);
 			$data['view']      =   'profile_parties';
 
 			$this->load->view('includes/template', $data);
@@ -75,7 +96,20 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$data['friends']   =   $this->user_model->getFriends($this->session->userdata('userID'));
+			$userID            =   $this->session->userdata('userID');
+
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/profile/friends";
+	        $config["total_rows"]    =   $this->user_model->getFriendCount($userID);
+	        $config["per_page"]      =   6;
+	        $config["uri_segment"]   =   3;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
+			$data['friends']   =   $this->user_model->getFriends($userID, $config["per_page"], $page);
 			$data['view']      =   'profile_friends';
 
 			$this->load->view('includes/template', $data);
@@ -92,7 +126,20 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$data['comments']   =   $this->user_model->getComments();
+			$userID            =   $this->session->userdata('userID');
+
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/profile/comments";
+	        $config["total_rows"]    =   $this->user_model->getCommentCount($userID);
+	        $config["per_page"]      =   8;
+	        $config["uri_segment"]   =   3;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
+			$data['comments']   =   $this->user_model->getComments(0, $config["per_page"], $page);
 			$data['view']       =   'profile_comments';
 
 			$this->load->view('includes/template', $data);
@@ -145,11 +192,7 @@ class Profile extends CI_Controller {
 
 				$this->user_model->deleteComment($commentID);
 
-				$data['success']    =   'Comment was deleted.';
-				$data['comments']   =   $this->user_model->getComments();
-				$data['view']       =   'profile_comments';
-
-				$this->load->view('includes/template', $data);
+				redirect('profile/comments');
 
 			}else{
 
@@ -165,23 +208,51 @@ class Profile extends CI_Controller {
 
 	}
 
-	public function acceptFriend($friendshipID){
+	public function reportComment($commentID = 0){
 
-		if($this->user_model->acceptFriend($friendshipID)){
+		if($commentID){
 
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['success']      =   'Friend added.';
+			if($this->session->userdata('userID')) {
 
-			$this->load->view('includes/template', $data);
+				if($this->user_model->reportComment($commentID)){
+					redirect('profile/comments');
+				}
+
+			}else{
+
+				redirect('join');
+
+			}
 
 		}else{
 
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['error']        =   'Problem adding friend.';
+			redirect('profile/comments');
 
-			$this->load->view('includes/template', $data);
+		}
+		
+	}
+
+	public function acceptFriend($friendshipID, $user2ID){
+
+		if($this->user_model->acceptFriend($friendshipID, $user2ID)){
+
+			// $data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			// $data['view']         =   'profile_alerts';
+			// $data['success']      =   'Friend added.';
+
+			// $this->load->view('includes/template', $data);
+			
+			redirect('profile');
+
+		}else{
+
+			// $data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			// $data['view']         =   'profile_alerts';
+			// $data['error']        =   'Problem adding friend.';
+
+			// $this->load->view('includes/template', $data);
+			
+			redirect('profile');
 
 		}
 
@@ -191,19 +262,23 @@ class Profile extends CI_Controller {
 
 		if($this->user_model->declineFriend($friendshipID)){
 
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['success']      =   'Friend request denied.';
+			// $data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			// $data['view']         =   'profile_alerts';
+			// $data['success']      =   'Friend request denied.';
 
-			$this->load->view('includes/template', $data);
+			// $this->load->view('includes/template', $data);
+			
+			redirect('profile');
 
 		}else{
 
-			$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
-			$data['view']         =   'profile_alerts';
-			$data['error']      =   'Problem denying friend request.';
+			// $data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+			// $data['view']         =   'profile_alerts';
+			// $data['error']      =   'Problem denying friend request.';
 
-			$this->load->view('includes/template', $data);
+			// $this->load->view('includes/template', $data);
+			
+			redirect('profile');
 			
 		}
 

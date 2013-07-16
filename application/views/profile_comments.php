@@ -45,13 +45,13 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/profile/comments"><li class="selected">Comments</li></a>
-				<a href="<?=base_url()?>index.php/profile/alerts"><li>Alerts</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/profile/activity"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><h1 class="selected">Comments</h1></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><h1>Alerts</h1></a>
+			</nav>
 
 			<section id="tabContent" class="comments">
 
@@ -72,7 +72,7 @@
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
 
-						<article>
+						<article class="comment">
 							<?if($comment['profile_img']):?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="65" height="65" /></a>
 							<?else:?>
@@ -87,14 +87,16 @@
 								</p>
 
 								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
-									<a href="<?=base_url("index.php/profile/deleteComment/$comment[user_comment_id]");?>" class="delete">x</a>
+									<a href="<?=base_url("index.php/profile/deleteComment/$comment[user_comment_id]");?>" class="delete"></a>
+								<?else:?>
+									<a href="<?=base_url("index.php/profile/reportComment/$comment[user_comment_id]");?>" class="report"></a>
 								<?endif;?>
 							</div>
 						</article>
 					
 					<?endforeach;?>
-					<div><button>See More Comments</button></div>
 				<?endif;?>	
+				<div class="pagination"><?=$links?></div>	
 			</section>
 		</section>
 	</section>
@@ -113,3 +115,4 @@
 	<script>initTabs();</script>
 	<script>initSuccessError();</script>
 	<script>initComments();</script>
+	<script>initPagination();</script>

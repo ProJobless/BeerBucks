@@ -44,6 +44,8 @@ class Logout extends CI_Controller {
                   'twitter_user_id'        =>   null,
                   'twitter_screen_name'    =>   null,
                   'geoLocation'            =>   null,
+                  'userLat'                =>   null,
+                  'userLng'                =>   null,
           	);
 
           	$this->session->unset_userdata($sData);

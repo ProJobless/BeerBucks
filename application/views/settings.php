@@ -55,7 +55,6 @@
 					<p>
 						Sum up yourself in 145 characters. This short description about yourself will be the
 						first impression that potential party donators will see.
-
 					</p>
 				</div>
 
@@ -70,6 +69,20 @@
 							echo set_value('location');
 						} ?>"/>
 				</div>
+
+				<input type="text" name="lat" class="lat" style="display:none;" value="<? if(!set_value('lat')){
+								if($this->session->userdata('lat')) echo $this->session->userdata('lat');
+							}else{
+								echo set_value('lat');
+							} ?>">
+
+
+
+					<input type="text" name="lng" class="lng" style="display:none;" value="<? if(!set_value('lng')){
+								if($this->session->userdata('lng')) echo $this->session->userdata('lng');
+							}else{
+								echo set_value('lng');
+							} ?>">
 
 				<h1>Time Zone</h1> <hr />
 

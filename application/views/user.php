@@ -53,18 +53,18 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li class="selected">Activity</li></a>
-				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><h1 class="selected">Activity</h1></a>
+				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><h1>Comments</h1></a>
+			</nav>
 
 			<section id="tabContent" class="activity">
 
-				<?if($activity['activity']):?>
-					<?foreach($activity['activity'] as $a): ?>
-						<? if($a['type'] == 'party'):?>
+				<?if($activity):?>
+					<?foreach($activity as $a): ?>
+						<? if($a['party_id']):?>
 							<article>
 								<?if($a['party_img']):?>
 									<a href="<?=base_url()?>index.php/party/<?=$a['party_id']?>"><img src="<?=base_url()?>uploads/party/<?=$a['party_img']?>" alt="" width="65" height="65" /></a>
@@ -73,10 +73,10 @@
 								<?endif;?>
 
 								<div>
-									<p><?=$user[0]['username']?> started a new party <a href="<?=base_url()?>index.php/party/<?=$a['party_id']?>"><?=$a['title']?></a> <span><?=$a['date']?></span></p>
+									<p><?=$user[0]['username']?> started a new party <a href="<?=base_url()?>index.php/party/<?=$a['party_id']?>"><?=$a['title']?></a> <span><?=$a['date_created']?></span></p>
 								</div>
 							</article>
-						<?elseif($a['type'] == 'friend'):?>
+						<?elseif($a['friendship_id']):?>
 							<article>
 								<?if($a['profile_img']):?>
 									<a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['profile_img']?>" alt="" width="65" height="65" /></a>
@@ -85,7 +85,7 @@
 								<?endif;?>
 
 								<div>
-									<p><?=$user[0]['username']?> and <a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date']?></span></p>
+									<p><?=$user[0]['username']?> and <a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date_created']?></span></p>
 								</div>
 							</article>
 						<?endif;?>
@@ -93,8 +93,7 @@
 				<?else:?>
 					<h1><?=$user[0]['username']?> has no recent activity</h1>
 				<?endif;?>
-			
-
+				<div class="pagination"><?=$links?></div>
 			</section>
 		</section>
 	</section>
@@ -112,3 +111,4 @@
 	<script>initScroller();</script>
 	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>
+	<script>initPagination(1);</script>

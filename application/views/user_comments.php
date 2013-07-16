@@ -50,12 +50,12 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li class="selected">Comments</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><h1 class="selected">Comments</h1></a>
+			</nav>
 
 			<section id="tabContent" class="comments">
 
@@ -76,7 +76,7 @@
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
 
-						<article>
+						<article class="comment">
 							<?if($comment['profile_img']):?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="50" height="50" /></a>
 							<?else:?>
@@ -85,16 +85,18 @@
 
 							<div>
 								<p><?=$comment['user_comment']?> <a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>">-<?=$comment['username']?></a> <span>on <?=$comment['comment_date']?></span></p>
-								
+
 								<?if($comment['user_id'] == $this->session->userdata('userID')):?>
-									<a href="<?=base_url()?>index.php/user/deleteComment/<?=$comment['user_comment_id']?>/<?=$user[0]['user_id']?>" class="delete">x</a>
+									<a href="<?=base_url()?>index.php/user/deleteComment/<?=$comment['user_comment_id']?>/<?=$user[0]['user_id']?>" class="delete"></a>
+								<?else:?>
+									<a href="<?=base_url()?>index.php/user/reportComment/<?=$comment['user_comment_id']?>/<?=$user[0]['user_id']?>" class="report"></a>
 								<?endif;?>
 							</div>
 						</article>
 	
 					<?endforeach;?>
-					<div><button>See More Comments</button></div>
 				<?endif;?>
+				<div class="pagination"><?=$links?></div>
 			</section>
 		</section>
 	</section>
@@ -113,3 +115,4 @@
 	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>
 	<script>initComments(1);</script>
+	<script>initPagination(1)</script>

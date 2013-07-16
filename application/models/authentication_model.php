@@ -64,6 +64,8 @@ class Authentication_model extends CI_Model {
             parties,
             facebook_id,
             timezone,
+            user_lat,
+            user_lng
         ');
 
         $this->db->from('users');
@@ -169,6 +171,8 @@ class Authentication_model extends CI_Model {
                 'comments'        =>   $row->comments,
                 'contributions'   =>   $row->contributions,
                 'parties'         =>   $row->parties,
+                'userLat'         =>   $row->user_lat,
+                'userLng'         =>   $row->user_lng,
     		);
 
     		$this->session->set_userdata($sData);
@@ -303,6 +307,8 @@ class Authentication_model extends CI_Model {
                 'comments'        =>   $uData[0]['comments'],
                 'contributions'   =>   $uData[0]['contributions'],
                 'parties'         =>   $uData[0]['parties'],
+                'userLat'         =>   $uData[0]['user_lat'],
+                'userLng'         =>   $uData[0]['user_lng'],
             );
 
             $this->session->set_userdata($sData);
@@ -460,6 +466,8 @@ class Authentication_model extends CI_Model {
                 'comments'          =>   $uData[0]['comments'],
                 'contributions'     =>   $uData[0]['contributions'],
                 'parties'           =>   $uData[0]['parties'],
+                'userLat'           =>   $uData[0]['user_lat'],
+                'userLng'           =>   $uData[0]['user_lng'],
             );
 
             $this->session->set_userdata($sData);

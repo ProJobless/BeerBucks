@@ -45,13 +45,13 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/profile/parties"><li>Parties</li></a>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/profile/alerts"><li  class="selected">Alerts</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/profile/activity"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><h1>Parties</h1></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><h1>Comments</h1></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><h1 class="selected">Alerts</h1></a>
+			</nav>
 
 			<section id="tabContent" class="request">
 	
@@ -62,7 +62,7 @@
 							<a href="<?=base_url()?>index.php/user/<?=$req['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$req['profile_img']?>" alt=""></a>
 							<h1><a href="<?=base_url()?>index.php/user/<?=$req['user_id']?>"><?=$req['username']?></a></h1>
 							<p>Wants to be your friend.</p>
-							<a href="<?=base_url()?>index.php/profile/acceptFriend/<?=$req['friendship_id']?>"><button>accept</button></a>
+							<a href="<?=base_url()?>index.php/profile/acceptFriend/<?=$req['friendship_id']?>/<?=$req['user_id']?>"><button>accept</button></a>
 							<a href="<?=base_url()?>index.php/profile/declineFriend/<?=$req['friendship_id']?>"><button>decline</button></a>
 						</article>
 
@@ -71,7 +71,7 @@
 				<?else:?>
 					<h1>You have no new alerts</h1>
 				<?endif;?>
-
+				<div class="pagination"></div>
 			</section>
 		</section>
 	</section>
@@ -89,3 +89,4 @@
 	<script>initScroller();</script>
 	<script>initTabs();</script>
 	<script>initSuccessError();</script>
+	<script>initPagination();</script>

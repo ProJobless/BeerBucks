@@ -84,7 +84,7 @@ $pink-hover: #ff0077;
 	-webkit-box-shadow: none;     
     box-shadow: none;
 }
-@mixin bar($percent : 20%){
+@mixin bar($percent : 40%){
 	background: #05a696; /* Old browsers */
 	background: -moz-linear-gradient(left,  #05a696 0%, #05a696 $percent, #dddddd $percent, #dddddd 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#05a696), color-stop($percent,#05a696), color-stop($percent,#dddddd), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
@@ -226,7 +226,7 @@ body{
 	margin: 0 auto;
 }
 *{
-	font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 a{
 	color: inherit;
@@ -358,7 +358,6 @@ header #tools .alert{
 	cursor: pointer;
 }
 header #tools .alert a{
-	font-family: "Comic Sans MS";
 	font-weight: bolder;
 	font-size: .7em;
 	text-indent: 2px;
@@ -572,7 +571,7 @@ footer section:nth-of-type(2) li:last-child{
 }
 #cta article{
 	width: 475px;
-	height: 190px;
+	height: 170px;
 	background-color: rgba(39, 22, 64, .4);
 	float: right;
 	margin-top: 80px;
@@ -588,11 +587,10 @@ footer section:nth-of-type(2) li:last-child{
 	@include textshadow();
 }
 #cta p{
-	font-family: 'DaysRegular';
 	color: $main-white;
 	margin: 10px;
 	font-size: 1.1em;
-	//font-weight: bold;
+	font-weight: bold;
 	letter-spacing: 1px;
 	line-height: 1.1em;
 	@include textshadow(0, 0, 8px);
@@ -695,7 +693,7 @@ footer section:nth-of-type(2) li:last-child{
 	padding-left: 5px;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 	@include transition(.1s);
 	&:hover{
 		color: rgba(237, 246, 245, 1);
@@ -705,7 +703,6 @@ footer section:nth-of-type(2) li:last-child{
 }
 #partiesNear article div p{
 	line-height: 15px;
-	font-family: "Comic Sans MS";
 }
 #partiesNear article div p:first-letter{
 	color: $main-white;
@@ -831,7 +828,7 @@ footer section:nth-of-type(2) li:last-child{
 	line-height: 15px;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 	@include transition(.1s);
 	&:hover{
 		color: rgba(237, 246, 245, 1);
@@ -841,7 +838,6 @@ footer section:nth-of-type(2) li:last-child{
 }
 #partiesUpcoming article div p{
 	line-height: 15px;
-	font-family: "Comic Sans MS";
 }
 #partiesUpcoming article div p:first-letter{
 	color: $main-white;
@@ -993,13 +989,11 @@ footer section:nth-of-type(2) li:last-child{
 }
 #tweets p{
 	font-size: .8em;
-	font-weight: 100;
 	letter-spacing: normal;
 	color: $dark-purple;
 }
 #tweets h3{
 	font-size: .7em;
-	font-weight: 100;
 	line-height: 50px;
 	margin-top: 4px;
 	color: $dark-purple;
@@ -1138,7 +1132,7 @@ article#topImages>a{
 	@include outerglow();
 	@include corners(5px, 5px, 0px, 0px);
 }
-#tabs>ul{
+#tabs>nav{
 	height: 50px;
 	background-color: $main-white;
 	border: 1px solid $light-gray;
@@ -1146,7 +1140,7 @@ article#topImages>a{
 	@include corners(5px, 5px, 0px, 0px);
 	//@include outerglow();
 }
-#tabs>ul li{
+#tabs>nav h1{
 	height: 100%;
 	line-height: 50px;
 	float: left;
@@ -1161,25 +1155,31 @@ article#topImages>a{
 		background-color: $light-white;
 	}
 }
-#tabs>ul li.selected{
+#tabs>nav h1.selected{
 	height: 98%;
 	border-bottom: solid 2px $light-white !important;
 	background-color: $light-white;
 	color: $dark-purple;
 	@include unglow;
 }
-#tabs>ul li:first-child{
+#tabs>nav h1:first-child{
 	@include corners(5px, 0px, 0px, 0px);
 }
-#tabs>ul li:nth-last-child(2){
+#tabs>nav h1:nth-last-child(2){
 	border: none;
 }
-#tabs>ul li input{
+#tabs>nav form{
+	float: left;
+	margin-left: 15px;
+	height: 50px;
+	line-height: 50px;
+}
+#tabs>nav input{
 	height: 30px;
 	width: 300px;
 	@include input();
 }
-#tabs>ul li button{
+#tabs>nav button{
 	@include pinkbutton();
 	margin: 0px 0px 0px 5px;
 	&:hover{
@@ -1190,15 +1190,6 @@ article#topImages>a{
 #tabs .more{
 	float: right;
 	border: none;
-}
-#tabs>ul li:last-child a{
-	font-size: .7em;
-	font-weight: bold;
-	color: $main-pink;
-	&:hover{
-		color: $pink-hover;
-		text-decoration: underline;
-	}
 }
 ::-webkit-input-placeholder{
    color: $dark-gray;
@@ -1321,7 +1312,7 @@ article#topImages>a{
 	line-height: 15px;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 	@include transition(.1s);
 	&:hover{
 		color: rgba(237, 246, 245, 1);
@@ -1331,7 +1322,6 @@ article#topImages>a{
 }
 #tabContent .party div p{
 	line-height: 15px;
-	font-family: "Comic Sans MS";
 }
 #tabContent .party div p:first-letter{
 	color: $main-white;
@@ -1572,6 +1562,7 @@ article#topImages>a{
 	float: left;
 	margin-top: -1px;
 	padding-bottom: 0;
+	border-top: solid 1px $light-gray;
 }
 #tabContent.start form{
 	width: 700px;
@@ -1833,7 +1824,7 @@ article#topImages>a{
 	margin: 0 auto;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 }
 #tabContent.start aside .partyInfo p{
 	color: $dark-gray;
@@ -2257,7 +2248,7 @@ article#topImages>a{
 	height: 40px;
 }
 #tabContent>h1{
-	margin: 15px 0;
+	margin: 13px 0 0;
 }
 #profile #tabContent>h1>a{
 	display: block;
@@ -2324,14 +2315,16 @@ article#topImages>a{
 #profile #tabContent.request article a:nth-of-type(2) button{
 	@include corners(5px,0,0,5px);
 	float: left;
-	margin-top: 15px;
+	margin-top: 5px;
 	margin-left: 17px;
+	margin-bottom: 5px;
 }
 #profile #tabContent.request article a:nth-of-type(3) button{
 	float: left;
 	@include corners(0,5px,5px,0);
 	margin-left: -1px;
-	margin-top: 15px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 #profile #tabContent.request>h1{
 	margin-top: 15px;
@@ -2445,22 +2438,28 @@ article#topImages>a{
 	color: $dark-gray;
 	@include corners();
 }
-#tabs #tabContent article .delete{
-	@include pinkbutton();
-	padding: 0px;
+#tabs #tabContent article .report{
+	width: 15px;
+	height: 15px;
+	display: block;
 	position: absolute;
-	font-size: .9em;
-	font-weight: bold;
-	top: 13px;
-	right: 10px;
-	width: 20px;
-	height: 20px;
-	line-height: 20px;
-	text-indent: 0px;
-	text-align: center;
+	top: 15px;
+	right: 14px;
+	background: url("../img/sprite-icons.png") 0 0;
 	&:hover{
-		color: $main-white;
-		text-decoration: none;
+		background: url("../img/sprite-icons.png") 0 15px;
+	}
+}
+#tabs #tabContent article .delete{
+	width: 15px;
+	height: 15px;
+	display: block;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background: url("../img/sprite-icons.png") -15px 0;
+	&:hover{
+		background: url("../img/sprite-icons.png") -15px 15px;
 	}
 }
 #tabContent.comments article a{
@@ -3384,7 +3383,7 @@ article#topImages>a{
 	margin: 0 auto;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 }
 #party aside article.partyInfo p{
 	color: $dark-gray;
@@ -3646,7 +3645,7 @@ article#topImages>a{
 	line-height: 15px;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar(80%);
+	@include bar();
 	@include transition(.1s);
 	&:hover{
 		color: rgba(237, 246, 245, 1);
@@ -3656,7 +3655,6 @@ article#topImages>a{
 }
 #settings aside .party div p{
 	line-height: 15px;
-	font-family: "Comic Sans MS";
 }
 #settings aside .party div p:first-letter{
 	color: $main-white;
@@ -3737,15 +3735,15 @@ article#topImages>a{
 	padding: 3px;
 }
 
-#tabContent .pagination{
+#tabContent .pagination, #people .pagination{
 	float: right;
 	margin: 20px;
 	margin-top: 50px;
 }
-#tabContent .pagination a{
+#tabContent .pagination a, #people .pagination a{
 	@include pinkbutton();
 }
-#tabContent .pagination strong{
+#tabContent .pagination strong, #people .pagination strong{
 	@include pinkbutton();
 	color: $dark-gray;
 	background: $main-white;
@@ -3759,12 +3757,14 @@ article#topImages>a{
 		color: $dark-gray;
 	}
 }
-#tabContent .ajaxButton.loading{
+#tabContent .ajaxButton.loading, #people .ajaxButton.loading{
 	text-indent: -9999px;
 	border: none;
 	background: url("../img/ajax-loader.gif") no-repeat 50%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	min-width: 32px;
+	min-height: 32px;
 	&:hover{
 		border: none;
 		background: url("../img/ajax-loader.gif") no-repeat 50%;
@@ -3772,15 +3772,16 @@ article#topImages>a{
 		box-shadow: none;
 	}
 }
-input[name="partyLocation"]{
+input[name="partyLocation"], input[name="location"]{
 	transition: none;
     -webkit-transition: none; 
+	background: url("../img/icon-locate.png") no-repeat 98%;
 }
 input.opened{
-	background: none;
+	background: url("../img/icon-locate.png") no-repeat 98%;
 }
 input.ui-autocomplete-loading{
-	background: url("../img/ajax-loader.gif") no-repeat 98%;
+	background: url("../img/ajax-loader-small.gif") no-repeat 98%;
 	transition: none;
     -webkit-transition: none; 
 }

@@ -19,7 +19,7 @@
 					<h3><?=$party[0]['party_location']?></h3>
 				</hgroup>
 
-				<div><p>$ XXX/<?=$party[0]['goal']?></p></div>
+				<div><p>$ 0/<?=$party[0]['goal']?></p></div>
 
 				<hgroup>
 					<h5><?=$party[0]['attending']?></h5> <h6>Attending</h6>

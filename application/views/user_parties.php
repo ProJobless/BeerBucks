@@ -50,12 +50,12 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/user/<?=$user[0]['user_id']?>"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><li class="selected">Parties</li></a>
-				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><li>Comments</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/user/activity/<?=$user[0]['user_id']?>"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/user/parties/<?=$user[0]['user_id']?>"><h1 class="selected">Parties</h1></a>
+				<a href="<?=base_url()?>index.php/user/friends/<?=$user[0]['user_id']?>"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/user/comments/<?=$user[0]['user_id']?>"><h1>Comments</h1></a>
+			</nav>
 
 			<section id="tabContent" class="parties">
 
@@ -75,7 +75,7 @@
 								<h3><?=$party['party_location']?></h3>
 							</hgroup>
 
-							<div><p>$ XXX/<?=$party['goal']?></p></div>
+							<div><p>$ 0/<?=$party['goal']?></p></div>
 
 							<hgroup>
 								<h5><?=$party['attending']?></h5> <h6>Attending</h6>
@@ -97,16 +97,12 @@
 									<h5><?=$party['seconds']?></h5> <h6>Second Till Party</h6>
 								<?endif;?>
 							</hgroup>
-						
 						</article>
 					<? endforeach; ?>
-
-					<div><button>See More Parties</button></div>
-
 				<?else:?>
 					<h1><?=$user[0]['username']?> hasn't started any parties</h1>
 				<?endif;?>
-
+				<div class="pagination"><?=$links?></div>
 			</section>
 		</section>
 	</section>
@@ -124,3 +120,4 @@
 	<script>initScroller();</script>
 	<script>initTabs(1);</script>
 	<script>initSuccessError();</script>
+	<script>initPagination(1)</script>

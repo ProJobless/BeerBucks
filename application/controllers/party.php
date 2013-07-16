@@ -169,6 +169,30 @@ class Party extends CI_Controller {
 
 	}
 
+	public function reportComment($commentID = 0, $partyID = 0){
+
+		if($this->session->userdata('userID')){
+
+			if($partyID) {
+
+				$this->party_model->reportComment($commentID);
+
+				redirect("party/comments/$partyID");
+
+			}else{
+
+				redirect('discover');
+
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
+		
+	}
+
 	public function updates($partyID = 0){
 
 		if($this->session->userdata('userID')){

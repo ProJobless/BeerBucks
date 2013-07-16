@@ -4,6 +4,10 @@
 		</div>
 	</section>
 
+	<? if(isset($error) && !isset($upload_data)): ?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="tabs" class="sizer wizard">
 		<ul>
 			<li><h1>Guidelines</h1></li>
@@ -14,10 +18,6 @@
 		</ul>
 
 		<section id="tabContent" class="start">
-
-			<? if(isset($error) && !isset($upload_data)): ?>
-				<p class="error"><?=$error?></p>
-			<? endif; ?>
 
  			<?=form_open("/start/review"); ?>
 				<section id="details">
@@ -44,6 +44,20 @@
 							Exact party locations will be <strong>hidden</strong> to everyone who hasn’t donated to the party. Users who have not donated will only see the <strong>city and state</strong> of the party location.
  						</p>
 					</div>
+
+					<input type="text" name="lat" class="lat" style="display:none;" value="<? if(!set_value('lat')){
+								if($this->session->userdata('partyLat')) echo $this->session->userdata('partyLat');
+							}else{
+								echo set_value('lat');
+							} ?>">
+
+
+
+					<input type="text" name="lng" class="lng" style="display:none;" value="<? if(!set_value('lng')){
+								if($this->session->userdata('partyLng')) echo $this->session->userdata('partyLng');
+							}else{
+								echo set_value('lng');
+							} ?>">
 
 					<h1>Party Time</h1> <hr>
 

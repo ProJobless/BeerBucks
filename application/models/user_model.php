@@ -222,8 +222,6 @@ class User_model extends CI_Model {
     function removeFriend($user2ID){
 
         $user1ID = $this->session->userdata('userID');
-        $dateOfReq = date('Y/m/d h:i:s', time());
-        $friendshipID = uniqid();
 
         $this->db->select('friendship_id, user1_id, user2_id');
         $this->db->where('user1_id', $user1ID);
@@ -245,12 +243,18 @@ class User_model extends CI_Model {
                     $this->db->where('friendship_id', $row['friendship_id']);
                     $this->db->delete('friends'); 
 
+                    $this->db->where('friendship_id', $row['friendship_id']);
+                    $this->db->delete('activity'); 
+
                     return true;
                 }
                 if($row['user1_id'] == $user2ID && $row['user2_id'] == $user1ID){
 
                     $this->db->where('friendship_id', $row['friendship_id']);
                     $this->db->delete('friends');
+
+                    $this->db->where('friendship_id', $row['friendship_id']);
+                    $this->db->delete('activity'); 
 
                     return true;
                 }
@@ -308,23 +312,85 @@ class User_model extends CI_Model {
 
     }
 
-    function acceptFriend($friendshipID){
+    function addFriendshipActivity($friendshipID, $date, $user2ID){
 
-        $dateOfAccept = date('Y/m/d h:i:s', time());
+        $activityID = uniqid();
+        $activity2ID = uniqid();
+        $userID = $this->session->userdata('userID');
 
         $data = array(
-            'active'           =>   1,
-            'date_of_accept'   =>   $dateOfAccept,
+            'activity_id'     =>   $activityID,
+            'user_id'         =>   $userID,
+            'friendship_id'   =>   $friendshipID,
+            'party_id'        =>   0,
+            'seen'            =>   0,
+            'date_created'    =>   $date,
+            'public'          =>   1,
         );
 
-        $this->db->where('friendship_id', $friendshipID);
-        $this->db->update('friends', $data); 
+        $this->db->insert('activity', $data);
 
-        $sData = array('alerts' => 0);
+        $data = array(
+            'activity_id'     =>   $activity2ID,
+            'user_id'         =>   $user2ID,
+            'friendship_id'   =>   $friendshipID,
+            'party_id'        =>   0,
+            'seen'            =>   0,
+            'date_created'    =>   $date,
+            'public'          =>   1,
+        );
 
-        $this->session->set_userdata($sData);
+        $this->db->insert('activity', $data);
 
-        return true;
+    }
+
+    function checkStatus($friendshipID){
+
+        $this->db->select('active');
+        $this->db->from('friends');
+        $this->db->where("friendship_id = '$friendshipID'");
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            if($dataResults[0]['active']) return false; else return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    function acceptFriend($friendshipID, $user2ID){
+
+        if($this->checkStatus($friendshipID)){
+
+            $dateOfAccept = date('Y/m/d h:i:s', time());
+
+            $data = array(
+                'active'           =>   1,
+                'date_of_accept'   =>   $dateOfAccept,
+            );
+
+            $this->db->where('friendship_id', $friendshipID);
+            $this->db->update('friends', $data); 
+
+            $this->addFriendshipActivity($friendshipID, $dateOfAccept, $user2ID);
+
+            $sData = array('alerts' => $this->session->userdata('alerts')-1);
+
+            $this->session->set_userdata($sData);
+
+            return true;
+        }
 
     }
 
@@ -337,7 +403,7 @@ class User_model extends CI_Model {
         $this->db->where('friendship_id', $friendshipID);
         $this->db->update('friends', $data); 
 
-        $sData = array('alerts' => 0);
+        $sData = array('alerts' => $this->session->userdata('alerts')-1);
 
         $this->session->set_userdata($sData);
 
@@ -359,7 +425,7 @@ class User_model extends CI_Model {
 
     }
 
-    function getFriends($userID){
+    function getFriendCount($userID){
 
         $this->db->select('
             friendship_id,
@@ -376,6 +442,57 @@ class User_model extends CI_Model {
             active = '1'
         ");
 
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults   =   objectToArray($dataResults);
+            $results       =   array();
+
+            foreach($dataResults as $row){
+                if($row['user1_id'] == $userID){
+                    array_push($results, array($row['user2_id'], $row['date_of_accept']));
+                }
+                if($row['user2_id'] == $userID){
+                    array_push($results, array($row['user1_id'], $row['date_of_accept']));
+                }
+
+            }
+
+            $userResults = array();
+
+            foreach($results as $row){
+
+                array_push($userResults, $this->getUser($row[0], $row[1]));
+            }
+
+            return count($userResults);
+        }
+
+    }
+
+    function getFriends($userID, $limit, $start){
+
+        $this->db->select('
+            friendship_id,
+            user1_id,
+            user2_id,
+            active,
+            date_of_accept,
+        ');
+
+        $this->db->from('friends');
+        $this->db->where("(
+            user1_id = '$userID' OR 
+            user2_id = '$userID') AND 
+            active = '1'
+        ");
+
+        $this->db->limit($limit, $start);
         $query = $this->db->get();
 
         if($query->num_rows > 0){
@@ -448,7 +565,7 @@ class User_model extends CI_Model {
 
     }
 
-    function getUserParties($userID){
+    function getUserParties($userID, $limit, $start){
 
         $this->db->select('
             parties.party_id, 
@@ -471,6 +588,8 @@ class User_model extends CI_Model {
         $this->db->from('parties');
         $this->db->join('users', 'parties.user_id = users.user_id');
         $this->db->where("parties.user_id = '$userID'");
+        $this->db->order_by("parties.date_created", "desc");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -565,7 +684,7 @@ class User_model extends CI_Model {
 
     }
 
-    function getComments($user2ID = 0){
+    function getComments($user2ID = 0, $limit, $start){
 
         if($user2ID){
             $userID = $user2ID;
@@ -587,6 +706,7 @@ class User_model extends CI_Model {
         $this->db->join('users', 'user_comments.poster_id = users.user_id');
         $this->db->where("user_comments.user_id = '$userID'");
         $this->db->order_by("user_comment_id", "desc");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -612,7 +732,6 @@ class User_model extends CI_Model {
 
         if(!$commentID) return false;
 
-
         $this->db->select('user_comment_id');
         $this->db->where('user_comment_id', $commentID);
 
@@ -636,51 +755,73 @@ class User_model extends CI_Model {
 
     }
 
-    function sortActivity($friendInfo = 0, $partyInfo = 0){
+    public function getCommentCount($userID){
 
-        $parsedActivity   =   array();
-        $key              =   0;
+        $this->db->select('COUNT(usser_comment_id) as totalCommentCount');
+        $this->db->from('user_comments');
+        $this->db->where("user_id", $userID);
 
-        if($friendInfo){
+        return $this->db->count_all_results();
 
-            foreach($friendInfo as $friend){
+    }
 
-                $parsedActivity['activity'][$key]['type'] = 'friend';
-                $parsedActivity['activity'][$key]['username'] = $friend[0]['username'];
-                $parsedActivity['activity'][$key]['date'] = $friend[0]['dateOfAccept'];
-                $parsedActivity['activity'][$key]['profile_img'] = $friend[0]['profile_img'];
-                $parsedActivity['activity'][$key]['user_id'] = $friend[0]['user_id'];
-                $key ++;
+    public function getPartyCount($userID){
+
+        $this->db->select('COUNT(party_id) as totalPartyCount');
+        $this->db->from('parties');
+        $this->db->where("user_id", $userID);
+
+        return $this->db->count_all_results();
+
+    }
+
+    public function getActivityCount($userID){
+
+        $this->db->select('COUNT(activity_id) as totalActivityCount');
+        $this->db->from('activity');
+        $this->db->where("user_id", $userID);
+
+        return $this->db->count_all_results();
+
+    }
+
+    public function getActivity($userID, $limit, $start){
+
+        $this->db->select('
+            activity.activity_id, 
+            activity.friendship_id,
+            activity.party_id,
+            activity.seen,
+            activity.date_created,
+            activity.public,
+            users.profile_img,
+            users.user_id,
+            users.username,
+            parties.title,
+            parties.party_img,
+        ');
+
+        $this->db->from('activity');
+        $this->db->join('friends', 'activity.friendship_id = friends.friendship_id', 'left');
+        $this->db->join('parties', 'parties.party_id = activity.party_id', 'left');
+        $this->db->join('users', 'friends.user1_id = users.user_id', 'left');
+        $this->db->where('activity.user_id', $userID);
+        $this->db->where('activity.public','1');
+        $this->db->order_by("activity.date_created", "desc");
+        $this->db->limit($limit, $start);
+        $q = $this->db->get();
+
+        if ($q->num_rows() > 0) {
+
+            foreach($q->result() as $row){
+
+                $dataResults[] = $row;
 
             }
 
-        }
-
-        if($partyInfo){
+            $dataResults = objectToArray($dataResults);
             
-            foreach($partyInfo as $party){
-
-                $parsedActivity['activity'][$key]['type'] = 'party';
-                $parsedActivity['activity'][$key]['title'] = $party['title'];
-                $parsedActivity['activity'][$key]['date'] = $party['date_created'];
-                $parsedActivity['activity'][$key]['party_id'] = $party['party_id'];
-                $parsedActivity['activity'][$key]['user_id'] = $party['user_id'];
-                $parsedActivity['activity'][$key]['party_img'] = $party['party_img'];
-                $key ++;
-
-            }
-        }
-
-        if($friendInfo || $partyInfo){
-
-            function date_compare($a, $b){
-
-                $t1   =   strtotime($a['date']);
-                $t2   =   strtotime($b['date']);
-                return $t2 - $t1;
-            }    
-
-            usort($parsedActivity['activity'], 'date_compare');
+            return $dataResults = $this->prepTime($dataResults, 'date_created');
 
         }else{
 
@@ -688,7 +829,6 @@ class User_model extends CI_Model {
 
         }
 
-        return $parsedActivity;
     }
 
 
@@ -784,6 +924,25 @@ class User_model extends CI_Model {
             }
 
         }
+
+    }
+
+    public function reportComment($commentID){
+
+        if(!$commentID) return false;
+
+        $reportID = uniqid();
+
+        $data = array(
+            'report_id'      =>   $reportID,
+            'reporter_id'    =>   $this->session->userdata('userID'),
+            'comment_id'     =>   $commentID,
+            'comment_type'   =>   'user_comments'
+        );
+
+        $this->db->insert('reports', $data);
+
+        return true;
 
     }
 

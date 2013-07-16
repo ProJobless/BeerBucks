@@ -10,7 +10,7 @@
 			<a href="<?=base_url()?>index.php/vip/upcoming"><li>Upcoming</li></a>
 			<a href="<?=base_url()?>index.php/vip/tweets"><li>Tweets</li></a>
 			<a href="<?=base_url()?>index.php/vip/accounts"><li>Accounts</li></a>
-			<a href="<?=base_url()?>index.php/vip/accounts"><li>Comments</li></a>
+			<a href="<?=base_url()?>index.php/vip/reports"><li>Reports</li></a>
 		</ul>
 
 		<section id="tabContent">

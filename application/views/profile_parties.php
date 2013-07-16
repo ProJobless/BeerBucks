@@ -37,13 +37,13 @@
 		</aside>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/profile/activity"><li>Activity</li></a>
-				<a href="<?=base_url()?>index.php/profile/parties"><li class="selected">Parties</li></a>
-				<a href="<?=base_url()?>index.php/profile/friends"><li>Friends</li></a>
-				<a href="<?=base_url()?>index.php/profile/comments"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/profile/alerts"><li>Alerts</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/profile/activity"><h1>Activity</h1></a>
+				<a href="<?=base_url()?>index.php/profile/parties"><h1 class="selected">Parties</h1></a>
+				<a href="<?=base_url()?>index.php/profile/friends"><h1>Friends</h1></a>
+				<a href="<?=base_url()?>index.php/profile/comments"><h1>Comments</h1></a>
+				<a href="<?=base_url()?>index.php/profile/alerts"><h1>Alerts</h1></a>
+			</nav>
 
 			<section id="tabContent" class="parties">
 
@@ -63,7 +63,7 @@
 								<h3><?=$party['party_location']?></h3>
 							</hgroup>
 
-							<div><p>$ XXX/<?=$party['goal']?></p></div>
+							<div><p>$ 0/<?=$party['goal']?></p></div>
 
 							<hgroup>
 								<h5><?=$party['attending']?></h5> <h6>Attending</h6>
@@ -88,13 +88,10 @@
 						
 						</article>
 					<? endforeach; ?>
-
-					<div><button>See More Parties</button></div>
-
 					<?else:?>
 					<h1><a href="<?=base_url('index.php/start')?>">Start your first party</a></h1>
 				<?endif;?>
-
+				<div class="pagination"><?=$links?></div>
 			</section>
 		</section>
 	</section>
@@ -111,3 +108,4 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initTabs();</script>
+	<script>initPagination();</script>

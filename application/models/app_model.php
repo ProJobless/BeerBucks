@@ -39,6 +39,17 @@ class App_model extends CI_Model {
 
             $this->session->set_userdata($sData);
 
+            if(!$this->session->userdata('userLat') || !$this->session->userdata('userLng')){
+
+                $sData = array(
+                    'userLat'        =>   $visitorGeolocation['latitude'],
+                    'userLng'        =>   $visitorGeolocation['longitude']
+                );
+
+                $this->session->set_userdata($sData);
+
+            }
+            
             return $data;
 
         }

@@ -5,17 +5,16 @@
 	</section>
 
 	<section id="tabs" class="sizer">
-		<ul>
-			<a href="<?=base_url()?>index.php/community"><li>Featured</li></a>
-			<a href="<?=base_url()?>index.php/community/people"><li class="selected">People</li></a>
-<!-- 			<a href="<?=base_url()?>index.php/community/photos"><li>Photos</li></a>
- -->			<li><input type="text" placeholder="Search for your friends"></input><button>Search</button></li>
-			<li class="more"><a href="#">Learn More</a></li>
-		</ul>	
+		<nav>
+			<a href="<?=base_url()?>index.php/community"><h1>Featured</h1></a>
+			<a href="<?=base_url()?>index.php/community/people"><h1 class="selected">People</h1></a>
+<!-- 			<a href="<?=base_url()?>index.php/community/photos"><h1>Photos</h1></a>
+ -->			<?=form_open("#"); ?><input type="text" placeholder="Search for your friends"></input><button>Search</button><?=form_close(); ?>
+		</nav>		
 
 		<section id="people">
 
-			<? if(isset($users)): ?>
+			<? if(isset($users[0])): ?>
 				<? foreach ($users as $user): ?>
 
 					<a href="<?=base_url()?>index.php/user/<?=$user['user_id']?>">

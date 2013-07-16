@@ -172,7 +172,9 @@ class Start extends CI_Controller {
 				'address'         =>   $this->input->post('address'),
 	            'start'           =>   $this->input->post('start'),
 	            'end'             =>   $this->input->post('end'),
-	            'goal'            =>   $this->input->post('goal')
+	            'goal'            =>   $this->input->post('goal'),
+	            'partyLat'        =>   $this->input->post('lat'),
+	            'partyLng'        =>   $this->input->post('lng')
 	        );
 
 			$this->session->set_userdata($sData2);
@@ -214,18 +216,41 @@ class Start extends CI_Controller {
 
 				$this->form_validation->set_rules($config);
 
-				if($this->form_validation->run() == false){
 
+				$date1   =   new DateTime(date('Y-m-d H:i:s', time()));
+	            $date2   =   new DateTime($this->session->userdata('start'));
+	            $date3   =	 new DateTime($this->session->userdata('end'));
+
+	            if($date1 > $date2){
+
+	            	$data['view']    =   'start_details';
+					$data['error']   =   "The party you're planning should probably be sometime in the future..";
+
+					$this->load->view('includes/template', $data);
+
+				}else if($date2 > $date3){
+				
 					$data['view']    =   'start_details';
-					$data['error']   =   'Please fill out all the information.';
+					$data['error']   =   "How's your party gonna end before it starts?";
 
 					$this->load->view('includes/template', $data);
 
 				}else{
+					
+					if($this->form_validation->run() == false){
 
-					$data['view'] = 'start_review';
+						$data['view']    =   'start_details';
+						$data['error']   =   'Please fill out all the information.';
 
-					$this->load->view('includes/template', $data);
+						$this->load->view('includes/template', $data);
+
+					}else{
+
+						$data['view'] = 'start_review';
+
+						$this->load->view('includes/template', $data);
+
+					}
 
 				}
 
@@ -260,6 +285,8 @@ class Start extends CI_Controller {
 					$this->session->userdata('end'),
 					$this->session->userdata('goal'),
 					$this->session->userdata('img_name'),
+					$this->session->userdata('partyLat'),
+					$this->session->userdata('partyLng'),
 				);
 
 				$testData = $this->checkIfTheyAreAllStillThere($pData);
@@ -292,7 +319,9 @@ class Start extends CI_Controller {
 				            'start'           =>   null,
 				            'end'             =>   null,
 				            'goal'            =>   null,
-				            'img_name'        =>   null
+				            'img_name'        =>   null,
+				            'partyLat'        =>   null,
+				            'partyLng'        =>   null,
 				        );
 
 						$this->session->set_userdata($sData2);

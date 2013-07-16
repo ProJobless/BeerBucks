@@ -52,7 +52,7 @@ class Discover extends CI_Controller {
 
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
-		$data['parties']   =   $this->party_model->getParties($config["per_page"], $page);
+		$data['parties']   =   $this->party_model->getNearParties($config["per_page"], $page);
 		$data['view']      =   'discover_nearyou';
 
 		$this->load->view('includes/template', $data);
@@ -71,7 +71,7 @@ class Discover extends CI_Controller {
 
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
-		$data['parties']   =   $this->party_model->getParties($config["per_page"], $page);
+		$data['parties']   =   $this->party_model->getUpcomingParties($config["per_page"], $page);
 		$data['view']      =   'discover_upcoming';
 
 		$this->load->view('includes/template', $data);
@@ -94,6 +94,26 @@ class Discover extends CI_Controller {
 		$data['view']      =   'discover_completed';
 		
 		$this->load->view('includes/template', $data);
+
+	}
+
+	public function Search(){
+
+		$config = array();
+        $config["base_url"]      =   base_url()."/index.php/discover/search";
+        $config["total_rows"]    =   $this->party_model->getCount();
+        $config["per_page"]      =   8;
+        $config["uri_segment"]   =   3;
+
+        $this->pagination->initialize($config);
+
+        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+        $data["links"]     =   $this->pagination->create_links();
+		$data['parties']   =   $this->party_model->getSearchResults($config["per_page"], $page);
+		$data['view']      =   'discover_search';
+		
+		$this->load->view('includes/template', $data);
+
 
 	}
 

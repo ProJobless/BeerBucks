@@ -118,11 +118,7 @@ class Party_model extends CI_Model {
 
         }
 
-        if($option){
-            return $nonExpiredData;
-        }else{
-            return $currentData;
-        }
+        if($option) return $nonExpiredData; else return $currentData;
         
     }
 
@@ -165,8 +161,8 @@ class Party_model extends CI_Model {
 
     public function convertTimezone($time){
 
-        $timeP   =   new DateTime( $time );
-        $timezone = 0;
+        $timeP      =   new DateTime( $time );
+        $timezone   =   0;
 
         if($time[strlen($time)-1] == '5'){
             $timeP->modify('+6 hours');
@@ -190,14 +186,36 @@ class Party_model extends CI_Model {
 
     }
 
+    private function addPartyActivity($partyID, $date){
+
+        $activityID = uniqid();
+        $userID = $this->session->userdata('userID');
+
+        $data = array(
+            'activity_id'     =>   $activityID,
+            'user_id'         =>   $userID,
+            'friendship_id'   =>   0,
+            'party_id'        =>   $partyID,
+            'seen'            =>   0,
+            'date_created'    =>   $date,
+            'public'          =>   1,
+        );
+
+        $this->db->insert('activity', $data);
+
+    }
+
     public function newParty(){
 
-        $party_id        =   uniqid();
-        $user_id         =   $this->session->userdata('userID');
+        $partyID         =   uniqid();
+        $userID          =   $this->session->userdata('userID');
+        $dateCreated     =   date('Y/m/d h:i:s', time());
         $title           =   $this->security->xss_clean($this->session->userdata('title'));
         $description     =   $this->security->xss_clean($this->session->userdata('description'));
         $partyLocation   =   $this->security->xss_clean($this->session->userdata('partyLocation'));
         $address         =   $this->security->xss_clean($this->session->userdata('address'));
+        $partyLat        =   $this->security->xss_clean($this->session->userdata('partyLat'));
+        $partyLng        =   $this->security->xss_clean($this->session->userdata('partyLng'));
         $start           =   $this->security->xss_clean($this->session->userdata('start'));
         $end             =   $this->security->xss_clean($this->session->userdata('end'));
         $goal            =   $this->security->xss_clean(ltrim($this->session->userdata('goal') , '$'));
@@ -206,8 +224,9 @@ class Party_model extends CI_Model {
         $newEnd          =   $this->convertTimezone($end);
 
         $data = array(
-            'party_id'         =>   $party_id,
-            'user_id'          =>   $user_id,
+            'party_id'         =>   $partyID,
+            'user_id'          =>   $userID,
+            'date_created'     =>   $dateCreated,
             'tos'              =>   1,
             'title'            =>   $title,
             'description'      =>   $description,
@@ -220,42 +239,230 @@ class Party_model extends CI_Model {
             'attending'        =>   0,
             'expired'          =>   0,
             'party_timezone'   =>   $newStart[1],
+            'party_lat'        =>   $partyLat,
+            'party_lng'        =>   $partyLng,
         );
 
         $q = $this->db->insert('parties', $data);
 
-        $this->incrementValue('parties', $user_id, '1');
+        $this->incrementValue('parties', $userID, '1');
+        $this->addPartyActivity($partyID, $dateCreated);
         
-        return $party_id;
+        return $partyID;
+        
+    }
+
+    public function getNearParties($limit, $start){
+
+        $userLat   =   $this->security->xss_clean($this->session->userdata('userLat'));
+        $userLng   =   $this->security->xss_clean($this->session->userdata('userLng'));
+        $dist      =   100;
+
+        $x    =  $userLng - $dist / ABS(COS(deg2rad($userLat))*69); 
+        $xx   =  $userLng + $dist / ABS(COS(deg2rad($userLat))*69); 
+        $y    =  $userLat - ($dist / 69); 
+        $yy   =  $userLat + ($dist / 69); 
+
+
+
+        $query = $this->db->query("
+
+            SELECT  parties.party_id, 
+                        parties.user_id, 
+                        parties.date_created, 
+                        parties.date_edited, 
+                        parties.title, 
+                        parties.description, 
+                        parties.party_img, 
+                        parties.party_location, 
+                        parties.address, 
+                        parties.start, 
+                        parties.end, 
+                        parties.goal,
+                        parties.expired,
+                        parties.attending,
+                        users.username,
+                    3956 * 2 * ASIN(
+                        SQRT(
+                            POWER(
+                                SIN(
+                                    ($userLat - parties.party_lat) * pi() / 180 / 2
+                                ), 2
+                            ) +
+                            COS(
+                                $userLat * pi() / 180
+                            ) *
+                            COS(
+                                parties.party_lat * pi() / 180
+                            ) *
+                            POWER(
+                                SIN(
+                                    ($userLng - parties.party_lng) * pi() / 180 / 2
+                                ), 2
+                            )
+                        )
+                    ) as distance
+            FROM    `parties` AS parties
+            JOIN    `users` ON parties.user_id = users.user_id
+            WHERE   parties.party_lng BETWEEN $x AND $xx
+            AND     parties.party_lat BETWEEN $y AND $yy
+            AND     parties.expired = 0
+            HAVING  distance < $dist
+            ORDER BY distance
+            LIMIT $limit
+            OFFSET $start;
+        ");
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults    =   objectToArray($dataResults);
+            $filteredData   =   $this->checkStatus($dataResults, true);
+
+            return $this->getTimeTillParty($filteredData);
+
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getUpcomingParties($limit, $start){
+
+        $userLat   =   $this->security->xss_clean($this->session->userdata('userLat'));
+        $userLng   =   $this->security->xss_clean($this->session->userdata('userLng'));
+        $dist      =   100;
+
+        $x    =  $userLng - $dist / ABS(COS(deg2rad($userLat))*69); 
+        $xx   =  $userLng + $dist / ABS(COS(deg2rad($userLat))*69); 
+        $y    =  $userLat - ($dist / 69); 
+        $yy   =  $userLat + ($dist / 69); 
+
+        $query = $this->db->query("
+
+            SELECT  parties.party_id, 
+                        parties.user_id, 
+                        parties.date_created, 
+                        parties.date_edited, 
+                        parties.title, 
+                        parties.description, 
+                        parties.party_img, 
+                        parties.party_location, 
+                        parties.address, 
+                        parties.start, 
+                        parties.end, 
+                        parties.goal,
+                        parties.expired,
+                        parties.attending,
+                        users.username,
+                    3956 * 2 * ASIN(
+                        SQRT(
+                            POWER(
+                                SIN(
+                                    ($userLat - parties.party_lat) * pi() / 180 / 2
+                                ), 2
+                            ) +
+                            COS(
+                                $userLat * pi() / 180
+                            ) *
+                            COS(
+                                parties.party_lat * pi() / 180
+                            ) *
+                            POWER(
+                                SIN(
+                                    ($userLng - parties.party_lng) * pi() / 180 / 2
+                                ), 2
+                            )
+                        )
+                    ) as distance
+            FROM    `parties` AS parties
+            JOIN    `users` ON parties.user_id = users.user_id
+            WHERE   parties.party_lng BETWEEN $x AND $xx
+            AND     parties.party_lat BETWEEN $y AND $yy
+            AND     parties.expired = 0
+            HAVING  distance < $dist
+            ORDER BY parties.start
+            LIMIT $limit
+            OFFSET $start;
+        ");
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults    =   objectToArray($dataResults);
+            $filteredData   =   $this->checkStatus($dataResults, true);
+
+            return $this->getTimeTillParty($filteredData);
+
+        }else{
+            return false;
+        }
         
     }
 
     public function getParties($limit, $start){
 
-        $this->db->select('
-            parties.party_id, 
-            parties.user_id, 
-            parties.date_created, 
-            parties.date_edited, 
-            parties.title, 
-            parties.description, 
-            parties.party_img, 
-            parties.party_location, 
-            parties.address, 
-            parties.start, 
-            parties.end, 
-            parties.goal,
-            parties.expired,
-            parties.attending,
-            users.username,
-        ');
+        $userLat   =   $this->security->xss_clean($this->session->userdata('userLat'));
+        $userLng   =   $this->security->xss_clean($this->session->userdata('userLng'));
+        $dist      =   1000;
 
-        $this->db->from('parties');
-        $this->db->join('users', 'parties.user_id = users.user_id');
-        $this->db->where("parties.expired = 0");
-        $this->db->limit($limit, $start);
+        $x    =  $userLng - $dist / ABS(COS(deg2rad($userLat))*69); 
+        $xx   =  $userLng + $dist / ABS(COS(deg2rad($userLat))*69); 
+        $y    =  $userLat - ($dist / 69); 
+        $yy   =  $userLat + ($dist / 69); 
 
-        $query = $this->db->get();
+        $query = $this->db->query("
+
+            SELECT  parties.party_id, 
+                        parties.user_id, 
+                        parties.date_created, 
+                        parties.date_edited, 
+                        parties.title, 
+                        parties.description, 
+                        parties.party_img, 
+                        parties.party_location, 
+                        parties.address, 
+                        parties.start, 
+                        parties.end, 
+                        parties.goal,
+                        parties.expired,
+                        parties.attending,
+                        users.username,
+                    3956 * 2 * ASIN(
+                        SQRT(
+                            POWER(
+                                SIN(
+                                    ($userLat - parties.party_lat) * pi() / 180 / 2
+                                ), 2
+                            ) +
+                            COS(
+                                $userLat * pi() / 180
+                            ) *
+                            COS(
+                                parties.party_lat * pi() / 180
+                            ) *
+                            POWER(
+                                SIN(
+                                    ($userLng - parties.party_lng) * pi() / 180 / 2
+                                ), 2
+                            )
+                        )
+                    ) as distance
+            FROM    `parties` AS parties
+            JOIN    `users` ON parties.user_id = users.user_id
+            WHERE   parties.party_lng BETWEEN $x AND $xx
+            AND     parties.party_lat BETWEEN $y AND $yy
+            AND     parties.expired = 0
+            HAVING  distance < $dist
+            LIMIT $limit
+            OFFSET $start;
+        ");
 
         if($query->num_rows > 0){
 
@@ -442,7 +649,6 @@ class Party_model extends CI_Model {
     public function deleteComment($commentID){
 
         if(!$commentID) return false;
-
 
         $this->db->select('party_comment_id');
         $this->db->where('party_comment_id', $commentID);
@@ -649,5 +855,31 @@ class Party_model extends CI_Model {
         return $this->db->count_all_results();
 
     }
+
+    public function reportComment($commentID){
+
+        if(!$commentID) return false;
+
+        $reportID = uniqid();
+
+        $data = array(
+            'report_id'      =>   $reportID,
+            'reporter_id'    =>   $this->session->userdata('userID'),
+            'comment_id'     =>   $commentID,
+            'comment_type'   =>   'party_comments'
+        );
+
+        $this->db->insert('reports', $data);
+
+        return true;
+
+    }
+
+    public function getSearchResults(){
+
+        $search = $this->security->xss_clean($this->input->post('search'));
+
+
+    }    
 
 }

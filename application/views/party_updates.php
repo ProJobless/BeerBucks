@@ -11,11 +11,11 @@
 		</article>
 
 		<section id="tabs">
-			<ul>
-				<a href="<?=base_url()?>index.php/party/<?=$partyID?>"><li>Attending</li></a>
-				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><li>Comments</li></a>
-				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><li class="selected">Updates</li></a>
-			</ul>
+			<nav>
+				<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>"><h1>Attending</h1></a>
+				<a href="<?=base_url()?>index.php/party/comments/<?=$partyID?>"><h1>Comments</h1></a>
+				<a href="<?=base_url()?>index.php/party/updates/<?=$partyID?>"><h1 class="selected">Updates</h1></a>
+			</nav>
 
 			<section id="tabContent" class="updates">
 				
@@ -51,7 +51,7 @@
 				<h1>Party Info</h1>
 				
 				<hgroup>
-					<h2>$300</h2>
+					<h2>$0</h2>
 					<h4>raised out of</h4>
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>

@@ -34,13 +34,15 @@
 			<?=form_open("/authentication/signup"); ?>
 				<h1>Create an account</h1>
 				<div>
-					<p><? if(isset($joinError)) echo $joinError; ?></p>
+					<?=form_error('username'); ?>
 					<h2>Username</h2>
-					<input type="username" value="<?=set_value('username'); ?>" />
-
+					<input type="text" name="username" value="<?=set_value('username'); ?>" />
+					
+					<?=form_error('email'); ?>
 					<h2>Email Address</h2>
 					<input type="text" name="email" value="<?=set_value('email'); ?>" />
-
+					
+					<?=form_error('password'); ?>
 					<h2>Password</h2>
 					<?=form_password('password'); ?>
 

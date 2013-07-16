@@ -37,6 +37,8 @@ class Settings_model extends CI_Model {
         $username       =   $this->security->xss_clean($this->input->post('username'));
         $bio            =   $this->security->xss_clean($this->input->post('bio'));
         $location       =   $this->security->xss_clean($this->input->post('location'));
+        $userLat        =   $this->security->xss_clean($this->input->post('lat'));
+        $userLng        =   $this->security->xss_clean($this->input->post('lng'));
         $profileImage   =   $this->security->xss_clean($this->session->userdata('profileImage'));
         $timezone       =   $this->security->xss_clean($this->input->post('timezone'));
         $exists         =   $this->checkIfExists('username', $username, $username);
@@ -49,7 +51,9 @@ class Settings_model extends CI_Model {
                 'bio'           =>   $bio,
                 'location'      =>   $location,
                 'profile_img'   =>   $profileImage,
-                'timezone'      =>   $timezone
+                'timezone'      =>   $timezone,
+                'user_lat'      =>   $userLat,
+                'user_lng'      =>   $userLng
             );
 
             $this->db->where('user_id', $user_id);
@@ -60,7 +64,9 @@ class Settings_model extends CI_Model {
                 'profileImage'   =>   $profileImage,
                 'location'       =>   $location,
                 'timezone'       =>   $timezone,
-                'bio'            =>   $bio
+                'bio'            =>   $bio,
+                'userLat'        =>   $userLat,
+                'userLng'        =>   $userLng
             );
 
             $this->session->set_userdata($sData);
