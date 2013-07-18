@@ -48,8 +48,9 @@ class User extends CI_Controller {
 
 			if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
 			
+			$data["badges"]      =   $this->user_model->getBadges($user2ID);
 			$data['viewCount']   =   $this->user_model->userViewCount($user2ID);
-			$data['activity']   =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
+			$data['activity']    =   $this->user_model->getActivity($user2ID, $config["per_page"], $page);
 			$data['user']        =   $this->user_model->getUser($user2ID);
 			$data['view']        =   'user';
 			
@@ -80,6 +81,7 @@ class User extends CI_Controller {
 
 			if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
 
+			$data["badges"]      =   $this->user_model->getBadges($user2ID);
 			$data['user']      =   $this->user_model->getUser($user2ID);
 			$data['parties']   =   $this->user_model->getUserParties($user2ID, $config["per_page"], $page);
 			$data['view']      =   'user_parties';
@@ -111,6 +113,7 @@ class User extends CI_Controller {
 
 			if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
 
+			$data["badges"]      =   $this->user_model->getBadges($user2ID);
 			$data['user']      =   $this->user_model->getUser($user2ID);
 			$data['friends']   =   $this->user_model->getFriends($user2ID, $config["per_page"], $page);
 			$data['view']      =   'user_friends';
@@ -142,6 +145,7 @@ class User extends CI_Controller {
 
 			if($this->user_model->checkFriendship($user2ID)) $data['friendCheck'] = false; else $data['friendCheck'] = true;	
 
+			$data["badges"]      =   $this->user_model->getBadges($user2ID);
 			$data['comments']   =   $this->user_model->getComments($user2ID, $config["per_page"], $page);
 			$data['user']       =   $this->user_model->getUser($user2ID);
 			$data['user2']      =   $user2ID;

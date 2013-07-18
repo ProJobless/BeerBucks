@@ -23,6 +23,9 @@ var initTools = function(){
 			if(calculateDistance(element, mX, mY) > 200) toolBox.height(0);
 		}).on('scroll', function(e){
 			toolBox.height(0);
+			if($(window).scrollTop() > 1000){
+				//if(!$('#toTop').length) $('#tabContent').after('<div id="toTop"><h1>Back to top</h1></div>');
+			}
 		});
 	}
 };
@@ -394,6 +397,7 @@ var initPagination = function(type){
 			url: url,
 			async: true
 		}).done(function(data){
+
 			var newContent = $(data).find('#tabContent .party, #people>a, .activity article, .friends>a, .comment');
 
 			if(newContent.length){
@@ -420,7 +424,6 @@ var initPagination = function(type){
 			loadMore();
 		}
 	});
-	loadMore();
 };
 
 var initAutoComplete = function(){

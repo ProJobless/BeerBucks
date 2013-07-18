@@ -13,7 +13,7 @@ class Discover extends CI_Controller {
 
 	public function index (){	
 
-		// $data['parties']   =   $this->party_model->getParties();
+		// $data['parties']   =   $this->party_model->getFeaturedParties();
 		// $data['view']      =   'discover';
 
 		// $this->load->view('includes/template', $data);
@@ -25,7 +25,7 @@ class Discover extends CI_Controller {
 
 		$config = array();
         $config["base_url"]      =   base_url()."/index.php/discover/featured";
-        $config["total_rows"]    =   $this->party_model->getCount();
+        $config["total_rows"]    =   $this->party_model->getFeaturedCount();
         $config["per_page"]      =   8;
         $config["uri_segment"]   =   3;
 
@@ -33,7 +33,7 @@ class Discover extends CI_Controller {
 
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
-		$data['parties']   =   $this->party_model->getParties($config["per_page"], $page);
+		$data['parties']   =   $this->party_model->getFeaturedParties($config["per_page"], $page);
 		$data['view']      =   'discover';
 
 		$this->load->view('includes/template', $data);
@@ -44,7 +44,7 @@ class Discover extends CI_Controller {
 
 		$config = array();
         $config["base_url"]      =   base_url()."/index.php/discover/nearYou";
-        $config["total_rows"]    =   $this->party_model->getCount();
+        $config["total_rows"]    =   $this->party_model->getNearCount();
         $config["per_page"]      =   8;
         $config["uri_segment"]   =   3;
 
@@ -63,7 +63,7 @@ class Discover extends CI_Controller {
 
 		$config = array();
         $config["base_url"]      =   base_url()."/index.php/discover/upcoming";
-        $config["total_rows"]    =   $this->party_model->getCount();
+        $config["total_rows"]    =   $this->party_model->getUpcomingCount();
         $config["per_page"]      =   8;
         $config["uri_segment"]   =   3;
 

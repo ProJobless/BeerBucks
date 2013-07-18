@@ -2142,9 +2142,14 @@ article#topImages>a{
 	margin: 8px 0px 5px 3px;
 }
 #profile aside article:nth-of-type(2){
-	height: 200px;
+	min-height: 200px;
+	height: auto;
 	background-color: $light-white;
 	margin-bottom: 100px;
+}
+#profile aside article:nth-of-type(2) img{
+	margin-left: 8px;
+	margin-top: 8px;
 }
 #profile aside article:nth-of-type(2) h1{
 	height: 50px;
@@ -3785,4 +3790,14 @@ input.ui-autocomplete-loading{
 	background: url("../img/ajax-loader-small.gif") no-repeat 98%;
 	transition: none;
     -webkit-transition: none; 
+}
+
+
+#toTop{
+	width: 100px;
+	height: 30px;
+	background: $main-pink;
+	position: fixed;
+	bottom: 390px;
+	right: 20px;
 }

@@ -33,6 +33,11 @@
 
 			<article>
 				<h1>Badges</h1>
+				<?if($badges):?>
+					<?foreach($badges as $b): ?>
+						<img src="<?=base_url()?>img/<?=$b['badge_img']?>" />
+					<?endforeach;?>
+				<?endif;?>
 			</article>
 		</aside>
 

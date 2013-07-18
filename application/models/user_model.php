@@ -980,7 +980,43 @@ class User_model extends CI_Model {
             return $dataResults;
 
         }else{
+
             return false;
+            
+        }
+
+    }
+
+    public function getBadges($user2ID = 0){
+
+        $user2ID ? $userID = $user2ID : $userID = $this->session->userdata('userID'); 
+        
+        $this->db->select('
+            user_badges.date_given,
+            badges.badge_name,
+            badges.badge_img,
+            badges.how_to_receive,
+        ');
+        $this->db->from('user_badges');
+        $this->db->join('badges', 'user_badges.badge_id = badges.badge_id');
+        $this->db->where('user_badges.user_id', $userID);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+
+            return false;
+
         }
 
     }

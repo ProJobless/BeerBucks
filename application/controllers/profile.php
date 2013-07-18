@@ -36,7 +36,7 @@ class Profile extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$userID             =   $this->session->userdata('userID');
+			$userID =   $this->session->userdata('userID');
 
 			$config = array();
 	        $config["base_url"]      =   base_url()."/index.php/profile/activity";
@@ -46,9 +46,9 @@ class Profile extends CI_Controller {
 
 	        $this->pagination->initialize($config);
 
-	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-	        $data["links"]     =   $this->pagination->create_links();
-
+	        $page               =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]      =   $this->pagination->create_links();
+	        $data["badges"]     =   $this->user_model->getBadges();
 			$data['activity']   =   $this->user_model->getActivity($userID, $config["per_page"], $page);
 			$data['view']       =   'profile';
 
@@ -78,7 +78,7 @@ class Profile extends CI_Controller {
 
 	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
 	        $data["links"]     =   $this->pagination->create_links();
-
+	        $data["badges"]    =   $this->user_model->getBadges();
 			$data['parties']   =   $this->user_model->getUserParties($userID, $config["per_page"], $page);
 			$data['view']      =   'profile_parties';
 
@@ -108,7 +108,7 @@ class Profile extends CI_Controller {
 
 	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
 	        $data["links"]     =   $this->pagination->create_links();
-
+	        $data["badges"]    =   $this->user_model->getBadges();
 			$data['friends']   =   $this->user_model->getFriends($userID, $config["per_page"], $page);
 			$data['view']      =   'profile_friends';
 
@@ -136,9 +136,9 @@ class Profile extends CI_Controller {
 
 	        $this->pagination->initialize($config);
 
-	        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-	        $data["links"]     =   $this->pagination->create_links();
-
+	        $page               =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+	        $data["links"]      =   $this->pagination->create_links();
+	        $data["badges"]     =   $this->user_model->getBadges();
 			$data['comments']   =   $this->user_model->getComments(0, $config["per_page"], $page);
 			$data['view']       =   'profile_comments';
 
@@ -286,8 +286,10 @@ class Profile extends CI_Controller {
 
 	public function alerts(){
 		
-		$data['friendReqs'] = $this->user_model->checkForFriendRequests();
-		$data['view'] = 'profile_alerts';
+		$data['friendReqs']   =   $this->user_model->checkForFriendRequests();
+		$data["badges"]       =   $this->user_model->getBadges();
+		$data['view']         =   'profile_alerts';
+		
 		$this->load->view('includes/template', $data);
 
 	}
