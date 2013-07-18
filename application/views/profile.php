@@ -75,17 +75,31 @@
 								</div>
 							</article>
 						<?elseif($a['friendship_id']):?>
-							<article>
-								<?if($a['profile_img']):?>
-									<a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['profile_img']?>" alt="" width="65" height="65" /></a>
-								<?else:?>
-									<a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
-								<?endif;?>
+							<?if ($a['user_id'] == $this->session->userdata('userID')):?>
+								<article>
+									<?if($a['profile_img']):?>
+										<a href="<?=base_url()?>index.php/user/<?=$a['user2ID']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['user2Img']?>" alt="" width="65" height="65" /></a>
+									<?else:?>
+										<a href="<?=base_url()?>index.php/user/<?=$a['user2ID']?>"><img src="" alt="" width="65" height="65" /></a>
+									<?endif;?>
 
-								<div>
-									<p>You and <a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date_created']?></span></p>
-								</div>
-							</article>
+									<div>
+										<p>You and <a href="<?=base_url()?>index.php/user/<?=$a['user2ID']?>"><?=$a['user2Username']?> </a> are now friends. <span><?=$a['date_created']?></span></p>
+									</div>
+								</article>
+							<?else:?>
+								<article>
+									<?if($a['profile_img']):?>
+										<a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$a['profile_img']?>" alt="" width="65" height="65" /></a>
+									<?else:?>
+										<a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><img src="" alt="" width="65" height="65" /></a>
+									<?endif;?>
+
+									<div>
+										<p>You and <a href="<?=base_url()?>index.php/user/<?=$a['user_id']?>"><?=$a['username']?> </a> are now friends. <span><?=$a['date_created']?></span></p>
+									</div>
+								</article>
+							<?endif;?>
 						<?endif;?>
 					<?endforeach;?>
 				<?else:?>

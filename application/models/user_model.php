@@ -794,9 +794,12 @@ class User_model extends CI_Model {
             activity.seen,
             activity.date_created,
             activity.public,
-            users.profile_img,
-            users.user_id,
-            users.username,
+            user1.profile_img,
+            user1.user_id,
+            user1.username,
+            user2.profile_img AS user2Img,
+            user2.user_id AS user2ID,
+            user2.username AS user2Username,
             parties.title,
             parties.party_img,
         ');
@@ -804,7 +807,8 @@ class User_model extends CI_Model {
         $this->db->from('activity');
         $this->db->join('friends', 'activity.friendship_id = friends.friendship_id', 'left');
         $this->db->join('parties', 'parties.party_id = activity.party_id', 'left');
-        $this->db->join('users', 'friends.user1_id = users.user_id', 'left');
+        $this->db->join('users AS user1', 'friends.user1_id = user1.user_id', 'left');
+        $this->db->join('users AS user2', 'friends.user2_id = user2.user_id', 'left');
         $this->db->where('activity.user_id', $userID);
         $this->db->where('activity.public','1');
         $this->db->order_by("activity.date_created", "desc");
@@ -821,7 +825,7 @@ class User_model extends CI_Model {
 
             $dataResults = objectToArray($dataResults);
             
-            return $dataResults = $this->prepTime($dataResults, 'date_created');
+            return $this->prepTime($dataResults, 'date_created');
 
         }else{
 

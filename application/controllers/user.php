@@ -58,7 +58,7 @@ class User extends CI_Controller {
 			
 		}else{
 
-			redirect('community/people');
+			redirect('profile');
 
 		}
 		

@@ -96,7 +96,7 @@ class Authentication_model extends CI_Model {
     	$username    =   $this->security->xss_clean($this->input->post('username'));
     	$email       =   $this->security->xss_clean($this->input->post('email'));
     	$password    =   $this->security->xss_clean($this->input->post('password'));
-    	$dateOfReg   =   date('Y/m/d h:i:s', time());
+    	$dateOfReg   =   date('Y/m/d H:i:s', time());
 		$userID      =   uniqid();
 		$exists      =   $this->checkIfExists('username', $username);
         $exists2     =   $this->checkIfExists('email', $email);
@@ -124,7 +124,7 @@ class Authentication_model extends CI_Model {
                 'userID'          =>   $userID,
                 'email'           =>   $email,
                 'username'        =>   $username,
-                'profile_img'     =>   'default.jpg',
+                'profileImgage'   =>   'default.jpg',
                 'feedback'        =>   0,
                 'views'           =>   0,
                 'comments'        =>   0,
@@ -238,7 +238,7 @@ class Authentication_model extends CI_Model {
             $username    =   $fbData['username'];
             $email       =   $fbData['email'];
             $location    =   $fbData['location']['name'];
-            $dateOfReg   =   date('Y/m/d h:i:s', time());
+            $dateOfReg   =   date('Y/m/d H:i:s', time());
             $userID      =   uniqid();
 
             $exists = $this->checkIfExists('username', $username);

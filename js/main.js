@@ -368,7 +368,7 @@ var initPagination = function(type){
 	var ajaxButton   =   $('.ajaxButton'),
 		count        =   8,
 		win          =   $(window),
-		check        =   true
+		check        =   false
 	;
 
 	if(window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties'){
@@ -405,8 +405,8 @@ var initPagination = function(type){
 				newContent.css('opacity', 0);
 				count += count;
 				newContent.animate({opacity: 1}, 800, function(){
-					check = true;
 					ajaxButton.removeClass('loading');
+					check = true;
 				});
 			}else{
 				ajaxButton.remove();
@@ -424,6 +424,7 @@ var initPagination = function(type){
 			loadMore();
 		}
 	});
+	loadMore();
 };
 
 var initAutoComplete = function(){
