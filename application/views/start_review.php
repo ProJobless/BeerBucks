@@ -22,8 +22,39 @@
 						<h1><?=$this->session->userdata('title')?></h1>
 						<img src="<?=base_url()?>uploads/party/<?=$this->session->userdata('img_name')?>" width="698" height="436" alt="" />
 					</article>
-
 					
+					<article class="beforeSubmit">
+						<h1>Before you submit</h1>
+						<article>
+							<h2>1</h2>
+							<p>Double check your party to make sure you have the correct information.</p>
+						</article>
+						<article>
+							<h2>2</h2>
+							<p>Make sure you’ve explained how you plan on spending the funds.</p>
+						</article>
+						<article>
+							<h2>3</h2>
+							<p>Check out other parties for insperation on how to run a good campaign.</p>
+						</article>
+					</article>
+
+					<article class="beforeSubmit afterSubmit">
+						<h1>After you submit</h1>
+						<article>
+							<h2>1</h2>
+							<p>Share your party campaign with your friends via social media.</p>
+						</article>
+						<article>
+							<h2>2</h2>
+							<p>Update your profile information to help attract people to your parties.</p>
+						</article>
+						<article>
+							<h2>3</h2>
+							<p>Prepare for your party however you prepare for parties.</p>
+						</article>
+					</article>
+
 				</section>
 
 				<div><button type="submit" name="back" value="back">Go Back</button><button type="submit">Start Party</button></div>
@@ -48,10 +79,10 @@
 					<h3><?=$this->session->userdata('location')?></h3>
 
 					<ul>
-						<li><h2>2</h2><h3>Days</h3></li>
-						<li><h2>4</h2><h3>Hours</h3></li>
-						<li><h2>38</h2><h3>Mins</h3></li>
-						<li><h2>12</h2><h3>Secs</h3></li>
+						<li><h2>X</h2><h3>Days</h3></li>
+						<li><h2>X</h2><h3>Hours</h3></li>
+						<li><h2>X</h2><h3>Mins</h3></li>
+						<li><h2>X</h2><h3>Secs</h3></li>
 					</ul>
 
 					<button>Pitch In</button>
@@ -75,14 +106,14 @@
 					</hgroup>
 
 					<ul>
-						<li>FeedBack <span>0</span></li>
-						<li>Views <span>0</span></li>
-						<li>Comments <span>0</span></li>
+						<li>FeedBack <span><?=$this->session->userdata('feedback')?></span></li>
+						<li>Views <span><?=$this->session->userdata('views')?></span></li>
+						<li>Comments <span><?=$this->session->userdata('comments')?></span></li>
 					</ul>
 					
 					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
+						<h5><?=$this->session->userdata('contributions')?></h5> <h6>Contributions</h6>
+						<h5><?=$this->session->userdata('parties')?></h5> <h6>Hosted Parties</h6>
 					</hgroup>
 				</article>
 

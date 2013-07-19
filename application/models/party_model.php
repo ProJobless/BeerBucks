@@ -1140,9 +1140,8 @@ class Party_model extends CI_Model {
             }
 
             $dataResults    =   objectToArray($dataResults);
-            $filteredData   =   $this->checkStatus($dataResults, true);
 
-            return $this->getTimeTillParty($filteredData);
+            return $this->getTimeTillParty($dataResults);
 
         }else{
             return false;
