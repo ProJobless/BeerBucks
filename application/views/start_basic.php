@@ -41,7 +41,7 @@
 							You should try to make your title <strong>catchy and descriptive.</strong>
 						</p>
 						
-						<p>Ex: Bobbies 21st birthday bash</p>
+						<p>Ex: Bobby's 21st birthday bash</p>
 					</div>
 
 					<h1>Party Description</h1> <hr />

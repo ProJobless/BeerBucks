@@ -31,7 +31,7 @@
 						</article>
 						<article>
 							<h2>2</h2>
-							<p>Make sure you’ve explained how you plan on spending the funds.</p>
+							<p>Make sure you’ve explained how you plan to spend the funds.</p>
 						</article>
 						<article>
 							<h2>3</h2>

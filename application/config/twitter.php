@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['twitter_consumer_token']		= 'R3MXWafHBtU1IgnMYt0Vw';
 $config['twitter_consumer_secret']		= 'Q6iDYI6uMTPPrNubU4rYmvfdISQZz8gclOHt1BCqdw';

@@ -1,5 +1,5 @@
 /* mains.scss | Kolby Sisk | www.kolbysisk.com | www.beer-bucks.com */
-/* Contents For Quick Find */
+/* ContentName For Quick Find */
 /* ------------------------------ Colors ------------------------------ */
 /* ------------------------------ Mixins ------------------------------ */
 /* ------------------------------ Fonts ------------------------------ */
@@ -2167,7 +2167,9 @@ article#topImages > a {
   font-family: 'ChunkFiveRegular';
   color: #edf6f5;
   font-size: 1.5em;
-  float: left; }
+  float: left;
+  font-style: italic;
+  text-indent: -2px; }
 
 #tabContent.review .beforeSubmit p {
   clear: none;

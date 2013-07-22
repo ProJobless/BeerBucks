@@ -165,7 +165,7 @@
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
 					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
-					<button>Pitch In</button>
+					<?=form_open("/striper"); ?><button id="customButton">Pitch In</button><?=form_close(); ?>
 				<?endif;?>
 
 				<p>After pitching in, check here to see where the party is.</p>
@@ -202,16 +202,24 @@
 
 	</section>
 
+	  <script>
+   
+  </script>
+
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
 	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
 	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initScroller();</script>
-	<script>initTimeKeeper();</script>
-	<script>initTabs(1);</script>
+	<script>
+		initScroller();
+		initTimeKeeper();
+		initTabs(1);
+		initStripe();
+	</script>

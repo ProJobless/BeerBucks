@@ -509,3 +509,25 @@ var initWizardOfOz = function(){
 		updatePreview(name, val);
 	}).on('keypress', function(e){if(e.which == 13) return false;});
 };
+
+var initStripe = function(){
+	$('#customButton').click(function(){
+		var token = function(res){
+			var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+			$('form').append($input).submit();
+		};
+
+		StripeCheckout.open({
+			key:           'pk_test_VnzkWpUa6N5tZvq2iwAMcRxq',
+			address:       true,
+			amount:        5000,
+			currency:      'usd',
+			name:          'Beer-Bucks',
+			description:   'How much would you like to donate?',
+			panelLabel:    'Checkout',
+			token:         token
+		});
+
+		return false;
+	});
+}

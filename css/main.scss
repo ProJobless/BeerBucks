@@ -1,6 +1,6 @@
 /* mains.scss | Kolby Sisk | www.kolbysisk.com | www.beer-bucks.com */
 
-/* Contents For Quick Find */
+/* ContentName For Quick Find */
 // Home Page
 // Discover Page
 // Login Page
@@ -10,31 +10,31 @@
 // Party Page
 
 /* ------------------------------ Colors ------------------------------ */
-$main-pink: #f2137b;
-$light-purple: #8c0f6b;
-$medium-purple: #271640;
-$dark-purple: #071226;
-$main-blue: #05a696;
-$main-white: #edf6f5;
-$light-gray: #dddddd;
-$dark-gray: #666666;
-$light-white: #fafdff;
-$main-yellow: #f5b74b;
-$blue-highlight: #1acbbb;
-$blue-shadow: #237e76;
-$purple-highlight: #eb599d;
-$purple-shadow: #8c0f6b;
-$blue-hover: #06bfad;
-$pink-hover: #ff0077;
+$main-pink:        #f2137b;
+$pink-highlight:   #eb599d;
+$pink-shadow:      #8c0f6b;
+$pink-hover:       #ff0077;
+$main-blue:        #05a696;
+$blue-highlight:   #1acbbb;
+$blue-shadow:      #237e76;
+$blue-hover:       #06bfad;
+$main-purple:      #271640;
+$light-purple:     #8c0f6b;
+$dark-purple:      #071226;
+$main-white:       #edf6f5;
+$light-white:      #fafdff;
+$light-gray:       #dddddd;
+$dark-gray:        #666666;
+$main-yellow:      #f5b74b;
 
 /* ------------------------------ Mixins ------------------------------ */
 @mixin corners($topLeft : 5px, $topRight : 5px, $bottomRight : 5px, $bottomLeft : 5px){
-    -webkit-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
-    border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    -webkit-border-radius:   $topLeft $topRight $bottomRight $bottomLeft;
+    border-radius:           $topLeft $topRight $bottomRight $bottomLeft;
 }
 @mixin transition($speed : .3s){
-    transition: $speed;
-    -webkit-transition: $speed; 
+    transition:           $speed;
+    -webkit-transition:   $speed; 
 }
 @mixin gradient($top : #f2137b, $bottom : #db116f){
     background: $top; /* Old browsers */
@@ -47,16 +47,16 @@ $pink-hover: #ff0077;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 ); /* IE6-9 */
 }
 @mixin highlight($color: #eb599d){
-	-webkit-box-shadow: inset 0px 1px 0px 0px $color;
-    box-shadow: inset 0px 1px 0px 0px $color;
+	-webkit-box-shadow:   inset 0px 1px 0px 0px $color;
+    box-shadow:           inset 0px 1px 0px 0px $color;
 }
 @mixin shadow($color: $dark-purple){
-	-webkit-box-shadow: 0px 2px 0px 0px $color;
-    box-shadow: 0px 2px 0px 0px $color;
+	-webkit-box-shadow:   0px 2px 0px 0px $color;
+    box-shadow:           0px 2px 0px 0px $color;
 }
 @mixin textshadow($hor : 0px, $ver : 1px, $blur: 2px, $shadow : $dark-purple){
-	text-shadow: $hor $ver $blur $shadow;
-    filter: dropshadow(color=$shadow, offx=$hor, offy=$ver);
+	text-shadow:   $hor $ver $blur $shadow;
+    filter:        dropshadow(color=$shadow, offx=$hor, offy=$ver);
 }
 @mixin bluebutton(){
 	display: block;
@@ -77,8 +77,8 @@ $pink-hover: #ff0077;
 	}
 }
 @mixin outerglow($hor : 0px, $ver : 0px, $blur : 2px, $spread : 0px, $color : $light-gray){
-	-webkit-box-shadow: $hor $ver $blur $spread $color;     
-    box-shadow: $hor $ver $blur $spread $color;
+	-webkit-box-shadow:   $hor $ver $blur $spread $color;     
+    box-shadow:           $hor $ver $blur $spread $color;
 }
 @mixin unglow(){
 	-webkit-box-shadow: none;     
@@ -102,7 +102,7 @@ $pink-hover: #ff0077;
 	@include corners();
 }
 @mixin pinkbutton(){
-	border: solid 1px $purple-shadow;
+	border: solid 1px $pink-shadow;
 	padding: 8px;
 	font-size: .7em;
 	font-weight: 500;
@@ -287,7 +287,7 @@ header{
 	height: 70px;
 	width: 100%;
 	background-color: $main-white;
-	border-bottom: solid 1px $medium-purple;
+	border-bottom: solid 1px $main-purple;
 }
 header img:first-child{
 	width: 165px;
@@ -371,7 +371,7 @@ header #tools .button{
 }
 header #tools a:first-child{
 	@include corners(0px, 5px, 5px, 0px);
-	border-left: solid 0px $purple-shadow;
+	border-left: solid 0px $pink-shadow;
 }
 header #tools img{
 	float: left;
@@ -563,8 +563,8 @@ footer section:nth-of-type(2) li:last-child{
 #cta{
 	height: 437px;
 	width: 100%;
-	background: url("../img/home-cta1.jpg") $medium-purple no-repeat 50%;
-	border-bottom: solid 5px $medium-purple;
+	background: url("../img/home-cta1.jpg") $main-purple no-repeat 50%;
+	border-bottom: solid 5px $main-purple;
 	position: relative;
 }
 #cta .sizer{
@@ -770,7 +770,7 @@ footer section:nth-of-type(2) li:last-child{
 	float: left;
 	margin-right: 24px;
 	@include corners(0px, 0px, 5px, 5px);
-	@include outerglow(0px, 0px, 5px, 0px, $medium-purple);
+	@include outerglow(0px, 0px, 5px, 0px, $main-purple);
 }
 #partiesUpcoming article:nth-of-type(4){
 	margin-right: 0px;
@@ -1111,8 +1111,8 @@ article#topImages>a{
 #cta.discover{
 	height: 174px;
 	width: 100%;
-	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
-	border-bottom: solid 5px $medium-purple;
+	background: url("../img/stock-banner.jpg") $main-purple no-repeat 50%;
+	border-bottom: solid 5px $main-purple;
 	position: relative;
 }
 #cta.discover h1{
@@ -1358,7 +1358,7 @@ article#topImages>a{
 }
 #tabContent .party h2 a{
 	&:hover{
-		color: $purple-highlight;
+		color: $pink-highlight;
 		text-decoration: underline;
 	}
 }
@@ -1816,6 +1816,8 @@ article#topImages>a{
 	color: $main-white;
 	font-size: 1.5em;
 	float: left;
+	font-style: italic;
+	text-indent: -2px;
 }
 #tabContent.review .beforeSubmit p{
 	clear: none;
@@ -2084,8 +2086,8 @@ article#topImages>a{
 #cta.profile{
 	height: 174px;
 	width: 100%;
-	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
-	border-bottom: solid 5px $medium-purple;
+	background: url("../img/stock-banner.jpg") $main-purple no-repeat 50%;
+	border-bottom: solid 5px $main-purple;
 	position: relative;
 }
 #cta.profile h1{
@@ -3167,8 +3169,8 @@ article#topImages>a{
 #cta.party{
 	height: 174px;
 	width: 100%;
-	background: url("../img/stock-banner.jpg") $medium-purple no-repeat 50%;
-	border-bottom: solid 5px $medium-purple;
+	background: url("../img/stock-banner.jpg") $main-purple no-repeat 50%;
+	border-bottom: solid 5px $main-purple;
 	position: relative;
 }
 #cta.party h1{
@@ -3870,7 +3872,6 @@ input.ui-autocomplete-loading{
 	bottom: 390px;
 	right: 20px;
 }
-
 
 
 
