@@ -1167,6 +1167,8 @@ class Party_model extends CI_Model {
 
         $this->db->insert('party_donations', $data);
 
+        $this->incrementValue('contributions', $userID, '1');
+        
         return true;
     }
 
