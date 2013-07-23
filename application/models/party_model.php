@@ -1170,4 +1170,48 @@ class Party_model extends CI_Model {
         return true;
     }
 
+    public function getDonations($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('
+            party_donations.donation_id,
+            party_donations.user_id,
+            party_donations.party_id,
+            party_donations.donation_date,
+            party_donations.amount,
+            users.user_id,
+            users.username,
+            users.profile_img,
+            users.bio,
+            users.location,
+            users.feedback,
+            users.views,
+            users.comments,
+            users.contributions,
+            users.parties,
+        ');
+
+        $this->db->from('party_donations');
+        $this->db->join('users', 'party_donations.user_id = users.user_id');
+        $this->db->where('party_donations.party_id', $partyID);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
 }

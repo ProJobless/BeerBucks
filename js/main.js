@@ -183,6 +183,7 @@ var initTabs = function(type){
 		initTabs(type);
 		if(location[location.length-1] == 'comments' || locationPop == 'comments') initComments(type);
 		initPagination(type);
+		initBars();
 	}
 
 	function changePage(url, ele){
@@ -199,7 +200,7 @@ var initTabs = function(type){
 				tabContent.empty();
 				tabs.find('h1').removeClass('selected');
 				tabs.find('h1:contains('+ele.replace( /([a-z])([A-Z])/g, "$1 $2")+')').attr('class', 'selected');
-				tabContent.css('background-position', '45% 50%');
+				tabContent.css('background-position', '50% 50%');
 			}
 		}).done(function(data){
 			var newContent   =   $(data).find('#tabContent,#community,#people'),
@@ -256,7 +257,7 @@ var initSettings = function(){
 						tabContent.empty();
 						tabs.removeClass('selected');
 						$(e.target).addClass('selected');
-						tabContent.css('background-position', '45% 10px');
+						tabContent.css('background-position', '50% 10px');
 					}
 				}).done(function(data){
 					var newContent = $(data).find('#settingsForms');
@@ -304,6 +305,9 @@ var initComments = function(type){
 
 	//Add Comment
 	form.off('submit').on('submit', function(e){
+
+		if($('#toolBox').length == 0) window.location.href = base + "index.php/join";
+
 		var comment   =   textarea.val(),
 			url       =   base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-type ? 3 : 3] + '/ajaxComment',
 			user2ID   =   type ? window.location.pathname.split('/').pop() : 0
@@ -513,7 +517,10 @@ var initWizardOfOz = function(){
 };
 
 var initStripe = function(){
-	$('#stripeButton').on('click', function(e){
+	$('#stripeButton').off('click').on('click', function(e){
+
+		if($('#toolBox').length == 0) window.location.href = base + "index.php/join";
+
 		if($('#amount').val().length > 0){
 			var token = function(res){
 				var $input = $('<input type=hidden name=stripeToken />').val(res.id);
@@ -534,4 +541,39 @@ var initStripe = function(){
 		}
 		return false;
 	});
-}
+};
+
+var initBars = function(){
+
+	var bars = $('.bar');
+
+	$.each(bars, function(key, value){
+		var that = $(this);
+
+		percent = that.attr('data-raised');
+		that.find('span').animate({
+			width: percent*100+'%'
+		});
+
+		if(percent == 1) {
+			that.find('span').css({
+				'-webkit-border-radius':   '5px 5px 5px 5px',
+    			'border-radius':           '5px 5px 5px 5px'
+			});
+		}
+
+	})
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

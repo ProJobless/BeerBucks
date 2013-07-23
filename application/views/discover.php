@@ -18,7 +18,6 @@
 			<?if(isset($parties[0])):?>
 			
 				<? foreach ($parties as $party): ?>
-
 					<article class="party">
 
 						<a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>">
@@ -32,10 +31,10 @@
 							<h3><?=$party['party_location']?></h3>
 						</hgroup>
 
-						<div><p>$ 0/<?=$party['goal']?></p></div>
+						<div class="bar" data-raised="<?=$party['0']?>"><span>$ <?=floor($party['1'])?>/<?=$party['goal']?></span></div>
 
 						<hgroup>
-							<h5><?=$party['attending']?></h5> <h6>Attending</h6>
+							<h5><?= count($party['2'])?></h5> <h6>Attending</h6>
 							<?if($party['days'] > 1):?>
 								<h5><?=$party['days']?></h5> <h6>Days Till Party</h6>
 							<?elseif($party['days'] == 1):?>
@@ -79,3 +78,4 @@
 	<script>initScroller();</script>
 	<script>initTabs();</script>
 	<script>initPagination();</script>
+	<script>initBars();</script>

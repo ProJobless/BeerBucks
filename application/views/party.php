@@ -27,121 +27,35 @@
 
 			<section id="tabContent" class="friends">
 
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
+				<? if(isset($donations[0])): ?>
+					<? foreach ($donations as $don): ?>
 
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
+						<a href="<?=base_url()?>index.php/user/<?=$don['user_id']?>">
+							<article style="background: url(<?=base_url()?>uploads/profile/<?=$don['profile_img']?>);">
+								<hgroup>
+									<h2><i><?=$don['username']?></i></h2>
+									<h3><?=$don['location']?></h3>
+									<h4><?=$don['bio']?></h4>
+								</hgroup>
 
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
+								<ul>
+									<li>FeedBack <span><?=$don['feedback']?></span></li>
+									<li>Views <span><?=$don['views']?></span></li>
+									<li>Comments <span><?=$don['comments']?></span></li>
+								</ul>
 
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
-
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
-
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
-
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
-
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
-
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
-
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
-
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
-
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
-
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
-
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
-
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
-
-				<article style="background: url(<?=base_url()?>img/stock-party-small.jpg);">
-					<hgroup>
-						<h2><i>JazzyJeff</i></h2>
-						<h3>Orlando, FL</h3>
-						<h4>User's bio will go here blah blfjna ljnadjksn  zeld  music siis cool drin km dm coolaide.</h4>
-					</hgroup>
-
-					<ul>
-						<li>FeedBack <span>22</span></li>
-						<li>Views <span>22</span></li>
-						<li>Comments <span>22</span></li>
-					</ul>
-
-					<hgroup>
-						<h5>0</h5> <h6>Contributions</h6>
-						<h5>0</h5> <h6>Hosted Parties</h6>
-					</hgroup>
-				</article>
-
-				<div><button>See More</button></div>
+								<hgroup>
+									<h5><?=$don['contributions']?></h5> <h6>contributions</h6>
+									<h5><?=$don['parties']?></h5> <h6>Hosted Parties</h6>
+								</hgroup>
+							</article>
+						</a>
+						
+					<? endforeach; ?>
+				<?else:?>
+					<h1>No one has pitched in yet.</h1>
+				<?endif;?>
+				<!--<div class="pagination"><?=$links?></div>-->
 			</section>
 		</section>
 
@@ -151,12 +65,12 @@
 				<h1>Party Info</h1>
 				
 				<hgroup>
-					<h2>$0</h2>
+					<h2>$<?=$totalDonated?></h2>
 					<h4>raised out of</h4>
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>
 
-				<div></div>
+				<div class="bar" data-raised="<?=$percent?>"><span></span></div>
 
 				<p><?=$party[0]['description']?></p>
 
@@ -234,4 +148,5 @@
 		initTabs(1);
 		initSuccessError();
 		initStripe();
+		initBars();
 	</script>

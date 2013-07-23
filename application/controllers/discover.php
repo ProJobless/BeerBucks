@@ -31,10 +31,44 @@ class Discover extends CI_Controller {
 
         $this->pagination->initialize($config);
 
-        $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data["links"]     =   $this->pagination->create_links();
-		$data['parties']   =   $this->party_model->getFeaturedParties($config["per_page"], $page);
-		$data['view']      =   'discover';
+        $page                =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+        $data["links"]       =   $this->pagination->create_links();
+		$data['parties']     =   $this->party_model->getFeaturedParties($config["per_page"], $page);
+
+		$data['donations']   =   array();
+		$totalDonations      =   array();
+		$data['attending']   =   array();
+
+		foreach ($data['parties'] as $party)
+			$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		
+		foreach ($data['donations'] as $key=>$don) {
+			$amount = 0;
+			$donators = array();
+
+			if(isset($don[0]))
+				foreach ($don as $d){
+					$amount += $d['amount'];
+		
+					if(!in_array($d['username'], $donators))
+						array_push($donators, $d['username']);
+				}
+				
+			$totalDonations[$key] = $amount;
+			$data['attending'][$key] = $donators;
+
+		}
+
+		foreach ($data['parties'] as $k=>$party){
+
+			$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+			array_push($data['parties'][$k], $percent);
+			array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+			array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+		}
+
+		$data['view'] = 'discover';
 
 		$this->load->view('includes/template', $data);
 

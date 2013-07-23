@@ -51,12 +51,12 @@
 				<h1>Party Info</h1>
 				
 				<hgroup>
-					<h2>$0</h2>
+					<h2>$<?=$totalDonated?></h2>
 					<h4>raised out of</h4>
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>
 
-				<div></div>
+				<div class="bar" data-raised="<?=$percent?>"></div>
 
 				<p><?=$party[0]['description']?></p>
 
@@ -72,7 +72,6 @@
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
 					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
-					<input type="text" name="donate" id="donate" placeholder="$0.00"/>
 					<?=form_open("/striper"); ?>
 						<input style="display:none;" name="party_id" value="<?=end($this->uri->segments)?>" />
 						<input type="text" name="amount" id="amount" placeholder="$0.00"/>
@@ -112,9 +111,6 @@
 
 	</section>
 
-	
-
-
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
@@ -131,4 +127,5 @@
 		initTabs(1);
 		initSuccessError();
 		initStripe();
+		initBars();
 	</script>

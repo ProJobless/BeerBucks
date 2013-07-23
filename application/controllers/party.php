@@ -34,16 +34,29 @@ class Party extends CI_Controller {
 	public function attending($partyID = 0){
 
 		if($partyID){
+			$totalDonated = 0;
+
+			$data['party']       =   $this->party_model->getParty($partyID);
+			$data['donations']   =   $this->party_model->getDonations($partyID);
+			
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $don) $totalDonated += $don['amount'];
+
+			$data['totalDonated']   =   $totalDonated;
+			$data['percent']        =   $totalDonated/$data['party'][0]['goal'] >= 1 ? 1 : $totalDonated/$data['party'][0]['goal'];
+
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $at) if($at['user_id'] == $this->session->userdata('userID')) 
+					$data['donated'] = true;
 
 			if($this->session->flashdata('success')) 
-			$data['success'] = $this->session->flashdata('success');
+				$data['success'] = $this->session->flashdata('success');
 
 			if($this->session->flashdata('error')) 
-			$data['error'] = $this->session->flashdata('error');
+				$data['error'] = $this->session->flashdata('error');
 
-			$data['partyID']   =   $partyID;
-			$data['party']     =   $this->party_model->getParty($partyID);
-			$data['view']      =   'party';
+			$data['partyID']  =   $partyID;
+			$data['view']     =   'party';
 
 			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
@@ -59,12 +72,33 @@ class Party extends CI_Controller {
 
 		if($partyID){
 
+			$totalDonated = 0;
+
+			$data['party']       =   $this->party_model->getParty($partyID);
+			$data['donations']   =   $this->party_model->getDonations($partyID);
+			
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $don) $totalDonated += $don['amount'];
+
+			$data['totalDonated']   =   $totalDonated;
+			$data['percent']        =   $totalDonated/$data['party'][0]['goal'] >= 1 ? 1 : $totalDonated/$data['party'][0]['goal'];
+
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $at) if($at['user_id'] == $this->session->userdata('userID')) 
+					$data['donated'] = true;
+
+			if($this->session->flashdata('success')) 
+				$data['success'] = $this->session->flashdata('success');
+
+			if($this->session->flashdata('error')) 
+				$data['error'] = $this->session->flashdata('error');
+
 			$data['comments']   =   $this->party_model->getComments($partyID);
 			$data['partyID']    =   $partyID;
-			$data['party']      =   $this->party_model->getParty($partyID);
 			$data['view']       =   'party_comments';
-
+			
 			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+
 
 		}else{
 
@@ -178,26 +212,38 @@ class Party extends CI_Controller {
 
 	public function updates($partyID = 0){
 
-		if($this->session->userdata('userID')){
+		if($partyID) {
 
-			if($partyID) {
+			$totalDonated = 0;
 
-				$data['updates']   =   $this->party_model->getUpdates($partyID);
-				$data['partyID']   =   $partyID;
-				$data['party']     =   $this->party_model->getParty($partyID);
-				$data['view']      =   'party_updates';
+			$data['party']       =   $this->party_model->getParty($partyID);
+			$data['donations']   =   $this->party_model->getDonations($partyID);
+			
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $don) $totalDonated += $don['amount'];
 
-				$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
+			$data['totalDonated']   =   $totalDonated;
+			$data['percent']        =   $totalDonated/$data['party'][0]['goal'] >= 1 ? 1 : $totalDonated/$data['party'][0]['goal'];
 
-			}else{
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $at) if($at['user_id'] == $this->session->userdata('userID')) 
+					$data['donated'] = true;
 
-				redirect('discover');
+			if($this->session->flashdata('success')) 
+				$data['success'] = $this->session->flashdata('success');
 
-			}
+			if($this->session->flashdata('error')) 
+				$data['error'] = $this->session->flashdata('error');
+
+			$data['updates']   =   $this->party_model->getUpdates($partyID);
+			$data['partyID']   =   $partyID;
+			$data['view']      =   'party_updates';
+			
+			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
 		}else{
 
-			redirect('join');
+			redirect('discover');
 
 		}
 

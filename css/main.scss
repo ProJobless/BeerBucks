@@ -84,7 +84,7 @@ $main-yellow:      #f5b74b;
 	-webkit-box-shadow: none;     
     box-shadow: none;
 }
-@mixin bar($percent : 40%){
+@mixin bar($percent : 50%){
 	background: #05a696; /* Old browsers */
 	background: -moz-linear-gradient(left,  #05a696 0%, #05a696 $percent, #dddddd $percent, #dddddd 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#05a696), color-stop($percent,#05a696), color-stop($percent,#dddddd), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
@@ -1309,11 +1309,10 @@ article#topImages>a{
 	font-size: .6em;
 	color: rgba(237, 246, 245, 0);
 	font-weight: 900;
-	padding-left: 5px;
 	line-height: 15px;
+	position: relative;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar();
 	@include transition(.1s);
 	&:hover{
 		color: rgba(237, 246, 245, 1);
@@ -1321,12 +1320,24 @@ article#topImages>a{
 		@include transition(.1s);
 	}
 }
+#tabContent .party div span{
+	@include corners(5px,0px,0px,5px);
+	display: block;
+	height: 15px;
+	width: 0%;
+	@include highlight($blue-shadow);
+	background-color: $main-blue;
+	text-indent: 5px;
+	white-space: nowrap;
+}
 #tabContent .party div p{
 	line-height: 15px;
+	position: absolute;
+	font-family: "comic sans";
 }
 #tabContent .party div p:first-letter{
 	color: $main-white;
-	@include textshadow(0px, 0px, 2px, $dark-gray);
+	@include textshadow(0px, 0px, 1px, $dark-gray);
 }
 #tabContent .party img{
 	width: 220px;
@@ -2278,13 +2289,13 @@ article#topImages>a{
 	height: auto;
 	width: 692px;
 }
-#profile #tabContent.friends>a, #people>a{
+#tabContent.friends>a, #people>a{
 	height: auto;
 	width: auto;
 	display: block;
 	float: left;
 }
-#profile #tabContent.friends article{
+#tabContent.friends article{
 	height: 25px;
 	padding-top: 207px;
 	width: 220px;
@@ -2304,14 +2315,14 @@ article#topImages>a{
 		@include outerglow(0,0,4px, 0, $main-pink);
 	}
 }
-#profile #tabContent.friends a:nth-of-type(3n+3) article{
+#tabContent.friends a:nth-of-type(3n+3) article{
 	margin-right: 0;
 }
-#profile #tabContent.friends article hgroup:nth-of-type(1){
+#tabContent.friends article hgroup:nth-of-type(1){
 	border: none;
 	border-top: solid 1px $light-gray;
 }
-#profile #tabContent.friends article hgroup:nth-of-type(2){
+#tabContent.friends article hgroup:nth-of-type(2){
 	height: 25px;
 	width: 220px;
 	float: left;
@@ -2321,7 +2332,7 @@ article#topImages>a{
 	border-top: solid 1px $light-gray;
 	@include corners( 0, 0, 5px, 5px);
 }
-#profile #tabContent.friends article h4{
+#tabContent.friends article h4{
 	height: 40px;
 }
 #tabContent>h1{
@@ -2338,7 +2349,7 @@ article#topImages>a{
 		text-decoration: underline;
 	}
 }
-#profile #tabContent.friends article h3{
+#tabContent.friends article h3{
 	float: right;
 	color: $dark-gray;
 	font-weight: bold;
@@ -2349,7 +2360,7 @@ article#topImages>a{
 	color: $dark-gray;
 	margin-top: 2px;	
 }
-#profile #tabContent.friends article h2{
+#tabContent.friends article h2{
 	color: $light-purple;
 	font-weight: bold;
 	font-size: .8em;	
@@ -3249,11 +3260,11 @@ article#topImages>a{
 	width: 692px;
 	overflow: hidden;
 }
-#party #tabContent.friends article{
+#tabContent.friends article{
 	height: 25px;
 	padding-top: 207px;
 	width: 220px;
-	cursor: default;
+	cursor: pointer;
 	overflow: hidden;
 	margin:  13px 13px 0 0;
 	border: solid 1px $light-gray;
@@ -3309,7 +3320,7 @@ article#topImages>a{
 	font-weight: bold;
 	font-size: .6em;
 	margin-top: 20px;	
-	height: auto;
+	height: 40px;
 	width: 100%;
 	line-height: 1.4em;
 	overflow: hidden;
@@ -3458,9 +3469,17 @@ article#topImages>a{
 	height: 24px;
 	background-color: $light-gray;
 	margin: 0 auto;
+	overflow: hidden;
 	@include corners();
 	@include highlight(#ababab);
-	@include bar();
+}
+#party aside article.partyInfo span{
+	@include corners(5px,0,0,5px);
+	display: block;
+	height: 24px;
+	width: 0%;
+	@include highlight($blue-shadow);
+	background-color: $main-blue;
 }
 #party aside article.partyInfo p{
 	color: $dark-gray;
@@ -3769,7 +3788,6 @@ article#topImages>a{
 }
 
 /* ------------------------------ Edit Party Page - Tab: Basic Information ------------------------------ */
-
 #settingsForms.partyEdit label.filebutton{
     //margin-top: -260px;
 }
@@ -3869,8 +3887,6 @@ input.ui-autocomplete-loading{
 	transition: none;
     -webkit-transition: none; 
 }
-
-
 #toTop{
 	width: 100px;
 	height: 30px;
@@ -3903,5 +3919,3 @@ input.ui-autocomplete-loading{
 	transform: translate3d(0, 0, 0);
 	z-index: 9999;
 }
-
-
