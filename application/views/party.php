@@ -4,6 +4,14 @@
 		</div>
 	</section>
 
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="party" class="sizer">
 		<article id="partyImg">
 			<h1><?=$party[0]['title']?></h1>
@@ -165,10 +173,13 @@
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
 					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
-					<?=form_open("/striper"); ?><button id="customButton">Pitch In</button><?=form_close(); ?>
+					<?=form_open("/striper"); ?>
+						<input style="display:none;" name="party_id" value="<?=end($this->uri->segments)?>" />
+						<input type="text" name="amount" id="amount" placeholder="$0.00"/>
+						<button id="stripeButton">Pitch In</button>
+					<?=form_close(); ?>
 				<?endif;?>
 
-				<p>After pitching in, check here to see where the party is.</p>
 			</article>
 
 			<article class="partyHost">
@@ -221,5 +232,6 @@
 		initScroller();
 		initTimeKeeper();
 		initTabs(1);
+		initSuccessError();
 		initStripe();
 	</script>

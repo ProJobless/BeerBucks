@@ -1147,6 +1147,27 @@ class Party_model extends CI_Model {
             return false;
         }
 
-    }    
+    } 
+
+    public function addDonation($response, $partyID, $amount){
+
+        $donationID     =   $response->id;
+        $userID         =   $this->session->userdata('userID');
+        $donationDate   =   date('Y/m/d H:i:s', time());
+        $fingerprint    =   $response->card->fingerprint;
+
+        $data = array(
+            'donation_id'     =>   $donationID,
+            'party_id' => $partyID,
+            'user_id' => $userID,
+            'amount' => $amount,
+            'fingerprint' => $fingerprint,
+            'donation_date' => $donationDate
+        );
+
+        $this->db->insert('party_donations', $data);
+
+        return true;
+    }
 
 }

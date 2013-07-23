@@ -72,10 +72,13 @@
 				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
 					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
 				<?else:?>
-					<button>Pitch In</button>
+					<input type="text" name="donate" id="donate" placeholder="$0.00"/>
+					<?=form_open("/striper"); ?>
+						<input style="display:none;" name="party_id" value="<?=end($this->uri->segments)?>" />
+						<input type="text" name="amount" id="amount" placeholder="$0.00"/>
+						<button id="stripeButton">Pitch In</button>
+					<?=form_close(); ?>
 				<?endif;?>
-
-				<p>After pitching in, check here to see where the party is.</p>
 			</article>
 
 			<article class="partyHost">
@@ -122,6 +125,10 @@
 	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initScroller();</script>
-	<script>initTimeKeeper();</script>
-	<script>initTabs(1);</script>
+	<script>
+		initScroller();
+		initTimeKeeper();
+		initTabs(1);
+		initSuccessError();
+		initStripe();
+	</script>

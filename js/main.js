@@ -176,8 +176,9 @@ var initTabs = function(type){
 	if(window.history.state === null) type ? history.replaceState({title:currentParameter}, currentParameter, base + "index.php/" + currentParameter) : history.replaceState({title:currentParameter}, currentParameter, currentParameter);
 
 	function runInits(type){
-		var location = window.location.pathname.split('/');
-		var locationPop = location.pop();
+		var location      =   window.location.pathname.split('/'),
+			locationPop   =   location.pop()
+		;
 
 		initTabs(type);
 		if(location[location.length-1] == 'comments' || locationPop == 'comments') initComments(type);
@@ -185,12 +186,13 @@ var initTabs = function(type){
 	}
 
 	function changePage(url, ele){
-		var splitURL = url.split('/');
-		var newURL = type ? splitURL[splitURL.length-3] + '/' + splitURL[splitURL.length-2] + '/' + splitURL[splitURL.length-1] : splitURL.pop();
+		var splitURL   =   url.split('/'),
+			newURL     =   type ? splitURL[splitURL.length-3] + '/' + splitURL[splitURL.length-2] + '/' + splitURL[splitURL.length-1] : splitURL.pop()
+		;
 
 		$.ajax({
-			url: url,
-			async: true,
+			url:     url,
+			async:   true,
 			beforeSend: function(){
 				if(window.history.state.title != newURL) history.pushState({title:newURL}, newURL, type ? base + "index.php/" + newURL : newURL);
 				tabContent.height(50);
@@ -289,11 +291,11 @@ var initComments = function(type){
 		;
 
 		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			dataType: "json",
-			data: {commentID: commentID}
+			url:        url,
+			type:       "post",
+			async:      false,
+			dataType:   "json",
+			data:       {commentID: commentID}
 		}).done(function(response){
 			if(response)comment.fadeOut();
 		});
@@ -308,10 +310,10 @@ var initComments = function(type){
 		;
 
 		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			dataType: "json",
+			url:        url,
+			type:       "post",
+			async:      false,
+			dataType:   "json",
 			data: {
 				comment: comment,
 				user2ID: user2ID
@@ -394,8 +396,8 @@ var initPagination = function(type){
 
 		ajaxButton.addClass('loading');
 		$.ajax({
-			url: url,
-			async: true
+			url:     url,
+			async:   true
 		}).done(function(data){
 
 			var newContent = $(data).find('#tabContent .party, #people>a, .activity article, .friends>a, .comment');
@@ -443,22 +445,22 @@ var initAutoComplete = function(){
 
 			$(this).addClass('loading');
 			$.ajax({
-				url: "http://ws.geonames.org/searchJSON",
-				dataType: "jsonp",
+				url:        "http://ws.geonames.org/searchJSON",
+				dataType:   "jsonp",
 				data: {
-					country: 'US',
-					featureClass: "P",
-					style: "full",
-					maxRows: 6,
-					name_startsWith: request.term
+					country:           'US',
+					featureClass:      'P',
+					style:             'full',
+					maxRows:           6,
+					name_startsWith:   request.term
 				},
 				success: function( data ) {
 					response($.map(data.geonames, function(item){
 						return {
-							label: item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
-							value: item.name,
-							lat: item.lat,
-							lng: item.lng
+							label:    item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
+							value:    item.name,
+							lat:      item.lat,
+							lng:      item.lng
 						};
 					}));
 				}
@@ -511,23 +513,25 @@ var initWizardOfOz = function(){
 };
 
 var initStripe = function(){
-	$('#customButton').click(function(){
-		var token = function(res){
-			var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-			$('form').append($input).submit();
-		};
+	$('#stripeButton').on('click', function(e){
+		if($('#amount').val().length > 0){
+			var token = function(res){
+				var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+				$('form').append($input).submit();
+			};
 
-		StripeCheckout.open({
-			key:           'pk_test_VnzkWpUa6N5tZvq2iwAMcRxq',
-			address:       true,
-			amount:        5000,
-			currency:      'usd',
-			name:          'Beer-Bucks',
-			description:   'How much would you like to donate?',
-			panelLabel:    'Checkout',
-			token:         token
-		});
-
+			StripeCheckout.open({
+				key:           'pk_test_VnzkWpUa6N5tZvq2iwAMcRxq',
+				address:       true,
+				amount:        $('#amount').val()*100,
+				currency:      'usd',
+				name:          'Beer-Bucks',
+				description:   '',
+				panelLabel:    'Donate',
+				address:       false,
+				token:         token
+			});
+		}
 		return false;
 	});
 }

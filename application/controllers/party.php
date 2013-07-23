@@ -27,23 +27,6 @@ class Party extends CI_Controller {
 
 	public function index ($partyID = 0){	
 
-		// if($partyID){
-
-		// 	$data['partyID']   =   $partyID;
-		// 	$data['party']     =   $this->party_model->getParty($partyID);
-		// 	$data['view']      =   'party';
-
-		// 	$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
-
-		// }else{
-
-		// 	$data['parties']   =   $this->party_model->getParties();
-		// 	$data['view']      =   'discover';
-
-		// 	$this->load->view('includes/template', $data);
-
-		// }
-		
 		redirect("party/attending/$partyID");
 
 	}
@@ -51,6 +34,12 @@ class Party extends CI_Controller {
 	public function attending($partyID = 0){
 
 		if($partyID){
+
+			if($this->session->flashdata('success')) 
+			$data['success'] = $this->session->flashdata('success');
+
+			if($this->session->flashdata('error')) 
+			$data['error'] = $this->session->flashdata('error');
 
 			$data['partyID']   =   $partyID;
 			$data['party']     =   $this->party_model->getParty($partyID);
@@ -60,10 +49,7 @@ class Party extends CI_Controller {
 
 		}else{
 
-			$data['parties']   =   $this->party_model->getParties();
-			$data['view']      =   'discover';
-
-			$this->load->view('includes/template', $data);
+			redirect('discover');
 
 		}
 
@@ -82,10 +68,7 @@ class Party extends CI_Controller {
 
 		}else{
 
-			$data['parties']   =   $this->party_model->getParties();
-			$data['view']      =   'discover';
-
-			$this->load->view('includes/template', $data);
+			redirect('discover');
 
 		}
 

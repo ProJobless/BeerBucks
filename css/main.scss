@@ -3514,10 +3514,17 @@ article#topImages>a{
 	margin: 5px 0 0 0;
 	color: $dark-gray;
 }
+#party aside article.partyInfo #amount{
+	width: 100px;
+	height: 28px;
+	@include input();
+	float: left;
+	margin: 20px 0 20px 10px;
+}
 #party aside article.partyInfo button{
 	@include pinkbutton();
-	padding: 8px 25px;
-	margin-top: 10px;
+	padding: 8px 20px;
+	margin-top: 20px;
 }
 #party aside article.partyInfo .button{
 	@include pinkbutton();
@@ -3872,6 +3879,29 @@ input.ui-autocomplete-loading{
 	bottom: 390px;
 	right: 20px;
 }
-
+.cover{
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: #000;
+	background: rgba(0,0,0,0.8);
+	background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+	background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+	background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+	background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+	filter: alpha(opacity = 80);
+	opacity: 0;
+	-webkit-transition: 400ms opacity ease;
+	-moz-transition: 400ms opacity ease;
+	transition: 400ms opacity ease;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	z-index: 9999;
+}
 
 
