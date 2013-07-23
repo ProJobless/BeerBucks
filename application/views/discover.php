@@ -35,6 +35,7 @@
 
 						<hgroup>
 							<h5><?= count($party['2'])?></h5> <h6>Attending</h6>
+							
 							<?if($party['days'] > 1):?>
 								<h5><?=$party['days']?></h5> <h6>Days Till Party</h6>
 							<?elseif($party['days'] == 1):?>

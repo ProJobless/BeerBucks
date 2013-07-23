@@ -413,6 +413,7 @@ var initPagination = function(type){
 				newContent.animate({opacity: 1}, 800, function(){
 					ajaxButton.removeClass('loading');
 					check = true;
+					initBars();
 				});
 			}else{
 				ajaxButton.remove();

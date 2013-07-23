@@ -13,10 +13,6 @@ class Discover extends CI_Controller {
 
 	public function index (){	
 
-		// $data['parties']   =   $this->party_model->getFeaturedParties();
-		// $data['view']      =   'discover';
-
-		// $this->load->view('includes/template', $data);
 		redirect('discover/featured');
 
 	}
@@ -39,33 +35,35 @@ class Discover extends CI_Controller {
 		$totalDonations      =   array();
 		$data['attending']   =   array();
 
-		foreach ($data['parties'] as $party)
-			$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		if(isset($data['parties'][0])){
+			foreach ($data['parties'] as $party)
+				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
 		
-		foreach ($data['donations'] as $key=>$don) {
-			$amount = 0;
-			$donators = array();
+			foreach ($data['donations'] as $key=>$don) {
+				$amount = 0;
+				$donators = array();
 
-			if(isset($don[0]))
-				foreach ($don as $d){
-					$amount += $d['amount'];
-		
-					if(!in_array($d['username'], $donators))
-						array_push($donators, $d['username']);
-				}
-				
-			$totalDonations[$key] = $amount;
-			$data['attending'][$key] = $donators;
+				if(isset($don[0]))
+					foreach ($don as $d){
+						$amount += $d['amount'];
+			
+						if(!in_array($d['username'], $donators))
+							array_push($donators, $d['username']);
+					}
+					
+				$totalDonations[$key]      =   $amount;
+				$data['attending'][$key]   =   $donators;
 
-		}
+			}
 
-		foreach ($data['parties'] as $k=>$party){
+			foreach ($data['parties'] as $k=>$party){
 
-			$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
 
-			array_push($data['parties'][$k], $percent);
-			array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
-			array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+				array_push($data['parties'][$k], $percent);
+				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+			}
 		}
 
 		$data['view'] = 'discover';
@@ -87,7 +85,43 @@ class Discover extends CI_Controller {
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
 		$data['parties']   =   $this->party_model->getNearParties($config["per_page"], $page);
-		$data['view']      =   'discover_nearyou';
+
+		$data['donations']   =   array();
+		$totalDonations      =   array();
+		$data['attending']   =   array();
+
+		if(isset($data['parties'][0])){
+			foreach ($data['parties'] as $party)
+				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		
+			foreach ($data['donations'] as $key=>$don) {
+				$amount = 0;
+				$donators = array();
+
+				if(isset($don[0]))
+					foreach ($don as $d){
+						$amount += $d['amount'];
+			
+						if(!in_array($d['username'], $donators))
+							array_push($donators, $d['username']);
+					}
+					
+				$totalDonations[$key]      =   $amount;
+				$data['attending'][$key]   =   $donators;
+
+			}
+
+			foreach ($data['parties'] as $k=>$party){
+
+				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+				array_push($data['parties'][$k], $percent);
+				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+			}
+		}
+
+		$data['view'] = 'discover_nearyou';
 
 		$this->load->view('includes/template', $data);
 
@@ -106,7 +140,43 @@ class Discover extends CI_Controller {
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
 		$data['parties']   =   $this->party_model->getUpcomingParties($config["per_page"], $page);
-		$data['view']      =   'discover_upcoming';
+
+		$data['donations']   =   array();
+		$totalDonations      =   array();
+		$data['attending']   =   array();
+
+		if(isset($data['parties'][0])){
+			foreach ($data['parties'] as $party)
+				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		
+			foreach ($data['donations'] as $key=>$don) {
+				$amount = 0;
+				$donators = array();
+
+				if(isset($don[0]))
+					foreach ($don as $d){
+						$amount += $d['amount'];
+			
+						if(!in_array($d['username'], $donators))
+							array_push($donators, $d['username']);
+					}
+					
+				$totalDonations[$key]      =   $amount;
+				$data['attending'][$key]   =   $donators;
+
+			}
+
+			foreach ($data['parties'] as $k=>$party){
+
+				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+				array_push($data['parties'][$k], $percent);
+				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+			}
+		}
+
+		$data['view'] = 'discover_upcoming';
 
 		$this->load->view('includes/template', $data);
 
@@ -125,7 +195,43 @@ class Discover extends CI_Controller {
         $page              =   $this->uri->segment(3) ? $this->uri->segment(3) : 0;
         $data["links"]     =   $this->pagination->create_links();
 		$data['parties']   =   $this->party_model->getCompleted($config["per_page"], $page);
-		$data['view']      =   'discover_completed';
+
+		$data['donations']   =   array();
+		$totalDonations      =   array();
+		$data['attending']   =   array();
+
+		if(isset($data['parties'][0])){
+			foreach ($data['parties'] as $party)
+				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		
+			foreach ($data['donations'] as $key=>$don) {
+				$amount = 0;
+				$donators = array();
+
+				if(isset($don[0]))
+					foreach ($don as $d){
+						$amount += $d['amount'];
+			
+						if(!in_array($d['username'], $donators))
+							array_push($donators, $d['username']);
+					}
+					
+				$totalDonations[$key]      =   $amount;
+				$data['attending'][$key]   =   $donators;
+
+			}
+
+			foreach ($data['parties'] as $k=>$party){
+
+				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+				array_push($data['parties'][$k], $percent);
+				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+			}
+		}
+
+		$data['view'] = 'discover_completed';
 		
 		$this->load->view('includes/template', $data);
 
@@ -138,7 +244,43 @@ class Discover extends CI_Controller {
 		if(!$search) redirect('discover/search/'.$this->input->post('search'));
 
 		$data['parties']   =   $this->party_model->getSearchResults();
-		$data['view']      =   'discover_search';
+
+		$data['donations']   =   array();
+		$totalDonations      =   array();
+		$data['attending']   =   array();
+
+		if(isset($data['parties'][0])){
+			foreach ($data['parties'] as $party)
+				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+		
+			foreach ($data['donations'] as $key=>$don) {
+				$amount = 0;
+				$donators = array();
+
+				if(isset($don[0]))
+					foreach ($don as $d){
+						$amount += $d['amount'];
+			
+						if(!in_array($d['username'], $donators))
+							array_push($donators, $d['username']);
+					}
+					
+				$totalDonations[$key]      =   $amount;
+				$data['attending'][$key]   =   $donators;
+
+			}
+
+			foreach ($data['parties'] as $k=>$party){
+
+				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+				array_push($data['parties'][$k], $percent);
+				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+			}
+		}
+
+		$data['view'] = 'discover_search';
 		
 		$this->load->view('includes/template', $data);
 
