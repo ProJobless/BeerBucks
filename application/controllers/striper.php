@@ -21,10 +21,6 @@ class Striper extends CI_Controller {
 
 			$response = json_decode($this->stripe->charge_card($amount, $token, 'User donated to a party.'));
 
-			// echo '<pre>';
-			// print_r($response);
-			// echo '<pre>';
-
 			if(isset($response->paid)){
 
 				$this->party_model->addDonation($response, $partyID, $label);

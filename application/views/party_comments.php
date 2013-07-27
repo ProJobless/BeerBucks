@@ -44,7 +44,7 @@
 				<?if($comments[0]):?>
 					<?foreach($comments as $comment): ?>
 
-						<article>
+						<article class="comment">
 							<?if($comment['profile_img']):?>
 								<a href="<?=base_url()?>index.php/user/comments/<?=$comment['user_id']?>"><img src="<?=base_url()?>uploads/profile/<?=$comment['profile_img']?>" alt="" width="65" height="65" /></a>
 							<?else:?>
@@ -64,8 +64,8 @@
 
 					<?endforeach;?>
 				<?endif;?>
-				
-				<div><button>See More Comments</button></div>
+
+				<div class="pagination"><?=$links?></div>
 
 			</section>
 		</section>
@@ -81,7 +81,7 @@
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>
 
-				<div class="bar" data-raised="<?=$percent?>"></div>
+				<div class="bar" data-raised="<?=$percent?>"><span></span></div>
 
 				<p><?=$party[0]['description']?></p>
 
@@ -141,6 +141,7 @@
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
 	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
 	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>
@@ -151,6 +152,8 @@
 		initTimeKeeper();
 		initTabs(1);
 		initSuccessError();
+		initPagination(1);
+		initComments(1);
 		initStripe();
 		initBars();
 	</script>

@@ -27,26 +27,26 @@
 
 			<section id="tabContent" class="friends">
 
-				<? if(isset($donations[0])): ?>
-					<? foreach ($donations as $don): ?>
+				<? if(isset($attending[0])): ?>
+					<? foreach ($attending as $att): ?>
 
-						<a href="<?=base_url()?>index.php/user/<?=$don['user_id']?>">
-							<article style="background: url(<?=base_url()?>uploads/profile/<?=$don['profile_img']?>);">
+						<a href="<?=base_url()?>index.php/user/<?=$att['user_id']?>">
+							<article style="background: url(<?=base_url()?>uploads/profile/<?=$att['profile_img']?>);">
 								<hgroup>
-									<h2><i><?=$don['username']?></i></h2>
-									<h3><?=$don['location']?></h3>
-									<h4><?=$don['bio']?></h4>
+									<h2><i><?=$att['username']?></i></h2>
+									<h3><?=$att['location']?></h3>
+									<h4><?=$att['bio']?></h4>
 								</hgroup>
 
 								<ul>
-									<li>FeedBack <span><?=$don['feedback']?></span></li>
-									<li>Views <span><?=$don['views']?></span></li>
-									<li>Comments <span><?=$don['comments']?></span></li>
+									<li>FeedBack <span><?=$att['feedback']?></span></li>
+									<li>Views <span><?=$att['views']?></span></li>
+									<li>Comments <span><?=$att['comments']?></span></li>
 								</ul>
 
 								<hgroup>
-									<h5><?=$don['contributions']?></h5> <h6>contributions</h6>
-									<h5><?=$don['parties']?></h5> <h6>Hosted Parties</h6>
+									<h5><?=$att['contributions']?></h5> <h6>contributions</h6>
+									<h5><?=$att['parties']?></h5> <h6>Hosted Parties</h6>
 								</hgroup>
 							</article>
 						</a>
@@ -55,7 +55,9 @@
 				<?else:?>
 					<h1>No one has pitched in yet.</h1>
 				<?endif;?>
-				<!--<div class="pagination"><?=$links?></div>-->
+
+				<div class="pagination"><?=$links?></div>
+				
 			</section>
 		</section>
 
@@ -93,7 +95,6 @@
 						<button id="stripeButton">Pitch In</button>
 					<?=form_close(); ?>
 				<?endif;?>
-
 			</article>
 
 			<article class="partyHost">
@@ -127,10 +128,6 @@
 
 	</section>
 
-	  <script>
-   
-  </script>
-
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
@@ -147,6 +144,7 @@
 		initTimeKeeper();
 		initTabs(1);
 		initSuccessError();
+		initPagination(1)
 		initStripe();
 		initBars();
 	</script>

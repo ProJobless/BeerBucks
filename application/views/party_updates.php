@@ -4,6 +4,14 @@
 		</div>
 	</section>
 
+	<? if(isset($success)): ?>
+		<p class="success sizer"><?=$success?></p>			
+	<?endif;?>
+
+	<? if(isset($error)):?>
+		<p class="error sizer"><?=$error?></p>
+	<? endif; ?>
+
 	<section id="party" class="sizer">
 		<article id="partyImg">
 			<h1><?=$party[0]['title']?></h1>
@@ -41,7 +49,9 @@
 				<?else:?>
 					<h1>No Updates</h1>	
 				<?endif;?>
-			
+
+				<div class="pagination"><?=$links?></div>
+
 			</section>
 		</section>
 
@@ -56,7 +66,7 @@
 					<h3>$<?=$party[0]['goal']?></h3>
 				</hgroup>
 
-				<div class="bar" data-raised="<?=$percent?>"></div>
+				<div class="bar" data-raised="<?=$percent?>"><span></span></div>
 
 				<p><?=$party[0]['description']?></p>
 
@@ -116,6 +126,7 @@
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
 	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
 	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>
@@ -128,4 +139,5 @@
 		initSuccessError();
 		initStripe();
 		initBars();
+		initPagination(1);
 	</script>

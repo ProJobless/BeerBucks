@@ -74,12 +74,12 @@ class User_model extends CI_Model {
 
     }
 
-	function checkIfExists($value, $variable) {
+	function checkIfExists($value, $variable, $where) {
 
         $this->db->select($value);
         $this->db->where($value, $variable);
 
-        $q = $this->db->get('users');
+        $q = $this->db->get($where);
 
         if ($q->num_rows() > 0) {
             return true;
@@ -1023,6 +1023,104 @@ class User_model extends CI_Model {
 
         }
 
+    }
+    public function getRecipient(){
+
+        $userID = $this->session->userdata('userID');
+
+        $this->db->select('
+            recipient_id,
+            name,
+            email,
+            account
+        ');
+        $this->db->from('recipients');
+        $this->db->where('user_id', $userID);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    private function checkForRecipient(){
+
+        $userID = $this->session->userdata('userID');
+
+        $this->db->select('recipient_id, user_id');
+        $this->db->where('user_id', $userID);
+
+        $query = $this->db->get('recipients');
+
+        if($query->num_rows > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function addRecipient($response, $name, $email){
+
+        $recipientID     =   $response->id;
+        $userID          =   $this->session->userdata('userID');
+        $fingerprint     =   $response->active_account->fingerprint;
+        $account         =   $response->active_account->last4;
+        $creation_date   =   date('Y/m/d H:i:s', time());
+
+        $data = array(
+            'recipient_id'    =>   $recipientID,
+            'user_id'         =>   $userID,
+            'fingerprint'     =>   $fingerprint,
+            'creation_date'   =>   $creation_date,
+            'name'            =>   $name,
+            'email'           =>   $email,
+            'account'         =>   $account
+        );
+
+        if($this->checkForRecipient()){
+
+            $this->db->where('user_id', $userID);
+            $this->db->update('recipients', $data); 
+
+        }else{
+
+            $this->db->insert('recipients', $data);
+
+        }
+
+        return true;
+
+    }
+
+    public function updateRecipientInfo($name, $email){
+
+        $userID         =   $this->session->userdata('userID');
+        $updated_date   =   date('Y/m/d H:i:s', time());
+
+        $data = array(
+            'name'            =>   $name,
+            'email'           =>   $email,
+        );
+
+        $this->db->where('user_id', $userID);
+        $this->db->update('recipients', $data); 
+
+        return true;
     }
 
 }

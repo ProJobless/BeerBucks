@@ -476,6 +476,54 @@ class Stripe {
 		return $this->_send_request( 'coupons?'.$vars );
 	}
 
+	/**
+	 * Register a new recipient on system
+	 *
+	 * @param  string        The recipient's full, legal name. 
+	 *						 For type individual, should be in the format "First Last", "First Middle Last", or "First M Last" (no prefixes or suffixes). 
+	 *						 For corporation, the full incorporated name
+	 * @param  string        Type of the recipient: either individual or corporation.
+	 * @param  string        The recipient's tax ID, as a string. For type individual, the full SSN; for type corporation, the full EIN.
+	 * @param  mixed         This can be a bank token generated with stripe.js ( recommended ).
+	 * @param  string        The recipient's email address.
+	 * @param  string 		 An arbitrary string which you can attach to a recipient object. It is displayed alongside the recipient in the web interface.
+	 */
+	public function recipient_create( $name, $type, $tax_id = NULL, $bank_account = NULL, $email = NULL, $description = NULL ) {
+		$params = array(
+			'name' => $name,
+			'type' => $type
+		);
+		if( $tax_id )
+			$params['tax_id'] = $tax_id;
+		if( $bank_account )
+			$params['bank_account'] = $bank_account;
+		if( $email )
+			$params['email'] = $email;
+		if( $description )
+			$params['description'] = $description;
+
+		return $this->_send_request( 'recipients', $params, STRIPE_METHOD_POST );
+	}
+
+	/**
+	 * Retrieve information for a given recipient
+	 *
+	 * @param  string        The recipient ID to get information about
+	 */
+	public function recipient_info( $recipient_id ) {
+		return $this->_send_request( 'recipients/'.$recipient_id );
+	}
+
+	/**
+	 * Update an existing recipient record
+	 *
+	 * @param  string        The recipient ID for the record to update
+	 * @param  array         An array containing the new data for the recipient
+	 *
+	 */
+	public function recipient_update( $recipient_id, $newdata ) {
+		return $this->_send_request( 'recipients/'.$recipient_id, $newdata, STRIPE_METHOD_POST );
+	}
 
 	/**
 	 * Private utility function that prepare and send the request to the API servers

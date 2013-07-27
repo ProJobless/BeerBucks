@@ -23,16 +23,16 @@
 			</article>
 
 			<nav id="settingsNav">
-				<a href="#" class="selected">Profile Settings</a>
-				<a href="#">Account Settings</a>
-				<a href="#">Services Settings</a>
-				<a href="#">Subscription Settings</a>
+				<a href="<?=base_url()?>index.php/settings" class="selected">Profile Settings</a>
+				<a href="<?=base_url()?>index.php/settings/account">Account Settings</a>
+				<a href="<?=base_url()?>index.php/settings/services">Services Settings</a>
+				<a href="<?=base_url()?>index.php/settings/subscription">Subscription Settings</a>
 			</nav>
 		</aside>
 
 		<section id="settingsForms">
  			
- 			<?=form_open_multipart('/settings/profile');?>
+ 			<?=form_open_multipart('/settings/editProfile');?>
 
 				<h1>Username</h1> <hr />
 
@@ -107,7 +107,7 @@
 					</p>
 				</div>
 
-				<div><button type="submit">Submit Changes</button></div>
+				<div class="bottom"><button type="submit">Submit Changes</button></div>
 
 				<label class="filebutton">
                 	Select an image
@@ -123,11 +123,34 @@
 		</section>
 	</section>
 
+	<div id="stripeModal">
+		<header>   
+			<div class="info">
+				<h1>Beer-Bucks</h1>
+			</div>
+
+			<a class="close"></a>
+		</header>
+
+		<form>
+			<label for="routingNumber">Routing number</label>
+			<input type="text" id="routingNumber" value="111000025"/>
+
+			<label for="accountNumber">Account number</label>
+			<input type="text" id="accountNumber" value="000123456789"/>
+		</form>
+
+		<section>
+			<button type="submit" class="blue submit"><span>Submit</span></button>
+		</section>
+	</div>
+
 	<!-- Libs -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?=base_url()?>js/libs/jquery-1.9.1.min.js"><\/script>')</script>
 	<script src="<?=base_url()?>js/libs/modernizr-2.6.2.min.js"></script>
 	<script src="<?=base_url()?>js/libs/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>
@@ -136,3 +159,4 @@
 	<script>initUpload();</script>
 	<script>initSuccessError();</script>
 	<script>initAutoComplete();</script>
+	<script>initSettings();</script>

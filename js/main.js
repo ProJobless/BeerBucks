@@ -267,8 +267,11 @@ var initSettings = function(){
 						initDatePicker();
 						initDollarSign();
 					}
+					if(newContent.find('.accountHint').length > 0){
+						initStripeRecipient();
+					}
+					newContent.children().css('opacity', 0).animate({opacity: 1}, 800, function(){initSettings();});
 
-					$(newContent).children().css('opacity', 0).animate({opacity: 1}, 800, function(){initSettings();});
 				});
 				check = false;
 			}
@@ -377,9 +380,10 @@ var initPagination = function(type){
 		check        =   false
 	;
 
+	console.log(window.location.pathname.split('/')[window.location.pathname.split('/').length-3]);
 	if(window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties'){
 		count = 6;
-	}else if(window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'parties'){
+	}else if(window.location.pathname.split('/')[window.location.pathname.split('/').length-3]){
 		count = 6;
 	}
 
@@ -404,7 +408,7 @@ var initPagination = function(type){
 			async:   true
 		}).done(function(data){
 
-			var newContent = $(data).find('#tabContent .party, #people>a, .activity article, .friends>a, .comment');
+			var newContent = $(data).find('#tabContent .party, #people>a, .activity article, .friends>a, .comment, .updates article');
 
 			if(newContent.length){
 				$('.ajax').before(newContent);
@@ -474,8 +478,8 @@ var initAutoComplete = function(){
 		minLength: 2,
 		select: function( event, ui ) {
 			log(ui.item.label);
-			$('.lat').val(ui.item.lat);
-			$('.lng').val(ui.item.lng);
+			$('.partyLat').val(ui.item.lat);
+			$('.partyLng').val(ui.item.lng);
 		},
 		open: function() {
 			$(this).removeClass('closed').addClass('opened');
@@ -485,8 +489,8 @@ var initAutoComplete = function(){
 		}
 	});
 	if(location.length){
-		$('.start form').on('submit', function(e){
-			if($('.lat').val().length < 1 && $('.lng').val().length < 1){
+		$('#tabContent.start button:nth-of-type(2)').on('click', function(e){
+			if($('.partyLat').val().length < 1 && $('.partyLng').val().length < 1){
 				$('#cta').after('<p class="error sizer">Where is your party happening? Use autocomplete please.</p>');
 				$("html, body").animate({ scrollTop: $('#cta')[0].scrollHeight}, 500);
 				initSuccessError();
@@ -540,6 +544,61 @@ var initStripe = function(){
 				token:         token
 			});
 		}
+		return false;
+	});
+};
+
+var initStripeRecipient = function(){
+
+	function stripeResponseHandler(response, object){
+
+		if(object.id){
+			$('.cover, .stripe, .secure').fadeOut();
+			$('#stripeModal').css('top','200%');
+
+			$('.accountToken').val(object.id);
+
+			$('#stripeButton, .account').replaceWith('<h2 class="account">Bank account added</h2>');
+			$('.editAccount').fadeOut();
+		}
+	}
+
+	$('#stripeButton, .editAccount').off('click').on('click', function(e){
+
+		$('#cta').before('<div class="cover"></div><section class="stripeFooter"><a href="https://stripe.com" target="_blank"><span class="stripe"></span></a><span class="secure"></span></section>');
+		$('.cover, .stripe, .secure').css('opacity',1);
+
+		$('#stripeModal').css('top','50%');
+
+		$('.close').on('click', function(e){
+			$('.cover, .stripe, .secure').fadeOut();
+			$('#stripeModal').css('top','200%');
+		});
+
+		$('#stripeModal .submit').on('click', function(e){
+			var routingNumber   =   $('#routingNumber').val(),
+				accountNumber   =   $('#accountNumber').val(),
+				error           =   ''
+			;
+
+			Stripe.setPublishableKey('pk_test_VnzkWpUa6N5tZvq2iwAMcRxq');
+
+			if(!Stripe.bankAccount.validateRoutingNumber(routingNumber)){
+				error += 'Routing number did not validate.     ';
+			}
+			if(!Stripe.bankAccount.validateAccountNumber(accountNumber)){
+				error += 'Bank account number did not validate.';
+			}
+			if(error == ''){
+				Stripe.bankAccount.createToken({
+				    country: 'US',
+				    routingNumber: routingNumber,
+				    accountNumber: accountNumber,
+				}, stripeResponseHandler);
+			}else{
+				//show error.
+			}
+		});
 		return false;
 	});
 };

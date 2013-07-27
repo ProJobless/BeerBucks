@@ -31,23 +31,28 @@ class Start extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			if($this->input->post() == false){
-
-				$data['view']    =   'start';
-				$data['error']   =   'You must accept the terms before continuing.';
-
-				$this->load->view('includes/template', $data);
-
-			}else{
+			if($this->input->post() && $this->input->server('REQUEST_METHOD') == 'POST'){
 
 				$sData = array('tos' => 1);
 
 	    		$this->session->set_userdata($sData);
 
-				$data['view'] = 'start_basic';
+	    		$data['view'] = 'start_basic';
 
 				$this->load->view('includes/template', $data);
 
+			}else if($this->input->server('REQUEST_METHOD') == 'POST'){
+
+				$data['error']   =   'You must accept the terms before continuing.';
+				$data['view']    =   'start';
+
+				$this->load->view('includes/template', $data);
+
+			}else{
+
+				$data['view'] = 'start_basic';
+
+				$this->load->view('includes/template', $data);
 			}
 
 		}else{
@@ -62,21 +67,33 @@ class Start extends CI_Controller {
 
 		if($this->session->userdata('userID')) {
 
-			$sData = array(
-	            'title'         =>   $this->input->post('title'),
-	            'description'   =>   $this->input->post('description')
-	        );
+			if($this->input->post() && $this->input->server('REQUEST_METHOD') == 'POST'){
 
-			$this->session->set_userdata($sData);
+				if($this->input->post('title'))
+						$sData['title'] = $this->input->post('title');
 
+				if($this->input->post('description'))
+					$sData['description'] = $this->input->post('description');
 
+				if($this->input->post('description') || $this->input->post('title'))
+					$this->session->set_userdata($sData);
+			}
+
+			//User clicked go back, taking them to the previous step: start_basic.
 			if($this->input->post('back')){
+				redirect('start');
+			}
 
-				$data['view'] = 'start';
+			//User submitted form normally, clicking to go to the next step: start_details.
+			else if(!$this->input->post()){
+				$data['view'] = 'start_details';
 
 				$this->load->view('includes/template', $data);
 
-			}else if($_FILES['userfile']['name']){
+			}
+
+			//User submitted form by uploading an image.
+			else if($_FILES['userfile']['name']){
 
 				$imageID                   =   uniqid();
 				$config['upload_path']     =   './uploads/party';
@@ -90,6 +107,7 @@ class Start extends CI_Controller {
 
 				$this->load->library('upload', $config);
 
+				//Upload failed redirect to same page with error.
 				if (!$this->upload->do_upload()){
 
 					$error           =   array('error' => $this->upload->display_errors());
@@ -98,21 +116,23 @@ class Start extends CI_Controller {
 
 					$this->load->view('includes/template', $data);
 
-				}else{
-					
+				}
+				//Upload was successfull. Success message already sent.
+				else{
+
 					$data    =   array('upload_data' => $this->upload->data());
 					$sData   =   array('img_name' => $data['upload_data']['file_name']);
 
 					$this->session->set_userdata($sData);
 
 					$data['view']    =   'start_basic';
-					$data['error']   =   'There was a problem uploading your image.';
 
 					$this->load->view('includes/template', $data);
 				}
 
 			}else{
 
+				//User submitted form but did not upload an image.
 				if(!$this->session->userdata('img_name')){
 
 					$data['view']    =   'start_basic';
@@ -120,7 +140,10 @@ class Start extends CI_Controller {
 
 					$this->load->view('includes/template', $data);
 
-				}else{
+				}
+
+				//User submitted form with an image, validate other fields.
+				else{
 
 					$config = array(
 						array(
@@ -146,9 +169,15 @@ class Start extends CI_Controller {
 
 					}else{
 
-						$data['view'] = 'start_details';
-						$this->load->view('includes/template', $data);
+						$sData = array(
+				            'title'         =>   $this->input->post('title'),
+				            'description'   =>   $this->input->post('description')
+				        );
 
+						$this->session->set_userdata($sData);
+
+						redirect('start/details');
+			
 					}
 
 				}
@@ -163,29 +192,62 @@ class Start extends CI_Controller {
 
 	}
 
-	public function review (){
+	public function account(){
 
 		if($this->session->userdata('userID')) {
 
-			$sData2 = array(
-	            'partyLocation'   =>   $this->input->post('partyLocation'),
-				'address'         =>   $this->input->post('address'),
-	            'start'           =>   $this->input->post('start'),
-	            'end'             =>   $this->input->post('end'),
-	            'goal'            =>   $this->input->post('goal'),
-	            'partyLat'        =>   $this->input->post('lat'),
-	            'partyLng'        =>   $this->input->post('lng')
-	        );
+			if($this->input->server('REQUEST_METHOD') == 'POST'){
 
-			$this->session->set_userdata($sData2);
+				$check = false;
+
+				if($this->input->post('partyLocation')){
+					$sData['partyLocation'] = $this->input->post('partyLocation');
+					$check = true;
+				}
+				if($this->input->post('address')){
+					$sData['address'] = $this->input->post('address');
+					$check = true;
+				}
+				if($this->input->post('start')){
+					$sData['start'] = $this->input->post('start');
+					$check = true;
+				}
+				if($this->input->post('end')){
+					$sData['end'] = $this->input->post('end');
+					$check = true;
+				}
+				if($this->input->post('goal')){
+					$sData['goal'] = $this->input->post('goal');
+					$check = true;
+				}
+				if($this->input->post('partyLat')){
+					$sData['partyLat'] = $this->input->post('partyLat');
+					$check = true;
+				}
+				if($this->input->post('partyLng')){
+					$sData['partyLng'] = $this->input->post('partyLng');
+					$check = true;
+				}
+
+				if($check) $this->session->set_userdata($sData);
+
+			}
 
 			if($this->input->post('back')){
 
-				$data['view'] = 'start_basic';
+				redirect('start/basic');
+
+			}else if(!$this->input->post()){
+
+				$data['recipient']    =   $this->user_model->getRecipient();
+				$data['view']         =   'start_account';
+
+				$this->session->set_flashdata('recipientID', $data['recipient'][0]['recipient_id']);
+
 				$this->load->view('includes/template', $data);
 
 			}else{
-
+					
 				$config = array(
 					array(
 						'field'   =>   'partyLocation',
@@ -246,9 +308,163 @@ class Start extends CI_Controller {
 
 					}else{
 
-						$data['view'] = 'start_review';
+						redirect('start/account');
 
-						$this->load->view('includes/template', $data);
+					}
+
+				}
+				
+			}
+
+		}else{
+
+			redirect('join');
+
+		}
+
+	}
+
+	public function review (){
+
+		if($this->session->userdata('userID')) {
+
+			if($this->input->post('back')){
+
+				redirect('start/details');
+			
+			}else if(!$this->input->post()){
+
+				$data['view'] = 'start_review';
+
+				$this->load->view('includes/template', $data);
+
+			}else{
+
+				$config = array(
+					array(
+						'field'   =>   'name',
+						'label'   =>   'Name',
+						'rules'   =>   'trim|required|min_length[2]'
+					), 
+					array(
+						'field'   =>   'email',
+						'label'   =>   'Email',
+						'rules'   =>   'trim|required|valid_email'
+					), 
+					array(
+						'field'   =>   'accountToken',
+						'label'   =>   'Bank Account',
+						'rules'   =>   'trim|required|min_length[2]'
+					)
+				);
+
+				$this->form_validation->set_rules($config);
+				
+				if($this->form_validation->run() == false){
+
+					$data['recipient']    =   $this->user_model->getRecipient();
+					$data['view']         =   'start_account';
+					
+					$this->session->set_flashdata('recipientID', $data['recipient'][0]['recipient_id']);
+
+					$this->load->view('includes/template', $data);
+
+				}else{
+
+					$this->load->library('stripe.php');
+
+					$name          =   $this->input->post('name');
+					$type          =   'individual';
+					$token         =   $this->input->post('accountToken');
+					$email         =   $this->input->post('email');
+					$description   =   'test';
+					$recipientID   =   $this->session->flashdata('recipientID');
+
+					if($token == 'false'){
+
+						$newData = array();
+
+						if($name)
+							$newData['name'] = $name;
+						if($email)
+							$newData['email'] = $email;
+
+						$response = json_decode($this->stripe->recipient_update($recipientID, $newData));
+
+						$this->user_model->updateRecipientInfo($name, $email);
+
+						$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+						redirect('start/review');
+						
+					}else{
+
+						if($recipientID){
+
+							$newData = array();
+
+							if($name)
+								$newData['name'] = $name;
+							if($email)
+								$newData['email'] = $email;
+
+							$newData['bank_account'] = $token;
+
+							$response = json_decode($this->stripe->recipient_update($recipientID, $newData));
+
+							if(isset($response->id)){
+
+								if($this->user_model->addRecipient($response, $name, $email)){
+
+									$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+									redirect('start/account');
+
+								}
+
+							}else if(isset($response->failure_message)){
+
+								$this->session->set_flashdata('error', $response->failure_message);
+
+								redirect('start/account');
+
+							}else if(isset($response->error)){
+
+								$this->session->set_flashdata('error', $response->error->message);
+
+								redirect('start/account');
+
+							}
+
+						}else{
+
+							$response = json_decode($this->stripe->recipient_create($name, $type, NULL, $token, $email, $description));
+
+							if(isset($response->id)){
+
+								if($this->user_model->addRecipient($response, $name, $email)){
+
+									$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+									redirect('start/review');
+
+								}
+
+							}else if(isset($response->failure_message)){
+
+								$this->session->set_flashdata('error', $response->failure_message);
+
+								redirect('start/account');
+
+							}else if(isset($response->error)){
+
+								$this->session->set_flashdata('error', $response->error->message);
+
+								redirect('start/account');
+
+							}
+
+						}
 
 					}
 
@@ -270,9 +486,7 @@ class Start extends CI_Controller {
 
 			if($this->input->post('back')){
 
-				$data['view'] = 'start_details';
-
-				$this->load->view('includes/template', $data);
+				redirect('start/account');
 
 			}else{
 

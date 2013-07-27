@@ -14,6 +14,12 @@ class Settings extends CI_Controller {
 
 	public function index (){
 
+		redirect('settings/profile');
+
+	}
+
+	public function profile(){
+
 		if($this->session->userdata('userID')) {
 
 			$data['view'] = 'settings';
@@ -30,7 +36,7 @@ class Settings extends CI_Controller {
 
 	}
 
-	public function profile (){
+	public function editProfile (){
 
 		$config = array(
 			array(
@@ -130,6 +136,181 @@ class Settings extends CI_Controller {
 			}
 
 		}
+
+	}
+
+	public function account(){
+
+		if($this->session->userdata('userID')) {
+
+
+
+			$data['recipient']    =   $this->user_model->getRecipient();
+			$data['view']         =   'settings_account';
+
+			if($this->session->flashdata('success')) 
+				$data['success'] = $this->session->flashdata('success');
+
+			if($this->session->flashdata('error')) 
+				$data['error'] = $this->session->flashdata('error');
+
+			$this->session->set_flashdata('recipientID', $data['recipient'][0]['recipient_id']);
+
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$data['view'] = 'login';
+
+			$this->load->view('includes/template', $data);
+
+		}
+
+	}
+
+	public function editAccount(){
+
+
+		$config = array(
+			array(
+				'field'   =>   'name',
+				'label'   =>   'Name',
+				'rules'   =>   'trim|required|min_length[2]'
+			), 
+			array(
+				'field'   =>   'email',
+				'label'   =>   'Email',
+				'rules'   =>   'trim|required|valid_email'
+			), 
+			array(
+				'field'   =>   'accountToken',
+				'label'   =>   'Bank Account',
+				'rules'   =>   'trim|required|min_length[2]'
+			)
+		);
+
+		$this->form_validation->set_rules($config);
+		
+		if($this->form_validation->run() == false){
+
+			$data['recipient']    =   $this->user_model->getRecipient();
+			$data['view']         =   'settings_account';
+			$data['error']        =   'Please fix the errors';
+			
+			$this->load->view('includes/template', $data);
+
+		}else{
+
+			$this->load->library('stripe.php');
+
+			$name          =   $this->input->post('name');
+			$type          =   'individual';
+			$token         =   $this->input->post('accountToken');
+			$email         =   $this->input->post('email');
+			$description   =   'test';
+			$recipientID   =   $this->session->flashdata('recipientID');
+			
+			//User already had bank account added and didn't attempt to change it, update other information.
+			if($token == 'false'){
+					
+				$newData = array();
+
+				if($name)
+					$newData['name'] = $name;
+				if($email)
+					$newData['email'] = $email;
+
+				$response = json_decode($this->stripe->recipient_update($recipientID, $newData));
+
+				$this->user_model->updateRecipientInfo($name, $email);
+
+				$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+				redirect('settings/account');
+				
+			}else{
+
+				if($recipientID){
+
+					$newData = array();
+
+					if($name)
+						$newData['name'] = $name;
+					if($email)
+						$newData['email'] = $email;
+
+					$newData['bank_account'] = $token;
+
+					$response = json_decode($this->stripe->recipient_update($recipientID, $newData));
+
+					if(isset($response->id)){
+
+						if($this->user_model->addRecipient($response, $name, $email)){
+
+							$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+							redirect('settings/account');
+
+						}
+
+					}else if(isset($response->failure_message)){
+
+						$this->session->set_flashdata('error', $response->failure_message);
+
+						redirect('settings/account');
+
+					}else if(isset($response->error)){
+
+						$this->session->set_flashdata('error', $response->error->message);
+
+						redirect('settings/account');
+
+					}
+
+				} else{
+
+					$response = json_decode($this->stripe->recipient_create($name, $type, NULL, $token, $email, $description));
+
+					if(isset($response->id)){
+
+						if($this->user_model->addRecipient($response, $name, $email)){
+
+							$this->session->set_flashdata('success', 'Account settings successfully updated.');
+
+							redirect('settings/account');
+
+						}
+
+					}else if(isset($response->failure_message)){
+
+						$this->session->set_flashdata('error', $response->failure_message);
+
+						redirect('settings/account');
+
+					}else if(isset($response->error)){
+
+						$this->session->set_flashdata('error', $response->error->message);
+
+						redirect('settings/account');
+
+					}
+				}
+
+			}
+
+		}
+
+	}
+
+	public function services(){
+
+		redirect('settings/profile');
+
+	}
+
+	public function subscription(){
+
+		redirect('settings/profile');
 
 	}
 

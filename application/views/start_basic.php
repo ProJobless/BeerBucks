@@ -17,6 +17,7 @@
 			<li><h1>Guidelines</h1></li>
 			<li class="selected"><h1>Basic Information</h1></li>
 			<li><h1>Party Details</h1></li>
+			<li><h1>Account</h1></li>
 			<li><h1>Review</h1></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>

@@ -13,13 +13,14 @@
 			<li><h1>Guidelines</h1></li>
 			<li><h1>Basic Information</h1></li>
 			<li class="selected"><h1>Party Details</h1></li>
+			<li><h1>Account</h1></li>
 			<li><h1>Review</h1></li>
 			<li><a href="#">Need Help?</a></li>
 		</ul>
 
 		<section id="tabContent" class="start">
 
- 			<?=form_open("/start/review"); ?>
+ 			<?=form_open("/start/account"); ?>
 				<section id="details">
 
 					<h1>Party Location</h1> <hr>
@@ -45,18 +46,17 @@
  						</p>
 					</div>
 
-					<input type="text" name="lat" class="lat" style="display:none;" value="<? if(!set_value('lat')){
+					<input type="hidden" name="partyLat" class="partyLat" value="<? if(!set_value('partyLat')){
 								if($this->session->userdata('partyLat')) echo $this->session->userdata('partyLat');
 							}else{
-								echo set_value('lat');
+								echo set_value('partyLat');
 							} ?>">
 
 
-
-					<input type="text" name="lng" class="lng" style="display:none;" value="<? if(!set_value('lng')){
+					<input type="hidden" name="partyLng" class="partyLng" value="<? if(!set_value('partyLng')){
 								if($this->session->userdata('partyLng')) echo $this->session->userdata('partyLng');
 							}else{
-								echo set_value('lng');
+								echo set_value('partyLng');
 							} ?>">
 
 					<h1>Party Time</h1> <hr>

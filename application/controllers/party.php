@@ -5,10 +5,12 @@ class Party extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 
+		$this->load->library("pagination");
 		$this->load->model('party_model');
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
 		$data['alerts'] = $this->user_model->checkAlerts();
+
 	}
 	
 	function _remap($method){
@@ -36,9 +38,21 @@ class Party extends CI_Controller {
 		if($partyID){
 			$totalDonated = 0;
 
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/party/attending/".$partyID;
+	        $config["total_rows"]    =   $this->party_model->getAttendingCount($partyID);
+	        $config["per_page"]      =   6;
+	        $config["uri_segment"]   =   4;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
 			$data['party']       =   $this->party_model->getParty($partyID);
 			$data['donations']   =   $this->party_model->getDonations($partyID);
-			
+			$data['attending']   =   $this->party_model->getAttending($partyID, $config["per_page"], $page);
+
 			if(isset($data['donations'][0]))
 				foreach ($data['donations'] as $don) $totalDonated += $don['amount'];
 
@@ -74,6 +88,17 @@ class Party extends CI_Controller {
 
 			$totalDonated = 0;
 
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/party/comments/".$partyID;
+	        $config["total_rows"]    =   $this->party_model->getCommentsCount($partyID);
+	        $config["per_page"]      =   6;
+	        $config["uri_segment"]   =   4;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
 			$data['party']       =   $this->party_model->getParty($partyID);
 			$data['donations']   =   $this->party_model->getDonations($partyID);
 			
@@ -93,7 +118,7 @@ class Party extends CI_Controller {
 			if($this->session->flashdata('error')) 
 				$data['error'] = $this->session->flashdata('error');
 
-			$data['comments']   =   $this->party_model->getComments($partyID);
+			$data['comments']   =   $this->party_model->getComments($partyID, $config["per_page"], $page);
 			$data['partyID']    =   $partyID;
 			$data['view']       =   'party_comments';
 			
@@ -216,6 +241,17 @@ class Party extends CI_Controller {
 
 			$totalDonated = 0;
 
+			$config = array();
+	        $config["base_url"]      =   base_url()."/index.php/party/updates/".$partyID;
+	        $config["total_rows"]    =   $this->party_model->getUpdatesCount($partyID);
+	        $config["per_page"]      =   6;
+	        $config["uri_segment"]   =   4;
+
+	        $this->pagination->initialize($config);
+
+	        $page              =   $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+	        $data["links"]     =   $this->pagination->create_links();
+
 			$data['party']       =   $this->party_model->getParty($partyID);
 			$data['donations']   =   $this->party_model->getDonations($partyID);
 			
@@ -235,7 +271,7 @@ class Party extends CI_Controller {
 			if($this->session->flashdata('error')) 
 				$data['error'] = $this->session->flashdata('error');
 
-			$data['updates']   =   $this->party_model->getUpdates($partyID);
+			$data['updates']   =   $this->party_model->getUpdates($partyID, $config["per_page"], $page);
 			$data['partyID']   =   $partyID;
 			$data['view']      =   'party_updates';
 			

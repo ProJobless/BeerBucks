@@ -853,7 +853,19 @@ class Party_model extends CI_Model {
 
     }
 
-    public function getComments($partyID = 0){
+    public function getCommentsCount($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('party_comment_id');
+        $this->db->from('party_comments');
+        $this->db->where('party_comments.party_id', $partyID);
+        
+        return $this->db->count_all_results();
+
+    }
+
+    public function getComments($partyID = 0, $limit, $start){
 
         if(!$partyID) return false;
 
@@ -868,8 +880,9 @@ class Party_model extends CI_Model {
 
         $this->db->from('party_comments');
         $this->db->join('users', 'party_comments.poster_id = users.user_id');
-        $this->db->where("party_comments.party_id = '$partyID'");
+        $this->db->where('party_comments.party_id', $partyID);
         $this->db->order_by("party_comment_id", "desc");
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
@@ -1041,7 +1054,19 @@ class Party_model extends CI_Model {
 
     }
 
-    public function getUpdates($partyID = 0){
+    public function getUpdatesCount($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('update_id');
+        $this->db->from('party_updates');
+        $this->db->where('party_id', $partyID);
+        
+        return $this->db->count_all_results();
+
+    }
+
+    public function getUpdates($partyID = 0, $limit, $start){
 
         if(!$partyID) return false;
 
@@ -1054,6 +1079,7 @@ class Party_model extends CI_Model {
         ');
 
         $this->db->where('party_id', $partyID);
+        $this->db->limit($limit, $start);
         $query = $this->db->get('party_updates');
 
         if($query->num_rows > 0){
@@ -1174,7 +1200,74 @@ class Party_model extends CI_Model {
 
     public function getDonations($partyID = 0){
 
+        $this->db->select('
+            party_donations.donation_id,
+            party_donations.user_id,
+            party_donations.party_id,
+            party_donations.donation_date,
+            party_donations.amount,
+            users.user_id,
+            users.username,
+            users.profile_img,
+            users.bio,
+            users.location,
+            users.feedback,
+            users.views,
+            users.comments,
+            users.contributions,
+            users.parties,
+        ');
+
+        $this->db->from('party_donations');
+        $this->db->join('users', 'party_donations.user_id = users.user_id');
+        $this->db->where('party_donations.party_id', $partyID);
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults;
+
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getAttendingCount($partyID = 0){
+
         if(!$partyID) return false;
+
+        $this->db->select('user_id');
+        $this->db->from('party_donations');
+        $this->db->where("party_id", $partyID);
+        $this->db->group_by('user_id');
+        
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){
+
+            $count = 0;
+
+            foreach($query->result() as $row){
+                $count ++;
+            }
+
+            return $count;
+
+        }else{
+            return 0;
+        }
+
+    }
+
+    public function getAttending($partyID = 0, $limit, $start){
 
         $this->db->select('
             party_donations.donation_id,
@@ -1197,6 +1290,8 @@ class Party_model extends CI_Model {
         $this->db->from('party_donations');
         $this->db->join('users', 'party_donations.user_id = users.user_id');
         $this->db->where('party_donations.party_id', $partyID);
+        $this->db->group_by('users.user_id');
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
