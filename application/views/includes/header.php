@@ -12,11 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/normalize.css" media="screen" /> 
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css//ui/jquery-ui-1.10.3.custom.css" media="screen" /> 
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/main.css" media="screen" /> 
-
 	
-	<link rel="icon" 
-      type="image/png" 
-      href="<?=base_url()?>img/favicon.png">
+	<link rel="icon" type="image/png" href="<?=base_url()?>img/favicon.png">
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

@@ -9,8 +9,38 @@ var initTools = function(){
 		mY
 	;
 
-	function calculateDistance(elem, mouseX, mouseY){
+	var topButton = '<div id="toTop" style="display:none;"><h1>Back to top</h1></div>';
+
+	$('#tabContent').after(topButton);
+
+	var toTop = $('#toTop');
+
+	function calculateMouseDistance(elem, mouseX, mouseY){
 		return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
+	}
+
+	function bankToTop(){
+		if($(window).scrollTop() > 1500){
+
+			var that  = $(this);
+
+			toTop.fadeIn();
+
+			var footer           =   $('footer'),
+				footerOffset     =   footer.offset().top,
+				docViewTop       =   that.scrollTop(),
+				docViewBottom    =   docViewTop + that.height(),
+				footerBottom     =   footerOffset + footer.height(),
+				footerVisibile   =   (footerBottom-footerOffset+docViewBottom) - footerBottom
+			;
+
+			if(footerOffset >= -10) toTop.css('bottom', footerVisibile + 10);
+
+			if(footerVisibile <= 0) toTop.css('bottom', 10);
+
+		}else{
+			toTop.fadeOut();
+		}
 	}
 
 	if(toolBox.length){
@@ -20,12 +50,10 @@ var initTools = function(){
 		$(document).mousemove(function(e) {
 			mX = e.pageX;
 			mY = e.pageY;
-			if(calculateDistance(element, mX, mY) > 200) toolBox.height(0);
+			if(calculateMouseDistance(element, mX, mY) > 200) toolBox.height(0);
 		}).on('scroll', function(e){
 			toolBox.height(0);
-			if($(window).scrollTop() > 1000){
-				//if(!$('#toTop').length) $('#tabContent').after('<div id="toTop"><h1>Back to top</h1></div>');
-			}
+			bankToTop();
 		});
 	}
 };
@@ -380,7 +408,6 @@ var initPagination = function(type){
 		check        =   false
 	;
 
-	console.log(window.location.pathname.split('/')[window.location.pathname.split('/').length-3]);
 	if(window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties'){
 		count = 6;
 	}else if(window.location.pathname.split('/')[window.location.pathname.split('/').length-3]){
@@ -403,6 +430,7 @@ var initPagination = function(type){
 		if(type) url = base + 'index.php/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-3] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-2] + '/' + window.location.pathname.split('/')[window.location.pathname.split('/').length-1] + '/' + count;
 
 		ajaxButton.addClass('loading');
+
 		$.ajax({
 			url:     url,
 			async:   true
@@ -549,9 +577,7 @@ var initStripe = function(){
 };
 
 var initStripeRecipient = function(){
-
 	function stripeResponseHandler(response, object){
-
 		if(object.id){
 			$('.cover, .stripe, .secure').fadeOut();
 			$('#stripeModal').css('top','200%');
@@ -591,9 +617,9 @@ var initStripeRecipient = function(){
 			}
 			if(error == ''){
 				Stripe.bankAccount.createToken({
-				    country: 'US',
-				    routingNumber: routingNumber,
-				    accountNumber: accountNumber,
+					country: 'US',
+					routingNumber: routingNumber,
+					accountNumber: accountNumber
 				}, stripeResponseHandler);
 			}else{
 				//show error.

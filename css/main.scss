@@ -2986,6 +2986,7 @@ article#topImages>a{
 	padding: 15px;
 	text-align: center;
 	background: url("../img/ajax-loader.gif") no-repeat 50% -200px $light-white;
+	padding-top: 0;
 }
 #people article{
 	height: 25px;
@@ -2993,7 +2994,7 @@ article#topImages>a{
 	width: 220px;
 	cursor: pointer;
 	overflow: hidden;
-	margin:  13px 13px 0 0;
+	margin: 13px 13px 0 0;
 	border: solid 1px $light-gray;
 	float: left;
 	background-size: 100% !important;
@@ -3849,14 +3850,33 @@ input.ui-autocomplete-loading{
 	transition: none;
     -webkit-transition: none; 
 }
+
+
+
+
+
+
+
+
+
 #toTop{
 	width: 100px;
 	height: 30px;
 	background: $main-pink;
 	position: fixed;
-	bottom: 390px;
+	bottom: 10px;
 	right: 20px;
 }
+
+
+
+
+
+
+
+
+
+//Start Stripe Modal Styles
 #stripeModal{
 	position: fixed;
 	width: 235px;
@@ -4151,4 +4171,10 @@ input.ui-autocomplete-loading{
 
 #settingsForms #account #stripeButton{
 	margin: 0 0 20px 155px;
+}
+#party aside article.partyInfo p.over{
+	text-align: center;
+	padding-top: 10px;
+	font-size: 1em;
+
 }

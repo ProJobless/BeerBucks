@@ -144,6 +144,9 @@ class Party_model extends CI_Model {
             $date1      =   new DateTime(date('Y-m-d H:i:s', time()));
             $date2      =   new DateTime($row['start']);
 
+            if($date2 < $date1)
+                $newPartyInfo[$key]['expirationCheck'] = true;
+
             $interval   =   $date1->diff($date2);
             
             $days       =   $newPartyInfo[$key]['days']      =   $interval->format("%a");
@@ -733,6 +736,7 @@ class Party_model extends CI_Model {
             parties.attending,
             parties.party_lat,
             parties.party_lng,
+            parties.expired,
             users.username,
             users.profile_img,
             users.bio,
@@ -761,7 +765,9 @@ class Party_model extends CI_Model {
             return $this->getTimeTillParty($dataResults);
 
         }else{
+
             return false;
+
         }
 
     }

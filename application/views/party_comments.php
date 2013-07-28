@@ -87,22 +87,27 @@
 
 				<h3><?=$party[0]['party_location']?></h3>
 
-				<ul class="time">
-					<li><h2><?=$party[0]['days']?></h2><h3>Days</h3></li>
-					<li><h2><?=$party[0]['hours']?></h2><h3>Hours</h3></li>
-					<li><h2><?=$party[0]['minutes']?></h2><h3>Mins</h3></li>
-					<li><h2><?=$party[0]['seconds']?></h2><h3>Secs</h3></li>
-				</ul>
+				<?if(!isset($party[0]['expirationCheck'])):?>
+					<ul class="time">
+						<li><h2><?=$party[0]['days']?></h2><h3>Days</h3></li>
+						<li><h2><?=$party[0]['hours']?></h2><h3>Hours</h3></li>
+						<li><h2><?=$party[0]['minutes']?></h2><h3>Mins</h3></li>
+						<li><h2><?=$party[0]['seconds']?></h2><h3>Secs</h3></li>
+					</ul>
 
-				<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
-					<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
+					<?if($party[0]['user_id'] == $this->session->userdata('userID')):?>
+						<a href="<?=base_url()?>index.php/edit_party/information/<?=$partyID?>" class="button">Party Settings</a>
+					<?else:?>
+						<?=form_open("/striper"); ?>
+							<input style="display:none;" name="party_id" value="<?=end($this->uri->segments)?>" />
+							<input type="text" name="amount" id="amount" placeholder="$0.00"/>
+							<button id="stripeButton">Pitch In</button>
+						<?=form_close(); ?>
+					<?endif;?>
 				<?else:?>
-					<?=form_open("/striper"); ?>
-						<input style="display:none;" name="party_id" value="<?=end($this->uri->segments)?>" />
-						<input type="text" name="amount" id="amount" placeholder="$0.00"/>
-						<button id="stripeButton">Pitch In</button>
-					<?=form_close(); ?>
+					<p class="over">Campaign is over.</p>
 				<?endif;?>
+				
 			</article>
 
 			<article class="partyHost">
