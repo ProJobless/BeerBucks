@@ -565,9 +565,8 @@ class Party_model extends CI_Model {
 
             $dataResults    =   objectToArray($dataResults);
             $filteredData   =   $this->checkStatus($dataResults, true);
-            $parties        =   $this->getTimeTillParty($filteredData);
-
-            return $parties;
+            
+            return $this->getTimeTillParty($filteredData);
 
         }else{
             return false;
@@ -722,6 +721,7 @@ class Party_model extends CI_Model {
         if(!$partyID) return false;
         
         $this->db->select('
+            parties.party_id,
             parties.user_id, 
             parties.date_created, 
             parties.date_edited, 
@@ -1314,6 +1314,117 @@ class Party_model extends CI_Model {
         }else{
             return false;
         }
+
+    }
+
+    public function checkCollected($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $this->db->select('collected');
+        $this->db->where("party_id = '$partyID'");
+        $this->db->from('parties');
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){    
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            if($dataResults[0]['collected'] == 0){
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function getAmount($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $total = 0;
+
+        $this->db->select('amount');
+        $this->db->where("party_id = '$partyID'");
+        $this->db->from('party_donations');
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){    
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            foreach($dataResults as $dr){
+               $total += $dr['amount'];
+            }
+           
+            return $total*100;
+           
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function getRecipientID(){
+
+        $userID = $this->session->userdata('userID');
+
+        $this->db->select('recipient_id');
+        $this->db->where("user_id = '$userID'");
+        $this->db->from('recipients');
+
+        $query = $this->db->get();
+
+        if($query->num_rows > 0){    
+
+            foreach($query->result() as $row){
+                $dataResults[] = $row;
+            }
+
+            $dataResults = objectToArray($dataResults);
+
+            return $dataResults[0]['recipient_id'];
+           
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function changeCollected($partyID = 0){
+
+        if(!$partyID) return false;
+
+        $data = array('collected' => 1);
+
+        $this->db->where("party_id", $partyID);
+        $this->db->update('parties', $data); 
+
+        return true;
 
     }
 

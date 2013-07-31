@@ -97,6 +97,12 @@
 					<?endif;?>
 				<?else:?>
 					<p class="over">Campaign is over.</p>
+
+					<?if($party[0]['user_id'] == $this->session->userdata('userID') && $collected):?>
+						<?=form_open("striper/collect/$partyID"); ?>
+							<button class="collect">Collect your funds</button>
+						<?=form_close(); ?>
+					<?endif;?>
 				<?endif;?>
 
 			</article>

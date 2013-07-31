@@ -9,9 +9,9 @@ var initTools = function(){
 		mY
 	;
 
-	var topButton = '<div id="toTop" style="display:none;"><h1>Back to top</h1></div>';
+	var topButton = '<div id="toTop" style="display:none;"><button>Back to top</button></div>';
 
-	$('#tabContent').after(topButton);
+	$('body').append(topButton);
 
 	var toTop = $('#toTop');
 
@@ -19,29 +19,31 @@ var initTools = function(){
 		return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
 	}
 
-	function bankToTop(){
-		if($(window).scrollTop() > 1500){
-
-			var that  = $(this);
-
-			toTop.fadeIn();
-
-			var footer           =   $('footer'),
-				footerOffset     =   footer.offset().top,
-				docViewTop       =   that.scrollTop(),
-				docViewBottom    =   docViewTop + that.height(),
-				footerBottom     =   footerOffset + footer.height(),
-				footerVisibile   =   (footerBottom-footerOffset+docViewBottom) - footerBottom
-			;
-
-			if(footerOffset >= -10) toTop.css('bottom', footerVisibile + 10);
-
-			if(footerVisibile <= 0) toTop.css('bottom', 10);
-
-		}else{
-			toTop.fadeOut();
-		}
+	function goToTop(){
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		return false;
 	}
+
+	function toTopButton(){
+
+		var windo            =   $(window),
+			footer           =   $('footer'),
+			footerOffset     =   footer.offset().top,
+			docViewTop       =   windo.scrollTop(),
+			docViewBottom    =   docViewTop + windo.height(),
+			footerBottom     =   footerOffset + footer.height(),
+			footerVisibile   =   (footerBottom-footerOffset+docViewBottom) - footerBottom
+		;
+
+		if(footerVisibile >= 0) toTop.css('bottom', footerVisibile + 10);
+
+		if(footerVisibile < 0) toTop.css('bottom', 10);
+
+		windo.scrollTop() > 1500 ? toTop.fadeIn() : toTop.fadeOut();
+
+	}
+
+	toTop.on('click', goToTop);
 
 	if(toolBox.length){
 		toolBox.on('click', function(e){
@@ -53,7 +55,7 @@ var initTools = function(){
 			if(calculateMouseDistance(element, mX, mY) > 200) toolBox.height(0);
 		}).on('scroll', function(e){
 			toolBox.height(0);
-			bankToTop();
+			toTopButton();
 		});
 	}
 };

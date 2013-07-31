@@ -12,8 +12,10 @@ define( 'STRIPE_METHOD_DELETE', 'delete' );
  *
  * @copyright   Copyright (c) 2011 Pixative Solutions
  * @copyright 	Copyright (c) 2013 Sekati
+ * @copyright   Copyright (c) 2013 Kolby Sisk
  * @author      Ben Cessa <ben@pixative.com> - http://www.pixative.com
  * @author 		Jason Horwitz <jason@sekati.com>
+ * @author      Kolby Sisk <kolby.sisk@gmail.com> - http://www.kolbysisk.com
  */
 class Stripe {
 	/**
@@ -523,6 +525,84 @@ class Stripe {
 	 */
 	public function recipient_update( $recipient_id, $newdata ) {
 		return $this->_send_request( 'recipients/'.$recipient_id, $newdata, STRIPE_METHOD_POST );
+	}
+
+	/**
+	 * Creating a new transfer (sending funds to a third-party bank account)
+	 *
+	 * @param  int           A positive int, in cents, representing how much money to transfer.
+	 * @param  string        3-letter ISO code for currency. For dollars use USD.
+	 * @param  string        A verified recipient's ID. This should be created using recipient_create above.
+	 *                       If transferring to the bank account associated with your account use 'self'
+	 * @param  string        An arbitrary string which you can attach to a transfer object. It is displayed when in the web interface alongside the transfer.
+	 * @param  string 		 An arbitrary string which will be displayed on the recipient's bank statement. This should not include your company name, as that will already be part of the descriptor. The maximum length of this string is 15 characters; longer strings will be truncated.
+	 */
+	public function transfer_create( $amount, $currency, $recipient, $description = null, $statement_descriptor = null ) {
+		$params = array(
+			'amount' => $amount,
+			'currency' => $currency,
+			'recipient' => $recipient
+		);
+		if( $description )
+			$params['description'] = $description;
+		if( $statement_descriptor )
+			$params['statement_descriptor'] = $statement_descriptor;
+
+		return $this->_send_request( 'transfers', $params, STRIPE_METHOD_POST );
+	}
+
+	/**
+	 * Retrieve the detailas of an existing transfer
+	 *
+	 * @param  string        The transfer ID to get information about
+	 */
+	public function transfer_retrieve( $transfer_id ) {
+		return $this->_send_request( 'transfers/'.$transfer_id );
+	}
+
+	/**
+	 * Canceling a Transfer
+	 *
+	 * @param  string        The transfer ID you wish to cancel
+	 */
+	public function transfer_cancel( $transfer_id ) {
+		return $this->_send_request( 'transfers/'.$transfer_id, array(), STRIPE_METHOD_DELETE );
+	}
+
+	/**
+	 * List all transfers
+	 *
+	 * @param  int           A limit on the number of objects to be returned.
+	 * @param  string/dict   A filter on the list based on the events created date. The value can be a string with an exact UTC timestamp,
+	 *						 or it can be a dictionary with the following options:
+	 *							gt (optional)
+	 *								Return values should have been created after this timestamp.
+	 *							gte (optional)
+	 *								Return values should have been created after or equal to this timestamp.
+	 *							lt (optional)
+	 *								Return values should have been created before this timestamp.
+	 *							lte (optional)
+	 *								Return values should have been created before or equal to this timestamp.
+	 * @param  int           An offset into the list of returned items. The API will return the requested number of items starting at that offset.
+	 * @param  string        Only return transfers for the recipient specified by this recipient ID
+	 * @param  string 		 Only return transfers that have the given status: pending, paid, or failed.
+	 */
+	public function transfer_all( $count = 10, $date = null, $offset = 0, $recipient = null, $status = null ) {
+
+		if( $count )
+			$params['count'] = $count;
+		if( $date )
+			$params['date'] = $date;
+		if( $offset )
+			$params['offset'] = $offset;
+		if( $recipient )
+			$params['recipient'] = $recipient;
+		if( $status )
+			$params['status'] = $status;
+
+		$vars = http_build_query( $params, NULL, '&' );
+
+		return $this->_send_request( 'transfers?'.$vars );
 	}
 
 	/**

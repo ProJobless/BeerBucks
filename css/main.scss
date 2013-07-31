@@ -3862,13 +3862,23 @@ input.ui-autocomplete-loading{
 #toTop{
 	width: 100px;
 	height: 30px;
-	background: $main-pink;
 	position: fixed;
 	bottom: 10px;
 	right: 20px;
 }
 
-
+#toTop button{
+	@include pinkbutton();
+}
+#toTop button:before{
+	content: "";
+	width: 10px;
+	height: 15px;
+	display: block;
+	background: url("../img/icon-top.png") no-repeat;
+	float: left;
+	margin-right: 3px;
+}
 
 
 
@@ -4176,5 +4186,9 @@ input.ui-autocomplete-loading{
 	text-align: center;
 	padding-top: 10px;
 	font-size: 1em;
+	border-top: solid 1px $light-gray;
 
+}
+#party aside article.partyInfo .collect{
+	margin: 0 0 10px 0;
 }

@@ -44,6 +44,46 @@ class Striper extends CI_Controller {
 
 			}
 
+		}else{
+
+			redirect('join');
+
+		}
+
+	}
+
+	public function collect($partyID = 0){
+
+		if($this->session->userdata('userID')){
+
+			if($this->party_model->checkUser($partyID) && $this->party_model->checkCollected($partyID)){
+			
+				$amount      =   $this->party_model->getAmount($partyID);
+				$currency    =   'USD';
+				$recipient   =   $this->party_model->getRecipientID($partyID);
+
+				$response = json_decode($this->stripe->transfer_create($amount, $currency, $recipient));
+
+				if(isset($response->id)){
+					$this->party_model->changeCollected($partyID);
+					$this->session->set_flashdata('success',"Funds are being sent to your bank account.");
+					redirect("party/attending/$partyID");
+				}else{
+					$this->session->set_flashdata('error',"There was a problem collecting your funds. Please try again.");
+					redirect("party/attending/$partyID");
+				}
+
+			}else{
+
+				$this->session->set_flashdata('error',"Funds have already been sent to your bank account.");
+				redirect("party/attending/$partyID");
+
+			}
+
+		}else{
+
+			redirect('join');
+
 		}
 
 	}

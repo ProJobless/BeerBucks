@@ -69,8 +69,9 @@ class Party extends CI_Controller {
 			if($this->session->flashdata('error')) 
 				$data['error'] = $this->session->flashdata('error');
 
-			$data['partyID']  =   $partyID;
-			$data['view']     =   'party';
+			$data['collected']   =   $this->party_model->checkCollected($partyID);
+			$data['partyID']     =   $partyID;
+			$data['view']        =   'party';
 
 			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
@@ -118,9 +119,10 @@ class Party extends CI_Controller {
 			if($this->session->flashdata('error')) 
 				$data['error'] = $this->session->flashdata('error');
 
-			$data['comments']   =   $this->party_model->getComments($partyID, $config["per_page"], $page);
-			$data['partyID']    =   $partyID;
-			$data['view']       =   'party_comments';
+			$data['comments']    =   $this->party_model->getComments($partyID, $config["per_page"], $page);
+			$data['collected']   =   $this->party_model->checkCollected($partyID);
+			$data['partyID']     =   $partyID;
+			$data['view']        =   'party_comments';
 			
 			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
@@ -271,9 +273,10 @@ class Party extends CI_Controller {
 			if($this->session->flashdata('error')) 
 				$data['error'] = $this->session->flashdata('error');
 
-			$data['updates']   =   $this->party_model->getUpdates($partyID, $config["per_page"], $page);
-			$data['partyID']   =   $partyID;
-			$data['view']      =   'party_updates';
+			$data['updates']     =   $this->party_model->getUpdates($partyID, $config["per_page"], $page);
+			$data['partyID']     =   $partyID;
+			$data['collected']   =   $this->party_model->checkCollected($partyID);
+			$data['view']        =   'party_updates';
 			
 			$data['party'] ? $this->load->view('includes/template', $data) : redirect('discover');
 
