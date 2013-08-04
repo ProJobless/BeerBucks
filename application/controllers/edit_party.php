@@ -4,7 +4,7 @@ class Edit_party extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-
+		
 		$this->load->model('party_model');
 		$this->load->model('user_model');
 		$this->load->library('form_validation');

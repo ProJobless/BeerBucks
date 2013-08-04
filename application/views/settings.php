@@ -25,8 +25,8 @@
 			<nav id="settingsNav">
 				<a href="<?=base_url()?>index.php/settings" class="selected">Profile Settings</a>
 				<a href="<?=base_url()?>index.php/settings/account">Account Settings</a>
-				<a href="<?=base_url()?>index.php/settings/services">Services Settings</a>
-				<a href="<?=base_url()?>index.php/settings/subscription">Subscription Settings</a>
+				<!-- <a href="<?=base_url()?>index.php/settings/services">Services Settings</a>
+				<a href="<?=base_url()?>index.php/settings/subscription">Subscription Settings</a> -->
 			</nav>
 		</aside>
 
@@ -70,7 +70,7 @@
 						} ?>"/>
 				</div>
 
-				<input type="text" name="lat" class="lat" style="display:none;" value="<? if(!set_value('lat')){
+				<input type="hidden" name="lat" class="lat" value="<? if(!set_value('lat')){
 								if($this->session->userdata('lat')) echo $this->session->userdata('lat');
 							}else{
 								echo set_value('lat');
@@ -78,7 +78,7 @@
 
 
 
-					<input type="text" name="lng" class="lng" style="display:none;" value="<? if(!set_value('lng')){
+					<input type="hidden" name="lng" class="lng" value="<? if(!set_value('lng')){
 								if($this->session->userdata('lng')) echo $this->session->userdata('lng');
 							}else{
 								echo set_value('lng');

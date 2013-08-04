@@ -42,7 +42,7 @@ class Settings extends CI_Controller {
 			array(
 				'field' => 'username',
 				'label' => 'Username',
-				'rules' => 'trim|required|min_length[3]|max_length[20]'
+				'rules' => 'alpha_dash|trim|required|min_length[3]|max_length[20]|xss_clean'
 			), 
 			array(
 				'field' => 'bio',
@@ -119,7 +119,7 @@ class Settings extends CI_Controller {
 
 				if($result){
 
-					$data['view']      = 'settings';
+					$data['view']      =   'settings';
 					$data['success']   =   'Information successfully updated.';
 					
 					$this->load->view('includes/template', $data);
@@ -142,8 +142,6 @@ class Settings extends CI_Controller {
 	public function account(){
 
 		if($this->session->userdata('userID')) {
-
-
 
 			$data['recipient']    =   $this->user_model->getRecipient();
 			$data['view']         =   'settings_account';
@@ -169,7 +167,6 @@ class Settings extends CI_Controller {
 	}
 
 	public function editAccount(){
-
 
 		$config = array(
 			array(
@@ -207,7 +204,7 @@ class Settings extends CI_Controller {
 			$type          =   'individual';
 			$token         =   $this->input->post('accountToken');
 			$email         =   $this->input->post('email');
-			$description   =   'test';
+			$description   =   "BeerBucks user's account details.";
 			$recipientID   =   $this->session->flashdata('recipientID');
 			
 			//User already had bank account added and didn't attempt to change it, update other information.

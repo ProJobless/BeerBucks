@@ -19,12 +19,13 @@
 			<?=form_open("/authentication/login"); ?>
 				<h1>Login with an email</h1>
 				<div>
-					<p><? if(isset($error)) echo $error; ?></p>
+					<?=form_error('loginEmail'); ?>
 					<h2>Email Address</h2>
-					<input type="text" name="email" />
-
+					<input type="text" name="loginEmail" />
+						
+					<?=form_error('loginPass'); ?>
 					<h2>Password</h2>
-					<?=form_password('password'); ?>
+					<?=form_password('loginPass'); ?>
 
 					<button type="submit">Login</button>
 					<a href="#">Forgot your password?</a>

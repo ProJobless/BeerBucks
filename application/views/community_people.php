@@ -6,7 +6,7 @@
 
 	<section id="tabs" class="sizer">
 		<nav>
-			<a href="<?=base_url()?>index.php/community"><h1>Featured</h1></a>
+			<!-- <a href="<?=base_url()?>index.php/community"><h1>Featured</h1></a> -->
 			<a href="<?=base_url()?>index.php/community/people"><h1 class="selected">People</h1></a>
 <!-- 			<a href="<?=base_url()?>index.php/community/photos"><h1>Photos</h1></a>-->
 			<?=form_open("community/search"); ?><input type="text" name="search" placeholder="Search for a friend by username or location"></input><button>Search</button><?=form_close(); ?>

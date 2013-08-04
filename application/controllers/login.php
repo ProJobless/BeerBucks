@@ -5,6 +5,8 @@ class Login extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 
+        $this->session->keep_flashdata('referer');
+
 	}
 
 	public function index (){	
@@ -30,6 +32,8 @@ class Login extends CI_Controller {
             'description'            =>   null,
             'location'               =>   null,
             'partyLocation'          =>   null,
+            'partyLat'               =>   null,
+            'partyLng'               =>   null,
             'address'                =>   null,
             'start'                  =>   null,
             'end'                    =>   null,
@@ -42,7 +46,10 @@ class Login extends CI_Controller {
             'request_token_secret'   =>   null,
             'twitter_user_id'        =>   null,
             'twitter_screen_name'    =>   null,
+            //Geo Location Data
             'geoLocation'            =>   null,
+            'userLat'                =>   null,
+            'userLng'                =>   null,
         );
 
         $this->session->unset_userdata($sData);

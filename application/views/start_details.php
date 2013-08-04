@@ -125,14 +125,13 @@
 						<h3 class="partyLocation"></h3>
 					</hgroup>
 
-					<div><p class="goal">
-							<? if(!set_value('goal')):?>
-								<?if($this->session->userdata('goal')) echo '$ 0/' . ltrim($this->session->userdata('goal') , '$');?>
-							<? elseif(set_value('goal')):?>
-								<?='$ 0/' . ltrim(set_value('goal') , '$')?>
-							<? endif; ?>
-						</p>
-					</div>
+					<div class="bar" data-raised=""><span>$0/<?if($this->session->userdata('goal')) echo $this->session->userdata('goal'); else echo '0';?></span></div>
+
+					<hgroup>
+						<h5>0</h5> <h6>Attending</h6>
+						<h5>0</h5> <h6>Days Till Party</h6>
+					</hgroup>
+					
 				</article>
 			</aside>
 		</section>

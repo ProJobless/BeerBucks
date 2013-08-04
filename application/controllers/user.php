@@ -90,34 +90,38 @@ class User extends CI_Controller {
 			$totalDonations      =   array();
 			$data['attending']   =   array();
 
-			foreach ($data['parties'] as $party)
-				$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
+			if(isset($data['parties'][0]))
+				foreach ($data['parties'] as $party)
+					$data['donations'][$party['party_id']] = $this->party_model->getDonations($party['party_id']);
 			
-			foreach ($data['donations'] as $key=>$don) {
-				$amount = 0;
-				$donators = array();
+			if(isset($data['donations'][0]))
+				foreach ($data['donations'] as $key=>$don) {
+					$amount = 0;
+					$donators = array();
 
-				if(isset($don[0]))
-					foreach ($don as $d){
-						$amount += $d['amount'];
-			
-						if(!in_array($d['username'], $donators))
-							array_push($donators, $d['username']);
-					}
-					
-				$totalDonations[$key]      =   $amount;
-				$data['attending'][$key]   =   $donators;
+					if(isset($don[0]))
+						foreach ($don as $d){
+							$amount += $d['amount'];
+				
+							if(!in_array($d['username'], $donators))
+								array_push($donators, $d['username']);
+						}
+						
+					$totalDonations[$key]      =   $amount;
+					$data['attending'][$key]   =   $donators;
 
-			}
+				}
 
-			foreach ($data['parties'] as $k=>$party){
 
-				$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+			if(isset($data['parties'][0]))
+				foreach ($data['parties'] as $k=>$party){
 
-				array_push($data['parties'][$k], $percent);
-				array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
-				array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
-			}
+					$percent = $totalDonations[$party['party_id']]/$party['goal'] >= 1 ? 1 : $totalDonations[$party['party_id']]/$party['goal'];
+
+					array_push($data['parties'][$k], $percent);
+					array_push($data['parties'][$k], $totalDonations[$party['party_id']]);
+					array_push($data['parties'][$k], $data['attending'][$party['party_id']]);
+				}
 
 			$data['view'] = 'user_parties';
 

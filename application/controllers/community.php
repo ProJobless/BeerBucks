@@ -23,10 +23,11 @@ class Community extends CI_Controller {
 
 	public function featured(){
 
-		$data['view'] = 'community';
+		// $data['view'] = 'community';
 
-		$this->load->view('includes/template', $data);
+		// $this->load->view('includes/template', $data);
 		
+		redirect('community/people');
 	}
 
 	public function people(){

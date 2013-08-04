@@ -28,6 +28,8 @@ class Twitter extends CI_Controller{
 	
 	public function auth(){
 
+		$this->session->keep_flashdata('referer');
+
 		if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret')){
 			
 			redirect('login');
@@ -86,7 +88,15 @@ class Twitter extends CI_Controller{
 
 				if($this->authentication_model->twitter($access_token, $twitterImg)){
 					
-					redirect('profile');
+					if($this->session->flashdata('referer')){
+					
+						redirect($this->session->flashdata('referer'));
+
+					}else{
+
+						redirect('profile');
+
+					}
 				}
 			
 			}else{

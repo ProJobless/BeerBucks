@@ -77,7 +77,7 @@
 
 					<p><?=$this->session->userdata('description')?></p>
 
-					<h3><?=$this->session->userdata('location')?></h3>
+					<h3><?=$this->session->userdata('partyLocation')?></h3>
 
 					<ul>
 						<li><h2>X</h2><h3>Days</h3></li>

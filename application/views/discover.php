@@ -18,6 +18,7 @@
 			<?if(isset($parties[0])):?>
 			
 				<? foreach ($parties as $party): ?>
+
 					<article class="party">
 
 						<a href="<?=base_url()?>index.php/party/<?=$party['party_id']?>">

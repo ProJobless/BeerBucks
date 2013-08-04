@@ -9,130 +9,107 @@
 	</section>
 
 	<section id="partiesNear" class="sizer">
-		<h1>Parties near <? if(isset($userLocation)) echo $userLocation['cityName'] ?></h1>
-		<article>
-			<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-			<hgroup>
-				<h2>Michael's 22nd birthday party</h2>
-				<h3>Hosted by <i>JazyJeff</i></h3>
-				<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-				<h3>Orlando, FL</h3>
-			</hgroup>
-			<div><p>$ 100/100</p></div>
-			<hgroup>
-				<h5>23</h5> <h6>Attending</h6>
-				<h5>10</h5> <h6>Days Till Party</h6>
-			</hgroup>
-		</article>
 
-		<article>
-			<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-			<hgroup>
-				<h2>Michael's 22nd birthday party</h2>
-				<h3>Hosted by <i>JazyJeff</i></h3>
-				<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-				<h3>Orlando, FL</h3>
-			</hgroup>
-			<div><p>$ 100/100</p></div>
-			<hgroup>
-				<h5>23</h5> <h6>Attending</h6>
-				<h5>10</h5> <h6>Days Till Party</h6>
-			</hgroup>
-		</article>
+		<?if(isset($featured[0])):?>
+			<h1>Featured parties</h1>
+			<?$key = 0?>
+			<? foreach($featured as $f): ?>
+				<? $key++; if($key == 5) break ?>
+				<article class="party">
 
-		<article>
-			<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-			<hgroup>
-				<h2>Michael's 22nd birthday party</h2>
-				<h3>Hosted by <i>JazyJeff</i></h3>
-				<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-				<h3>Orlando, FL</h3>
-			</hgroup>
-			<div><p>$ 100/100</p></div>
-			<hgroup>
-				<h5>23</h5> <h6>Attending</h6>
-				<h5>10</h5> <h6>Days Till Party</h6>
-			</hgroup>
-		</article>
+					<a href="<?=base_url()?>index.php/party/<?=$f['party_id']?>">
+						<img src="<?=base_url()?>uploads/party/<?=$f['party_img']?>" alt=""  width="220" height="210"/>
+					</a>
+				
+					<hgroup>
+						<h2><a href="<?=base_url()?>index.php/party/<?=$f['party_id']?>"><?=$f['title']?></a></h2>
+						<h3>Hosted by <i><a href="<?=base_url()?>index.php/user/<?=$f['user_id']?>"><?=$f['username']?></a></i></h3>
+						<h4><?=$f['description']?></h4>
+						<h3><?=$f['party_location']?></h3>
+					</hgroup>
 
-		<article>
-			<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-			<hgroup>
-				<h2>Michael's 22nd birthday party</h2>
-				<h3>Hosted by <i>JazyJeff</i></h3>
-				<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-				<h3>Orlando, FL</h3>
-			</hgroup>
-			<div><p>$ 100/100</p></div>
-			<hgroup>
-				<h5>23</h5> <h6>Attending</h6>
-				<h5>10</h5> <h6>Days Till Party</h6>
-			</hgroup>
-		</article>
+					<div class="bar" data-raised="<?=$f['0']?>"><span>$ <?=floor($f['1'])?>/<?=$f['goal']?></span></div>
+
+					<hgroup>
+						<h5><?= count($f['2'])?></h5> <h6>Attending</h6>
+						
+						<?if($f['days'] > 1):?>
+							<h5><?=$f['days']?></h5> <h6>Days Till Party</h6>
+						<?elseif($f['days'] == 1):?>
+							<h5><?=$f['days']?></h5> <h6>Day Till Party</h6>
+						<?elseif($f['hours'] > 1):?>
+							<h5><?=$f['hours']?></h5> <h6>Hours Till Party</h6>
+						<?elseif($f['hours'] == 1):?>
+							<h5><?=$f['hours']?></h5> <h6>Hour Till Party</h6>
+						<?elseif($f['minutes'] > 1):?>
+							<h5><?=$f['minutes']?></h5> <h6>Minutes Till Party</h6>
+						<?elseif($f['minutes'] = 1):?>
+							<h5><?=$f['minutes']?></h5> <h6>Minute Till Party</h6>
+						<?elseif($f['seconds'] > 1):?>
+							<h5><?=$f['seconds']?></h5> <h6>Seconds Till Party</h6>
+						<?elseif($f['seconds'] = 1):?>
+							<h5><?=$f['seconds']?></h5> <h6>Second Till Party</h6>
+						<?endif;?>
+					</hgroup>
+				
+				</article>
+			<? endforeach; ?>
+		
+		<?endif;?>
+
 	</section>
 
 	<section id="partiesUpcoming">
 		<div class="sizer">
-			<h1>Upcoming Parties</h1>
-			<article>
-				<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
+			<?if(isset($featured[0])):?>
 
-			<article>
-				<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
+				<h1>Upcoming Parties</h1>
 
-			<article>
-				<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>23</h5> <h6>Attending</h6>
-					<h5>10</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
+				<? foreach($featured as $k=>$f): ?>
 
-			<article>
-				<img src="<?=base_url()?>img/stock-party-small.jpg" alt="" />
-				<hgroup>
-					<h2>Michael's 22nd birthday party</h2>
-					<h3>Hosted by <i>JazyJeff</i></h3>
-					<h4>Bacon ipsum dolor sitw efew amet fatback spare ribs flank ham. Tongue doner capicola jowl chicken strip steak ribeye short ribs tenderloin biltong turducken prosciutto cow.</h4>
-					<h3>Orlando, FL</h3>
-				</hgroup>
-				<div><p>$ 100/100</p></div>
-				<hgroup>
-					<h5>20302</h5> <h6>Attending</h6>
-					<h5>365</h5> <h6>Days Till Party</h6>
-				</hgroup>
-			</article>
+					<? if($k < 4) continue; ?>
+
+					<article class="party">
+
+						<a href="<?=base_url()?>index.php/party/<?=$f['party_id']?>">
+							<img src="<?=base_url()?>uploads/party/<?=$f['party_img']?>" alt=""  width="220" height="210"/>
+						</a>
+					
+						<hgroup>
+							<h2><a href="<?=base_url()?>index.php/party/<?=$f['party_id']?>"><?=$f['title']?></a></h2>
+							<h3>Hosted by <i><a href="<?=base_url()?>index.php/user/<?=$f['user_id']?>"><?=$f['username']?></a></i></h3>
+							<h4><?=$f['description']?></h4>
+							<h3><?=$f['party_location']?></h3>
+						</hgroup>
+
+						<div class="bar" data-raised="<?=$f['0']?>"><span>$ <?=floor($f['1'])?>/<?=$f['goal']?></span></div>
+
+						<hgroup>
+							<h5><?= count($f['2'])?></h5> <h6>Attending</h6>
+							
+							<?if($f['days'] > 1):?>
+								<h5><?=$f['days']?></h5> <h6>Days Till Party</h6>
+							<?elseif($f['days'] == 1):?>
+								<h5><?=$f['days']?></h5> <h6>Day Till Party</h6>
+							<?elseif($f['hours'] > 1):?>
+								<h5><?=$f['hours']?></h5> <h6>Hours Till Party</h6>
+							<?elseif($f['hours'] == 1):?>
+								<h5><?=$f['hours']?></h5> <h6>Hour Till Party</h6>
+							<?elseif($f['minutes'] > 1):?>
+								<h5><?=$f['minutes']?></h5> <h6>Minutes Till Party</h6>
+							<?elseif($f['minutes'] = 1):?>
+								<h5><?=$f['minutes']?></h5> <h6>Minute Till Party</h6>
+							<?elseif($f['seconds'] > 1):?>
+								<h5><?=$f['seconds']?></h5> <h6>Seconds Till Party</h6>
+							<?elseif($f['seconds'] = 1):?>
+								<h5><?=$f['seconds']?></h5> <h6>Second Till Party</h6>
+							<?endif;?>
+						</hgroup>
+					
+					</article>
+				<? endforeach; ?>
+			
+			<?endif;?>
 		</div>
 	</section>
 	
@@ -198,3 +175,4 @@
 
 	<!-- Inits -->
 	<script>initScroller();</script>
+	<script>initBars();</script>

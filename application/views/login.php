@@ -19,12 +19,13 @@
 			<?=form_open("/authentication/login"); ?>
 				<h1>Login with an email</h1>
 				<div>
-					<p><? if(isset($error)) echo $error; ?></p>
-					<h2>Email Address</h2>
-					<input type="text" name="email" />
+					<p><? if(isset($loginError)) echo $loginError; ?></p>
 
+					<h2>Email Address</h2>
+					<input type="text" name="loginEmail" />
+						
 					<h2>Password</h2>
-					<?=form_password('password'); ?>
+					<?=form_password('loginPass'); ?>
 
 					<button type="submit">Login</button>
 					<a href="#">Forgot your password?</a>
@@ -34,6 +35,8 @@
 			<?=form_open("/authentication/signup"); ?>
 				<h1>Create an account</h1>
 				<div>
+					<p><? if(isset($error)) echo $error; ?></p>
+
 					<?=form_error('username'); ?>
 					<h2>Username</h2>
 					<input type="text" name="username" value="<?=set_value('username'); ?>" />

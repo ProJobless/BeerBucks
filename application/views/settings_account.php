@@ -25,8 +25,8 @@
 			<nav id="settingsNav">
 				<a href="<?=base_url()?>index.php/settings">Profile Settings</a>
 				<a href="<?=base_url()?>index.php/settings/account" class="selected">Account Settings</a>
-				<a href="<?=base_url()?>index.php/settings/services">Services Settings</a>
-				<a href="<?=base_url()?>index.php/settings/subscription">Subscription Settings</a>
+				<!-- <a href="<?=base_url()?>index.php/settings/services">Services Settings</a>
+				<a href="<?=base_url()?>index.php/settings/subscription">Subscription Settings</a> -->
 			</nav>
 		</aside>
 

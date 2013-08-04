@@ -10,7 +10,7 @@ class Party extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
 		$data['alerts'] = $this->user_model->checkAlerts();
-
+		
 	}
 	
 	function _remap($method){

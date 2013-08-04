@@ -1,3 +1,5 @@
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/imgareaselect/imgareaselect-animated.css" media="screen" /> 
+
 	<section id="cta" class="discover">
 		<div class="sizer">
 			<h1>Start an awesome party</h1>
@@ -72,11 +74,8 @@
 			
 				<label class="filebutton">
                 	Select an image
-                	<span><input id="uploadButton"type="file" name="userfile" size="20" /></span>
-            	</label>
-            	<label class="filebutton" style="display: none;">
-               		Upload Image
-               		<span><input id="uploadSubmit" type="submit" name="upload" value="upload" /></span>
+               
+                	<span><input id="uploadButton" type="file" name="userfile" size="20" /></span>
             	</label>
         	<?=form_close(); ?>	
 
@@ -108,14 +107,13 @@
 						<h3 class="partyLocation"></h3>
 					</hgroup>
 
-					<div><p class="goal">
-							<? if(!set_value('goal')):?>
-								<?if($this->session->userdata('goal')) echo '$ 0/' . ltrim($this->session->userdata('goal') , '$');?>
-							<? elseif(set_value('goal')):?>
-								<?='$ 0/' . ltrim(set_value('goal') , '$')?>
-							<? endif; ?>
-						</p>
-					</div>
+					<div class="bar" data-raised=""><span>$0/<?if($this->session->userdata('goal')) echo $this->session->userdata('goal'); else echo '0';?></span></div>
+
+					<hgroup>
+						<h5>0</h5> <h6>Attending</h6>
+						<h5>0</h5> <h6>Days Till Party</h6>
+					</hgroup>
+
 				</article>
 			</aside>
 		</section>
@@ -129,6 +127,7 @@
 
 	<!-- Plugins -->
 	<script src="<?=base_url()?>js/plugins/jquery-ui-timepicker-addon.js"></script>
+	<script src="<?=base_url()?>js/plugins/imgareaselect/jquery.imgareaselect.pack.js"></script>
 
     <!-- Scripts -->
 	<script src="<?=base_url()?>js/main.js"></script>

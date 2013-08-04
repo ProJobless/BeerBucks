@@ -15,7 +15,7 @@
 
 		<section id="tabContent">
 			<?if(isset($parties[0])):?>
-				<? foreach ($parties as $party): ?>
+				<? foreach($parties as $party): ?>
 
 					<article class="party">
 
@@ -58,7 +58,7 @@
 				<? endforeach; ?>
 				<div class="pagination"><?=$links?></div>
 				<?else:?>
-				<h1>There are no parties yet. Why not start one?</h1>
+				<h1>There are no upcoming parties near you. Why not start one?</h1>
 			<?endif;?>
 		</section>
 	</section>

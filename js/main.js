@@ -79,8 +79,50 @@ var initSuccessError = function(){
 };
 
 var initUpload = function(){
-	$('.filebutton').change(function(e){
-		$("form").submit();
+
+	var url = window.URL || window.webkitURL;
+	var check = true;
+
+	function cropThumbNail(){
+		//Code to crop a thumbnail will go here.
+		return true;
+	}
+
+	$('input[type=file]').change(function(e){
+
+		if( this.disabled ){
+			alert('Your browser does not support File upload.');
+		}else{
+			var chosen = this.files[0];
+			var image = new Image();
+
+			image.onload = function() {
+				if(this.width < 720){
+
+					check = false;
+					alert('Image must be at least 720x450. This image\'s width is only: ' + this.width + 'px');
+					this.value = '';
+
+				}else if(this.height < 450){
+
+					check = false;
+					alert('Image must be at least 720x450. This image\'s height is only: ' + this.height + 'px');
+					this.value = '';
+
+				}
+
+				if(check){
+					if(cropThumbNail()) $("form").submit();
+				}
+
+				check = true;
+			};
+			image.onerror = function() {
+				alert('Not a valid file type: '+ chosen.type);
+			};
+
+			image.src = url.createObjectURL(chosen);
+		}
 	});
 };
 
@@ -410,11 +452,17 @@ var initPagination = function(type){
 		check        =   false
 	;
 
-	if(window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties'){
-		count = 6;
-	}else if(window.location.pathname.split('/')[window.location.pathname.split('/').length-3]){
+	//console.log(window.location.pathname.split('/')[window.location.pathname.split('/').length-2]);
+
+	if( window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'friends' || 
+		window.location.pathname.split('/')[window.location.pathname.split('/').length-1] == 'parties' ||
+		window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'parties' ||
+		window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'friends' ||
+		window.location.pathname.split('/')[window.location.pathname.split('/').length-2] == 'attending'){
 		count = 6;
 	}
+
+	//alert(count);
 
 	function isInView(elem){
 		var docViewTop      =   $(window).scrollTop(),
@@ -460,11 +508,12 @@ var initPagination = function(type){
 	});
 
 	win.on('scroll', function(e){
-		if(isInView(ajaxButton) && check){
+		if(isInView($('.ajaxButton')) && check){
 			check = false;
 			loadMore();
 		}
 	});
+
 	loadMore();
 };
 
@@ -508,8 +557,8 @@ var initAutoComplete = function(){
 		minLength: 2,
 		select: function( event, ui ) {
 			log(ui.item.label);
-			$('.partyLat').val(ui.item.lat);
-			$('.partyLng').val(ui.item.lng);
+			$('.partyLat, .lat').val(ui.item.lat);
+			$('.partyLng, .lng').val(ui.item.lng);
 		},
 		open: function() {
 			$(this).removeClass('closed').addClass('opened');
@@ -639,6 +688,7 @@ var initBars = function(){
 		var that = $(this);
 
 		percent = that.attr('data-raised');
+
 		that.find('span').animate({
 			width: percent*100+'%'
 		});
@@ -646,22 +696,9 @@ var initBars = function(){
 		if(percent == 1) {
 			that.find('span').css({
 				'-webkit-border-radius':   '5px 5px 5px 5px',
-    			'border-radius':           '5px 5px 5px 5px'
+				'border-radius':           '5px 5px 5px 5px'
 			});
 		}
 
-	})
+	});
 };
-
-
-
-
-
-
-
-
-
-
-
-
-

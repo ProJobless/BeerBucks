@@ -124,7 +124,7 @@ class Authentication_model extends CI_Model {
                 'userID'          =>   $userID,
                 'email'           =>   $email,
                 'username'        =>   $username,
-                'profileImgage'   =>   'default.jpg',
+                'profileImage'   =>   'default.jpg',
                 'feedback'        =>   0,
                 'views'           =>   0,
                 'comments'        =>   0,
@@ -146,8 +146,8 @@ class Authentication_model extends CI_Model {
 
     public function login(){
 
-    	$email      =   $this->security->xss_clean($this->input->post('email'));
-    	$password   =   $this->security->xss_clean($this->input->post('password'));
+    	$email      =   $this->security->xss_clean($this->input->post('loginEmail'));
+    	$password   =   $this->security->xss_clean($this->input->post('loginPass'));
 
     	$this->db->where('email', $email);
     	$this->db->where('pword', $password);

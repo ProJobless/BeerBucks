@@ -23,21 +23,50 @@
  			<?=form_open("/start/basic"); ?>
 				<section id="guidelines">
 
-					<h1>Beer-Bucks Guidelines</h1> <hr />
+					<h1>Beer-Bucks Party Guidelines</h1> <hr />
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
+						<p>
+							Beer-Bucks Parties are <strong>fund-raising campaigns</strong>.
+							All funds raised using Beer-Bucks should be <strong>used to host a party</strong>.
+							Attenders of alcohol-endorsed parties must be of legal drinking age.
+						</p>
 					</div>
 
-					<h1>Beer-Bucks Guidelines</h1> <hr />
+					<h1>Who can start a party?</h1> <hr />
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
+						<p>
+							A party campaign can be started by a <strong>US resident</strong> with a <strong>US bank account</strong> and a <strong>Social Security Number</strong>.
+							You should also be at least <strong>21 years of age</strong> or older. 
+							Currently Beer-Bucks is only available to individuals and not business entities.
+						</p>
 					</div>
 
-					<h1>Beer-Bucks Guidelines</h1> <hr />
+					<h1>Who can donate to a party?</h1> <hr />
+
 					<div>
-						<p>Something important should probably go here, but I don't really know what.</p>
-						<?=form_checkbox('terms_of_use'); ?>
+						<p>To donate to a party you must have a <strong>valid credit card</strong>, and should be a <strong>US resident</strong>.</p>
 					</div>
+
+					<h1>Information Security</h1> <hr />
+
+					<div>
+						<p>Beer-Bucks uses a secure online payments processor called <a href="https://stripe.com/" target="_blank">Stripe</a>. Your information is <strong>never handled by Beer-Bucks' server</strong>, instead your information is sent from your computer, to Stripe. For more information about Stripe see their <a href="https://stripe.com/help/security" target="_blank">security documentation.</a></p>
+					</div>
+
+					<hr />
+
+					<div>
+
+						<article class="check">
+							<input type="checkbox" value="None" id="check" name="terms_of_use" />
+							<label for="check"></label>
+						</article>
+
+						<p class="tos">I agree that my party meets the guidelines and I meet eligibility requirements. I understand that I am consenting to be the liable host of the party funded by this campaign.</p>
+					</div>
+
 				</section>
 				<div><button type="submit">Next Step</button></div>
 
@@ -71,14 +100,7 @@
 						<h3>Orlando, FL</h3>
 					</hgroup>
 
-					<div><p>
-							<? if(!set_value('goal')):?>
-								<?if($this->session->userdata('goal')) echo '$ 0/' . ltrim($this->session->userdata('goal') , '$');?>
-							<? elseif(set_value('goal')):?>
-								<?='$ 0/' . ltrim(set_value('goal') , '$')?>
-							<? endif; ?>
-						</p>
-					</div>
+					<div class="bar" data-raised=""><span>$0/<?if($this->session->userdata('goal')) echo $this->session->userdata('goal'); else echo '0';?></span></div>
 
 					<hgroup>
 						<h5>0</h5> <h6>Attending</h6>

@@ -74,21 +74,21 @@
 								<h5><?= count($party['2'])?></h5> <h6>Attending</h6>
 
 								<?if($party['days'] > 1):?>
-									<h5><?=$party['days']?></h5> <h6>Days Till Party</h6>
+									<h5><?=$party['days']?></h5> <h6>Days <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?>Party</h6>
 								<?elseif($party['days'] == 1):?>
-									<h5><?=$party['days']?></h5> <h6>Day Till Party</h6>
+									<h5><?=$party['days']?></h5> <h6>Day <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['hours'] > 1):?>
-									<h5><?=$party['hours']?></h5> <h6>Hours Till Party</h6>
+									<h5><?=$party['hours']?></h5> <h6>Hours <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['hours'] == 1):?>
-									<h5><?=$party['hours']?></h5> <h6>Hour Till Party</h6>
+									<h5><?=$party['hours']?></h5> <h6>Hour <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['minutes'] > 1):?>
-									<h5><?=$party['minutes']?></h5> <h6>Minutes Till Party</h6>
+									<h5><?=$party['minutes']?></h5> <h6>Minutes <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['minutes'] = 1):?>
-									<h5><?=$party['minutes']?></h5> <h6>Minute Till Party</h6>
+									<h5><?=$party['minutes']?></h5> <h6>Minute <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['seconds'] > 1):?>
-									<h5><?=$party['seconds']?></h5> <h6>Seconds Till Party</h6>
+									<h5><?=$party['seconds']?></h5> <h6>Seconds <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?elseif($party['seconds'] = 1):?>
-									<h5><?=$party['seconds']?></h5> <h6>Second Till Party</h6>
+									<h5><?=$party['seconds']?></h5> <h6>Second <? if( $party['expired'] == '0' ){ echo 'Till'; } else { echo 'Since'; } ?> Party</h6>
 								<?endif;?>
 							</hgroup>
 						

@@ -6,6 +6,10 @@
 		<p class="error sizer"><?=$error?></p>
 	<? endif; ?>
 
+	<div class="sizer backContainer">
+		<a href="<?=base_url()?>index.php/party/attending/<?=$partyID?>" class="back">Back to party</a>
+	</div>
+
 	<section id="settings" class="sizer">
 		<aside>
 			<article class="party">

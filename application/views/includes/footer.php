@@ -26,25 +26,25 @@
 			</ul>
 
 			<ul>
-				<li>Discover</li>
-				<li>Start</li>
-				<li>Communit</li>
-				<li>Login</li>
-				<li>Sign Up</li>
+				<li><a href="<?= base_url(); ?>index.php/discover">Discover</a></li>
+				<li><a href="<?= base_url(); ?>index.php/start">Start</a></li>
+				<li><a href="<?= base_url(); ?>index.php/community">Community</a></li>
+				<li><a href="<?= base_url(); ?>index.php/login">Login</a></li>
+				<li><a href="<?= base_url(); ?>index.php/join">Sign Up</a></li>
 			</ul>
 			
 			<ul>
-				<li>www.beer-bucks.com</li>
-				<li>Facebook.com/TheBeerBucks</li>
-				<li>@thebeerbucks</li>
-				<li>beer-bucks.tumblr.com</li>
+				<li><a href="<?=base_url()?>">www.beer-bucks.com</a></li>
+				<li><a href="https://www.facebook.com/TheBeerBucks" target="_blank">Facebook.com/TheBeerBucks</a></li>
+				<li><a href="https://twitter.com/thebeerbucks" target="_blank">@thebeerbucks</a></li>
+				<li><a href="http://beer-bucks.tumblr.com/" target="_blank">beer-bucks.tumblr.com</a></li>
 			</ul>
 		</section>
 		
 		<section>
 			<ul class="sizer">
 				<li>Terms of Use</li>
-				<li>Privacy Policy</li>
+				<li><a href="<?= base_url(); ?>index.php/privacy_policy">Privacy Policy</a></li>
 				<li>&copy; 2013 Beer-Bucks</li>
 			</ul>
 		</section>

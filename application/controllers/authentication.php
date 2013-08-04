@@ -23,17 +23,17 @@ class Authentication extends CI_Controller {
 			array(
 				'field' => 'username',
 				'label' => 'Username',
-				'rules' => 'trim|required|min_length[3]|max_length[20]|xss_clean'
+				'rules' => 'alpha_dash|trim|required|min_length[3]|max_length[20]|xss_clean'
 			), 
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'trim|required|valid_email'
+				'rules' => 'trim|required|valid_email|xss_clean'
 			), 
 			array(
 				'field' => 'password',
 				'label' => 'Password',
-				'rules' => 'trim|required|md5'
+				'rules' => 'trim|required|md5|xss_clean'
 			)
 		);
 
@@ -42,23 +42,31 @@ class Authentication extends CI_Controller {
 		if($this->form_validation->run() == false){
 
 			$data['view'] = 'login';
-			$data['joinError'] = 'Please enter your username, email, and password.';
+			//$data['error'] = 'Please enter your username, email, and password.';
 
 			$this->load->view('includes/template', $data);
 
 		}else{
 
-			$result = $this->authentication_model->signup();
-
-			if(!$result){
+			if(!$this->authentication_model->signup()){
 
 				$data['view'] = 'login';
-				$data['joinError'] = 'Username or email already used.';
+				$data['error'] = 'Username or email already used.';
 
 				$this->load->view('includes/template', $data);
 
 			}else{
-				redirect('profile');
+
+				if($this->session->flashdata('referer')){
+					
+					redirect($this->session->flashdata('referer'));
+
+				}else{
+
+					redirect('profile');
+
+				}
+				
 			}
 
 		}
@@ -71,14 +79,14 @@ class Authentication extends CI_Controller {
 
 		$config = array(
 			array(
-				'field' => 'email',
-				'label' => 'Email',
-				'rules' => 'trim|required|valid_email'
+				'field'   =>   'loginEmail',
+				'label'   =>   'Email',
+				'rules'   =>   'trim|required|valid_email|xss_clean'
 			), 
 			array(
-				'field' => 'password',
-				'label' => 'Password',
-				'rules' => 'trim|required|md5'
+				'field'   =>   'loginPass',
+				'label'   =>   'Password',
+				'rules'   =>   'trim|required|md5|xss_clean'
 			)
 		);
 
@@ -86,24 +94,32 @@ class Authentication extends CI_Controller {
 
 		if($this->form_validation->run() == false){
 
-			$data['view'] = 'login';
-			$data['error'] = 'Please enter email and password.';
+			$data['view']         =   'login';
+			$data['loginError']   =   'Please enter email and password.';
 
 			$this->load->view('includes/template', $data);
 
 		}else{
 
-			$result = $this->authentication_model->login();
+			if(!$this->authentication_model->login()){
 
-			if(!$result){
-
-				$data['view'] = 'login';
-				$data['error'] = 'Username or password incorrect.';
+				$data['view']         =   'login';
+				$data['loginError']   =   'Username or password incorrect.';
 
 				$this->load->view('includes/template', $data);
 
 			}else{
-				redirect('profile');
+
+				if($this->session->flashdata('referer')){
+
+					redirect($this->session->flashdata('referer'));
+
+				}else{
+
+					redirect('profile');
+
+				}
+
 			}
 
 		}
@@ -115,8 +131,8 @@ class Authentication extends CI_Controller {
 		$this->load->library('fbconnect');
 
 		$data = array(
-			'redirect_uri' => site_url('authentication/handleFacebookLogin'),
-			'scope' => 'email'
+			'redirect_uri'   =>   site_url('authentication/handleFacebookLogin'),
+			'scope'          =>   'email'
 		);
 
 		redirect($this->fbconnect->getLoginUrl($data));
@@ -133,7 +149,15 @@ class Authentication extends CI_Controller {
 
 			if($this->authentication_model->facebook($fbUser)){
 
-				redirect('profile');
+				if($this->session->flashdata('referer')){
+					
+					redirect($this->session->flashdata('referer'));
+
+				}else{
+
+					redirect('profile');
+
+				}
 
 			}
 

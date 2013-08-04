@@ -10,6 +10,9 @@ class Start extends CI_Controller {
 		$this->load->model('user_model');
 		$data['alerts'] = $this->user_model->checkAlerts();
 
+		$refSegments = basename($_SERVER['REQUEST_URI']);
+       	$this->session->set_flashdata('referer', $refSegments);
+
 	}
 
 	public function index (){	
@@ -377,7 +380,7 @@ class Start extends CI_Controller {
 					$type          =   'individual';
 					$token         =   $this->input->post('accountToken');
 					$email         =   $this->input->post('email');
-					$description   =   'test';
+					$description   =   "BeerBucks user's account details.";
 					$recipientID   =   $this->session->flashdata('recipientID');
 
 					if($token == 'false'){
