@@ -103,7 +103,7 @@
 			
 				<div>
 					<p class="upload">
-						This is a perfect time to show a picture from a previous party you’ve thrown. Alternatively you could use a picture of yourself and show off your beautiful smile.
+						Choose an image of yourself to for your profile page.
 					</p>
 				</div>
 
@@ -111,13 +111,8 @@
 
 				<label class="filebutton">
                 	Select an image
-                	<span><input id="uploadButton"type="file" name="userfile" size="20" /></span>
+                	<span><input id="uploadButton" type="file" name="userfile" size="20" /></span>
             	</label>
-            	<label class="filebutton" style="display: none;">
-               		Upload Image
-               		<span><input id="uploadSubmit" type="submit" name="upload" value="upload" /></span>
-            	</label>
-
 			<?=form_close(); ?>	
 
 		</section>
@@ -156,7 +151,7 @@
 	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initUpload();</script>
+	<script>//initUpload(220,210);</script>
 	<script>initSuccessError();</script>
 	<script>initAutoComplete();</script>
 	<script>initSettings();</script>

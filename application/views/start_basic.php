@@ -70,11 +70,9 @@
 				</section>
 
 				<div><button type="submit" name="back" value="back">Go Back</button><button type="submit">Next Step</button></div>
-
 			
 				<label class="filebutton">
                 	Select an image
-               
                 	<span><input id="uploadButton" type="file" name="userfile" size="20" /></span>
             	</label>
         	<?=form_close(); ?>	
@@ -135,5 +133,5 @@
 	<!-- Inits -->
 	<script>initScroller();</script>
 	<script>initWizardOfOz();</script>
-	<script>initUpload();</script>
+	<script>initUpload(720,450);</script>
 	<script>initSuccessError();</script>

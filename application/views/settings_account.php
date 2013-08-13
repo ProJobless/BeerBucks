@@ -113,7 +113,6 @@
 	<script src="<?=base_url()?>js/main.js"></script>
 
 	<!-- Inits -->
-	<script>initUpload();</script>
 	<script>initSuccessError();</script>
 	<script>initAutoComplete();</script>
 	<script>initStripeRecipient();</script>

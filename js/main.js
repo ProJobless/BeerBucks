@@ -78,7 +78,7 @@ var initSuccessError = function(){
 	setTimeout(hideMessage, 3000);
 };
 
-var initUpload = function(){
+var initUpload = function(width,height){
 
 	var url = window.URL || window.webkitURL;
 	var check = true;
@@ -97,16 +97,16 @@ var initUpload = function(){
 			var image = new Image();
 
 			image.onload = function() {
-				if(this.width < 720){
+				if(this.width < width){
 
 					check = false;
-					alert('Image must be at least 720x450. This image\'s width is only: ' + this.width + 'px');
+					alert('Image must be at least ' + width + 'x' + height + '. This image\'s width is only: ' + this.width + 'px');
 					this.value = '';
 
-				}else if(this.height < 450){
+				}else if(this.height < height){
 
 					check = false;
-					alert('Image must be at least 720x450. This image\'s height is only: ' + this.height + 'px');
+					alert('Image must be at least ' + width + 'x' + height + '. This image\'s height is only: ' + this.height + 'px');
 					this.value = '';
 
 				}
